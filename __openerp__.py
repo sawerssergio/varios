@@ -60,8 +60,7 @@ Main Features
         'views/point_of_sale.xml',
     ],
     'demo': [
-        'point_of_sale_demo.xml',
-        'account_statement_demo.xml',
+        'data/kingdom_data.xml',
     ],
     'installable': True,
     'application': True,

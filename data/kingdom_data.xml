@@ -1,0 +1,481 @@
+<?xml version="1.0"?>
+
+<openerp>
+    <data>
+
+        <!-- Attibute difined -->
+
+        <record id="attribute_size_1" model="product.attribute">
+            <field name="name">Size</field>
+        </record>
+
+        <record id="attribute_size_value_1" model="product.attribute.value">
+            <field name="name">Small</field>
+            <field name="attribute_id" ref="attribute_size_1"/>
+        </record>
+
+        <record id="attribute_size_value_2" model="product.attribute.value">
+            <field name="name">Medium</field>
+            <field name="attribute_id" ref="attribute_size_1"/>
+        </record>
+
+        <record id="attribute_size_value_3" model="product.attribute.value">
+            <field name="name">Big</field>
+            <field name="attribute_id" ref="attribute_size_1"/>
+        </record>
+
+        <!-- End -->
+        
+        <!-- Categories Defined -->
+
+        <record id="soda" model="pos.category">
+          <field name="name">Soda</field>
+          <field name="image" type="base64" file="point_of_sale/static/img/soda-image.jpg"/>
+        </record>
+
+        <record id="chicken" model="pos.category">
+          <field name="name">Chicken</field>
+          <field name="image" type="base64" file="point_of_sale/static/img/soda-image.jpg"/>
+        </record>
+
+        <record id="icecream" model="pos.category">
+          <field name="name">Ice Cream</field>
+          <field name="image" type="base64" file="point_of_sale/static/img/ice_cream-image.jpg"/>
+        </record>
+
+        <record id="extra" model="pos.category">
+          <field name="name">Extra</field>
+          <field name="image" type="base64" file="point_of_sale/static/img/chips-image.jpg"/>
+        </record>
+
+        <!-- End Categories -->
+
+        <!-- Extra Categories -->
+        <record id="extra_1" model="product.product">
+            <field name="name">Extra Chips</field>
+            <field name="pos_categ_id" ref="extra"/>
+            <field name="standard_price">3.0</field>
+            <field name="list_price">5.0</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="image" type="base64" file="point_of_sale/static/img/chips-image.jpg"/>
+        </record>
+
+        <!-- End Extra -->
+
+        <!-- Ice Cream Categories -->
+
+        <record id="ice_1" model="product.product">
+            <field name="name">Mango</field>
+            <field name="pos_categ_id" ref="icecream"/>
+            <field name="standard_price">3.0</field>
+            <field name="list_price">5.0</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="image" type="base64" file="point_of_sale/static/img/ijsboerke_chocolat_2,5l-image.jpg"/>
+        </record>
+
+
+        <record id="ice_2" model="product.product">
+            <field name="name">Frutilla</field>
+            <field name="pos_categ_id" ref="icecream"/>
+            <field name="standard_price">4.0</field>
+            <field name="list_price">6.0</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="image" type="base64" file="point_of_sale/static/img/ijsboerke_moka_2,5l-image.jpg"/>
+        </record>
+
+        <record id="ice_3" model="product.product">
+            <field name="name">Crema Americana</field>
+            <field name="pos_categ_id" ref="icecream"/>
+            <field name="standard_price">4.0</field>
+            <field name="list_price">6.0</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="image" type="base64" file="point_of_sale/static/img/ijsboerke_vanille_2,5l-image.jpg"/>
+        </record>
+
+
+        <!-- End Ice Cream -->
+
+        <!-- Chicken Categories -->
+
+        <record id="chicken_1" model="product.product">
+            <field name="name">Medio Pollo</field>
+            <field name="pos_categ_id" ref="chicken"/>
+            <field name="standard_price">35.0</field>
+            <field name="list_price">41.0</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="image" type="base64" file="point_of_sale/static/img/lays_pickles_250g-image.jpg"/>
+        </record>
+
+
+        <record id="chicken_2" model="product.product">
+            <field name="name">Cuarto Pollo</field>
+            <field name="pos_categ_id" ref="chicken"/>
+            <field name="standard_price">20.0</field>
+            <field name="list_price">24.0</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="image" type="base64" file="point_of_sale/static/img/lays_pickles_250g-image.jpg"/>
+        </record>
+
+        <record id="chicken_3" model="product.product">
+            <field name="name">King Menu</field>
+            <field name="pos_categ_id" ref="chicken"/>
+            <field name="standard_price">40.0</field>
+            <field name="list_price">45.0</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="image" type="base64" file="point_of_sale/static/img/lays_pickles_250g-image.jpg"/>
+        </record>
+
+        <record id="chicken_4" model="product.product">
+            <field name="name">Queen Menu</field>
+            <field name="pos_categ_id" ref="chicken"/>
+            <field name="standard_price">22.0</field>
+            <field name="list_price">28.0</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="image" type="base64" file="point_of_sale/static/img/lays_pickles_250g-image.jpg"/>
+        </record>
+
+        <record id="chicken_5" model="product.product">
+            <field name="name">Solo Medio</field>
+            <field name="pos_categ_id" ref="chicken"/>
+            <field name="standard_price">30.0</field>
+            <field name="list_price">36.0</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="image" type="base64" file="point_of_sale/static/img/lays_pickles_250g-image.jpg"/>
+        </record>
+
+        <record id="chicken_6" model="product.product">
+            <field name="name">Solo Cuarto</field>
+            <field name="pos_categ_id" ref="chicken"/>
+            <field name="standard_price">15.0</field>
+            <field name="list_price">19.0</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="image" type="base64" file="point_of_sale/static/img/lays_pickles_250g-image.jpg"/>
+        </record>
+
+        <!-- End Chicken Categories -->
+
+        <!-- Soda Categories -->
+        <record id="soda_coke" model="pos.category">
+            <field name="parent_id" ref="soda"/>
+            <field name="name">Coke</field>
+            <field name="image" type="base64" file="point_of_sale/static/img/coke-image.jpg"/>
+        </record>
+        <record id="soda_fanta" model="pos.category">
+            <field name="parent_id" ref="soda"/>
+            <field name="name">Orange</field>
+            <field name="image" type="base64" file="point_of_sale/static/img/soda_orange-image.jpg"/>
+        </record>
+        <record id="soda_sprite" model="pos.category">
+            <field name="parent_id" ref="soda"/>
+            <field name="name">Sprite</field>
+            <field name="image" type="base64" file="point_of_sale/static/img/soda_orange-image.jpg"/>
+        </record>
+        <record id="soda_simba" model="pos.category">
+            <field name="parent_id" ref="soda"/>
+            <field name="name">Simba</field>
+            <field name="image" type="base64" file="point_of_sale/static/img/soda_orange-image.jpg"/>
+        </record>
+        <record id="soda_coke_light" model="pos.category">
+            <field name="parent_id" ref="soda"/>
+            <field name="name">Coke Light</field>
+            <field name="image" type="base64" file="point_of_sale/static/img/soda_orange-image.jpg"/>
+        </record>
+
+        <!-- End Categories Defined -->
+
+        <!-- Coca Cola -->
+
+        <record id="product_drink_coca_1" model="product.product">
+            <field name="name">Coca-Cola</field>
+            <field name="pos_categ_id" ref="soda_coke"/>
+            <field name="standard_price">4</field>
+            <field name="list_price">5</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="default_code">D001</field>
+            <field name="image" type="base64" file="point_of_sale/static/img/coke-image.jpg"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_1')])]"/>
+        </record>
+        <!-- -->
+        <record id="product_drink_coca_1b" model="product.product">
+            <field name="default_code">D002</field>
+            <field name="product_tmpl_id" ref="product_drink_coca_1_product_template"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_2')])]"/>
+        </record>
+
+        <record id="product_drink_coca_1c" model="product.product">
+            <field name="default_code">D003</field>
+            <field name="product_tmpl_id" ref="product_drink_coca_1_product_template"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_3')])]"/>
+        </record>
+        
+        <record id="product_attribute_line_coca_1" model="product.attribute.line">
+            <field name="product_tmpl_id" ref="product_drink_coca_1_product_template"/>
+            <field name="attribute_id" ref="attribute_size_1"/>
+            <field name="value_ids" eval="[(6,0,[
+                                                            ref('attribute_size_value_1'),
+                                                            ref('attribute_size_value_2'),
+                                                            ref('attribute_size_value_3')
+                                                            ])]"/>
+        </record>
+
+        <record id="product_drink_coca_1_product_template" model="product.template">
+            <field name="attribute_line_ids" eval="[(6,0,[ref('product_attribute_line_coca_1')])]"/>
+        </record>
+        <!-- -->
+        <record id="product_drink_price_1" model="product.attribute.price">
+            <field name="product_tmpl_id" ref="product_drink_coca_1_product_template"/>
+            <field name="value_id" ref="attribute_size_value_2"/>
+            <field name="price_extra">1</field>
+        </record>
+
+        <record id="product_drink_price_2" model="product.attribute.price">
+            <field name="product_tmpl_id" ref="product_drink_coca_1_product_template"/>
+            <field name="value_id" ref="attribute_size_value_3"/>
+            <field name="price_extra">2</field>
+        </record>
+
+        <!-- End -->
+
+        <!-- Fanta -->
+
+        <record id="product_drink_fanta_1" model="product.product">
+            <field name="name">Fanta</field>
+            <field name="pos_categ_id" ref="soda_fanta"/>
+            <field name="standard_price">4</field>
+            <field name="list_price">5</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="default_code">D004</field>
+            <field name="image" type="base64" file="point_of_sale/static/img/soda_orange-image.jpg"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_1')])]"/>
+        </record>
+        <!-- -->
+        <record id="product_drink_fanta_1b" model="product.product">
+            <field name="default_code">D005</field>
+            <field name="product_tmpl_id" ref="product_drink_fanta_1_product_template"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_2')])]"/>
+        </record>
+
+        <record id="product_drink_fanta_1c" model="product.product">
+            <field name="default_code">D006</field>
+            <field name="product_tmpl_id" ref="product_drink_fanta_1_product_template"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_3')])]"/>
+        </record>
+        
+        <record id="product_attribute_line_fanta_1" model="product.attribute.line">
+            <field name="product_tmpl_id" ref="product_drink_fanta_1_product_template"/>
+            <field name="attribute_id" ref="attribute_size_1"/>
+            <field name="value_ids" eval="[(6,0,[
+                                                            ref('attribute_size_value_1'),
+                                                            ref('attribute_size_value_2'),
+                                                            ref('attribute_size_value_3')
+                                                            ])]"/>
+        </record>
+
+        <record id="product_drink_fanta_1_product_template" model="product.template">
+            <field name="attribute_line_ids" eval="[(6,0,[ref('product_attribute_line_fanta_1')])]"/>
+        </record>
+        <!-- -->
+        <record id="product_drink_price_1" model="product.attribute.price">
+            <field name="product_tmpl_id" ref="product_drink_fanta_1_product_template"/>
+            <field name="value_id" ref="attribute_size_value_2"/>
+            <field name="price_extra">1</field>
+        </record>
+
+        <record id="product_drink_price_2" model="product.attribute.price">
+            <field name="product_tmpl_id" ref="product_drink_fanta_1_product_template"/>
+            <field name="value_id" ref="attribute_size_value_3"/>
+            <field name="price_extra">2</field>
+        </record>
+
+        <!-- End -->
+
+        <!-- Sprite -->
+
+        <record id="product_drink_sprite_1" model="product.product">
+            <field name="name">Sprite</field>
+            <field name="pos_categ_id" ref="soda_sprite"/>
+            <field name="standard_price">4</field>
+            <field name="list_price">5</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="default_code">D007</field>
+            <field name="image" type="base64" file="point_of_sale/static/img/soda_orange-image.jpg"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_1')])]"/>
+        </record>
+        <!-- -->
+        <record id="product_drink_sprite_1b" model="product.product">
+            <field name="default_code">D008</field>
+            <field name="product_tmpl_id" ref="product_drink_sprite_1_product_template"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_2')])]"/>
+        </record>
+
+        <record id="product_drink_sprite_1c" model="product.product">
+            <field name="default_code">D009</field>
+            <field name="product_tmpl_id" ref="product_drink_sprite_1_product_template"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_3')])]"/>
+        </record>
+        
+        <record id="product_attribute_line_sprite_1" model="product.attribute.line">
+            <field name="product_tmpl_id" ref="product_drink_sprite_1_product_template"/>
+            <field name="attribute_id" ref="attribute_size_1"/>
+            <field name="value_ids" eval="[(6,0,[
+                                                            ref('attribute_size_value_1'),
+                                                            ref('attribute_size_value_2'),
+                                                            ref('attribute_size_value_3')
+                                                            ])]"/>
+        </record>
+
+        <record id="product_drink_sprite_1_product_template" model="product.template">
+            <field name="attribute_line_ids" eval="[(6,0,[ref('product_attribute_line_sprite_1')])]"/>
+        </record>
+        <!-- -->
+        <record id="product_drink_price_1" model="product.attribute.price">
+            <field name="product_tmpl_id" ref="product_drink_sprite_1_product_template"/>
+            <field name="value_id" ref="attribute_size_value_2"/>
+            <field name="price_extra">1</field>
+        </record>
+
+        <record id="product_drink_price_2" model="product.attribute.price">
+            <field name="product_tmpl_id" ref="product_drink_sprite_1_product_template"/>
+            <field name="value_id" ref="attribute_size_value_3"/>
+            <field name="price_extra">2</field>
+        </record>
+
+        <!-- End -->
+
+        <!-- Simba -->
+
+        <record id="product_drink_simba_1" model="product.product">
+            <field name="name">Simba</field>
+            <field name="pos_categ_id" ref="soda_simba"/>
+            <field name="standard_price">4</field>
+            <field name="list_price">5</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="default_code">D010</field>
+            <field name="image" type="base64" file="point_of_sale/static/img/soda_orange-image.jpg"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_1')])]"/>
+        </record>
+        <!-- -->
+        <record id="product_drink_simba_1b" model="product.product">
+            <field name="default_code">D011</field>
+            <field name="product_tmpl_id" ref="product_drink_simba_1_product_template"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_2')])]"/>
+        </record>
+
+        <record id="product_drink_simba_1c" model="product.product">
+            <field name="default_code">D012</field>
+            <field name="product_tmpl_id" ref="product_drink_simba_1_product_template"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_3')])]"/>
+        </record>
+        
+        <record id="product_attribute_line_simba_1" model="product.attribute.line">
+            <field name="product_tmpl_id" ref="product_drink_simba_1_product_template"/>
+            <field name="attribute_id" ref="attribute_size_1"/>
+            <field name="value_ids" eval="[(6,0,[
+                                                            ref('attribute_size_value_1'),
+                                                            ref('attribute_size_value_2'),
+                                                            ref('attribute_size_value_3')
+                                                            ])]"/>
+        </record>
+
+        <record id="product_drink_simba_1_product_template" model="product.template">
+            <field name="attribute_line_ids" eval="[(6,0,[ref('product_attribute_line_simba_1')])]"/>
+        </record>
+        <!-- -->
+        <record id="product_drink_price_1" model="product.attribute.price">
+            <field name="product_tmpl_id" ref="product_drink_simba_1_product_template"/>
+            <field name="value_id" ref="attribute_size_value_2"/>
+            <field name="price_extra">1</field>
+        </record>
+
+        <record id="product_drink_price_2" model="product.attribute.price">
+            <field name="product_tmpl_id" ref="product_drink_simba_1_product_template"/>
+            <field name="value_id" ref="attribute_size_value_3"/>
+            <field name="price_extra">2</field>
+        </record>
+
+        <!-- End -->
+
+        <!-- Coca-Cola-Light -->
+
+        <record id="product_drink_coca_2" model="product.product">
+            <field name="name">Coca-Cola-Light</field>
+            <field name="pos_categ_id" ref="soda_coke_light"/>
+            <field name="standard_price">4</field>
+            <field name="list_price">5</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="default_code">D013</field>
+            <field name="image" type="base64" file="point_of_sale/static/img/soda_orange-image.jpg"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_1')])]"/>
+        </record>
+        <!-- -->
+        <record id="product_drink_coca_2b" model="product.product">
+            <field name="default_code">D014</field>
+            <field name="product_tmpl_id" ref="product_drink_coca_2_product_template"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_2')])]"/>
+        </record>
+
+        <record id="product_drink_coca_2c" model="product.product">
+            <field name="default_code">D015</field>
+            <field name="product_tmpl_id" ref="product_drink_coca_2_product_template"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_size_value_3')])]"/>
+        </record>
+        
+        <record id="product_attribute_line_coca_2" model="product.attribute.line">
+            <field name="product_tmpl_id" ref="product_drink_coca_2_product_template"/>
+            <field name="attribute_id" ref="attribute_size_1"/>
+            <field name="value_ids" eval="[(6,0,[
+                                                            ref('attribute_size_value_1'),
+                                                            ref('attribute_size_value_2'),
+                                                            ref('attribute_size_value_3')
+                                                            ])]"/>
+        </record>
+
+        <record id="product_drink_coca_2_product_template" model="product.template">
+            <field name="attribute_line_ids" eval="[(6,0,[ref('product_attribute_line_coca_2')])]"/>
+        </record>
+        <!-- -->
+        <record id="product_drink_price_1" model="product.attribute.price">
+            <field name="product_tmpl_id" ref="product_drink_coca_2_product_template"/>
+            <field name="value_id" ref="attribute_size_value_2"/>
+            <field name="price_extra">1</field>
+        </record>
+
+        <record id="product_drink_price_2" model="product.attribute.price">
+            <field name="product_tmpl_id" ref="product_drink_coca_2_product_template"/>
+            <field name="value_id" ref="attribute_size_value_3"/>
+            <field name="price_extra">2</field>
+        </record>
+
+        <!-- End -->
+    </data>
+</openerp>
