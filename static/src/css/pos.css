@@ -460,19 +460,19 @@ td {
 
 /*  ********* The leftpane contains the order, numpad and paypad ********* */
 
-.pos .pos-leftpane {
+.pos .rightpane {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
         -ms-box-sizing: border-box;
             box-sizing: border-box;
     position:absolute;
-    left:0;
+    right:0;
     width:440px;
     top:0px;
     bottom:0;
     border-right: solid 1px #CECBCB;
 }
-.pos .pos-leftpane .pads {
+.pos .rightpane .pads {
     background: #F0EEEE;
     white-space: nowrap;
 }
@@ -572,13 +572,13 @@ td {
 
 /*  ********* The right pane contains the screens and headers ********* */
 
-.pos .rightpane {
+.pos .leftpane {
     position: absolute;
     top: 0;
     /*bottom: 105px;*/
     bottom:0;
-    left: 440px;
-    right: 0;
+    right: 440px;
+    left: 0;
     vertical-align: top;
     -webkit-transform: translate3d(0,0,0);
 }
@@ -1128,13 +1128,13 @@ td {
     }
     .oe_leftbar,
     .pos .pos-topheader, 
-    .pos .pos-leftpane, 
+    .pos .rightpane, 
     .pos .keyboard_frame {
         display: none !important;
     }
     .pos,
     .pos .pos-content,
-    .pos .rightpane,
+    .pos .leftpane,
     .pos .screen, 
     .pos .window, 
     .pos .window .subwindow, 
@@ -1146,7 +1146,7 @@ td {
     .pos{
         background: white !important;
     }
-    .pos .rightpane {
+    .pos .leftpane {
         left: 0px !important;
         background-color: white;
     }

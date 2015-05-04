@@ -22,7 +22,7 @@
 
             <div class="pos-content">
 
-                <div class="pos-leftpane">
+                <div class="rightpane">
                     <div class='window'>
                         <div class='subwindow'>
                             <div class='subwindow-container'>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <div class="rightpane">
+                <div class="leftpane">
                     <div class='window'>
                         <div class='subwindow'>
                             <div class='subwindow-container'>
