@@ -1,5 +1,5 @@
 
-function openerp_pos_keyboard(instance, module){ //module is instance.point_of_sale
+function openerp_pos_keyboard(instance, module){ //module is instance.pos_kingdom
 // ---------- OnScreen Keyboard Widget ----------
 
     // A Widget that displays an onscreen keyboard.

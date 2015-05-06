@@ -4,7 +4,7 @@
     openerp.Tour.register({
         id: 'pos_basic_order',
         name: 'Complete a basic order trough the Front-End',
-        path: '/web#model=pos.session.opening&action=point_of_sale.action_pos_session_opening',
+        path: '/web#model=pos.session.opening&action=pos_kingdom.action_pos_session_opening',
         mode: 'test',
         steps: [
             {

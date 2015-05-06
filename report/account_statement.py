@@ -50,9 +50,9 @@ class account_statement(report_sxw.rml_parse):
 
 
 class report_account_statement(osv.AbstractModel):
-    _name = 'report.point_of_sale.report_statement'
+    _name = 'report.pos_kingdom.report_statement'
     _inherit = 'report.abstract_report'
-    _template = 'point_of_sale.report_statement'
+    _template = 'pos_kingdom.report_statement'
     _wrapped_report_class = account_statement
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

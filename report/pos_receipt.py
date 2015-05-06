@@ -76,9 +76,9 @@ class order(report_sxw.rml_parse):
 
 
 class report_order_receipt(osv.AbstractModel):
-    _name = 'report.point_of_sale.report_receipt'
+    _name = 'report.pos_kingdom.report_receipt'
     _inherit = 'report.abstract_report'
-    _template = 'point_of_sale.report_receipt'
+    _template = 'pos_kingdom.report_receipt'
     _wrapped_report_class = order
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

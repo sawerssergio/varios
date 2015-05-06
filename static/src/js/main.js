@@ -1,9 +1,9 @@
 
-openerp.point_of_sale = function(instance) {
+openerp.pos_kingdom = function(instance) {
 
-    instance.point_of_sale = {};
+    instance.pos_kingdom = {};
 
-    var module = instance.point_of_sale;
+    var module = instance.pos_kingdom;
 
     openerp_pos_db(instance,module);         // import db.js
 
@@ -19,7 +19,7 @@ openerp.point_of_sale = function(instance) {
     
     openerp_pos_widgets(instance,module);    // import pos_widgets.js
 
-    instance.web.client_actions.add('pos.ui', 'instance.point_of_sale.PosWidget');
+    instance.web.client_actions.add('pos.ui', 'instance.pos_kingdom.PosWidget');
 };
 
     

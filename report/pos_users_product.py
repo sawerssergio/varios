@@ -72,9 +72,9 @@ class pos_user_product(report_sxw.rml_parse):
 
 
 class report_pos_user_product(osv.AbstractModel):
-    _name = 'report.point_of_sale.report_usersproduct'
+    _name = 'report.pos_kingdom.report_usersproduct'
     _inherit = 'report.abstract_report'
-    _template = 'point_of_sale.report_usersproduct'
+    _template = 'pos_kingdom.report_usersproduct'
     _wrapped_report_class = pos_user_product
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

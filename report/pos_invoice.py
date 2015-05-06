@@ -24,7 +24,7 @@ from openerp.tools.translate import _
 
 
 class PosInvoiceReport(osv.AbstractModel):
-    _name = 'report.point_of_sale.report_invoice'
+    _name = 'report.pos_kingdom.report_invoice'
 
     def render_html(self, cr, uid, ids, data=None, context=None):
         report_obj = self.pool['report']

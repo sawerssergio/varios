@@ -68,7 +68,7 @@ class pos_open_statement(osv.osv_memory):
             if journal.cash_control:
                 statement_obj.button_open(cr, uid, [statement_id], context)
 
-        tree_res = mod_obj.get_object_reference(cr, uid, 'point_of_sale', 'view_cash_statement_pos_tree')
+        tree_res = mod_obj.get_object_reference(cr, uid, 'pos_kingdom', 'view_cash_statement_pos_tree')
         tree_id = tree_res and tree_res[1] or False
         form_res = mod_obj.get_object_reference(cr, uid, 'account', 'view_bank_statement_form2')
         form_id = form_res and form_res[1] or False

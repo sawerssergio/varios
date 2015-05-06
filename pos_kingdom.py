@@ -493,7 +493,7 @@ class pos_session(osv.osv):
             for st in record.statement_ids:
                 if abs(st.difference) > st.journal_id.amount_authorized_diff:
                     # The pos manager can close statements with maximums.
-                    if not self.pool.get('ir.model.access').check_groups(cr, uid, "point_of_sale.group_pos_manager"):
+                    if not self.pool.get('ir.model.access').check_groups(cr, uid, "pos_kingdom.group_pos_manager"):
                         raise osv.except_osv( _('Error!'),
                             _("Your ending balance is too different from the theoretical cash closing (%.2f), the maximum allowed is: %.2f. You can contact your manager to force it.") % (st.difference, st.journal_id.amount_authorized_diff))
                 if (st.journal_id.type not in ['bank', 'cash']):
@@ -503,7 +503,7 @@ class pos_session(osv.osv):
         self._confirm_orders(cr, uid, ids, context=context)
         self.write(cr, uid, ids, {'state' : 'closed'}, context=context)
 
-        obj = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'point_of_sale', 'menu_point_root')[1]
+        obj = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'pos_kingdom', 'menu_point_root')[1]
         return {
             'type' : 'ir.actions.client',
             'name' : 'Point of Sale Menu',
@@ -735,7 +735,7 @@ class pos_order(osv.osv):
 
     def _get_out_picking_type(self, cr, uid, context=None):
         return self.pool.get('ir.model.data').xmlid_to_res_id(
-                    cr, uid, 'point_of_sale.picking_type_posout', context=context)
+                    cr, uid, 'pos_kingdom.picking_type_posout', context=context)
 
     _defaults = {
         'user_id': lambda self, cr, uid, context: uid,

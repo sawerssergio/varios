@@ -1,4 +1,4 @@
-function openerp_pos_models(instance, module){ //module is instance.point_of_sale
+function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
     var QWeb = instance.web.qweb;
 	var _t = instance.web._t;
 
@@ -541,7 +541,7 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
                 transfer.pipe(function(order_server_id){    
 
                     // generate the pdf and download it
-                    self.pos_widget.do_action('point_of_sale.pos_invoice_report',{additional_context:{ 
+                    self.pos_widget.do_action('pos_kingdom.pos_invoice_report',{additional_context:{ 
                         active_ids:order_server_id,
                     }});
 

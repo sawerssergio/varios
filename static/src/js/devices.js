@@ -1,5 +1,5 @@
 
-function openerp_pos_devices(instance,module){ //module is instance.point_of_sale
+function openerp_pos_devices(instance,module){ //module is instance.pos_kingdom
 	var _t = instance.web._t;
 
     // the JobQueue schedules a sequence of 'jobs'. each job is

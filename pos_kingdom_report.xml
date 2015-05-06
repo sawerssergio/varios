@@ -3,10 +3,10 @@
     <data>
         <report id="report_user_label"
             model="res.users" 
-            name="point_of_sale.user.label"
+            name="pos_kingdom.user.label"
             string="User Labels"
-            xml="point_of_sale/report/user_label.xml"
-            xsl="point_of_sale/report/user_label.xsl"
+            xml="pos_kingdom/report/user_label.xml"
+            xsl="pos_kingdom/report/user_label.xsl"
         />
 
         <report
@@ -14,8 +14,8 @@
             string="Invoice"
             model="pos.order"
             report_type="qweb-pdf"
-            name="point_of_sale.report_invoice"
-            file="point_of_sale.report_invoice"
+            name="pos_kingdom.report_invoice"
+            file="pos_kingdom.report_invoice"
         />
 
         <report
@@ -23,11 +23,11 @@
             string="Receipt"
             model="pos.order"
             report_type="qweb-pdf"
-            name="point_of_sale.report_receipt"
-            file="point_of_sale.report_receipt"
+            name="pos_kingdom.report_receipt"
+            file="pos_kingdom.report_receipt"
         />
         <record id="action_report_pos_receipt" model="ir.actions.report.xml">
-            <field name="paperformat_id" ref="point_of_sale.paperformat_posreceipt"/>
+            <field name="paperformat_id" ref="pos_kingdom.paperformat_posreceipt"/>
         </record>
 
         <report
@@ -35,8 +35,8 @@
             string="Sales Lines"
             model="pos.order"
             report_type="qweb-pdf"
-            name="point_of_sale.report_saleslines"
-            file="point_of_sale.report_saleslines"
+            name="pos_kingdom.report_saleslines"
+            file="pos_kingdom.report_saleslines"
             auto="False"
          />
 
@@ -45,8 +45,8 @@
             string="Details of Sales"
             model="pos.order"
             report_type="qweb-pdf"
-            name="point_of_sale.report_detailsofsales"
-            file="point_of_sale.report_detailsofsales"
+            name="pos_kingdom.report_detailsofsales"
+            file="pos_kingdom.report_detailsofsales"
             menu="False"
          />
 
@@ -55,8 +55,8 @@
             string="Today's Payment"
             model="pos.order"
             report_type="qweb-pdf"
-            name="point_of_sale.report_payment"
-            file="point_of_sale.report_payment"
+            name="pos_kingdom.report_payment"
+            file="pos_kingdom.report_payment"
          />
 
         <report
@@ -64,8 +64,8 @@
             string="Session Summary"
             model="pos.session"
             report_type="qweb-pdf"
-            name="point_of_sale.report_sessionsummary"
-            file="point_of_sale.report_sessionsummary"
+            name="pos_kingdom.report_sessionsummary"
+            file="pos_kingdom.report_sessionsummary"
          />
     </data>
 </openerp>

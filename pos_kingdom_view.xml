@@ -75,7 +75,7 @@
                             <group string="General Information">
                                 <field name="company_id" groups="base.group_multi_company"/>
                                 <field name="location_id" widget="selection" groups="stock.group_locations"/>
-                                <field name="user_id" context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'point_of_sale.group_pos_user']}"/>
+                                <field name="user_id" context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'pos_kingdom.group_pos_user']}"/>
                                 <field name="pricelist_id" groups="product.group_sale_pricelist" domain="[('type','=','sale')]"/>
                                 <field name="picking_id" readonly="1"/>
                                 <field name="pos_reference"/>
@@ -157,9 +157,9 @@
             </field>
         </record>
 
-        <menuitem name="Daily Operations" id="menu_point_of_sale" parent="menu_point_root" sequence="10"/>
-        <menuitem parent="menu_point_of_sale" id="menu_point_ofsale" action="action_pos_pos_form" sequence="2" groups="group_pos_manager,group_pos_user"/>
-        <menuitem name="Products" id="menu_point_of_sale_product" parent="menu_point_root" sequence="15" />
+        <menuitem name="Daily Operations" id="menu_pos_kingdom" parent="menu_point_root" sequence="10"/>
+        <menuitem parent="menu_pos_kingdom" id="menu_point_ofsale" action="action_pos_pos_form" sequence="2" groups="group_pos_manager,group_pos_user"/>
+        <menuitem name="Products" id="menu_pos_kingdom_product" parent="menu_point_root" sequence="15" />
 
         <record id="product_template_action" model="ir.actions.act_window">
             <field name="name">Products</field>
@@ -188,7 +188,7 @@
         <menuitem
             action="product_template_action"
             id="menu_pos_products"
-            parent="menu_point_of_sale_product" sequence="2"/>
+            parent="menu_pos_kingdom_product" sequence="2"/>
 
         <record model="ir.ui.view" id="view_pos_order_line">
             <field name="name">Sale lines</field>
@@ -521,7 +521,7 @@
               </p>
             </field>
         </record>
-        <menuitem action="product_pos_category_action" id="menu_product_pos_category" parent="menu_point_of_sale_product" sequence="0" />
+        <menuitem action="product_pos_category_action" id="menu_product_pos_category" parent="menu_pos_kingdom_product" sequence="0" />
         <!-- END -->
 
         <record id="action_edit_ean" model="ir.actions.act_window">
@@ -832,7 +832,7 @@
                         <group>
                             <field name="cash_control" invisible="1" />
                             <group>
-                                <field name="user_id" context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'point_of_sale.group_pos_manager', 'base.group_sale_manager']}"/>
+                                <field name="user_id" context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'pos_kingdom.group_pos_manager', 'base.group_sale_manager']}"/>
                                 <field name="currency_id" invisible="1"/>
                                 <field name="config_id"/>
                             </group>
@@ -869,7 +869,7 @@
                                     <field name="cash_register_balance_end" nolabel="1" attrs="{'invisible' : [('state', '=', 'opening_control')]}" class="oe_bold oe_pos_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                                 </group>
                                 <div class="oe_clear"/>
-                                <div attrs="{'invisible' : ['|', ('cash_journal_id', '=', False), ('state', '!=', 'opening_control')]}" class="oe_view_nocontent" groups="point_of_sale.group_pos_manager">
+                                <div attrs="{'invisible' : ['|', ('cash_journal_id', '=', False), ('state', '!=', 'opening_control')]}" class="oe_view_nocontent" groups="pos_kingdom.group_pos_manager">
                                     <p class="oe_view_nocontent_create">
                                     You can define another list of available currencies on the
                                     <i>Cash Registers</i> tab of the <b><field name="cash_journal_id" class="oe_inline"/></b>
@@ -965,7 +965,7 @@
         </record>
 
         <menuitem
-            parent="menu_point_of_sale"
+            parent="menu_pos_kingdom"
             action="action_pos_session"
             id="menu_pos_session_all"
             sequence="1"
@@ -996,7 +996,7 @@
         </record>
 
         <menuitem action="action_pos_session_opening"
-            parent="menu_point_of_sale"
+            parent="menu_pos_kingdom"
             id="menu_pos_session_opening" sequence="0"/>
 
         <record model="ir.ui.view" id="pos_ean13_generator">

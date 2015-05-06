@@ -7,7 +7,7 @@
         <div class="pos">
             <div class="pos-topheader">
                 <div class="pos-branding">
-                    <img class="pos-logo" src="/point_of_sale/static/src/img/logo.png" />
+                    <img class="pos-logo" src="/pos_kingdom/static/src/img/logo.png" />
                     <span class="placeholder-UsernameWidget"></span>
                 </div>
                 <div class="pos-rightheader">
@@ -89,7 +89,7 @@
             &lt;!--[if IE]&gt;
             <div class='not-supported-browser'>
                 <div class='message'>
-                    <img src='/point_of_sale/static/src/img/pos_screenshot.jpg' />
+                    <img src='/pos_kingdom/static/src/img/pos_screenshot.jpg' />
                     <p>
                         The Point of Sale is not supported by Microsoft Internet Explorer. Please use
                         a modern browser like <a href="http://www.mozilla.org/firefox/" target="_blank">Mozilla Firefox</a> 
@@ -170,7 +170,7 @@
             <button class="input-button number-char">0</button>
             <button class="input-button number-char">.</button>
             <button class="input-button numpad-backspace">
-                <img src="/point_of_sale/static/src/img/backspace.png" width="24" height="21" />
+                <img src="/pos_kingdom/static/src/img/backspace.png" width="24" height="21" />
             </button>
             <br />
         </div>
@@ -199,12 +199,12 @@
             <div class="breadcrumbs">
                 <span class="breadcrumb">
                     <span class=" breadcrumb-button js-category-switch">
-                        <img src="/point_of_sale/static/src/img/home.png" class="breadcrumb-homeimg" />
+                        <img src="/pos_kingdom/static/src/img/home.png" class="breadcrumb-homeimg" />
                     </span>
                 </span>
                 <t t-foreach="widget.breadcrumb" t-as="category">
                     <span class="breadcrumb">
-                        <img src="/point_of_sale/static/src/img/bc-arrow-big.png" class="breadcrumb-arrow" />
+                        <img src="/pos_kingdom/static/src/img/bc-arrow-big.png" class="breadcrumb-arrow" />
                         <span class="breadcrumb-button js-category-switch" t-att-data-category-id="category.id">
                             <t t-esc="category.name"/>
                         </span>
@@ -875,7 +875,7 @@
             </div>
             <input class='paymentline-input' type="number" step="0.01" t-att-value="line.get_amount_str()" />
             <span  class='paymentline-delete'>
-                <img src="/point_of_sale/static/src/img/search_reset.gif" />
+                <img src="/pos_kingdom/static/src/img/search_reset.gif" />
             </span>
         </div>
     </t>
@@ -887,7 +887,7 @@
             </td>
             <td class="paymentline-amount pos-right-align">
                 <input type="number" step="0.01" t-att-value="line.get_amount_str()" />
-                <span class='delete-payment-line'><img src="/point_of_sale/static/src/img/search_reset.gif" /></span>
+                <span class='delete-payment-line'><img src="/pos_kingdom/static/src/img/search_reset.gif" /></span>
             </td>
         </tr>
     </t>

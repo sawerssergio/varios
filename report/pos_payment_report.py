@@ -64,9 +64,9 @@ class pos_payment_report(report_sxw.rml_parse):
 
 
 class report_pos_payment(osv.AbstractModel):
-    _name = 'report.point_of_sale.report_payment'
+    _name = 'report.pos_kingdom.report_payment'
     _inherit = 'report.abstract_report'
-    _template = 'point_of_sale.report_payment'
+    _template = 'pos_kingdom.report_payment'
     _wrapped_report_class = pos_payment_report
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
