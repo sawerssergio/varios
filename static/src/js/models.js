@@ -57,7 +57,8 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 'orders':           new module.OrderCollection(),
                 'selectedOrder':    null,
             });
-
+            console.log(this.get("synch"));
+            console.log(this.urlRoot);
             this.bind('change:synch',function(pos,synch){
                 clearTimeout(self.synch_timeout);
                 self.synch_timeout = setTimeout(function(){
@@ -130,7 +131,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         models: [
         {
             model:  'res.users',
-            fields: ['name','company_id'],
+            fields: ['name','company_id','partner_id'],
             ids:    function(self){ return [self.session.uid]; },
             loaded: function(self,users){ self.user = users[0]; },
         },{ 

@@ -454,6 +454,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.breadcrumb.push(this.category);
             }
             this.subcategories = db.get_category_by_id(db.get_category_childs_ids(this.category.id));
+
+            this.breadcrumb = this.pos.db.get_category_childs();
+            //var category_root = this.pos.db.get_category_by_id(this.pos.db.root_category_id);
+            //var subcateg = this.pos.db.get_category_by_id(this.pos.db.get_category_childs_ids(category_root));
+            //console.log(subcateg);
         },
 
         get_image_url: function(category){
@@ -647,6 +652,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 var product_node = this.render_product(this.product_list[i]);
                 product_node.addEventListener('click',this.click_product_handler);
                 list_container.appendChild(product_node);
+                console.log('render');
             };
         },
     });
@@ -657,6 +663,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var options = options || {};
             this._super(parent,options);
             this.mode = options.mode || 'cashier';
+            console.log(this.pos.user);
         },
         set_user_mode: function(mode){
             this.mode = mode;
@@ -677,6 +684,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             }else{
                 return "";
             }
+        },
+        get_image: function(){
+            return '/web/binary/image?model=res.partner&id='+this.pos.user.partner_id[0]+'&field=image_small';
         },
     });
 
@@ -930,13 +940,13 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
     module.PosWidget = module.PosBaseWidget.extend({
         template: 'PosWidget',
-        init: function() { 
+        init: function() {
             this._super(arguments[0],{});
 
             this.pos = new module.PosModel(this.session,{pos_widget:this});
             this.pos_widget = this; //So that pos_widget's childs have pos_widget set automatically
 
-            this.numpad_visible = true;
+            this.numpad_visible = false;
             this.leftpane_visible = true;
             this.leftpane_width   = '440px';
             this.cashier_controls_visible = true;
@@ -960,6 +970,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
 
         start: function() {
+            this._super(arguments[0],{});
             var self = this;
             return self.pos.ready.done(function() {
                 // remove default webclient handlers that induce click delay

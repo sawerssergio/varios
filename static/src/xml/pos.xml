@@ -921,6 +921,9 @@
         <span class="username">
             <t t-esc="widget.get_name()" />
         </span>
+        <div>
+            <img t-att-src='widget.get_image()'/>
+        </div>
     </t>
 
     <t t-name="PosTicket">

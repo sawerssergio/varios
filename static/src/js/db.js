@@ -57,6 +57,9 @@ function openerp_pos_db(instance, module){
                 return this.category_by_id[categ_id];
             }
         },
+        get_category_childs: function() {
+            return this.get_category_by_id(this.category_childs[this.root_category_id]);
+        },
         /* returns a list of the category's child categories ids, or an empty list 
          * if a category has no childs */
         get_category_childs_ids: function(categ_id){
