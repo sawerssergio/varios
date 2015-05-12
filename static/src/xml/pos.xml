@@ -197,17 +197,19 @@
         <div>
         <header class='rightpane-header'>
             <div class="breadcrumbs">
+                <!--
                 <span class="breadcrumb">
                     <span class=" breadcrumb-button js-category-switch">
                         <img src="/pos_kingdom/static/src/img/home.png" class="breadcrumb-homeimg" />
                     </span>
                 </span>
+                -->
                 <t t-foreach="widget.breadcrumb" t-as="category">
                     <span class="breadcrumb">
-                        <img src="/pos_kingdom/static/src/img/bc-arrow-big.png" class="breadcrumb-arrow" />
                         <span class="breadcrumb-button js-category-switch" t-att-data-category-id="category.id">
                             <t t-esc="category.name"/>
                         </span>
+                        <img src="/pos_kingdom/static/src/img/bc-arrow-big.png" class="breadcrumb-arrow" />
                     </span>
                 </t>
             </div>

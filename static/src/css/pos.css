@@ -634,10 +634,6 @@ td {
     height: 48px;
     min-width: 48px;
 }
-.pos .breadcrumb:last-child {
-    padding-right: 3px;
-    border-right: 1px solid #c5c5c5;
-}
 .pos .breadcrumb-button {
     display: inline-block;
     padding: 0 9px;
