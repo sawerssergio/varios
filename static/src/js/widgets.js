@@ -652,7 +652,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 var product_node = this.render_product(this.product_list[i]);
                 product_node.addEventListener('click',this.click_product_handler);
                 list_container.appendChild(product_node);
-                console.log('render');
             };
         },
     });
@@ -1090,6 +1089,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         // startup screen, etc, override this method.
         build_widgets: function() {
             var self = this;
+            console.log("BUILD WIDGETS");
 
             // --------  Screens ---------
 
@@ -1229,11 +1229,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             if(visible !== this.leftpane_visible){
                 this.leftpane_visible = visible;
                 if(visible){
-                    this.$('.pos-leftpane').removeClass('oe_hidden');
-                    this.$('.rightpane').css({'left':this.leftpane_width});
+                    this.$('.rightpane').removeClass('oe_hidden');
+                    //this.$('.leftpane').css({'left':this.leftpane_width});
                 }else{
-                    this.$('.pos-leftpane').addClass('oe_hidden');
-                    this.$('.rightpane').css({'left':'0px'});
+                    this.$('.rightpane').addClass('oe_hidden');
+                    //this.$('.leftpane').css({'left':'0px'});
                 }
             }
         },
