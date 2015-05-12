@@ -543,13 +543,13 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var products = this.pos.db.get_product_by_category(this.category.id);
             this.product_list_widget.set_product_list(products);
 
-            this.el.querySelector('.searchbox input').addEventListener('keyup',this.search_handler);
+            //this.el.querySelector('.searchbox input').addEventListener('keyup',this.search_handler);
 
-            this.el.querySelector('.search-clear').addEventListener('click',this.clear_search_handler);
+            //this.el.querySelector('.search-clear').addEventListener('click',this.clear_search_handler);
 
-            if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
-                this.pos_widget.onscreen_keyboard.connect($(this.el.querySelector('.searchbox input')));
-            }
+            //if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
+                //this.pos_widget.onscreen_keyboard.connect($(this.el.querySelector('.searchbox input')));
+            //}
         },
         
         // resets the current category to the root category

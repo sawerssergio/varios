@@ -213,10 +213,12 @@
                     </span>
                 </t>
             </div>
+            <!--
             <div class="searchbox">
                 <input placeholder="Search Products" />
                 <span class="search-clear"></span>
             </div>
+            -->
         </header>
         <t t-if="widget.subcategories.length > 0">
             <div class="categories">
