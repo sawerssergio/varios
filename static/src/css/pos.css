@@ -78,6 +78,7 @@ td {
 }
 
 .pos {
+    /*
     padding: 0;
     margin: 0;
     background-color: #f0eeee;
@@ -94,6 +95,7 @@ td {
             user-select: none;
     text-shadow: none;
     overflow: hidden;
+    */
 }
 
 /*  ********* The black loading screen ********* */
@@ -263,6 +265,7 @@ td {
     padding:0;
     color: gray;
     background: #393939;
+    display: none;
 }
 
 /*  a) The left part of the top-bar */
@@ -456,6 +459,7 @@ td {
     top: 48px;
     bottom: 0;
     background: #F0EEEE;
+    display:none;
 }
 
 /*  ********* The leftpane contains the order, numpad and paypad ********* */
@@ -471,6 +475,7 @@ td {
     top:0px;
     bottom:0;
     border-right: solid 1px #CECBCB;
+    display: none;
 }
 .pos .rightpane .pads {
     background: #F0EEEE;
@@ -581,6 +586,7 @@ td {
     left: 0;
     vertical-align: top;
     -webkit-transform: translate3d(0,0,0);
+    display: none;
 }
 
 .pos .rightpane-header {
