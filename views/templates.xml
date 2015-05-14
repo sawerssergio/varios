@@ -28,6 +28,7 @@
         <link rel="stylesheet" href="/pos_kingdom/static/src/fonts/lato/stylesheet.css" /> 
         <link rel="stylesheet" href="/pos_kingdom/static/src/fonts/font-awesome-4.0.3/css/font-awesome.min.css" /> 
         <link rel="stylesheet" href="/pos_kingdom/static/src/css/pos.css" id="pos-stylesheet"/>
+        <link rel="stylesheet" href="/pos_kingdom/static/src/css/main.css"/>
         <link rel="stylesheet" href="/pos_kingdom/static/src/css/keyboard.css" />
 
         <t t-call-assets="web.assets_common" t-css="false" />
@@ -43,11 +44,10 @@
     </head>
     <body>
         <div class='openerp openerp_webclient_container'>
-            <table class='oe_webclient'>
-                <tr>
-                    <td class='oe_application' />
-                </tr>
-            </table>
+            <div class='oe_webclient'>
+                <div class='oe_application'>
+                </div>
+            </div>
         </div>
     </body>
 </html>
