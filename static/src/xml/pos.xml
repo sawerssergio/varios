@@ -5,6 +5,12 @@
 
     <t t-name="PosWidget">
         <div class="pos">
+            <div class="pos-leftpane">
+            </div>
+            <div class="pos-centerpane">
+            </div>
+            <div class="pos-rightpane">
+            </div>
             <div class="pos-topheader">
                 <div class="pos-branding">
                     <img class="pos-logo" src="/pos_kingdom/static/src/img/logo.png" />
@@ -19,9 +25,7 @@
                     <!-- here goes header buttons -->
                 </div>
             </div>
-
             <div class="pos-content">
-
                 <div class="rightpane">
                     <div class='window'>
                         <div class='subwindow'>
@@ -85,19 +89,6 @@
                     </div>
                 </div>
             </div>
-
-            &lt;!--[if IE]&gt;
-            <div class='not-supported-browser'>
-                <div class='message'>
-                    <img src='/pos_kingdom/static/src/img/pos_screenshot.jpg' />
-                    <p>
-                        The Point of Sale is not supported by Microsoft Internet Explorer. Please use
-                        a modern browser like <a href="http://www.mozilla.org/firefox/" target="_blank">Mozilla Firefox</a> 
-                        or <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a>. 
-                    </p>
-                </div>
-            </div>
-            &lt;![endif]--&gt;
         </div>
     </t>
 
@@ -209,7 +200,7 @@
                         <span class="breadcrumb-button js-category-switch" t-att-data-category-id="category.id">
                             <t t-esc="category.name"/>
                         </span>
-                        <img src="/pos_kingdom/static/src/img/bc-arrow-big.png" class="breadcrumb-arrow" />
+                        <!--<img src="/pos_kingdom/static/src/img/bc-arrow-big.png" class="breadcrumb-arrow" />-->
                     </span>
                 </t>
             </div>
@@ -241,23 +232,23 @@
 
     <t t-name="ProductScreenWidget">
         <div class="product-screen screen">
-            <table class="layout-table">
+            <div class="layout-table">
 
-                <tr class="header-row">
-                    <td class="header-cell">
+                <div class="header-row">
+                    <div class="header-cell">
                         <span class="placeholder-ProductCategoriesWidget" />
-                    </td>
-                </tr>
+                    </div>
+                </div>
 
-                <tr class="content-row">
-                    <td class="content-cell">
+                <div class="content-row">
+                    <div class="content-cell">
                         <div class="content-container">
                             <span class="placeholder-ProductListWidget" />
                         </div>
-                    </td>
-                </tr>
+                    </div>
+                </div>
 
-            </table>
+            </div>
         </div>
     </t>
 
