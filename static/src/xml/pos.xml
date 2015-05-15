@@ -8,6 +8,9 @@
             <div class="pos-leftpane">
             </div>
             <div class="pos-centerpane">
+                <div class="center-top">top</div>
+                <div class="center-middle">middle</div>
+                <div class="center-bottom">bottom</div>
             </div>
             <div class="pos-rightpane">
             </div>
