@@ -6,6 +6,14 @@
     <t t-name="PosWidget">
         <div class="pos">
             <div class="pos-leftpane">
+                <div class="categories">
+                    <ul class="categories-list">
+                        <li class="category-item"><img src="/pos_kingdom/static/src/img/chicken_leg.svg"/></li>
+                        <li class="category-item"><img src="/pos_kingdom/static/src/img/coca_cola.svg"/></li>
+                        <li class="category-item"><img src="/pos_kingdom/static/src/img/icecream.svg"/></li>
+                        <li class="category-item"><img src="/pos_kingdom/static/src/img/chips.svg"/></li>
+                    </ul>
+                </div>
             </div>
             <div class="pos-centerpane">
                 <div class="center-top">top</div>
@@ -13,6 +21,11 @@
                 <div class="center-bottom">bottom</div>
             </div>
             <div class="pos-rightpane">
+                <div class="right-header">
+                    <div class="user"></div>
+                    <div class="sale"></div>
+                </div>
+                <div class="orders"></div>
             </div>
             <div class="pos-topheader">
                 <div class="pos-branding">
