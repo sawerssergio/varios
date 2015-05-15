@@ -34,33 +34,37 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
     -moz-box-align: stretch;
     -webkit-align-items: stretch;
     align-items: stretch;
+    button {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        outline: none;
+    }
 }
 .pos-leftpane {
     height: 100%;
-    //width: 5%;
     -webkit-box-ordinal-group: 1;
     -moz-box-ordinal-group: 1;
     -webkit-order: 0;
     order: 0;
     -webkit-box-flex: 0;
     -moz-box-flex: 0;
-    -webkit-flex: 0 1 5%;
-    flex: 0 1 5%;
+    -webkit-flex: 0 1 8%;
+    flex: 0 1 8%;
     -webkit-align-self: auto;
     align-self: auto;
 }
 
 .pos-centerpane {
     height: 100%;
-    //width: 75%;
     -webkit-box-ordinal-group: 1;
     -moz-box-ordinal-group: 1;
     -webkit-order: 0;
     order: 0;
     -webkit-box-flex: 0;
     -moz-box-flex: 0;
-    -webkit-flex: 0 1 75%;
-    flex: 0 1 75%;
+    -webkit-flex: 0 1 65%;
+    flex: 0 1 65%;
     -webkit-align-self: auto;
     align-self: auto;
     display: -webkit-box;
@@ -108,9 +112,6 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         flex: 0 1 70%;
         -webkit-align-self: auto;
         align-self: auto;
-        //background-image: url('../img/combo1.svg');
-        //background-size: 100% 100%;
-        //background-repeat: no-repeat;
     }
     .center-bottom {
         -webkit-box-ordinal-group: 1;
@@ -128,17 +129,62 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
 
 .pos-rightpane {
     height: 100%;
-    //width: 20%;
     -webkit-box-ordinal-group: 1;
     -moz-box-ordinal-group: 1;
     -webkit-order: 0;
     order: 0;
     -webkit-box-flex: 0;
     -moz-box-flex: 0;
-    -webkit-flex: 0 1 20%;
-    flex: 0 1 20%;
+    -webkit-flex: 0 1 27%;
+    flex: 0 1 27%;
     -webkit-align-self: auto;
     align-self: auto;
+    .right-header {
+        height: 14%;
+        width: 100%;
+        position: relative;
+        .sale {
+            background-color: #7f5415;
+            width: 85%;
+            height: 80%;
+            float: right;
+            margin-top: 6%;
+            opacity: .8;
+            border-radius: 1em 0 0 1em;
+            color: white;
+            .sale-type {
+                font-size: 1.2em;
+                font-weight: bold;
+                color: white;
+                display: inline;
+                width: 60%;
+                height: 100%;
+                p {
+                    text-align: center;
+                    line-height: 0.3em;
+                }
+            }
+        }
+        .user {
+            right: 0;
+            margin-top: 4%;
+            height: 90%;
+            width: 35%;
+            position: absolute;
+            .user-data {
+                height: 100%;
+                .user-image {
+                    height: 100%;
+                    display: inline-block;
+                    img {
+                        height: 100%;
+                        border-radius: 50%;
+                        border: 2px solid black;
+                    }
+                }
+            }
+        }
+    }
 }
 .categories {
     top: 3%;
@@ -184,10 +230,8 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
             -webkit-align-self: auto;
             align-self: auto;
             width: 90%;
-            //height: 20%;
             img {
                 width: 100%;
-                //height: 100%;
             }
         }
     }

@@ -17,15 +17,23 @@
             </div>
             <div class="pos-centerpane">
                 <div class="center-top">top</div>
-                <div class="center-middle">middle</div>
+                <div class="center-middle"></div>
                 <div class="center-bottom">bottom</div>
             </div>
             <div class="pos-rightpane">
                 <div class="right-header">
-                    <div class="user"></div>
-                    <div class="sale"></div>
+                    <div class="sale">
+                        <button type="button" class="sale-type"><p>VENTAS</p></button>
+                    </div>
+                    <div class="user">
+                        <div class="user-data">
+                            <span class="user-image">
+                                <img src="/pos_kingdom/static/src/img/grid-purple.png"/>
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <div class="orders"></div>
+                <div class="menu-orders"></div>
             </div>
             <div class="pos-topheader">
                 <div class="pos-branding">
