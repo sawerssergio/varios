@@ -17,7 +17,20 @@
             </div>
             <div class="pos-centerpane">
                 <div class="center-top">top</div>
-                <div class="center-middle"></div>
+                <div class="center-middle"> <div class="screen_products">
+                        
+                            <ul class="product_list">
+                                <li class="product_item"><div class="smallLeft"></div><img src="/pos_kingdom/static/src/img/comboL.svg" alt="" width="100%"/><div class="smallRight"></div></li>
+                                <li class="product_item"><div class="smallLeft"></div><img src="/pos_kingdom/static/src/img/comboL1.svg" alt="" width="100%"/><div class="smallRight"></div></li>
+                                <li class="product_item"><div class="smallLeft"></div><img src="/pos_kingdom/static/src/img/comboL.svg" alt="" width="100%"/><div class="smallRight"></div></li>
+                                <li class="product_item"><div class="smallLeft"></div><img src="/pos_kingdom/static/src/img/comboL1.svg" alt="" width="100%"/><div class="smallRight"></div></li>
+                            </ul>
+                           
+                        
+                        </div>
+                        <div class="screen_partner">
+                            
+                        </div></div>
                 <div class="center-bottom">bottom</div>
             </div>
             <div class="pos-rightpane">
