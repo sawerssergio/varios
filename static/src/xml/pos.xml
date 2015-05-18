@@ -6,14 +6,7 @@
     <t t-name="PosWidget">
         <div class="pos">
             <div class="pos-leftpane">
-                <div class="categories">
-                    <ul class="categories-list">
-                        <li class="category-item"><img src="/pos_kingdom/static/src/img/chicken_leg.svg"/></li>
-                        <li class="category-item"><img src="/pos_kingdom/static/src/img/coca_cola.svg"/></li>
-                        <li class="category-item"><img src="/pos_kingdom/static/src/img/icecream.svg"/></li>
-                        <li class="category-item"><img src="/pos_kingdom/static/src/img/chips.svg"/></li>
-                    </ul>
-                </div>
+                <span class="placeholder-ProductCategoriesWidget"></span>
             </div>
             <div class="pos-centerpane">
                 <div class="center-top">top</div>
@@ -205,6 +198,8 @@
     </t>
 
     <t t-name="CategoryButton">
+        <li class="category-item"><img t-att-src="image_url"/></li>
+        <!--
         <span class='category-button js-category-switch' t-att-data-category-id="category.id" >
             <div class="category-img">
                 <img t-att-src="image_url" />
@@ -213,6 +208,7 @@
                 <t t-esc="category.name"/>
             </div>
         </span>
+        -->
     </t>
 
     <t t-name="CategorySimpleButton">
@@ -222,31 +218,38 @@
     </t>
 
     <t t-name="ProductCategoriesWidget">
+        <div class="categories">
+            <ul class="categories-list">
+                <!--
+                <li class="category-item"><img src="/pos_kingdom/static/src/img/chicken_leg.svg"/></li>
+                <li class="category-item"><img src="/pos_kingdom/static/src/img/coca_cola.svg"/></li>
+                <li class="category-item"><img src="/pos_kingdom/static/src/img/icecream.svg"/></li>
+                <li class="category-item"><img src="/pos_kingdom/static/src/img/chips.svg"/></li>
+                -->
+            </ul>
+        </div>
+        <!--
         <div>
         <header class='rightpane-header'>
             <div class="breadcrumbs">
-                <!--
                 <span class="breadcrumb">
                     <span class=" breadcrumb-button js-category-switch">
                         <img src="/pos_kingdom/static/src/img/home.png" class="breadcrumb-homeimg" />
                     </span>
                 </span>
-                -->
                 <t t-foreach="widget.breadcrumb" t-as="category">
                     <span class="breadcrumb">
                         <span class="breadcrumb-button js-category-switch" t-att-data-category-id="category.id">
                             <t t-esc="category.name"/>
                         </span>
-                        <!--<img src="/pos_kingdom/static/src/img/bc-arrow-big.png" class="breadcrumb-arrow" />-->
+                        <img src="/pos_kingdom/static/src/img/bc-arrow-big.png" class="breadcrumb-arrow" />
                     </span>
                 </t>
             </div>
-            <!--
             <div class="searchbox">
                 <input placeholder="Search Products" />
                 <span class="search-clear"></span>
             </div>
-            -->
         </header>
         <t t-if="widget.subcategories.length > 0">
             <div class="categories">
@@ -255,6 +258,7 @@
             </div>
         </t>
         </div>
+        -->
     </t>
 
     <t t-name="ProductListWidget">

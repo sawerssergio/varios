@@ -523,7 +523,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 }
             }
 
-            var list_container = el_node.querySelector('.category-list');
+            var list_container = el_node.querySelector('.categories-list');
             if (list_container) { 
                 if (!hasimages) {
                     list_container.classList.add('simple');
@@ -1108,7 +1108,21 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.scale_screen = new module.ScaleScreenWidget(this,{});
             this.scale_screen.appendTo(this.$('.screens'));
 
-
+            // -------- Widgets Kingdom --------
+            this.product_list_widget = new module.ProductListWidget(this,{
+                click_product_action: function(product){
+                    if(product.to_weight && self.pos.config.iface_electronic_scale){
+                        self.pos_widget.screen_selector.set_current_screen('scale',{product: product});
+                    }else{
+                        self.pos.get('selectedOrder').addProduct(product);
+                    }
+                },
+                product_list: this.pos.db.get_product_by_category(0)
+            });
+            this.product_categories_widget = new module.ProductCategoriesWidget(this, {
+                product_list_widget: this.product_list_widget,
+            });
+            this.product_categories_widget.replace(this.$('.placeholder-ProductCategoriesWidget'));
             // --------  Popups ---------
 
             this.error_popup = new module.ErrorPopupWidget(this, {});
