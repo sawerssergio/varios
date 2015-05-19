@@ -1292,6 +1292,12 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 this.trigger('change:selected_paymentline',this.selected_paymentline);
             }
         },
+        restart_order: function(){ //TODO ref: Rafo, use: this.pos.get('selectedOrder').restart_order();
+            var orderlines = this.get('orderLines');
+            while(!orderlines.isEmpty()){
+                orderlines.pop();
+            }
+        }
     });
 
     module.OrderCollection = Backbone.Collection.extend({
