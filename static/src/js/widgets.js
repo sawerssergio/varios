@@ -45,6 +45,17 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
     });
 
+    module.UserWidget = module.PosBaseWidget.extend({
+        template:'UserWidget',
+        init: function(parent,options){
+            var self = this;
+            this._super(parent);
+        },
+        get_image: function(){
+            return '/web/binary/image?model=res.partner&id='+this.pos.user.partner_id[0]+'&field=image_small';
+        }
+    });
+
     module.NumpadWidget = module.PosBaseWidget.extend({
         template:'NumpadWidget',
         init: function(parent, options) {
@@ -1190,6 +1201,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 'keyboard_model': 'simple'
             });
             this.onscreen_keyboard.replace(this.$('.placeholder-OnscreenKeyboardWidget'));
+            this.user_widget = new module.UserWidget(this,{});
+            this.user_widget.replace(this.$('.placeholder-UserWidget'));
 
             // --------  Screen Selector ---------
 

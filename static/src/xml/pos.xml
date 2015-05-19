@@ -22,11 +22,7 @@
                         <button type="button" class="sale-type"><p>VENTAS</p></button>
                     </div>
                     <div class="user">
-                        <div class="user-data">
-                            <span class="user-image">
-                                <img src="/pos_kingdom/static/src/img/grid-purple.png"/>
-                            </span>
-                        </div>
+                        <span class="placeholder-UserWidget"></span>
                     </div>
                 </div>
                 <div class="menu-orders"></div>
@@ -980,6 +976,14 @@
         <div>
             <img t-att-src='widget.get_image()'/>
         </div>
+    </t>
+
+    <t t-name="UserWidget">
+         <div class="user-data">
+            <span class="user-image">
+                <img t-att-src="widget.get_image()"/>
+            </span>
+         </div>
     </t>
 
     <t t-name="PosTicket">
