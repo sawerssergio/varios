@@ -58,13 +58,13 @@ td {
 }
 
 .pos button{
-    /*box-shadow: none;
+    box-shadow: none;
     outline: none;
     border: none;
-    font-family: 'Lato';*/
+    font-family: 'Lato';
 }
 .pos button:hover{
-    /*background: default;*/
+    background: default;
 }
 
 .pos .oe_hidden{
@@ -225,13 +225,13 @@ td {
     color: #555555;
 }
 .pos button, .pos a.button {
-    /*display: inline-block;
+    display: inline-block;
     cursor: pointer;
     padding: 4px 10px;
     font-size: 11px;
     border: 1px solid #cacaca;
     background: #e2e2e2;
-    border-radius: 3px;*/
+    border-radius: 3px;
 }
 .pos ul, .pos ol {
     padding: 0;
@@ -619,7 +619,7 @@ td {
 
 }
 .pos .product-list-container {
-    position:absolute;
+    /*position:absolute;*/
     top:0px;
     bottom:0px;
     left:0px;
@@ -861,13 +861,13 @@ td {
 /*  ********* The Screens  ********* */
 
 .pos .screen {
-    position:absolute;
+    /*position:absolute;
     text-align: center;
     top:0px;
     bottom:0px;
     width:100%;
     overflow: auto;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;*/
 }
 .pos .screen header h2 {
     margin-top: 0px;

@@ -418,7 +418,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             
             this.switch_category_handler = function(event){
                 self.set_category(self.pos.db.get_category_by_id(Number(this.dataset['categoryId'])));
-                self.renderElement();
+                //FIXME [KINGDOM][VD] This should be separated into another method of this widget.
+                var products = self.pos.db.get_product_by_category(self.category.id);
+                self.product_list_widget.set_product_list(products);
+                //self.renderElement();
             };
             
             this.clear_search_handler = function(event){
@@ -453,9 +456,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             if(this.category.id !== db.root_category_id){
                 this.breadcrumb.push(this.category);
             }
-            this.subcategories = db.get_category_by_id(db.get_category_childs_ids(this.category.id));
 
-            this.breadcrumb = this.pos.db.get_category_childs();
+            this.subcategories = db.get_category_by_id(db.get_category_childs_ids(this.category.id));
+            //this.breadcrumb = this.pos.db.get_category_childs();
             //var category_root = this.pos.db.get_category_by_id(this.pos.db.root_category_id);
             //var subcateg = this.pos.db.get_category_by_id(this.pos.db.get_category_childs_ids(category_root));
             //console.log(subcateg);
@@ -1089,8 +1092,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         // startup screen, etc, override this method.
         build_widgets: function() {
             var self = this;
-            console.log("BUILD WIDGETS");
-
             // --------  Screens ---------
 
             this.product_screen = new module.ProductScreenWidget(this,{});
@@ -1120,7 +1121,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 product_list: this.pos.db.get_product_by_category(0)
             });
             this.product_categories_widget = new module.ProductCategoriesWidget(this, {
-                product_list_widget: this.product_list_widget,
+                product_list_widget: this.product_screen.product_list_widget,
             });
             this.product_categories_widget.replace(this.$('.placeholder-ProductCategoriesWidget'));
             // --------  Popups ---------

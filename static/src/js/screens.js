@@ -138,8 +138,8 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
 
     module.ScreenWidget = module.PosBaseWidget.extend({
 
-        show_numpad:     true,  
-        show_leftpane:   true,
+        show_numpad:     false,
+        show_leftpane:   false,
 
         init: function(parent,options){
             this._super(parent,options);
@@ -500,8 +500,8 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
     module.ProductScreenWidget = module.ScreenWidget.extend({
         template:'ProductScreenWidget',
 
-        show_numpad:     true,
-        show_leftpane:   true,
+        show_numpad:     false,
+        show_leftpane:   false,
 
         start: function(){ //FIXME this should work as renderElement... but then the categories aren't properly set. explore why
             var self = this;
@@ -521,7 +521,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             this.product_categories_widget = new module.ProductCategoriesWidget(this,{
                 product_list_widget: this.product_list_widget,
             });
-            this.product_categories_widget.replace(this.$('.placeholder-ProductCategoriesWidget'));
+            //this.product_categories_widget.replace(this.$('.placeholder-ProductCategoriesWidget'));
         },
 
         show: function(){

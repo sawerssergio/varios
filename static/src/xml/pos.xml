@@ -10,20 +10,10 @@
             </div>
             <div class="pos-centerpane">
                 <div class="center-top">top</div>
-                <div class="center-middle"> <div class="screen_products">
-                        
-                            <ul class="product_list">
-                                <li class="product_item"><div class="smallLeft"></div><img src="/pos_kingdom/static/src/img/comboL.svg" alt="" width="100%"/><div class="smallRight"></div></li>
-                                <li class="product_item"><div class="smallLeft"></div><img src="/pos_kingdom/static/src/img/comboL1.svg" alt="" width="100%"/><div class="smallRight"></div></li>
-                                <li class="product_item"><div class="smallLeft"></div><img src="/pos_kingdom/static/src/img/comboL.svg" alt="" width="100%"/><div class="smallRight"></div></li>
-                                <li class="product_item"><div class="smallLeft"></div><img src="/pos_kingdom/static/src/img/comboL1.svg" alt="" width="100%"/><div class="smallRight"></div></li>
-                            </ul>
-                           
-                        
-                        </div>
-                        <div class="screen_partner">
-                            
-                        </div></div>
+                <div class="center-middle">
+                    <div class="screens"> 
+                    </div>
+                </div>
                 <div class="center-bottom">bottom</div>
             </div>
             <div class="pos-rightpane">
@@ -198,7 +188,7 @@
     </t>
 
     <t t-name="CategoryButton">
-        <li class="category-item"><img t-att-src="image_url"/></li>
+        <li class="category-item js-category-switch" t-att-data-category-id="category.id"><img t-att-src="image_url"/></li>
         <!--
         <span class='category-button js-category-switch' t-att-data-category-id="category.id" >
             <div class="category-img">
@@ -273,6 +263,35 @@
 
     <t t-name="ProductScreenWidget">
         <div class="product-screen screen">
+            <div class="subcategories-product"></div>
+            <div class="container_products">
+                <span class="placeholder-ProductListWidget" />
+                <!--
+                <ul class="product_list">
+                    <li class="product_item">
+                        <div class="smallLeft"></div>
+                        <img src="/pos_kingdom/static/src/img/comboL.svg" width="100%"/>
+                        <div class="smallRight"></div>
+                    </li>
+                    <li class="product_item">
+                        <div class="smallLeft"></div>
+                        <img src="/pos_kingdom/static/src/img/comboL1.svg" width="100%"/>
+                        <div class="smallRight"></div>
+                    </li>
+                    <li class="product_item">
+                        <div class="smallLeft"></div>
+                        <img src="/pos_kingdom/static/src/img/comboL.svg" width="100%"/>
+                        <div class="smallRight"></div>
+                    </li>
+                    <li class="product_item">
+                        <div class="smallLeft"></div>
+                        <img src="/pos_kingdom/static/src/img/comboL1.svg" width="100%"/>
+                        <div class="smallRight"></div>
+                    </li>
+                </ul>
+                -->
+            </div>
+            <!--
             <div class="layout-table">
 
                 <div class="header-row">
@@ -290,6 +309,7 @@
                 </div>
 
             </div>
+            -->
         </div>
     </t>
 
