@@ -719,6 +719,7 @@ class pos_order(osv.osv):
         'nb_print': fields.integer('Number of Print', readonly=True, copy=False),
         'pos_reference': fields.char('Receipt Ref', readonly=True, copy=False),
         'sale_journal': fields.related('session_id', 'config_id', 'journal_id', relation='account.journal', type='many2one', string='Sale Journal', store=True, readonly=True),
+        'intend_for': fields.selection([('table','Table'),('mezzanine','Mezzanine'),('drive_in','Drive In')], required=True, help='It is the place where the product must be delivered'),
     }
 
     def _default_session(self, cr, uid, context=None):
@@ -747,6 +748,7 @@ class pos_order(osv.osv):
         'session_id': _default_session,
         'company_id': lambda self,cr,uid,c: self.pool.get('res.users').browse(cr, uid, uid, c).company_id.id,
         'pricelist_id': _default_pricelist,
+        'intend_for': 'table',
     }
 
     def create(self, cr, uid, values, context=None):
