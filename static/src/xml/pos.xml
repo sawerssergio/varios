@@ -25,7 +25,9 @@
                         <span class="placeholder-UserWidget"></span>
                     </div>
                 </div>
-                <div class="menu-orders"></div>
+                <div class="menu-orders">
+                    <span class="placeholder-OrderWidget"/>
+                </div>
             </div>
             <div class="pos-topheader">
                 <div class="pos-branding">

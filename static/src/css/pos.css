@@ -1379,7 +1379,7 @@ td {
 /*  ********* The OrderWidget  ********* */
 
 .pos .order-container{
-    position: absolute;
+    /*position: absolute;*/
     top: 0px;
     width:100%;
     height: 100%;
