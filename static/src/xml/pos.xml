@@ -817,6 +817,24 @@
 
     <t t-name="Orderline">
         <li t-attf-class="orderline #{ line.selected ? 'selected' : '' }">
+            <div class="product-quantity"><span class="number"><t t-esc="line.get_quantity_str()"/></span></div>
+            <div class="product-info">
+                <span class="product-name"><t t-esc="line.get_product().display_name"/></span>
+                <p class="product-details">
+                    <span class="item-detail">+2 Convertidos piernas</span>
+                    <span class="item-detail">+2 Convertidos piernas</span>
+                    <span class="item-detail">+2 Convertidos piernas</span>
+                </p>
+                <p class="product-detail-composed">
+                    <span>+2CC</span>
+                    <span>+2SP</span>
+                    <span>+2SB</span>
+                </p>
+            </div>
+            <div class="product-delete">
+                <img src="/pos_kingdom/static/src/img/delete.svg"/>
+            </div>
+            <!--
             <span class="product-name">
                 <t t-esc="line.get_product().display_name"/>
             </span>
@@ -824,18 +842,16 @@
                 <t t-esc="widget.format_currency(line.get_display_price())"/>
             </span>
             <ul class="info-list">
-                <t t-if="line.get_quantity_str() !== '1' || line.selected ">
-                    <li class="info">
-                        <em>
-                            <t t-esc="line.get_quantity_str()" />
-                        </em>
-                        <t t-esc="line.get_unit().name" />
-                        at
-                        <t t-esc="widget.format_currency(line.get_unit_price(),'Product Price')" />
-                        /
-                        <t t-esc="line.get_unit().name" />
-                    </li>
-                </t>
+                <li class="info">
+                    <em>
+                        <t t-esc="line.get_quantity_str()" />
+                    </em>
+                    <t t-esc="line.get_unit().name" />
+                    at
+                    <t t-esc="widget.format_currency(line.get_unit_price(),'Product Price')" />
+                    /
+                    <t t-esc="line.get_unit().name" />
+                </li>
                 <t t-if="line.get_discount_str() !== '0'">
                     <li class="info">
                         With a 
@@ -846,11 +862,22 @@
                     </li>
                 </t>
             </ul>
+            -->
         </li>
     </t>
 
     <t t-name="OrderWidget">
         <div class="order-container">
+            <div class="order-header">
+                <div class="order-header-content">
+                    <div class="order-dispatch">
+                        <h2>Para llevar</h2>
+                    </div>
+                    <div class="order-restart">
+                        <img src="/pos_kingdom/static/src/img/trash.svg"/>
+                    </div>
+                </div>
+            </div>
             <div class="order-scroller touch-scrollable">
                 <div class="order">
                     <ul class="orderlines">
@@ -860,12 +887,15 @@
                             </li>
                         </t>
                     </ul>
-                    <div class="summary clearfix">
-                        <div t-attf-class="line #{orderlines.length === 0 ? 'empty' : ''}">
-                            <div class='entry total'>
-                                <span class="label">Total: </span> <span class="value">0.00 €</span>
-                                <div class='subentry'>Taxes: <span class="value">0.00€</span></div>
-                            </div>
+                </div>
+            </div>
+            <div class="order-summary clearfix">
+                <div t-attf-class="line #{orderlines.length === 0 ? 'empty' : ''}">
+                    <div class='entry total'>
+                        <span class="label">Total: </span> <span class="value">0.00 €</span>
+                        <div class='subentry'>
+                            <span class="label-cash">Cash</span><span class="value-cash"> 0</span>
+                            <span class="label">Taxes: </span><span class="value">0.00€</span>
                         </div>
                     </div>
                 </div>
