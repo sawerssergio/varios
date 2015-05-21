@@ -831,9 +831,10 @@
                     <span>+2SB</span>
                 </p>
             </div>
+            <!--
             <div class="product-delete">
                 <img src="/pos_kingdom/static/src/img/delete.svg"/>
-            </div>
+            </div>-->
             <!--
             <span class="product-name">
                 <t t-esc="line.get_product().display_name"/>
