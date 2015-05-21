@@ -217,16 +217,31 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     },this);
         },
         render_orderline: function(orderline){
+            var self= this;
             var el_str  = openerp.qweb.render('Orderline',{widget:this, line:orderline}); 
             var el_node = document.createElement('div');
                 el_node.innerHTML = _.str.trim(el_str);
                 el_node = el_node.childNodes[0];
                 el_node.orderline = orderline;
                 el_node.addEventListener('click',this.line_click_handler);
+                var buttonMinus= document.createElement('div');
+                buttonMinus.className= "minusButton";
+                var image = document.createElement("img");
+                image.src= window.location.origin+"/pos_kingdom/static/src/img/delete.svg"; 
+                var linkMinus=document.createElement('a');
+                //linkMinus.id=orderline.id;
+                el_node.appendChild(buttonMinus);
+                 buttonMinus.appendChild(linkMinus);
+                linkMinus.appendChild(image);
+                buttonMinus.addEventListener("click", function(event){
+                    //event.stopPropagation();
+                   self.pos.get('selectedOrder').removeOrderline(orderline);               
+
+                });
 
             orderline.node = el_node;
             return el_node;
-        },
+        }, 
         remove_orderline: function(order_line){
             if(this.pos.get('selectedOrder').get('orderLines').length === 0){
                 this.renderElement();
