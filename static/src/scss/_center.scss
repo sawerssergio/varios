@@ -122,7 +122,16 @@
     Legacy Firefox implementation treats all flex containers
     as inline-block elements.
 */
-
+ .minusButton{
+    display: block;
+    position: relative;
+    top:-150px;
+    left: 310px;
+    z-index: 1000;
+}
+.minusButton a img{
+    width: 37px;
+}       
 
 @-moz-document url-prefix() {
 .flex-container {
