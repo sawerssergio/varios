@@ -56,6 +56,22 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         }
     });
 
+    module.TwoChickenPiecesWidget = module.PosBaseWidget.extend({
+        template:'TwoChickenPiecesWidget',
+        init: function(parent,options){
+            var self = this;
+            this._super(parent);
+        }
+    });
+
+    module.FourChickenPiecesWidget = module.PosBaseWidget.extend({
+        template:'FourChickenPiecesWidget',
+        init: function(parent,options){
+            var self = this;
+            this._super(parent);
+        }
+    });
+
     module.NumpadWidget = module.PosBaseWidget.extend({
         template:'NumpadWidget',
         init: function(parent, options) {
@@ -1218,6 +1234,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.onscreen_keyboard.replace(this.$('.placeholder-OnscreenKeyboardWidget'));
             this.user_widget = new module.UserWidget(this,{});
             this.user_widget.replace(this.$('.placeholder-UserWidget'));
+
+            this.two_chicken_pieces_widget = new module.TwoChickenPiecesWidget(this,{});
+            this.four_chicken_pieces_widget = new module.FourChickenPiecesWidget(this,{});
+            //this.two_chicken_pieces_widget.replace(this.$('.placeholder-ChickenPieces'));
 
             // --------  Screen Selector ---------
 

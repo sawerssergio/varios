@@ -14,7 +14,9 @@
                     <div class="screens"> 
                     </div>
                 </div>
-                <div class="center-bottom">bottom</div>
+                <div class="center-bottom">
+                    <span class="placeholder-ChickenPieces"></span>
+                </div>
             </div>
             <div class="pos-rightpane">
                 <div class="right-header">
@@ -1017,6 +1019,61 @@
                 <img t-att-src="widget.get_image()"/>
             </span>
          </div>
+     </t>
+
+     <t t-name="TwoChickenPiecesWidget">
+       <span class="placeholder-TwoChickenPiecesWidget">
+        <div id="pieces" class="two">
+         <div>
+             <center>
+                <input type="button" value="pollo"/>
+                <input type="number"/>
+                <input type="button" value="-"/>
+
+                <input type="number" placeholder="CANT"/>
+            
+                <input type="button" value="ala"/>
+                <input type="number"/>
+                <input type="button" value="-"/>
+             </center>
+            
+        </div>
+        <br/>
+        <div>
+            <center>
+                <input type="button" value="Add"/>
+            </center>
+        </div>
+       </div>
+     </span>
+    </t>
+
+    <t t-name="FourChickenPiecesWidget">
+        <span class="placeholder-FourChickenPiecesWidget">
+         <div id="pieces" class="four">
+         <div>
+             <center>
+                <input type="button" value="pollo"/>
+                <input type="number"/>
+                <input type="button" value="-"/>
+
+                <input type="number" placeholder="CANT"/>
+            
+                <input type="button" value="ala"/>
+                <input type="number"/>
+                <input type="button" value="-"/>
+             </center>
+            
+        </div>
+        <br/>
+         <div>
+            <center>
+                <input type="number" placeholder="Normal"/>
+                <input type="button" value="Add"/>
+            </center>
+         </div>
+        </div>
+     </span>
     </t>
 
     <t t-name="PosTicket">

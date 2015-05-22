@@ -112,6 +112,7 @@
             <field name="list_price">41.0</field>
             <field name="type">consu</field>
             <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="weight_net">4</field><!--ref:rafo number of chicken pieces-->
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/chickens_half_chicken.png"/>
         </record>
@@ -124,6 +125,7 @@
             <field name="list_price">24.0</field>
             <field name="type">consu</field>
             <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="weight_net">2</field><!--ref:rafo number of chicken pieces-->
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/chickens_quarter_chicken.png"/>
         </record>
@@ -135,6 +137,7 @@
             <field name="list_price">45.0</field>
             <field name="type">consu</field>
             <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="weight_net">4</field><!--ref:rafo number of chicken pieces-->
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/chickens_king_menu.png"/>
         </record>
@@ -146,6 +149,7 @@
             <field name="list_price">28.0</field>
             <field name="type">consu</field>
             <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="weight_net">2</field><!--ref:rafo number of chicken pieces-->
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/chickens_queen_menu.png"/>
         </record>
@@ -157,6 +161,7 @@
             <field name="list_price">36.0</field>
             <field name="type">consu</field>
             <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="weight_net">4</field><!--ref:rafo number of chicken pieces-->
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/chickens_only_half.png"/>
         </record>
@@ -168,6 +173,7 @@
             <field name="list_price">19.0</field>
             <field name="type">consu</field>
             <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="weight_net">2</field><!--ref:rafo number of chicken pieces-->
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/chickens_only_quarter.png"/>
         </record>

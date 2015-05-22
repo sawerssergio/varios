@@ -275,7 +275,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         },{
             model:  'product.product',
             fields: ['display_name', 'list_price','price','pos_categ_id', 'taxes_id', 'ean13', 'default_code', 
-                     'to_weight', 'uom_id', 'uos_id', 'uos_coeff', 'mes_type', 'description_sale', 'description',
+                     'to_weight', 'uom_id','weight_net', 'uos_id', 'uos_coeff', 'mes_type', 'description_sale', 'description',
                      'product_tmpl_id'],
             domain: [['sale_ok','=',true],['available_in_pos','=',true]],
             context: function(self){ return { pricelist: self.pricelist.id, display_default_code: false }; },
@@ -1024,6 +1024,9 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             attr.order = this;
             var line = new module.Orderline({}, {pos: this.pos, order: this, product: product});
 
+            var pos_widget = this.pos.pos_widget;
+            var fourPieces = pos_widget.four_chicken_pieces_widget; 
+            var twoPieces =  pos_widget.two_chicken_pieces_widget;
             if(options.quantity !== undefined){
                 line.set_quantity(options.quantity);
             }
@@ -1032,6 +1035,24 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             }
             if(options.discount !== undefined){
                 line.set_discount(options.discount);
+            }
+            if(product.weight_net == 4){
+                console.log('4 presas')
+                if(pos_widget.$('#pieces').hasClass('two')){
+                    fourPieces.replace(pos_widget.$('.placeholder-TwoChickenPiecesWidget'));
+                }else{ 
+                    fourPieces.replace(pos_widget.$('.placeholder-ChickenPieces'));
+                }
+                //this.pos.pos_widget.four_chicken_pieces_widget.replace(this.pos.pos_widget.$('.placeholder-ChickenPieces'));
+            }
+            if(product.weight_net == 2){
+                console.log('2 presas'); 
+                if(pos_widget.$('#pieces').hasClass('four')){
+                    twoPieces.replace(pos_widget.$('.placeholder-FourChickenPiecesWidget'));
+                }else{ 
+                    fourPieces.replace(pos_widget.$('.placeholder-ChickenPieces'));
+                }
+                //this.pos.pos_widget.two_chicken_pieces_widget.replace(this.pos.pos_widget.$('.placeholder-ChickenPieces'));
             }
 
             var last_orderline = this.getLastOrderline();
