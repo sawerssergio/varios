@@ -1027,11 +1027,11 @@
         <div id="pieces" class="two">
          <div>
              <center>
-                <input type="button" value="pollo"/>
+                <input type="button" value="pierna"/>
                 <input type="number"/>
                 <input type="button" value="-"/>
 
-                <input type="number" placeholder="CANT"/>
+                <input class="input-cant" type="number" placeholder="CANT"/>
             
                 <input type="button" value="ala"/>
                 <input type="number"/>
@@ -1054,7 +1054,7 @@
          <div id="pieces" class="four">
          <div>
              <center>
-                <input type="button" value="pollo"/>
+                <input type="button" value="pierna"/>
                 <input type="number"/>
                 <input type="button" value="-"/>
 

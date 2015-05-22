@@ -61,7 +61,16 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         init: function(parent,options){
             var self = this;
             this._super(parent);
+        },
+        sum_chicken_cant: function(){
+            var input = this.pos.pos_widget.$('.input-cant');
+            var new_value = Math.floor(input.val())+1;
+            input.attr({
+                'value': new_value
+            });
+            this.chicken_cant = Math.floor(input.val());
         }
+
     });
 
     module.FourChickenPiecesWidget = module.PosBaseWidget.extend({
