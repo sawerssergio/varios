@@ -1050,7 +1050,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 if(pos_widget.$('#pieces').hasClass('four')){
                     twoPieces.replace(pos_widget.$('.placeholder-FourChickenPiecesWidget'));
                 }else{ 
-                    fourPieces.replace(pos_widget.$('.placeholder-ChickenPieces'));
+                    twoPieces.replace(pos_widget.$('.placeholder-ChickenPieces'));
                 }
                 //this.pos.pos_widget.two_chicken_pieces_widget.replace(this.pos.pos_widget.$('.placeholder-ChickenPieces'));
             }
