@@ -161,8 +161,12 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 if(!self.editable){
                     return;
                 }
-                self.pos.get('selectedOrder').selectLine(this.orderline);
-                self.pos_widget.numpad.state.reset();
+                if(event.target.className === "product-delete-button") {
+                   self.pos.get('selectedOrder').removeOrderline(this.orderline);
+                } else {
+                    self.pos.get('selectedOrder').selectLine(this.orderline);
+                    self.pos_widget.numpad.state.reset();
+                }
             };
             this.client_change_handler = function(event){
                 self.update_summary();
@@ -240,21 +244,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 el_node = el_node.childNodes[0];
                 el_node.orderline = orderline;
                 el_node.addEventListener('click',this.line_click_handler);
-                var buttonMinus= document.createElement('div');
-                buttonMinus.className= "minusButton";
-                var image = document.createElement("img");
-                image.src= window.location.origin+"/pos_kingdom/static/src/img/delete.svg"; 
-                var linkMinus=document.createElement('a');
-                //linkMinus.id=orderline.id;
-                el_node.appendChild(buttonMinus);
-                 buttonMinus.appendChild(linkMinus);
-                linkMinus.appendChild(image);
-                buttonMinus.addEventListener("click", function(event){
-                    //event.stopPropagation();
-                   self.pos.get('selectedOrder').removeOrderline(orderline);               
-
-                });
-
             orderline.node = el_node;
             return el_node;
         }, 
