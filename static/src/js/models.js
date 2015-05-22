@@ -1024,9 +1024,6 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             attr.order = this;
             var line = new module.Orderline({}, {pos: this.pos, order: this, product: product});
 
-            var pos_widget = this.pos.pos_widget;
-            var fourPieces = pos_widget.four_chicken_pieces_widget; 
-            var twoPieces =  pos_widget.two_chicken_pieces_widget;
             if(options.quantity !== undefined){
                 line.set_quantity(options.quantity);
             }
@@ -1036,6 +1033,20 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             if(options.discount !== undefined){
                 line.set_discount(options.discount);
             }
+            
+            var last_orderline = this.getLastOrderline();
+            if( last_orderline && last_orderline.can_be_merged_with(line) && options.merge !== false){
+                last_orderline.merge(line);
+            }else{
+                this.get('orderLines').add(line);
+            }
+            this.selectLine(this.getLastOrderline());
+        },
+        addQuantity:function(product){
+            var pos_widget = this.pos.pos_widget;
+            var fourPieces = pos_widget.four_chicken_pieces_widget; 
+            var twoPieces =  pos_widget.two_chicken_pieces_widget;
+            
             if(product.weight_net == 4){
                 console.log('4 presas')
                 if(pos_widget.$('#pieces').hasClass('two')){
@@ -1054,14 +1065,6 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 }
                 //this.pos.pos_widget.two_chicken_pieces_widget.replace(this.pos.pos_widget.$('.placeholder-ChickenPieces'));
             }
-
-            var last_orderline = this.getLastOrderline();
-            if( last_orderline && last_orderline.can_be_merged_with(line) && options.merge !== false){
-                last_orderline.merge(line);
-            }else{
-                this.get('orderLines').add(line);
-            }
-            this.selectLine(this.getLastOrderline());
         },
         removeOrderline: function( line ){
             this.get('orderLines').remove(line);

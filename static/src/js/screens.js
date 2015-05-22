@@ -511,7 +511,8 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     if(product.to_weight && self.pos.config.iface_electronic_scale){
                         self.pos_widget.screen_selector.set_current_screen('scale',{product: product});
                     }else{
-                        self.pos.get('selectedOrder').addProduct(product);
+                       //self.pos.get('selectedOrder').addQuantity;
+                       self.pos.get('selectedOrder').addQuantity(product);
                     }
                 },
                 product_list: this.pos.db.get_product_by_category(0)
@@ -523,7 +524,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             });
             //this.product_categories_widget.replace(this.$('.placeholder-ProductCategoriesWidget'));
         },
-
+        
         show: function(){
             this._super();
             var self = this;
