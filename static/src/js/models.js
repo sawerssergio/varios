@@ -1051,8 +1051,10 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 console.log('4 presas')
                 if(pos_widget.$('#pieces').hasClass('two')){
                     fourPieces.replace(pos_widget.$('.placeholder-TwoChickenPiecesWidget'));
-                }else{ 
-                    fourPieces.replace(pos_widget.$('.placeholder-ChickenPieces'));
+                }else{
+                    if(!pos_widget.$('#pieces').hasClass('four')){ 
+                        fourPieces.replace(pos_widget.$('.placeholder-ChickenPieces'));
+                    }
                 }
                 //this.pos.pos_widget.four_chicken_pieces_widget.replace(this.pos.pos_widget.$('.placeholder-ChickenPieces'));
             }
@@ -1060,8 +1062,10 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 console.log('2 presas'); 
                 if(pos_widget.$('#pieces').hasClass('four')){
                     twoPieces.replace(pos_widget.$('.placeholder-FourChickenPiecesWidget'));
-                }else{ 
-                    twoPieces.replace(pos_widget.$('.placeholder-ChickenPieces'));
+                }else{
+                    if(!pos_widget.$('#pieces').hasClass('two')){ 
+                        twoPieces.replace(pos_widget.$('.placeholder-ChickenPieces'))
+                    }
                 }
                 //this.pos.pos_widget.two_chicken_pieces_widget.replace(this.pos.pos_widget.$('.placeholder-ChickenPieces'));
             }
