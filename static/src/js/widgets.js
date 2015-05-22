@@ -652,7 +652,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.renderElement();
         },
         get_product_image_url: function(product){
-            return window.location.origin + '/web/binary/image?model=product.product&field=image_medium&id='+product.id;
+            return window.location.origin + '/web/binary/image?model=product.product&field=image&id='+product.id;
         },
         replace: function($target){
             this.renderElement();

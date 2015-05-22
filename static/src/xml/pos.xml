@@ -254,8 +254,8 @@
     <t t-name="ProductListWidget">
         <div class='product-list-container'>
             <div class="product-list-scroller touch-scrollable">
-                <div class="product-list">
-                </div>
+                <ul class="product-list">
+                </ul>
             </div>
             <span class="placeholder-ScrollbarWidget" />
         </div>
@@ -797,7 +797,7 @@
     </t>
 
     <t t-name="Product">
-        <span class='product' t-att-data-product-id="product.id">
+        <li class='product' t-att-data-product-id="product.id">
             <div class="product-img">
                 <img t-att-src='image_url' /> 
                 <t t-if="!product.to_weight">
@@ -811,10 +811,12 @@
                     </span>
                 </t>
             </div>
+            <!--
             <div class="product-name">
                 <t t-esc="product.display_name"/>
             </div>
-        </span>
+            -->
+        </li>
     </t>
 
     <t t-name="Orderline">

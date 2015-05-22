@@ -600,13 +600,13 @@ td {
 /*  ********* The product list  ********* */
 
 .pos .product-list {
-    padding: 10px;
+    /*padding: 10px;
     text-align: left;
-    -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);*/
 }
 
 .pos .product-list-scroller{
-    -webkit-box-sizing: border-box;
+    /*-webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
         -ms-box-sizing: border-box;
             box-sizing: border-box;
@@ -615,15 +615,15 @@ td {
     overflow: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);*/
 
 }
 .pos .product-list-container {
-    /*position:absolute;*/
+    /*position:absolute;
     top:0px;
     bottom:0px;
     left:0px;
-    right:0px;
+    right:0px;*/
 }
 
 /*  a) the product list navigation bar */
@@ -792,7 +792,7 @@ td {
 /*  e) the product */
 
 .pos .product {
-    position:relative;
+    /*position:relative;
     vertical-align: top;
     display: inline-block;
     line-height: 100px;
@@ -800,26 +800,26 @@ td {
     margin: 5px !important;
     width: 120px;
     height:120px;
-    /*background:#fff;
-    border: 1px solid #e2e2e2;*/
+    background:#fff;
+    border: 1px solid #e2e2e2;
     border-radius: 3px;
     border-bottom-width: 3px;
     overflow: hidden;
-    cursor: pointer;
+    cursor: pointer;*/
 }
 
 .pos .product .product-img {
-    position: relative;
+    /*position: relative;
     width: 120px;
     height: 100px;
-    /*background: white;*/
-    text-align: center;
+    background: white;
+    text-align: center;*/
 }
 
 .pos .product .product-img img {
-    max-height: 100px;
+    /*max-height: 100px;
     max-width:  120px;
-    vertical-align: middle;
+    vertical-align: middle;*/
 }
 
 .pos .product .price-tag {
@@ -835,7 +835,7 @@ td {
 }
 
 .pos .product .product-name {
-    position: absolute;
+    /*position: absolute;
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
         -ms-box-sizing: border-box;
@@ -845,8 +845,8 @@ td {
     line-height: 14px;
     width:100%;
     overflow: hidden;
-    text-overflow: ellipsis;
-    i/*background: -webkit-linear-gradient(-90deg,rgba(255,255,255,0),rgba(255,255,255,1), rgba(255,255,255,1));
+    text-overflow: ellipsis;*/
+    /*background: -webkit-linear-gradient(-90deg,rgba(255,255,255,0),rgba(255,255,255,1), rgba(255,255,255,1));
     background:    -moz-linear-gradient(-90deg,rgba(255,255,255,0),rgba(255,255,255,1), rgba(255,255,255,1));
     background:     -ms-linear-gradient(-90deg,rgba(255,255,255,0),rgba(255,255,255,1), rgba(255,255,255,1));*/
     /* troublesome in latest webkit

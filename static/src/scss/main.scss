@@ -96,8 +96,8 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         order: 0;
         -webkit-box-flex: 0;
         -moz-box-flex: 0;
-        -webkit-flex: 0 1 18%;
-        flex: 0 1 18%;
+        -webkit-flex: 0 1 12%;
+        flex: 0 1 12%;
         -webkit-align-self: auto;
         align-self: auto;
     }
@@ -112,6 +112,16 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         flex: 0 1 70%;
         -webkit-align-self: auto;
         align-self: auto;
+        max-height: 70%;
+        .screens {
+            width: 100%;
+            height: 100%;
+            .screen {
+                padding: 5%;
+                width: 90%;
+                height: 80%;
+            }
+        }
     }
     .center-bottom {
         -webkit-box-ordinal-group: 1;
@@ -120,8 +130,8 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         order: 0;
         -webkit-box-flex: 0;
         -moz-box-flex: 0;
-        -webkit-flex: 0 1 12%;
-        flex: 0 1 12%;
+        -webkit-flex: 0 1 18%;
+        flex: 0 1 18%;
         -webkit-align-self: auto;
         align-self: auto; 
     }
@@ -321,4 +331,73 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         }
     }
 }
-@import "center";
+.container_products {
+    height: 100%;
+    width: 100%;
+    .product-list-container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        .product-list-scroller {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            .product-list {
+                width: 100%;
+                height: 100%;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-box-direction: normal;
+                -moz-box-direction: normal;
+                -webkit-box-orient: horizontal;
+                -moz-box-orient: horizontal;
+                -webkit-flex-direction: row;
+                -ms-flex-direction: row;
+                flex-direction: row;
+                -webkit-flex-wrap: wrap;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -webkit-box-pack: justify;
+                -moz-box-pack: justify;
+                -webkit-justify-content: space-between;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                -webkit-align-content: flex-start;
+                -ms-flex-line-pack: start;
+                align-content: flex-start;
+                -webkit-box-align: stretch;
+                -moz-box-align: stretch;
+                -webkit-align-items: stretch;
+                -ms-flex-align: stretch;
+                align-items: stretch;
+                .product {
+                    -webkit-box-ordinal-group: 1;
+                    -moz-box-ordinal-group: 1;
+                    -webkit-order: 0;
+                    -ms-flex-order: 0;
+                    order: 0;
+                    -webkit-box-flex: 0;
+                    -moz-box-flex: 0;
+                    -webkit-flex: 0 1 30%;
+                    -ms-flex: 0 1 30%;
+                    flex: 0 1 30%;
+                    -webkit-align-self: auto;
+                    -ms-flex-item-align: auto;
+                    align-self: auto;
+                    height: 30%;
+                    .product-img {
+                        width: 100%;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
