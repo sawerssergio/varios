@@ -15,7 +15,47 @@
                     </div>
                 </div>
                 <div class="center-bottom">
+                    <span class="placeholder-order-selector"/>
+                    <div class="options-selector">
+                        <div class="options-selector-content">
+                            <div class="left-selector type-selector">
+                                <div class="increase-product">
+                                    <img class="options-image" src="/pos_kingdom/static/src/img/chicken_leg.svg"/> 
+                                </div>
+                                <div class="edition-product">
+                                    <input class="edition-input" type="text"/>
+                                </div>
+                                <div class="decrease-product">
+                                    <img class="options-image" src="/pos_kingdom/static/src/img/delete.svg"/> 
+                                </div>
+                            </div>
+                            <div class="center-selector">
+                                <div class="quantity-units">
+                                    <span class="title-quantity">Cant.</span>
+                                    <span class="units-quantity">10</span>
+                                </div>
+                                <div class="normal-units">
+                                    <span class="title-quantity">Normal.</span>
+                                    <span class="units-quantity">6</span>
+                                </div>
+                            </div>
+                            <div class="right-selector type-selector">
+                                <div class="increase-product">
+                                    <img class="options-image" src="/pos_kingdom/static/src/img/chicken_wing.svg"/> 
+                                </div>
+                                <div class="edition-product">
+                                    <input class="edition-input" type="text"/>
+                                </div>
+                                <div class="decrease-product">
+                                    <img class="options-image" src="/pos_kingdom/static/src/img/delete.svg"/> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action-selector"></div>
+                    </div>
+                    <!--
                     <span class="placeholder-ChickenPieces"></span>
+                    -->
                 </div>
             </div>
             <div class="pos-rightpane">

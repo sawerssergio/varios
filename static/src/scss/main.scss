@@ -1,3 +1,12 @@
+$co_options_selector : #b9252b;
+$co_opntions_selector_center : #250709;
+$co_options_selector_border : #621715;
+$co_menu_background: black;
+$co_menu_red : #c1272d;
+$co_letter_yellow: #ffdf1b;
+$co_letter_white: white;
+$co_categories_list : #8c5817;
+
 html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
     width:100%;
     height:100%;
@@ -21,14 +30,12 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
     -webkit-flex-direction: row;
     flex-direction: row;
     -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
     -webkit-box-pack: justify;
     -moz-box-pack: justify;
     -webkit-justify-content: space-between;
     justify-content: space-between;
     -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
     align-content: stretch;
     -webkit-box-align: stretch;
     -moz-box-align: stretch;
@@ -197,7 +204,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
     .menu-orders {
         height: 85%;
         right: 0;
-        background-color: black;
+        background-color: $co_menu_background;
         opacity: .8;
         border-radius: 2em 0 0 2em;
         color: white;
@@ -206,11 +213,11 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
             .order-header {
                 height: 7%;
                 padding: 2%;
-                border-bottom: .3em solid #c1272d;
+                border-bottom: .3em solid $co_menu_red;
                 .order-header-content {
                     height: 100%;
                     width: 100%;
-                    background-color: #c1272d;
+                    background-color: $co_menu_red;
                     border-radius: 2em 0 0 0;
                     .order-dispatch {
                         float: left;
@@ -285,7 +292,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
     top: 3%;
     width: 80%;
     height: 78%;
-    background-color: #8c5817;
+    background-color: $co_categories_list;
     opacity: .8;
     border-radius: 0em 2em 2em 0em;
     .categories-list {
@@ -349,7 +356,6 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
                 height: 100%;
                 display: -webkit-box;
                 display: -moz-box;
-                display: -ms-flexbox;
                 display: -webkit-flex;
                 display: flex;
                 -webkit-box-direction: normal;
@@ -357,37 +363,29 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
                 -webkit-box-orient: horizontal;
                 -moz-box-orient: horizontal;
                 -webkit-flex-direction: row;
-                -ms-flex-direction: row;
                 flex-direction: row;
                 -webkit-flex-wrap: wrap;
-                -ms-flex-wrap: wrap;
                 flex-wrap: wrap;
                 -webkit-box-pack: justify;
                 -moz-box-pack: justify;
                 -webkit-justify-content: space-between;
-                -ms-flex-pack: justify;
                 justify-content: space-between;
                 -webkit-align-content: flex-start;
-                -ms-flex-line-pack: start;
                 align-content: flex-start;
                 -webkit-box-align: stretch;
                 -moz-box-align: stretch;
                 -webkit-align-items: stretch;
-                -ms-flex-align: stretch;
                 align-items: stretch;
                 .product {
                     -webkit-box-ordinal-group: 1;
                     -moz-box-ordinal-group: 1;
                     -webkit-order: 0;
-                    -ms-flex-order: 0;
                     order: 0;
                     -webkit-box-flex: 0;
                     -moz-box-flex: 0;
                     -webkit-flex: 0 1 30%;
-                    -ms-flex: 0 1 30%;
                     flex: 0 1 30%;
                     -webkit-align-self: auto;
-                    -ms-flex-item-align: auto;
                     align-self: auto;
                     height: 30%;
                     .product-img {
@@ -398,6 +396,162 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
                     }
                 }
             }
+        }
+    }
+}
+.options-selector {
+    width: 95%;
+    height: 100%;
+    bottom: 0;
+    padding: 0% 2.5% 0% 2.5%;
+    .options-selector-content{
+        width: 90%;
+        height: 100%;
+        background-color: $co_options_selector;
+        border-radius: 1em;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-direction: normal;
+        -moz-box-direction: normal;
+        -webkit-box-orient: horizontal;
+        -moz-box-orient: horizontal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -moz-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-align-content: stretch;
+        align-content: stretch;
+        -webkit-box-align: stretch;
+        -moz-box-align: stretch;
+        -webkit-align-items: stretch;
+        align-items: stretch;
+        .left-selector {
+            -webkit-order: 0;
+            order: 0;
+            -webkit-box-flex: 0;
+            -moz-box-flex: 0;
+            -webkit-flex: 0 1 40%;
+            flex: 0 1 40%;
+            -webkit-align-self: auto;
+            align-self: auto;
+        }
+        .center-selector {
+            -webkit-order: 1;
+            order: 1;
+            -webkit-box-flex: 0;
+            -moz-box-flex: 0;
+            -webkit-flex: 0 1 14%;
+            flex: 0 1 14%;
+            -webkit-align-self: auto;
+            align-self: auto;
+            padding-left: .5%;
+            padding-right: .5%;
+            background-color: $co_opntions_selector_center;
+            text-align: center;
+            color: white;
+            position: relative;
+            .quantity-units {
+                width: 100%;
+                min-height: 50%;
+                color: $co_letter_yellow;
+                /* It is when only quantity units shown.*/
+                /*position: absolute;*/
+                /*margin: auto;*/
+                /*top: 50%;*/
+                /*transform: translate(0, -50%);*/
+            }
+            .normal-units {
+                max-height: 50%;
+                width: 100%;
+                border-top: 0.15em solid #cdcdcd;
+            }
+        }
+        .right-selector {
+            -webkit-order: 2;
+            order: 2;
+            -webkit-box-flex: 0;
+            -moz-box-flex: 0;
+            -webkit-flex: 0 1 40%;
+            flex: 0 1 40%;
+            -webkit-align-self: auto;
+            align-self: auto;
+        }
+    }
+    .action-selector {
+        width: 10%;
+    }
+}
+.title-quantity {
+    margin-top: .2em;
+    text-align: center;
+    font-size: .8em;
+    display: block;
+}
+.units-quantity {
+    margin-top: .1em;
+    text-align: center;
+    font-size: 2.2em;
+    line-height: .8em;
+    display: block;
+}
+/* SELECTOR QUANTITY PRODUCTS AND TYPE OF PRODUCTS */
+.type-selector {
+    position: relative;
+    padding: 1%;
+    .increase-product {
+        position: absolute;
+        width: 20%;
+        height: 45%;
+        z-index: 2;
+        top: 0; left: 5%; bottom: 0;
+        margin: auto;
+        img {
+            width: 90%;
+            height: 90%;
+            background-color: white;
+            border-radius: 50%;
+            border: .3em solid $co_options_selector_border;
+        }
+    }
+    .edition-product {
+        position: absolute;
+        width: 85%;
+        height: 30%;
+        z-index: 1;
+        margin: auto;
+        background-color: white;
+        border-radius: 2em;
+        top: 0; left: 5%; bottom: 0; right: 0;
+        border: .3em solid $co_options_selector_border;
+        input {
+            position: relative;
+            margin: auto;
+            outline: 0;
+            border: none;
+            text-align: right;
+            font-size: 1.5em;
+            width: 90%;
+            background-color: transparent;
+            &:focus {
+                outline: 0;
+            }
+        }
+    }
+    .decrease-product {
+        position: absolute;
+        width: 10%;
+        height: 20%;
+        z-index: 2;
+        right: 5%; top: 0; bottom : 0;
+        margin: auto;
+        img {
+            width: 100%;
         }
     }
 }
