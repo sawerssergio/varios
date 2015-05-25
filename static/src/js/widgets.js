@@ -642,6 +642,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 options.click_product_action(product);
             };
 
+            this.click_product_options_handler = function(event) {
+                var options_product = new module.ProductOptionsWidget(self,options);
+            }
+
             this.product_list = options.product_list || [];
             this.product_cache = new module.DomCache();
         },
@@ -697,6 +701,46 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 list_container.appendChild(product_node);
             };
         },
+    });
+
+    module.ProductOptionsWidget = module.PosBaseWidget.extend({
+        template: 'ProductOptionsWidget',
+        init: function(parent, options) {
+            var options = options || {};
+            this._super(parent, options);
+            this.total_quantity = options.total_quantity || 1;
+            this.option_left = undefined;
+            this.option_right = undefined;
+            this.option_center = undefined;
+        },
+        start: function(){
+            var self = this;
+            this.$('.left-selector .increase-product').click(function(){
+                console.log("this working");
+                self.increase_option_left();
+            });
+        },
+        increase_option_left: function(){
+            if(typeof this.option_left != 'undefined'){
+                this.option_left = 1;
+            } else{
+                this.option_left++;
+            }
+        },
+        increase_option_center: function(){
+            if(typeof this.option_center != 'undefined'){
+                this.option_center = 1;
+            } else{
+                this.option_center++;
+            }
+        },
+        increase_option_right: function(){
+            if(typeof this.option_right != 'undefined'){
+                this.option_right = 1;
+            } else{
+                this.option_right++;
+            }
+        }
     });
 
     module.UsernameWidget = module.PosBaseWidget.extend({
@@ -1164,6 +1208,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 product_list_widget: this.product_screen.product_list_widget,
             });
             this.product_categories_widget.replace(this.$('.placeholder-ProductCategoriesWidget'));
+            this.product_options_widget = new module.ProductOptionsWidget(this, {
+                pos : self.pos,
+            });
+            this.product_options_widget.replace(this.$('.placeholder-order-selector'));
             // --------  Popups ---------
 
             this.error_popup = new module.ErrorPopupWidget(this, {});

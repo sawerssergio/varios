@@ -511,8 +511,10 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     if(product.to_weight && self.pos.config.iface_electronic_scale){
                         self.pos_widget.screen_selector.set_current_screen('scale',{product: product});
                     }else{
-                       //self.pos.get('selectedOrder').addQuantity;
-                       self.pos.get('selectedOrder').addQuantity(product);
+                        console.log(self.pos_widget.product_options_widget);
+                        // THIS IS RESERVED FOR SET PRODUCT IN PRODUCT_OPTIONS_WIDGET
+                        //self.productOptions = new module.ProductOptionsWidget(this, {});
+                       //self.pos.get('selectedOrder').addQuantity(product);
                     }
                 },
                 product_list: this.pos.db.get_product_by_category(0)
