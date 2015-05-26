@@ -688,8 +688,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         init: function(parent, options) {
             var options = options || {};
             this._super(parent, options);
-            this.total_quantity = options.total_quantity || 1;
-            this.option_left = undefined;
+            this.total_quantity = options.total_quantity || 10;
+            this.option_left = this.total_quantity;
             this.option_right = undefined;
             this.option_center = undefined;
             this.selected_product = undefined;
@@ -700,31 +700,62 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         start: function(){
             var self = this;
             this.$('.left-selector .increase-product').click(function(){
-                console.log("this working");
                 self.increase_option_left();
             });
+            this.$('.right-selector .increase-product').click(function(){
+                self.increase_option_right();
+            });
+            this.$('.left-selector .decrease-product').click(function(){
+                self.decrease_option_left();
+            });
+            this.$('.left-selector .edition-input').val(this.option_left);
             this.$el.hide();
         },
         increase_option_left: function(){
-            if(typeof this.option_left != 'undefined'){
+            if(typeof this.option_left == 'undefined'){
                 this.option_left = 1;
             } else{
+                if(typeof this.total_quantity)
                 this.option_left++;
             }
+             this.$('.left-selector .edition-input').val(this.option_left);
         },
         increase_option_center: function(){
-            if(typeof this.option_center != 'undefined'){
+            if(typeof this.option_center == 'undefined'){
                 this.option_center = 1;
             } else{
                 this.option_center++;
             }
         },
         increase_option_right: function(){
-            if(typeof this.option_right != 'undefined'){
+            if(typeof this.option_right == 'undefined'){
                 this.option_right = 1;
             } else{
                 this.option_right++;
             }
+            this.$('.right-selector .edition-input').val(this.option_right);  
+        },
+        decrease_option_left: function(){
+                
+            if(typeof total_quantity > 0){
+                this.option_left--;
+            }
+            this.$('.left-selector .edition-input').val(this.option_left);
+        },
+        decrease_option_center: function(){
+            if(typeof this.option_center == 'undefined'){
+                this.option_center = 1;
+            } else{
+                this.option_center++;
+            }
+        },
+        decrease_option_right: function(){
+            if(typeof this.option_right == 'undefined'){
+                this.option_right = 1;
+            } else{
+                this.option_right++;
+                }
+            this.$('.right-selector .edition-input').val(this.option_right);    
         },
         set_product:function(product){
             if(product == this.selected_product){
