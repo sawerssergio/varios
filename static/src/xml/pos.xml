@@ -137,7 +137,17 @@
                         <span class="units-quantity">6</span>
                     </div>
                 </div>
-                <div class="right-selector type-selector">
+                <div class="right-selector size-selector">
+                    <div class="small-selector">
+                        <img src="/pos_kingdom/static/src/img/glass.svg"/>
+                    </div>
+                    <div class="medium-selector">
+                        <img src="/pos_kingdom/static/src/img/glass.svg"/>
+                    </div>
+                    <div class="big-selector">
+                        <img src="/pos_kingdom/static/src/img/glass.svg"/>
+                    </div>
+                    <!--
                     <div class="increase-product">
                         <img class="options-image" src="/pos_kingdom/static/src/img/chicken_wing.svg"/> 
                     </div>
@@ -147,6 +157,7 @@
                     <div class="decrease-product">
                         <img class="options-image" src="/pos_kingdom/static/src/img/delete.svg"/> 
                     </div>
+                    -->
                 </div>
             </div>
             <div class="action-selector"></div>

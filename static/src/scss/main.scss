@@ -555,3 +555,32 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         }
     }
 }
+/* SELECTOR FOR SIZE PRODUCTS */
+.size-selector {
+    color: white;
+    padding-top: 10%;
+    .small-selector {
+        display: inline-block;
+        width: 20%;
+        vertical-align: middle;
+        img {
+            width: 100%;
+        }
+    }
+    .medium-selector {
+        display: inline-block;
+        width: 30%;
+        vertical-align: middle;
+        img {
+            width: 100%;
+        }
+    }
+    .big-selector {
+        display: inline-block;
+        width: 40%;
+        vertical-align: middle;
+        img {
+            width: 100%;
+        }
+    }
+}

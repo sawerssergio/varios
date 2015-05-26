@@ -663,7 +663,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var el_node = document.createElement('div');
                 el_node.innerHTML = el_str;
                 el_node = el_node.childNodes[1];
-
+            var product_tmpl_id = -1;
             if(this.el && this.el.parentNode){
                 this.el.parentNode.replaceChild(el_node,this.el);
             }
@@ -671,9 +671,14 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             var list_container = el_node.querySelector('.product-list');
             for(var i = 0, len = this.product_list.length; i < len; i++){
-                var product_node = this.render_product(this.product_list[i]);
-                product_node.addEventListener('click',this.click_product_handler);
-                list_container.appendChild(product_node);
+                //FIXME [KINGDOM] [VD] This should be defined from db.
+                if(this.product_list[i].product_tmpl_id != product_tmpl_id){
+                    product_tmpl_id = this.product_list[i].product_tmpl_id;
+                    console.log(this.product_list[i]);
+                    var product_node = this.render_product(this.product_list[i]);
+                    product_node.addEventListener('click',this.click_product_handler);
+                    list_container.appendChild(product_node);
+                }
             };
         },
     });
@@ -1208,16 +1213,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.scale_screen.appendTo(this.$('.screens'));
 
             // -------- Widgets Kingdom --------
-            this.product_list_widget = new module.ProductListWidget(this,{
-                click_product_action: function(product){
-                    if(product.to_weight && self.pos.config.iface_electronic_scale){
-                        self.pos_widget.screen_selector.set_current_screen('scale',{product: product});
-                    }else{
-                        self.pos.get('selectedOrder').addProduct(product);
-                    }
-                },
-                product_list: this.pos.db.get_product_by_category(0)
-            });
             this.product_categories_widget = new module.ProductCategoriesWidget(this, {
                 product_list_widget: this.product_screen.product_list_widget,
             });
