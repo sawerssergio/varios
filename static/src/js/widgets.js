@@ -57,7 +57,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
     });
 
     module.TwoChickenPiecesWidget = module.PosBaseWidget.extend({
-        template:'TwoChickenPiecesWidget',
+        template:'ChickenPiecesWidget',
         init: function(parent,options){
             var self = this;
             this._super(parent);
@@ -1283,7 +1283,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             this.two_chicken_pieces_widget = new module.TwoChickenPiecesWidget(this,{});
             this.four_chicken_pieces_widget = new module.FourChickenPiecesWidget(this,{});
-            //this.two_chicken_pieces_widget.replace(this.$('.placeholder-ChickenPieces'));
+            this.two_chicken_pieces_widget.replace(this.$('.placeholder-ChickenPieces'));
 
             // --------  Screen Selector ---------
 

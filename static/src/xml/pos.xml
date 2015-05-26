@@ -15,10 +15,12 @@
                     </div>
                 </div>
                 <div class="center-bottom">
+<<<<<<< HEAD
                     <span class="placeholder-order-selector"/>
                     <!--
+=======
+>>>>>>> [EDT] Render template of product option widget.
                     <span class="placeholder-ChickenPieces"></span>
-                    -->
                 </div>
             </div>
             <div class="pos-rightpane">
@@ -1117,6 +1119,52 @@
         </div>
      </span>
     </t>
+
+
+    <t t-name="ChickenPiecesWidget">
+    
+                    <span class="placeholder-order-selector"/>
+                    <div t-attf-class="options-selector #{hidden ? '':'oe_hidden'}">
+                        <div class="options-selector-content">
+                            <div class="left-selector type-selector">
+                                <div class="increase-product">
+                                    <img class="options-image" src="/pos_kingdom/static/src/img/chicken_leg.svg"/> 
+                                </div>
+                                <div class="edition-product">
+                                    <input class="edition-input" type="text"/>
+                                </div>
+                                <div class="decrease-product">
+                                    <img class="options-image" src="/pos_kingdom/static/src/img/delete.svg"/> 
+                                </div>
+                            </div>
+                            <div class="center-selector">
+                                <div class="quantity-units">
+                                    <span class="title-quantity">Cant.</span>
+                                    <span class="units-quantity">10</span>
+                                </div>
+                                <div t-attf-class="normal-units #{converted ? '' : 'oe_hidden'}">
+                                    <span class="title-quantity">Normal.</span>
+                                    <span class="units-quantity">6</span>
+                                </div>
+                            </div>
+                            <div class="right-selector type-selector">
+                                <div class="increase-product">
+                                    <img class="options-image" src="/pos_kingdom/static/src/img/chicken_wing.svg"/> 
+                                </div>
+                                <div class="edition-product">
+                                    <input class="edition-input" type="text"/>
+                                </div>
+                                <div class="decrease-product">
+                                    <img class="options-image" src="/pos_kingdom/static/src/img/delete.svg"/> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action-selector"></div>
+                    </div>
+    </t>
+
+
+
 
     <t t-name="PosTicket">
         <div class="pos-sale-ticket">

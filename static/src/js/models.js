@@ -1048,25 +1048,15 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             var twoPieces =  pos_widget.two_chicken_pieces_widget;
             
             if(product.weight_net == 4){
-                console.log('4 presas')
-                if(pos_widget.$('#pieces').hasClass('two')){
-                    fourPieces.replace(pos_widget.$('.placeholder-TwoChickenPiecesWidget'));
-                }else{
-                    if(!pos_widget.$('#pieces').hasClass('four')){ 
-                        fourPieces.replace(pos_widget.$('.placeholder-ChickenPieces'));
-                    }
-                }
+                console.log('4 presas');
+                twoPieces.$el.empty();
+                twoPieces.$el.append(openerp.qweb.render('ChickenPiecesWidget',{'hidden':true,'converted':true}));
                 //this.pos.pos_widget.four_chicken_pieces_widget.replace(this.pos.pos_widget.$('.placeholder-ChickenPieces'));
             }
             if(product.weight_net == 2){
-                console.log('2 presas'); 
-                if(pos_widget.$('#pieces').hasClass('four')){
-                    twoPieces.replace(pos_widget.$('.placeholder-FourChickenPiecesWidget'));
-                }else{
-                    if(!pos_widget.$('#pieces').hasClass('two')){ 
-                        twoPieces.replace(pos_widget.$('.placeholder-ChickenPieces'))
-                    }
-                }
+                console.log('2 presas');
+                twoPieces.$el.empty();
+                twoPieces.$el.append(openerp.qweb.render('ChickenPiecesWidget',{'hidden':true}));
                 //this.pos.pos_widget.two_chicken_pieces_widget.replace(this.pos.pos_widget.$('.placeholder-ChickenPieces'));
             }
         },
