@@ -1042,23 +1042,6 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             }
             this.selectLine(this.getLastOrderline());
         },
-        addQuantity:function(product){
-            var pos_widget = this.pos.pos_widget;
-            var product_options =  pos_widget.product_options_widget;
-            
-            if(product.weight_net == 4){
-                console.log('4 presas');
-                product_options.$el.empty();
-                product_options.$el.append(openerp.qweb.render('ProductOptionsWidget',{'hidden':true,'converted':true}));
-                //this.pos.pos_widget.four_chicken_pieces_widget.replace(this.pos.pos_widget.$('.placeholder-ChickenPieces'));
-            }
-            if(product.weight_net == 2){
-                console.log('2 presas');
-                product_options.$el.empty();
-                product_options.$el.append(openerp.qweb.render('ProductOptionsWidget',{'hidden':true}));
-                //this.pos.pos_widget.two_chicken_pieces_widget.replace(this.pos.pos_widget.$('.placeholder-ChickenPieces'));
-            }
-        },
         removeOrderline: function( line ){
             this.get('orderLines').remove(line);
             this.selectLine(this.getLastOrderline());

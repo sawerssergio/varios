@@ -516,8 +516,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                         //self.productOptions = new module.ProductOptionsWidget(this, {});
 
                        //self.pos.get('selectedOrder').addQuantity(product);
-
-                        self.pos.get('selectedOrder').addQuantity(product);
+                        self.pos.pos_widget.product_options_widget.set_product(product);
 
                     }
                 },

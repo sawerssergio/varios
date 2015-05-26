@@ -687,6 +687,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.option_left = undefined;
             this.option_right = undefined;
             this.option_center = undefined;
+            this.selected_product = undefined;
+            this.selector_hide = true;
+            this.normal_units_hide = false;
+
         },
         start: function(){
             var self = this;
@@ -694,6 +698,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 console.log("this working");
                 self.increase_option_left();
             });
+            this.$el.hide();
         },
         increase_option_left: function(){
             if(typeof this.option_left != 'undefined'){
@@ -715,7 +720,41 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             } else{
                 this.option_right++;
             }
-        }
+        },
+        set_product:function(product){
+            if(product == this.selected_product){
+                //increase amount
+                console.log("mismatch");
+            
+            }else{
+                if(product.weight_net == 4){
+                    this.show_product_options(true);
+                    this.selected_product = product;
+                }
+                if(product.weight_net == 2){ 
+                    this.show_product_options(false);
+                    this.selected_product = product;
+                }
+            }
+        },
+        show_product_options:function(converted){            
+            if(this.selector_hide){
+                this.$el.show();
+                this.selector_hide = false;
+            }
+
+            if(converted){ 
+               if(this.normal_units_hide){
+                   this.$('.normal-units').show();
+                   this.normal_units_hide = false;
+               }
+            }else{
+               if(!this.normal_units_hide){
+                   this.$('.normal-units').hide();
+                   this.normal_units_hide = true;
+               }
+            }
+        },
     });
 
     module.UsernameWidget = module.PosBaseWidget.extend({

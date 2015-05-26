@@ -112,8 +112,8 @@
         </div>
     </t>
     <t t-name="ProductOptionsWidget">
-        <span class="placeholder-order-selector"/>
-        <div t-attf-class="options-selector #{hidden ? '':'oe_hidden'}">
+        <!--<div t-attf-class="options-selector #{show ? '':'oe_hidden'}">-->
+        <div class="options-selector">
             <div class="options-selector-content">
                 <div class="left-selector type-selector">
                     <div class="increase-product">
@@ -131,7 +131,8 @@
                         <span class="title-quantity">Cant.</span>
                         <span class="units-quantity">10</span>
                     </div>                   
-                    <div t-attf-class="normal-units #{converted ? '' : 'oe_hidden'}">
+                    <!--<div t-attf-class="normal-units #{converted ? '' : 'oe_hidden'}">-->
+                    <div class="normal-units">
                         <span class="title-quantity">Normal.</span>
                         <span class="units-quantity">6</span>
                     </div>
