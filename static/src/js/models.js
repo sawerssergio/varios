@@ -1044,19 +1044,18 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         },
         addQuantity:function(product){
             var pos_widget = this.pos.pos_widget;
-            var fourPieces = pos_widget.four_chicken_pieces_widget; 
-            var twoPieces =  pos_widget.two_chicken_pieces_widget;
+            var product_options =  pos_widget.product_options_widget;
             
             if(product.weight_net == 4){
                 console.log('4 presas');
-                twoPieces.$el.empty();
-                twoPieces.$el.append(openerp.qweb.render('ChickenPiecesWidget',{'hidden':true,'converted':true}));
+                product_options.$el.empty();
+                product_options.$el.append(openerp.qweb.render('ProductOptionsWidget',{'hidden':true,'converted':true}));
                 //this.pos.pos_widget.four_chicken_pieces_widget.replace(this.pos.pos_widget.$('.placeholder-ChickenPieces'));
             }
             if(product.weight_net == 2){
                 console.log('2 presas');
-                twoPieces.$el.empty();
-                twoPieces.$el.append(openerp.qweb.render('ChickenPiecesWidget',{'hidden':true}));
+                product_options.$el.empty();
+                product_options.$el.append(openerp.qweb.render('ProductOptionsWidget',{'hidden':true}));
                 //this.pos.pos_widget.two_chicken_pieces_widget.replace(this.pos.pos_widget.$('.placeholder-ChickenPieces'));
             }
         },

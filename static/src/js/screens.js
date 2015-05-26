@@ -514,7 +514,11 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                         console.log(self.pos_widget.product_options_widget);
                         // THIS IS RESERVED FOR SET PRODUCT IN PRODUCT_OPTIONS_WIDGET
                         //self.productOptions = new module.ProductOptionsWidget(this, {});
+
                        //self.pos.get('selectedOrder').addQuantity(product);
+
+                        self.pos.get('selectedOrder').addQuantity(product);
+
                     }
                 },
                 product_list: this.pos.db.get_product_by_category(0)

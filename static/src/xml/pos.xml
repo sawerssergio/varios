@@ -15,8 +15,7 @@
                     </div>
                 </div>
                 <div class="center-bottom">
-                    <!--<span class="placeholder-order-selector"/>-->
-                    <span class="placeholder-ChickenPieces"></span>
+                    <span class="placeholder-order-selector"/>
                 </div>
             </div>
             <div class="pos-rightpane">
@@ -113,7 +112,8 @@
         </div>
     </t>
     <t t-name="ProductOptionsWidget">
-        <div class="options-selector">
+        <span class="placeholder-order-selector"/>
+        <div t-attf-class="options-selector #{hidden ? '':'oe_hidden'}">
             <div class="options-selector-content">
                 <div class="left-selector type-selector">
                     <div class="increase-product">
@@ -130,8 +130,8 @@
                     <div class="quantity-units">
                         <span class="title-quantity">Cant.</span>
                         <span class="units-quantity">10</span>
-                    </div>
-                    <div class="normal-units">
+                    </div>                   
+                    <div t-attf-class="normal-units #{converted ? '' : 'oe_hidden'}">
                         <span class="title-quantity">Normal.</span>
                         <span class="units-quantity">6</span>
                     </div>
@@ -946,8 +946,6 @@
         </div>
     </t>
 
-
-
     <t t-name="DebugWidget">
         <div class="debug-widget">
             <h1>Debug Window</h1>
@@ -1060,107 +1058,6 @@
             </span>
          </div>
      </t>
-
-     <t t-name="TwoChickenPiecesWidget">
-       <span class="placeholder-TwoChickenPiecesWidget">
-        <div id="pieces" class="two">
-         <div>
-             <center>
-                <input type="button" value="pierna"/>
-                <input type="number"/>
-                <input type="button" value="-"/>
-
-                <input class="input-cant" type="number" placeholder="CANT"/>
-            
-                <input type="button" value="ala"/>
-                <input type="number"/>
-                <input type="button" value="-"/>
-             </center>
-            
-        </div>
-        <br/>
-        <div>
-            <center>
-                <input type="button" value="Add"/>
-            </center>
-        </div>
-       </div>
-     </span>
-    </t>
-    <!--  FOR DELETE -->
-    <t t-name="FourChickenPiecesWidget">
-        <span class="placeholder-FourChickenPiecesWidget">
-         <div id="pieces" class="four">
-         <div>
-             <center>
-                <input type="button" value="pierna"/>
-                <input type="number"/>
-                <input type="button" value="-"/>
-
-                <input type="number" placeholder="CANT"/>
-            
-                <input type="button" value="ala"/>
-                <input type="number"/>
-                <input type="button" value="-"/>
-             </center>
-            
-        </div>
-        <br/>
-         <div>
-            <center>
-                <input type="number" placeholder="Normal"/>
-                <input type="button" value="Add"/>
-            </center>
-         </div>
-        </div>
-     </span>
-    </t>
-
-
-    <t t-name="ChickenPiecesWidget">
-    
-                    <span class="placeholder-order-selector"/>
-                    <div t-attf-class="options-selector #{hidden ? '':'oe_hidden'}">
-                        <div class="options-selector-content">
-                            <div class="left-selector type-selector">
-                                <div class="increase-product">
-                                    <img class="options-image" src="/pos_kingdom/static/src/img/chicken_leg.svg"/> 
-                                </div>
-                                <div class="edition-product">
-                                    <input class="edition-input" type="text"/>
-                                </div>
-                                <div class="decrease-product">
-                                    <img class="options-image" src="/pos_kingdom/static/src/img/delete.svg"/> 
-                                </div>
-                            </div>
-                            <div class="center-selector">
-                                <div class="quantity-units">
-                                    <span class="title-quantity">Cant.</span>
-                                    <span class="units-quantity">10</span>
-                                </div>
-                                <div t-attf-class="normal-units #{converted ? '' : 'oe_hidden'}">
-                                    <span class="title-quantity">Normal.</span>
-                                    <span class="units-quantity">6</span>
-                                </div>
-                            </div>
-                            <div class="right-selector type-selector">
-                                <div class="increase-product">
-                                    <img class="options-image" src="/pos_kingdom/static/src/img/chicken_wing.svg"/> 
-                                </div>
-                                <div class="edition-product">
-                                    <input class="edition-input" type="text"/>
-                                </div>
-                                <div class="decrease-product">
-                                    <img class="options-image" src="/pos_kingdom/static/src/img/delete.svg"/> 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="action-selector"></div>
-                    </div>
-    </t>
-
-
-
 
     <t t-name="PosTicket">
         <div class="pos-sale-ticket">
