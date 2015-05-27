@@ -698,6 +698,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.has_image = false;
             this.has_size = false;
             this.has_right = true;
+            this.has_center = false;
 
         },
         start: function(){
@@ -779,9 +780,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.has_size = false;
                 this.has_image=false;
                 this.has_right = true;
+                this.has_center = false;
                 console.log(product.weight_net)
                 if(product.weight_net == 4){
                     this.show_product_options(true);
+                    this.has_center = true;
                 } else if(product.weight_net == 2){ 
                     this.show_product_options(false);
                 } else {

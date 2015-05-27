@@ -461,11 +461,6 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
                 width: 100%;
                 min-height: 50%;
                 color: $co_letter_yellow;
-                /* It is when only quantity units shown.*/
-                /*position: absolute;*/
-                /*margin: auto;*/
-                /*top: 50%;*/
-                /*transform: translate(0, -50%);*/
             }
             .normal-units {
                 max-height: 50%;
@@ -512,6 +507,12 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
     font-size: 2.2em;
     line-height: .8em;
     display: block;
+}
+.only-quantity-total {
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    transform: translate(0, -50%);
 }
 /* SELECTOR QUANTITY PRODUCTS AND TYPE OF PRODUCTS */
 .type-selector {

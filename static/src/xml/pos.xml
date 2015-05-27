@@ -131,13 +131,13 @@
                     </div>
                 </div>
                 <div class="center-selector">
-                    <div class="quantity-units">
+                    <div t-att-class=" 'quantity-units '+ (widget.has_center  ? '' : 'only-quantity-total')">
                         <span class="title-quantity">Cant.</span>
                         <span class="units-quantity">
                             <t t-esc="widget.total_quantity"/>
                         </span>
                     </div>                   
-                    <div class="normal-units">
+                    <div t-att-class=" 'normal-units '+ (widget.has_center  ? '' : 'oe_hidden')" >
                         <span class="title-quantity">Normal.</span>
                         <span class="units-quantity">6</span>
                     </div>
