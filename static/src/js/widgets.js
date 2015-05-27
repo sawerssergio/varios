@@ -691,7 +691,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.total_quantity = options.total_quantity || 1;
             this.option_left = this.total_quantity;
             this.option_right = 0;
-            this.option_center = undefined;
+            this.option_center = 0;
             this.selected_product = undefined;
             this.selector_hide = true;
             this.normal_units_hide = false;
@@ -718,13 +718,15 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
              this.$('.left-selector .edition-input').val(this.option_left);
              this.$('.right-selector .edition-input').val(this.option_right);
         },
-        increase_option_center: function(){
-            if(typeof this.option_center == 'undefined'){
-                this.option_center = 1;
+        increase_total_quantity: function(){
+            if(typeof this.total_quantity == 'undefined'){
+                this.total_quantity = 1;
             } else{
-                this.option_center++;
+                this.total_quantity++;
+                this.option_left++;
             }
-            this.$('.quantity-units .units-quantity').html(this.option_center);
+            this.$('.quantity-units .units-quantity').html(this.total_quantity);
+            this.$('.left-selector .edition-input').val(this.option_left);
         },
         increase_option_right: function(){
             if(typeof this.option_right == 0){
@@ -749,11 +751,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.$('.left-selector .edition-input').val(this.option_left);
             this.$('.right-selector .edition-input').val(this.option_right);
         },
-        decrease_option_center: function(){
-            if(typeof this.option_center == 'undefined'){
-                this.option_center = 1;
+        decrease_total_quantity: function(){
+            if(typeof this.total_quantity == 'undefined'){
+                this.total_quantity = 1;
             } else{
-                this.option_center++;
+                this.total_quantity++;
             }
         },
         decrease_option_right: function(){
@@ -763,17 +765,21 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.option_left++;
             }
             this.$('.right-selector .edition-input').val(this.option_right);    
-            this.$('.left-selector .edition-input').val(this.option_left);    
+            this.$('.left-selector .edition-input').val(this.option_left);
         },
-        reset_option_center: function(){
-            this.option_center = 1;
-            this.$('.quantity-units .units-quantity').html(this.option_center);
+        reset_total_quantity: function(){
+            this.total_quantity = 1;
+            this.option_left=this.total_quantity;
+            this.option_right=0;
+            this.$('.quantity-units .units-quantity').html(this.total_quantity);
+            this.$('.left-selector .edition-input').val(this.option_left);    
+            this.$('.right-selector .edition-input').val(this.option_right);    
         
         },
         set_product:function(product){
             if(product == this.selected_product){
                 //increase amount
-                this.increase_option_center();
+                this.increase_total_quantity();
                 console.log("mismatch");
             
             }else{
@@ -802,7 +808,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.selected_product = product;
                 this.renderElement();
 
-                this.reset_option_center();
+                this.reset_total_quantity();
 
             }
 
