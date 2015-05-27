@@ -885,7 +885,7 @@
 
     <t t-name="Orderline">
         <li t-attf-class="orderline #{ line.selected ? 'selected' : '' }">
-            <div class="product-quantity"><span class="number"><t t-esc="line.get_quantity_str()"/></span></div>
+            <div class="product-quantity"><span class="number"><t t-esc="line.get_quantity()"/></span></div>
             <div class="product-info">
                 <span class="product-name"><t t-esc="line.get_product().display_name"/></span>
                 <p class="product-details">
