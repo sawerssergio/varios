@@ -704,6 +704,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         start: function(){
             var self = this;
             this.hide();
+            
         },
         increase_option_left: function(){
             if(typeof this.option_left == 'undefined'){
@@ -777,6 +778,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         
         },
         set_product:function(product){
+                console.log('seleccionado');
+                    console.log(product);
+                    
             if(product == this.selected_product){
                 //increase amount
                 this.increase_total_quantity();
