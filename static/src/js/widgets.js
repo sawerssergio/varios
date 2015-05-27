@@ -688,7 +688,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         init: function(parent, options) {
             var options = options || {};
             this._super(parent, options);
-            this.total_quantity = options.total_quantity || 10;
+            this.total_quantity = options.total_quantity || 1;
             this.option_left = this.total_quantity;
             this.option_right = 0;
             this.option_center = undefined;
@@ -702,21 +702,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         start: function(){
             var self = this;
-            this.$('.left-selector .increase-product').click(function(){
-                self.increase_option_left();
-            });
-            this.$('.right-selector .increase-product').click(function(){
-                self.increase_option_right();
-            });
-            this.$('.left-selector .decrease-product').click(function(){
-                self.decrease_option_left();
-            });
-            this.$('.right-selector .decrease-product').click(function(){
-                self.decrease_option_right();
-            });
-
-            this.$('.left-selector .edition-input').val(this.option_left);
-
             this.hide();
         },
         increase_option_left: function(){
@@ -844,6 +829,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             }
         },
         renderElement: function(){
+            var self = this;
             this._super();
             var image_url = this.get_product_image_url();
             console.log(image_url);
@@ -855,6 +841,21 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 console.log(el_node);
 
             this.el = el_node;
+
+            this.$el.find('.left-selector .increase-product').click(function(){
+                self.increase_option_left();
+            });
+            this.$el.find('.right-selector .increase-product').click(function(){
+                self.increase_option_right();
+            });
+            this.$el.find('.left-selector .decrease-product').click(function(){
+                self.decrease_option_left();
+            });
+            this.$el.find('.right-selector .decrease-product').click(function(){
+                self.decrease_option_right();
+            });
+
+            this.$el.find('.left-selector .edition-input').val(this.option_left);
         },
         show:function(){
             this.$el.removeClass('oe_hidden');
