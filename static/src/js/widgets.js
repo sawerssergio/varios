@@ -841,7 +841,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var self = this;
             this._super();
             var image_url = this.get_product_image_url();
-            console.log(image_url);
             var el_str  = openerp.qweb.render('ProductOptionsWidget',{widget:this, image_url:image_url});
 
             var el_node = document.createElement('div');
@@ -865,6 +864,19 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             });
 
             this.$el.find('.left-selector .edition-input').val(this.option_left);
+
+            if(this.has_size) {
+                var products = self.pos.db.get_product_by_category(this.selected_product.pos_categ_id[0]);
+                this.$el.find('.size-selector .small-selector').click(function(){
+                    self.selected_product = products[0];
+                });
+                this.$el.find('.size-selector .medium-selector').click(function(){
+                    self.selected_product = products[1];
+                });
+                this.$el.find('.size-selector .big-selector').click(function(){
+                    self.selected_product = products[1];
+                });
+            }
         },
         show:function(){
             this.$el.removeClass('oe_hidden');

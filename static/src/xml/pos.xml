@@ -145,13 +145,13 @@
                 <div t-att-class=" 'right-selector '+ (widget.has_right ? (widget.has_size  ? 'size-selector ' : 'type-selector') : '')">
                     <t t-if="widget.has_right">
                         <t t-if="widget.has_size">
-                            <div class="small-selector">
+                            <div class="small-selector size-selector-item">
                                 <img src="/pos_kingdom/static/src/img/glass.svg"/>
                             </div>
-                            <div class="medium-selector">
+                            <div class="medium-selector size-selector-item">
                                 <img src="/pos_kingdom/static/src/img/glass.svg"/>
                             </div>
-                            <div class="big-selector">
+                            <div class="big-selector size-selector-item">
                                 <img src="/pos_kingdom/static/src/img/glass.svg"/>
                             </div>
                         </t>

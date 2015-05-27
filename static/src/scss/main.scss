@@ -387,7 +387,6 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
                     flex: 0 1 30%;
                     -webkit-align-self: auto;
                     align-self: auto;
-                    height: 30%;
                     .product-img {
                         width: 100%;
                         img {
@@ -579,6 +578,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         vertical-align: middle;
         img {
             width: 100%;
+            opacity: .8;
         }
     }
     .medium-selector {
@@ -587,6 +587,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         vertical-align: middle;
         img {
             width: 100%;
+            opacity: .8;
         }
     }
     .big-selector {
@@ -595,6 +596,11 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         vertical-align: middle;
         img {
             width: 100%;
+            opacity: .8;
         }
     }
+    .size-selector-item:active > img{
+        opacity: 1;
+    }
 }
+
