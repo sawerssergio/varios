@@ -112,12 +112,16 @@
         </div>
     </t>
     <t t-name="ProductOptionsWidget">
-        <!--<div t-attf-class="options-selector #{show ? '':'oe_hidden'}">-->
         <div class="options-selector">
             <div class="options-selector-content">
                 <div class="left-selector type-selector">
                     <div class="increase-product">
-                        <img class="options-image" src="/pos_kingdom/static/src/img/chicken_leg.svg"/> 
+                        <t t-if="!widget.has_image">
+                            <img class="options-image" src="/pos_kingdom/static/src/img/chicken_leg.svg"/>
+                        </t>
+                        <t t-if="widget.has_image">
+                            <img t-att-src="widget.get_product_image_url()"/>
+                        </t> 
                     </div>
                     <div class="edition-product">
                         <input class="edition-input" type="text"/>
@@ -129,36 +133,40 @@
                 <div class="center-selector">
                     <div class="quantity-units">
                         <span class="title-quantity">Cant.</span>
-                        <span class="units-quantity">10</span>
+                        <span class="units-quantity">
+                            <t t-esc="widget.total_quantity"/>
+                        </span>
                     </div>                   
-                    <!--<div t-attf-class="normal-units #{converted ? '' : 'oe_hidden'}">-->
                     <div class="normal-units">
                         <span class="title-quantity">Normal.</span>
                         <span class="units-quantity">6</span>
                     </div>
                 </div>
-                <div class="right-selector type-selector">
-                    <!--
-                    <div class="small-selector">
-                        <img src="/pos_kingdom/static/src/img/glass.svg"/>
-                    </div>
-                    <div class="medium-selector">
-                        <img src="/pos_kingdom/static/src/img/glass.svg"/>
-                    </div>
-                    <div class="big-selector">
-                        <img src="/pos_kingdom/static/src/img/glass.svg"/>
-                    </div>-->
-                    
-                    <div class="increase-product">
-                        <img class="options-image" src="/pos_kingdom/static/src/img/chicken_wing.svg"/> 
-                    </div>
-                    <div class="edition-product">
-                        <input class="edition-input" type="text"/>
-                    </div>
-                    <div class="decrease-product">
-                        <img class="options-image" src="/pos_kingdom/static/src/img/delete.svg"/> 
-                    </div>
-                    
+                <div t-att-class=" 'right-selector '+ (widget.has_right ? (widget.has_size  ? 'size-selector ' : 'type-selector') : '')">
+                    <t t-if="widget.has_right">
+                        <t t-if="widget.has_size">
+                            <div class="small-selector">
+                                <img src="/pos_kingdom/static/src/img/glass.svg"/>
+                            </div>
+                            <div class="medium-selector">
+                                <img src="/pos_kingdom/static/src/img/glass.svg"/>
+                            </div>
+                            <div class="big-selector">
+                                <img src="/pos_kingdom/static/src/img/glass.svg"/>
+                            </div>
+                        </t>
+                        <t t-if="!widget.has_size">
+                            <div class="increase-product">
+                                <img class="options-image" src="/pos_kingdom/static/src/img/chicken_wing.svg"/> 
+                            </div>
+                            <div class="edition-product">
+                                <input class="edition-input" type="text"/>
+                            </div>
+                            <div class="decrease-product">
+                                <img class="options-image" src="/pos_kingdom/static/src/img/delete.svg"/> 
+                            </div>
+                        </t>
+                    </t>
                 </div>
             </div>
             <div class="action-selector"></div>

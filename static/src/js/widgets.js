@@ -695,6 +695,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.selected_product = undefined;
             this.selector_hide = true;
             this.normal_units_hide = false;
+            this.has_image = false;
+            this.has_size = false;
+            this.has_right = true;
 
         },
         start: function(){
@@ -714,7 +717,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             this.$('.left-selector .edition-input').val(this.option_left);
 
-            this.$el.hide();
+            this.hide();
         },
         increase_option_left: function(){
             if(typeof this.option_left == 'undefined'){
@@ -781,22 +784,35 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 console.log("mismatch");
             
             }else{
+                this.has_size = false;
+                this.has_image=false;
+                this.has_right = true;
+                console.log(product.weight_net)
                 if(product.weight_net == 4){
                     this.show_product_options(true);
-                    this.selected_product = product;
-                }
-                if(product.weight_net == 2){ 
+                } else if(product.weight_net == 2){ 
                     this.show_product_options(false);
-                    this.selected_product = product;
+                } else {
+                    console.log(product.attribute_line_ids.length);
+                    if (product.attribute_line_ids.length > 0){
+                        this.has_size = true;
+                    } else {
+                        this.has_right = false;
+                    }
+                    this.show();
+                    this.$('.normal-units').hide();
+                    this.has_image=true;
                 }
-            }
-        },
-        show_product_options:function(converted){            
-            if(this.selector_hide){
-                this.$el.show();
-                this.selector_hide = false;
+                this.selected_product = product;
+                this.renderElement();
             }
 
+        },
+        show_product_options:function(converted){
+            if(this.selector_hide){
+                this.show();
+                this.selector_hide = false;
+            }
             if(converted){ 
                if(this.normal_units_hide){
                    this.$('.normal-units').show();
@@ -808,6 +824,32 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                    this.normal_units_hide = true;
                }
             }
+        },
+        get_product_image_url: function(){
+            if(this.selected_product) {
+            return window.location.origin + '/web/binary/image?model=product.product&field=image&id='+this.selected_product.id;
+            } else {
+                return undefined;
+            }
+        },
+        renderElement: function(){
+            this._super();
+            var image_url = this.get_product_image_url();
+            console.log(image_url);
+            var el_str  = openerp.qweb.render('ProductOptionsWidget',{widget:this, image_url:image_url});
+
+            var el_node = document.createElement('div');
+                el_node.innerHTML = _.str.trim(el_str);
+                el_node = el_node.childNodes[0];
+                console.log(el_node);
+
+            this.el = el_node;
+        },
+        show:function(){
+            this.$el.removeClass('oe_hidden');
+        },
+        hide:function(){
+            this.$el.addClass('oe_hidden');
         },
     });
 
