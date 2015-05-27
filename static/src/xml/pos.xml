@@ -985,11 +985,18 @@
             <div class="order-summary clearfix">
                 <div t-attf-class="line #{orderlines.length === 0 ? 'empty' : ''}">
                     <div class='entry total'>
-                        <span class="label">Total: </span> <span class="value">0.00 €</span>
-                        <div class='subentry'>
-                            <span class="label-cash">Cash</span><span class="value-cash"> 0</span>
-                            <span class="label">Taxes: </span><span class="value">0.00€</span>
+                        <div class="subentry-total">
+                            <span class="label">Total: </span> <span class="value">0.00 €</span>
                         </div>
+                        <div class='subentry-cash'>
+                            <span class="label-cash">Pago Efectivo: </span><span class="value-cash"> 0</span>
+                        </div>
+                        <div class="subentry">
+                            <span class="label">Cambio: </span><span class="value">0.00€</span>
+                        </div>
+                    </div>
+                    <div class="action-next">
+                        <img class="action-next-image" src="/pos_kingdom/static/src/img/payment_process.svg"/>
                     </div>
                 </div>
             </div>

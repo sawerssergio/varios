@@ -241,7 +241,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
             }
             .order-scroller {
                 width: 100%;
-                height: 77%;
+                height: 73%;
                 overflow-y: auto;
                 .orderline {
                     width: 100%;
@@ -267,7 +267,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
                             font-size: 1.2em;
                         }
                         .product-details, .product-detail-composed {
-                            color: yellow;
+                            color: $co_letter_yellow;
                             font-size: 1em;
                         }
                     }
@@ -282,8 +282,41 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
                 }
             }
             .order-summary {
-                width: 100%;
-                height: 16%;
+                width: 95%;
+                height: 14%;
+                border-top: .2em solid $co_menu_red;
+                padding: 2%;
+                .line {
+                    background-color: $co_menu_red;
+                    border-radius: 0 0 0 1.6em;
+                    width: 100%;
+                    height: 100%;
+                    font-weight: bold;
+                    text-align: center;
+                    .entry {
+                        width: 65%;
+                        display: inline-block;
+                        .value, .value-cash {
+                            color: $co_letter_yellow;
+                        }
+                        .subentry-total {
+                            display: block;
+                        }
+                        .subentry-cash {
+                            display: block;
+                        }
+                        .subentry {
+                            display: block;
+                        }
+                    }
+                    .action-next {
+                        width: 30%;
+                        display: inline-block;
+                        img {
+                            width: 65%;
+                        }
+                    }
+                }
             }
         }
     }
@@ -553,6 +586,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
             font-size: 2em;
             width: 85%;
             background-color: transparent;
+            font-weight: bold;
             &:focus {
                 outline: 0;
             }
