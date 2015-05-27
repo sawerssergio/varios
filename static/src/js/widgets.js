@@ -929,7 +929,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     self.selected_product = products[1];
                 });
                 this.$el.find('.size-selector .big-selector').click(function(){
-                    self.selected_product = products[1];
+                    self.selected_product = products[2];
                 });
             }
         },
