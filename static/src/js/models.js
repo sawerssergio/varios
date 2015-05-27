@@ -1034,13 +1034,13 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 line.set_discount(options.discount);
             }
             
-            var last_orderline = this.getLastOrderline();
-            if( last_orderline && last_orderline.can_be_merged_with(line) && options.merge !== false){
-                last_orderline.merge(line);
+            var same_product_orderline = this.getSameProductOrderline(line);
+            if( same_product_orderline && options.merge !== false){
+                same_product_orderline.merge(line);
             }else{
                 this.get('orderLines').add(line);
             }
-            this.selectLine(this.getLastOrderline());
+            this.selectLine(same_product_orderline);
         },
         removeOrderline: function( line ){
             this.get('orderLines').remove(line);
@@ -1057,6 +1057,20 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         },
         getLastOrderline: function(){
             return this.get('orderLines').at(this.get('orderLines').length -1);
+        },
+        getSameProductOrderline: function(line){
+            var orderlines = this.get('orderLines');
+            console.log(orderlines);
+            var result = null;
+            for(var c=0; c<orderlines.length; c++){
+               var tmp = orderlines.at(c);
+               console.log(tmp);
+               if(tmp && tmp.can_be_merged_with(line)) {
+                  result = tmp;
+                  break;
+               }
+            }
+            return result;
         },
         addPaymentline: function(cashregister) {
             var paymentLines = this.get('paymentLines');
