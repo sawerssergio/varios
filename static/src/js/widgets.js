@@ -747,15 +747,18 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         decrease_option_left: function(){
             var self = this;
-            if(self.selected_product.pos_categ_id[0]>4)
+            if(self.selected_product.pos_categ_id[0]>2)
             {
+                
                 this.decrease_total_quantity();        
                 this.option_left=this.total_quantity;
             }else{
+                
                 if(this.option_left > 0){
                     
                 this.option_left--;
                 this.option_right++;
+                this.$('.right-selector .edition-input').val(this.option_right);
                 }   
             }            
             this.$('.quantity-units .units-quantity').html(this.total_quantity);
@@ -868,7 +871,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.el = el_node;
 
             this.$el.find('.left-selector .increase-product').click(function(){
-                if(self.selected_product.pos_categ_id[0]==5)
+                if(self.selected_product.pos_categ_id[0]>2)
                 {
                     self.increase_total_quantity();    
                 }
