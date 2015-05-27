@@ -169,7 +169,9 @@
                     </t>
                 </div>
             </div>
-            <div class="action-selector"></div>
+            <div class="action-selector">
+                <img class="action-image" src="/pos_kingdom/static/src/img/check.svg"/>
+            </div>
         </div>
     </t>
     <t t-name="SynchNotificationWidget">

@@ -405,6 +405,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
     bottom: 0;
     padding: 0% 2.5% 0% 2.5%;
     .options-selector-content{
+        float: left;
         width: 90%;
         height: 100%;
         background-color: $co_options_selector;
@@ -484,7 +485,19 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         }
     }
     .action-selector {
-        width: 10%;
+        width: 8%;
+        height: 100%;
+        float: right;
+        position: relative;
+        img {
+            border-radius: 50%;
+            width: 100%;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            background-color: $co_options_selector;
+        }
     }
 }
 .title-quantity {
