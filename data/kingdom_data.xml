@@ -35,12 +35,12 @@
 
         <record id="soda" model="pos.category">
           <field name="name">Soda</field>
-          <field name="image" type="base64" file="pos_kingdom/static/img/coca_cola.png"/>
+          <field name="image" type="base64" file="pos_kingdom/static/img/drink.png"/>
         </record>
 
         <record id="icecream" model="pos.category">
           <field name="name">Ice Cream</field>
-          <field name="image" type="base64" file="pos_kingdom/static/img/icecream_chocolate.png"/>
+          <field name="image" type="base64" file="pos_kingdom/static/img/icecream.png"/>
         </record>
 
         <record id="extra" model="pos.category">

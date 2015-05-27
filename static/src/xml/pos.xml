@@ -861,7 +861,8 @@
     <t t-name="Product">
         <li class='product' t-att-data-product-id="product.id">
             <div class="product-img">
-                <img t-att-src='image_url' /> 
+                <img t-att-src='image_url' />
+                <!-- 
                 <t t-if="!product.to_weight">
                     <span class="price-tag">
                         <t t-esc="widget.format_currency(product.price,'Product Price')"/>
@@ -872,6 +873,7 @@
                         <t t-esc="widget.format_currency(product.price,'Product Price')+'/Kg'"/>
                     </span>
                 </t>
+                -->
             </div>
             <!--
             <div class="product-name">
