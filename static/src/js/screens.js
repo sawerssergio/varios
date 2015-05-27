@@ -513,7 +513,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     }else{
                         console.log(self.pos_widget.product_options_widget);
                         // THIS IS RESERVED FOR SET PRODUCT IN PRODUCT_OPTIONS_WIDGET
-                        self.pos.get('selectedOrder').addProduct(product);
+                        //self.pos.get('selectedOrder').addProduct(product);
                         self.pos.pos_widget.product_options_widget.set_product(product);
                     }
                 },

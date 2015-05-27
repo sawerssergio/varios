@@ -699,6 +699,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.has_size = false;
             this.has_right = true;
             this.has_center = false;
+            this.converted = undefined;
 
         },
         start: function(){
@@ -803,9 +804,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.has_center = false;
                 console.log(product.weight_net)
                 if(product.weight_net == 4){
+                    this.converted = true;
                     this.show_product_options(true);
                     this.has_center = true;
                 } else if(product.weight_net == 2){ 
+                    this.converted = false;
                     this.show_product_options(false);
                 } else {
                     console.log(product.attribute_line_ids.length);
@@ -883,6 +886,33 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             });
             this.$el.find('.right-selector .decrease-product').click(function(){
                 self.decrease_option_right();
+            });
+
+            this.$el.find('.action-image').click(function(){
+                var options = {};
+                var category_product = self.selected_product.pos_categ_id[0];
+                console.log(category_product);
+                options.quantity = self.total_quantity;
+                if(category_product == 1){ //product is chicken
+                   console.log('chicken');
+                   options.quantity_leg = self.option_left;
+                   options.quantity_chest = self.option_right;
+                   options.converted = self.converted;
+                   if(self.converted){
+                       options.quantity_normal = 0;
+                   }
+                   console.log(options);
+                }
+                if(category_product == 4){ //product is extra
+                    console.log('extra');
+                }
+                if(category_product == 3){ //product is icecream
+                    console.log('icecream')
+                }
+                if(category_product > 4){ //product is soda
+                    console.log('soda');
+                }
+                self.pos.get('selectedOrder').addProduct(self.selected_product,options);
             });
 
             this.$el.find('.left-selector .edition-input').val(this.option_left);
