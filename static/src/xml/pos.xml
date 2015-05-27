@@ -887,15 +887,40 @@
             <div class="product-info">
                 <span class="product-name"><t t-esc="line.get_product().display_name"/></span>
                 <p class="product-details">
-                    <span class="item-detail">+2 Convertidos piernas</span>
-                    <span class="item-detail">+2 Convertidos piernas</span>
-                    <span class="item-detail">+2 Convertidos piernas</span>
+                    <t t-if="line.converted">
+                        <t t-if="line.quantity_leg > 0">
+                            <span class="item-detail"><t t-esc="line.quantity_leg"/> Convertidos pierna</span>
+                        </t>
+
+                        <t t-if="line.quantity_chest > 0">
+                            <br/>
+                            <span class="item-detail"><t t-esc="line.quantity_chest"/> Convertidos pecho</span>
+                        </t>
+
+                        <t t-if="line.quantity_normal > 0">
+                            <br/>
+                            <span class="item-detail"><t t-esc="line.quantity_normal"/> Normales</span>
+                        </t>
+                    </t>
+
+                    <t t-if="!line.converted">
+
+                        <t t-if="line.quantity_leg > 0">
+                            <span class="item-detail"><t t-esc="line.quantity_leg"/> Pierna</span>
+                        </t>
+
+                        <t t-if="line.quantity_chest > 0">
+                            <br/>
+                            <span class="item-detail"><t t-esc="line.quantity_chest"/> Pecho</span>
+                        </t>
+
+                    </t>
                 </p>
-                <p class="product-detail-composed">
+                <!--<p class="product-detail-composed">
                     <span>+2CC</span>
                     <span>+2SP</span>
                     <span>+2SB</span>
-                </p>
+                </p>-->
             </div>
             <div class="product-delete">
                 <img class="product-delete-button" src="/pos_kingdom/static/src/img/delete.svg"/>

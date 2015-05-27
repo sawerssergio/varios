@@ -667,7 +667,11 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             this.discountStr = '0';
             this.type = 'unit';
             this.selected = false;
-            this.id       = orderline_id++; 
+            this.id       = orderline_id++;
+            this.quantity_leg = 0;
+            this.quantity_chest = 0;
+            this.quantity_normal = 0;
+            this.converted = undefined; 
         },
         clone: function(){
             var orderline = new module.Orderline({},{
@@ -689,6 +693,19 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             this.discount = disc;
             this.discountStr = '' + disc;
             this.trigger('change',this);
+        },
+        set_quantity_leg: function(quantity){
+            this.quantity_leg = quantity;
+        },
+        set_quantity_chest: function(quantity){
+            this.quantity_chest = quantity;
+        },
+        set_quantity_normal: function(quantity){
+            this.quantity_normal = quantity;
+        
+        },
+        set_converted: function(bool){
+            this.converted = bool;
         },
         // returns the discount [0,100]%
         get_discount: function(){
@@ -1032,6 +1049,19 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             }
             if(options.discount !== undefined){
                 line.set_discount(options.discount);
+            }
+            
+            if(options.converted !== undefined){
+                line.set_converted(options.converted);
+            }
+            if(options.quantity_leg !== undefined){
+                line.set_quantity_leg(options.quantity_leg);
+            }
+            if(options.quantity_chest !== undefined){
+                line.set_quantity_chest(options.quantity_chest);
+            }
+            if(options.quantity_normal !== undefined){
+                line.set_quantity_normal(options.quantity_normal);
             }
             
             var same_product_orderline = this.getSameProductOrderline(line);
