@@ -469,6 +469,25 @@
             <field name="domain">[('date_order','like',time.strftime('%Y-%m'))]</field>
         </record>
 
+        <record id="variants_template_tree_view" model="ir.ui.view">
+            <field name="name">variants.template.tree</field>
+            <field name="model">product.attribute.value</field>
+            <field name="arch" type="xml">
+                <form string="Pos Categories">
+                    <sheet>
+                        <field name="image_medium" widget='image' class="oe_avatar oe_right"/>
+                        <div class="oe_left">
+                            <group>
+                                <field name="sequence" widget="handle"/>
+                                <field name="attribute_id"/>
+                                <field name="name"/>
+                                <field name="price_extra"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
 
         <!-- Product Public Categories -->
