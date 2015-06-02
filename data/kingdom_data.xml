@@ -30,12 +30,14 @@
         <record id="attribute_piece_value_1" model="product.attribute.value">
             <field name="name">Leg</field>
             <field name="attribute_id" ref="attribute_piece_1"/>
+            <field name="image" type="base64" file="pos_kingdom/static/img/chickens_leg_chicken.png"/>
         </record>
 
 
         <record id="attribute_piece_value_2" model="product.attribute.value">
             <field name="name">Wing</field>
             <field name="attribute_id" ref="attribute_piece_1"/>
+            <field name="image" type="base64" file="pos_kingdom/static/img/chickens_quarter_chicken.png"/>
         </record>
 
 
