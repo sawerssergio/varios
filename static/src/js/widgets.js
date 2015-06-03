@@ -150,6 +150,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 } else {
                     self.pos.get('selectedOrder').selectLine(this.orderline);
                     self.pos_widget.numpad.state.reset();
+                    console.log(this.orderline);
+                    self.pos.pos_widget.product_options_widget.edit_product(this.orderline.get_product(),{'quantity':this.orderline.get_quantity()});
                 }
             };
             this.client_change_handler = function(event){
@@ -432,6 +434,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.set_category();
             
             this.switch_category_handler = function(event){
+                //DOMStringMap
                 self.set_category(self.pos.db.get_category_by_id(Number(this.dataset['categoryId'])));
                 //FIXME [KINGDOM][VD] This should be separated into another method of this widget.
                 var products = self.pos.db.get_product_by_category(self.category.id);
@@ -700,6 +703,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.has_right = true;
             this.has_center = false;
             this.converted = undefined;
+            this.editing = false;
 
         },
         start: function(){
@@ -721,7 +725,14 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
              this.$('.left-selector .edition-input').val(this.option_left);
              this.$('.right-selector .edition-input').val(this.option_right);
         },
-        
+        set_total_quantity: function(value){
+            this.total_quantity = value;
+            this.$('.quantity-units .units-quantity').html(this.total_quantity);
+        },
+        set_option_left: function(value){
+            this.option_left = value;
+            this.$('.left-selector .edition-input').val(this.option_left); 
+        },
         increase_total_quantity: function(){
             if(typeof this.total_quantity == 'undefined'){
                 this.total_quantity = 1;
@@ -749,9 +760,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var self = this;
             if(self.selected_product.pos_categ_id[0]>2)
             {
-                
+                if(this.option_left > 0){ //fix negative numbers by rafo
                 this.decrease_total_quantity();        
                 this.option_left=this.total_quantity;
+                }
             }else{
                 
                 if(this.option_left > 0){
@@ -791,47 +803,43 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.$('.right-selector .edition-input').val(this.option_right);    
         
         },
+        edit_product:function(product,options){
+            this.editing = true;
+            this.set_ui_properties(product);
+            this.renderElement();
+            this.set_total_quantity(options.quantity);
+            this.set_option_left(options.quantity);
+        },
         set_product:function(product){
-               
-               
-                                    
+            this.editing = false;
             if(product == this.selected_product){
                 //increase amount
                 this.increase_total_quantity();
                 console.log("mismatch");
             
             }else{
-                this.has_size = false;
-                this.has_image=false;
-                this.has_right = true;
-                this.has_center = false;
-                console.log(product.weight_net)
-                if(product.weight_net == 4){
-                    this.converted = true;
-                    this.show_product_options(true);
-                    this.has_center = true;
-                } else if(product.weight_net == 2){ 
-                    this.converted = false;
-                    this.show_product_options(false);
-                } else {
-                    console.log(product.attribute_line_ids.length);
-                    if (product.attribute_line_ids.length > 0){
-                        this.has_size = true;
-                    } else {
-                        this.has_right = false;
-                    }
-                    this.show();
-                    this.$('.normal-units').hide();
-                    this.has_image=true;
-                }
-
-                this.selected_product = product;
+                this.set_ui_properties(product);
                 this.renderElement();
-
                 this.reset_total_quantity();
-
             }
 
+        },
+        set_ui_properties:function(product){
+            this.has_size = false;
+            this.has_image=false;
+            this.has_right = true;
+            this.has_center = false;
+            console.log(product.attribute_line_ids.length);
+            if (product.attribute_line_ids.length > 0){
+                this.has_size = true;
+            } else {
+                this.has_right = false;
+            }
+            this.show();
+            this.$('.normal-units').hide();
+            this.has_image=true;
+            this.selected_product = product;
+        
         },
         show_product_options:function(converted){
             if(this.selector_hide){
@@ -891,32 +899,38 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 self.decrease_option_right();
             });
 
-            this.$el.find('.action-image').click(function(){
-                var options = {};
-                var category_product = self.selected_product.pos_categ_id[0];
-                console.log(category_product);
-                options.quantity = self.total_quantity;
-                if(category_product == 1){ //product is chicken
-                   console.log('chicken');
-                   options.quantity_leg = self.option_left;
-                   options.quantity_chest = self.option_right;
-                   options.converted = self.converted;
-                   if(self.converted){
-                       options.quantity_normal = 0;
-                   }
-                   console.log(options);
-                }
-                if(category_product == 4){ //product is extra
-                    console.log('extra');
-                }
-                if(category_product == 3){ //product is icecream
-                    console.log('icecream')
-                }
-                if(category_product > 4){ //product is soda
-                    console.log('soda');
-                }
-                self.pos.get('selectedOrder').addProduct(self.selected_product,options);
-            });
+            if(this.editing){
+                this.$el.find('.action-image').click(function(){
+                    self.pos.get('selectedOrder').selected_orderline.set_quantity(self.total_quantity);
+                });
+            }else{
+                this.$el.find('.action-image').click(function(){
+                    var options = {};
+                    var category_product = self.selected_product.pos_categ_id[0];
+                    console.log(category_product);
+                    options.quantity = self.total_quantity;
+                    if(category_product == 1){ //product is chicken
+                       console.log('chicken');
+                       options.quantity_leg = self.option_left;
+                       options.quantity_chest = self.option_right;
+                       options.converted = self.converted;
+                       if(self.converted){
+                           options.quantity_normal = 0;
+                       }
+                       console.log(options);
+                    }
+                    if(category_product == 4){ //product is extra
+                        console.log('extra');
+                    }
+                    if(category_product == 3){ //product is icecream
+                        console.log('icecream')
+                    }
+                    if(category_product > 4){ //product is soda
+                        console.log('soda');
+                    }
+                    self.pos.get('selectedOrder').addProduct(self.selected_product,options);
+                });
+            }
 
             this.$el.find('.left-selector .edition-input').val(this.option_left);
 
@@ -1236,7 +1250,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.cashier_controls_visible = true;
 
             FastClick.attach(document.body);
-
         },
 
         disable_rubberbanding: function(){
@@ -1296,6 +1309,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     new_order_button.appendTo(this.$('.orders'));
                     new_order_button.selectOrder();
                 }, self);
+
 
                 self.pos.add_new_order();
 

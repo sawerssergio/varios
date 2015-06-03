@@ -80,8 +80,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                     if(self.config.use_proxy){
                         return self.connect_to_proxy();
                     }
-                });
-            
+                }); 
         },
 
         // releases ressources holds by the model at the end of life of the posmodel
@@ -1070,11 +1069,17 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             }else{
                 this.get('orderLines').add(line);
             }
-            this.selectLine(same_product_orderline);
+            /*
+            if(same_product_orderline){
+                this.selectLine(same_product_orderline);
+            }else{
+                this.selectLine(line);
+            }*/
+            this.deselectLine();
         },
         removeOrderline: function( line ){
             this.get('orderLines').remove(line);
-            this.selectLine(this.getLastOrderline());
+            //this.selectLine(this.getLastOrderline());
         },
         getOrderline: function(id){
             var orderlines = this.get('orderLines').models;

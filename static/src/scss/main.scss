@@ -6,6 +6,7 @@ $co_menu_red : #c1272d;
 $co_letter_yellow: #ffdf1b;
 $co_letter_white: white;
 $co_categories_list : #8c5817;
+$co_order_orderline_selected: #cb3629;
 
 /* DEFINITION OF FONTS */
 @font-face {
@@ -695,4 +696,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
 }
 .font-regular {
     font-family: Roboto-regular;
+}
+.selected {
+    background-color: $co_order_orderline_selected;
 }
