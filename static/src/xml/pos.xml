@@ -9,13 +9,14 @@
                 <span class="placeholder-ProductCategoriesWidget"></span>
             </div>
             <div class="pos-centerpane">
-                <div class="center-top">top</div>
+                <div class="center-top">
+                    <span class="placeholder-order-selector"/>
+                </div>
                 <div class="center-middle">
                     <div class="screens"> 
                     </div>
                 </div>
                 <div class="center-bottom">
-                    <span class="placeholder-order-selector"/>
                 </div>
             </div>
             <div class="pos-rightpane">
@@ -114,6 +115,54 @@
     <t t-name="ProductOptionsWidget">
         <div class="options-selector">
             <div class="options-selector-content">
+                <div class="block-selection">
+                    <div class="top-block">
+                        <span class="block-quantity">3</span>
+                    </div>
+                    <div class="bottom-block">
+                        <div class="block-increase">
+                            <img src="/pos_kingdom/static/src/img/chicken_leg.svg"/>
+                        </div>
+                        <div class="block-decrease">
+                            <img src="/pos_kingdom/static/src/img/delete-white.svg"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-selection">
+                    <div class="top-block">
+                        <span class="block-quantity">3</span>
+                    </div>
+                    <div class="bottom-block">
+                        <div class="block-increase">
+                            <img src="/pos_kingdom/static/src/img/chicken_leg.svg"/>
+                        </div>
+                        <div class="block-decrease">
+                            <img src="/pos_kingdom/static/src/img/delete-white.svg"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-selection">
+                    <div class="top-block">
+                        <span class="block-quantity">3</span>
+                    </div>
+                    <div class="bottom-block">
+                        <div class="block-increase">
+                            <img src="/pos_kingdom/static/src/img/chicken_leg.svg"/>
+                        </div>
+                        <div class="block-decrease">
+                            <img src="/pos_kingdom/static/src/img/delete-white.svg"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-selection">
+                    <div class="top-block">
+                        <span class="block-information">CANT.</span>
+                    </div>
+                    <div class="bottom-block">
+                        <span class="total-quantity">3</span>
+                    </div>
+                </div>
+                <!--
                 <div class="left-selector type-selector">
                     <div class="increase-product">
                         <t t-if="!widget.has_image">
@@ -168,12 +217,30 @@
                         </t>
                     </t>
                 </div>
+                -->
             </div>
             <div class="action-selector">
                 <img class="action-image" src="/pos_kingdom/static/src/img/check.svg"/>
             </div>
         </div>
     </t>
+
+    <t t-name="Value">
+        <div class="block-selection" t-att-data-value-id="value.id">
+            <div class="top-block">
+                <span class="block-quantity">0</span>
+            </div>
+            <div class="bottom-block">
+                <div class="block-increase">
+                    <img t-att-src='image_url'/>
+                </div>
+                <div class="block-decrease">
+                    <img src="/pos_kingdom/static/src/img/delete-white.svg"/>
+                </div>
+            </div>
+        </div>
+    </t>
+
     <t t-name="SynchNotificationWidget">
         <div class="oe_status js_synch">
             <span class='js_msg oe_hidden'>0</span>

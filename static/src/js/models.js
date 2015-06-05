@@ -245,6 +245,23 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             ids:    function(self){ return [self.config.pricelist_id[0]]; },
             loaded: function(self, pricelists){ self.pricelist = pricelists[0]; },
         },{
+            model:  'product.template',
+            fields: ['display_name', 'list_price','price','pos_categ_id', 'default_code', 
+                     'description','attribute_line_ids'],
+            loaded: function(self, templates){ self.db.add_templates(templates) },
+        },{
+            model:  'product.attribute',
+            fields: ['name', 'value_ids'],
+            loaded: function(self, attributes){ self.db.add_attributes(attributes) },
+        },{
+            model:  'product.attribute.line',
+            fields: ['product_tmpl_id', 'attribute_id','value_ids'],
+            loaded: function(self, lines){ self.db.add_lines(lines) },
+        },{
+            model:  'product.attribute.value',
+            fields: ['sequence', 'name','attribute_id','product_ids','price_extra'],
+            loaded: function(self, values){ self.db.add_values(values) },
+        },{
             model: 'res.currency',
             fields: ['symbol','position','rounding','accuracy'],
             ids:    function(self){ return [self.pricelist.currency_id[0]]; },
@@ -255,7 +272,6 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 } else {
                     self.currency.decimals = 0;
                 }
-
             },
         },{
             model: 'product.packaging',

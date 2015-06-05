@@ -16,6 +16,12 @@ function openerp_pos_db(instance, module){
             //cache the data in memory to avoid roundtrips to the localstorage
             this.cache = {};
 
+            //templates
+            this.template_by_id = {};
+            this.attribute_by_id = [];
+            this.attribute_value_by_id = {};
+            this.template_by_category_id = {};
+
             this.product_by_id = {};
             this.product_by_ean13 = {};
             this.product_by_category_id = {};
@@ -151,6 +157,86 @@ function openerp_pos_db(instance, module){
             }
             str  = product.id + ':' + str.replace(':','') + '\n';
             return str;
+        },
+        add_templates: function(templates) {
+            var stored_categories = this.template_by_category_id;
+
+            if(!templates instanceof Array){
+                templates = [templates];
+            }
+            for(var i = 0, len = templates.length; i < len; i++){
+                var template = templates[i];
+                var categ_id = template.pos_categ_id ? template.pos_categ_id[0] : this.root_category_id;
+                console.log("categorias desde templates");
+                console.log(categ_id);
+
+                if(!stored_categories[categ_id]){
+                    stored_categories[categ_id] = [];
+                }
+                stored_categories[categ_id].push(template.id);
+
+                var ancestors = this.get_category_ancestors_ids(categ_id) || [];
+
+                for(var j = 0, jlen = ancestors.length; j < jlen; j++){
+                    var ancestor = ancestors[j];
+                    if(! stored_categories[ancestor]){
+                        stored_categories[ancestor] = [];
+                    }
+                    stored_categories[ancestor].push(template.id);
+
+                    if( this.category_search_string[ancestor] === undefined){
+                        this.category_search_string[ancestor] = '';
+                    }
+                }
+                this.template_by_id[template.id] = template;
+            }
+            console.log("TEMPLATES");
+            console.log(this.template_by_category_id);
+            console.log(this.template_by_id);
+        },
+        //[FIXME] [KINGDOM] This should be atomic, but now this need execute add_templates previus
+        add_lines: function(lines) {
+            if(!lines instanceof Array){
+                lines = [lines];
+            }
+
+            for( var i=0, len = lines.length; i < len ; i++){
+                var line = lines[i];
+
+                if(!this.template_by_id[line.product_tmpl_id[0]]) {
+                    this.template_by_id[line.product_tmpl_id[0]] = {};
+                }
+
+                var temp = this.template_by_id[line.product_tmpl_id[0]];
+                if(!temp.line) {
+                    temp.line = {};
+                }
+                temp.line[line.attribute_id[1]] = line.value_ids;
+            }
+        },
+        add_attributes: function(attributes) {
+            var stored_attributes = this.attribute_by_id;
+            
+            if(!attributes instanceof Array){
+                attributes = [attributes];
+            }
+
+            for(var i=0, len = attributes.length; i < len; i++){
+                stored_attributes.push(attributes[i]);
+            }
+        },
+        add_values: function(values) {
+            var stored_values = this.attribute_value_by_id;
+
+            if(!values instanceof Array){
+                values = [values];
+            }
+
+            for(var i=0, len = values.length; i < len; i++) {
+                var value = values[i];
+                value.attribute_id = value.attribute_id[0];
+                stored_values[value.id] = value;
+            }
         },
         add_products: function(products){
             var stored_categories = this.product_by_category_id;
@@ -335,6 +421,9 @@ function openerp_pos_db(instance, module){
         get_product_by_id: function(id){
             return this.product_by_id[id];
         },
+        get_template_by_id: function(id){
+            return this.template_by_id[id];
+        },
         get_product_by_ean13: function(ean13){
             if(this.product_by_ean13[ean13]){
                 return this.product_by_ean13[ean13];
@@ -350,12 +439,38 @@ function openerp_pos_db(instance, module){
         },
         get_product_by_category: function(category_id){
             var product_ids  = this.product_by_category_id[category_id];
+            console.log("PRODUCT IDS");
+            console.log(product_ids);
             var list = [];
             if (product_ids) {
                 for (var i = 0, len = Math.min(product_ids.length, this.limit); i < len; i++) {
                     list.push(this.product_by_id[product_ids[i]]);
                 }
             }
+            return list;
+        },
+        get_product_by_template: function(template_id) {
+            var product_ids = this.product_by_id;
+            var list = [];
+            if(products_ids) {
+                for(var i=0, len= products_ids.length; i < len; i++){
+                    if(template_id === products_ids[i].product_tmpl_id) {
+                        list.push(products_ids[i]);
+                    }
+                }
+            }
+            return list;
+        },
+        get_template_by_category: function(category_id){
+            var template_ids  = this.template_by_category_id[category_id];
+            var list = [];
+            if (template_ids) {
+                for (var i = 0, len = Math.min(template_ids.length, this.limit); i < len; i++) {
+                    list.push(this.template_by_id[template_ids[i]]);
+                }
+            }
+            console.log("TEMPLATE METHOD");
+            console.log(list);
             return list;
         },
         /* returns a list of products with :

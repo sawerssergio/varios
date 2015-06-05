@@ -511,16 +511,18 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     if(product.to_weight && self.pos.config.iface_electronic_scale){
                         self.pos_widget.screen_selector.set_current_screen('scale',{product: product});
                     }else{
-                        console.log(self.pos_widget.product_options_widget);
+                        console.log("PRODUCT");
+                        console.log(product);
                         // THIS IS RESERVED FOR SET PRODUCT IN PRODUCT_OPTIONS_WIDGET
                         //self.pos.get('selectedOrder').addProduct(product);
                         self.pos.pos_widget.product_options_widget.set_product(product);
                     }
                 },
-                product_list: this.pos.db.get_product_by_category(0)
+                product_list: this.pos.db.get_template_by_category(1)
             });
             this.product_list_widget.replace(this.$('.placeholder-ProductListWidget'));
-
+            console.log("TEMPLATE BY CATEGORY");
+            console.log(this.pos.db.get_template_by_category(0));
             this.product_categories_widget = new module.ProductCategoriesWidget(this,{
                 product_list_widget: this.product_list_widget,
             });
