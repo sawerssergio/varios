@@ -151,7 +151,22 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     self.pos.get('selectedOrder').selectLine(this.orderline);
                     self.pos_widget.numpad.state.reset();
                     console.log(this.orderline);
+                    //FIXME this should be on a diferent method
                     self.pos.pos_widget.product_options_widget.edit_product(this.orderline.get_product(),{'quantity':this.orderline.get_quantity()});
+                    var product = this.orderline.get_product();
+                    var product_categ = this.orderline.get_product().pos_categ_id[0];
+                    var parent_categ = self.pos.db.get_category_parent_id(product_categ);
+                    console.log(product_categ);
+                    console.log(parent_categ);
+                    if(parent_categ > 0){
+                        //parent
+                        self.pos.pos_widget.product_categories_widget.change_category(parent_categ,product.id);
+                    }else{
+                        if(parent_categ == 0){
+                            //product_categ
+                            self.pos.pos_widget.product_categories_widget.change_category(product_categ,product.id);
+                        }
+                    }
                 }
             };
             this.client_change_handler = function(event){
@@ -457,7 +472,14 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 },70);
             };
         },
-
+        change_category: function(category_id,product_id){
+            var category = this.pos.db.get_category_by_id(category_id);
+            this.set_category(category);
+            var products = this.pos.db.get_product_by_category(category_id);
+            this.product_list_widget.set_product_list(products);
+            //set selected product
+            this.product_list_widget.set_selected_product(product_id); 
+        },
         // changes the category. if undefined, sets to root category
         set_category : function(category){
             var db = this.pos.db;
@@ -629,7 +651,19 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         set_product_list: function(product_list){
             this.product_list = product_list;
+            console.log(this.product_list);
             this.renderElement();
+        },
+        set_selected_product:function(id){
+            var products = this.el.querySelectorAll('.product');
+            console.log(products);
+            for(var i = 0;i<products.length;i++){
+                var product_id = Number(products[i].attributes[0].value);
+                    products[i].querySelector('.product-img').className = "product-img";
+                if(id == product_id){
+                    products[i].querySelector('.product-img').className = "product-img selected";
+                }
+            } 
         },
         get_product_image_url: function(product){
             return window.location.origin + '/web/binary/image?model=product.product&field=image&id='+product.id;
