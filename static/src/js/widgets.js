@@ -738,18 +738,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var self = this;
             var options = options || {};
             this._super(parent, options);
-            this.total_quantity = options.total_quantity || 1;
-            this.option_left = this.total_quantity;
-            this.option_right = 0;
-            this.option_center = 0;
+            this.total_quantity = options.total_quantity || 0;
             this.selected_product = undefined;
-            this.selector_hide = true;
-            this.normal_units_hide = false;
-            this.has_image = false;
-            this.has_size = false;
-            this.has_right = true;
-            this.has_center = false;
-            this.converted = undefined;
             this.editing = false;
             this.attributes = {};
             this.click_value_handler = function(event){
@@ -758,15 +748,15 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 if(!className) {
                     className = event.target.parentNode.className;
                 }
-
-                if(!self.attributes[this.dataset['valueId']]){
-                    self.attributes[this.dataset['valueId']] = 0;
+                var value_id = this.dataset['valueId'];
+                if(!self.attributes[value_id]){
+                    self.attributes[value_id] = 0;
                 }
 
                 if(className === "block-increase"){
-                    self.attributes[this.dataset['valueId']]++;
-                } else if(className === "block-decrease" && value > 0) {
-                    self.attributes[this.dataset['valueId']]--;
+                    self.increase_value(value_id);
+                } else if(className === "block-decrease" && self.attributes[value_id] > 0) {
+                    self.decrease_value(value_id);
                 }
             };
             this.value_cache = new module.DomCache();
@@ -774,99 +764,20 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         start: function(){
             var self = this;
             this.hide();
-            
         },
-        increase_option_left: function(){
-            
-            if(typeof this.option_left == 'undefined'){
-                this.option_left = 1;
-            } else{
-                if(this.total_quantity>this.option_left)
-                    {
-                     this.option_left++;
-                     this.option_right--;  
-                    }
-            }
-             this.$('.left-selector .edition-input').val(this.option_left);
-             this.$('.right-selector .edition-input').val(this.option_right);
+        increase_value: function(id){
+            this.attributes[id]++;
+            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").textContent = this.attributes[id];
+            this.set_total_quantity(this.total_quantity+1);
+        },
+        decrease_value: function(id){
+            this.attributes[id]--;
+            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").textContent = this.attributes[id];
+            this.set_total_quantity(this.total_quantity-1);
         },
         set_total_quantity: function(value){
             this.total_quantity = value;
-            this.$('.quantity-units .units-quantity').html(this.total_quantity);
-        },
-        set_option_left: function(value){
-            this.option_left = value;
-            this.$('.left-selector .edition-input').val(this.option_left); 
-        },
-        increase_total_quantity: function(){
-            if(typeof this.total_quantity == 'undefined'){
-                this.total_quantity = 1;
-            } else{
-                this.total_quantity++;
-                this.option_left++;
-            }
-            this.$('.total-quantity').html(this.total_quantity);
-            this.$('.left-selector .edition-input').val(this.option_left);
-        },
-        increase_option_right: function(){
-            if(typeof this.option_right == 0){
-                this.option_right = 1;
-            } else{
-                if(this.total_quantity>this.option_right)
-                    {
-                      this.option_right++;
-                     this.option_left--;  
-                    }
-            }
-            this.$('.right-selector .edition-input').val(this.option_right);  
-            this.$('.left-selector .edition-input').val(this.option_left);  
-        },
-        decrease_option_left: function(){
-            var self = this;
-            if(self.selected_product.pos_categ_id[0]>2)
-            {
-                if(this.option_left > 0){ //fix negative numbers by rafo
-                this.decrease_total_quantity();        
-                this.option_left=this.total_quantity;
-                }
-            }else{
-                
-                if(this.option_left > 0){
-                    
-                this.option_left--;
-                this.option_right++;
-                this.$('.right-selector .edition-input').val(this.option_right);
-                }   
-            }            
-            this.$('.quantity-units .units-quantity').html(this.total_quantity);
-            this.$('.left-selector .edition-input').val(this.option_left);
-            
-        },
-        decrease_total_quantity: function(){
-            if(typeof this.total_quantity == 'undefined'){
-                this.total_quantity = 1;
-            } else{
-                this.total_quantity--;
-            }
-
-        },
-        decrease_option_right: function(){
-            if(this.option_right > 0){
-                    
-                this.option_right--;
-                this.option_left++;
-            }
-            this.$('.right-selector .edition-input').val(this.option_right);    
-            this.$('.left-selector .edition-input').val(this.option_left);
-        },
-        reset_total_quantity: function(){
-            this.total_quantity = 1;
-            this.option_left=this.total_quantity;
-            this.option_right=0;
-            this.$('.quantity-units .units-quantity').html(this.total_quantity);
-            this.$('.left-selector .edition-input').val(this.option_left);    
-            this.$('.right-selector .edition-input').val(this.option_right);    
-        
+            this.el.querySelector(".block-selection > .bottom-block > .total-quantity").textContent = this.total_quantity;
         },
         edit_product:function(product,options){
             this.editing = true;
@@ -878,54 +789,25 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         set_product:function(product){
             this.editing = false;
             if(product == this.selected_product){
-                //increase amount
-                this.increase_total_quantity();
-                console.log("mismatch");
+                //[FIXME] [KINGDOM] this process should be reversed,
+                //first call to total quantity and then value.
+                if (Object.keys(this.attributes).length === 0) {
+                    this.set_total_quantity(this.total_quantity+1);
+                    this.el.querySelector("[data-value-id='"+this.selected_product.id+"'] > .top-block > .block-quantity").textContent = this.total_quantity;
+                    return;
+                }
+                this.increase_value(Object.keys(this.attributes)[0]);
             }else{
-                //this.set_ui_properties(product);
                 this.selected_product = product;
+                this.attributes = {};
+                this.total_quantity = 0;
                 this.renderElement();
-                this.reset_total_quantity();
             }
 
         },
-        set_ui_properties:function(product){
-            this.has_size = false;
-            this.has_image=false;
-            this.has_right = true;
-            this.has_center = false;
-            console.log(product.attribute_line_ids.length);
-            if (product.attribute_line_ids.length > 0){
-                this.has_size = true;
-            } else {
-                this.has_right = false;
-            }
-            this.show();
-            this.$('.normal-units').hide();
-            this.has_image=true;
-            this.selected_product = product;
-        
-        },
-        show_product_options:function(converted){
-            if(this.selector_hide){
-                this.show();
-                this.selector_hide = false;
-            }
-            if(converted){ 
-               if(this.normal_units_hide){
-                   this.$('.normal-units').show();
-                   this.normal_units_hide = false;
-               }
-            }else{
-               if(!this.normal_units_hide){
-                   this.$('.normal-units').hide();
-                   this.normal_units_hide = true;
-               }
-            }
-        },
         get_product_image_url: function(){
             if(this.selected_product) {
-            return window.location.origin + '/web/binary/image?model=product.product&field=image&id='+this.selected_product.id;
+            return window.location.origin + '/web/binary/image?model=product.template&field=image&id='+this.selected_product.id;
             } else {
                 return undefined;
             }
@@ -973,83 +855,43 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             var value_container = el_node.querySelector('.values-list');
             if(self.selected_product){
+                if(!self.selected_product.line){
+                    var value_html = QWeb.render('Value',{ 
+                            widget:  this, 
+                            value: {id:this.selected_product.id}, 
+                            image_url: self.get_product_image_url(),
+                        });
+                    var value_node = document.createElement('div');
+                    value_node.innerHTML = value_html;
+                    value_node = value_node.childNodes[1];
+                    value_node.addEventListener('click', function(event) {
+                        var className = event.target.className;
+
+                        if(!className) {
+                            className = event.target.parentNode.className;
+                        }
+
+                        if(className === "block-increase"){
+                            self.set_total_quantity(self.total_quantity+1);
+                        } else if(className === "block-decrease" && self.total_quantity > 0) {
+                            self.set_total_quantity(self.total_quantity-1);
+                        }
+                        self.el.querySelector("[data-value-id='"+this.dataset['valueId']+"'] > .top-block > .block-quantity").textContent = self.total_quantity;
+                    });
+                    value_container.appendChild(value_node);
+                    return;
+                }
                 for(var line in self.selected_product.line) {
                     for(var i = 0, len = this.selected_product.line[line].length; i < len; i++){
                         var value_tmpl = self.pos.db.get_attribute_value_by_id(this.selected_product.line[line][i]);
+                        //[FIXME] [KINGDOM] this should be with a variable of the widget and not zero number. Not work in Edit Order.
+                        self.attributes[value_tmpl.id] = 0;
                         var value_node = this.render_value(value_tmpl);
                         value_node.addEventListener('click',this.click_value_handler);
                         value_container.appendChild(value_node);
                     };
                 }
             }
-            /*this.$el.find('.left-selector .increase-product').click(function(){
-                if(self.selected_product.pos_categ_id[0]>2)
-                {
-                    self.increase_total_quantity();    
-                }
-                //    console.log(self.selected_product.pos_categ_id[0]);
-                else{
-
-                self.increase_option_left();
-                }    
-            });
-            this.$el.find('.right-selector .increase-product').click(function(){
-                self.increase_option_right();
-            });
-            this.$el.find('.left-selector .decrease-product').click(function(){
-                self.decrease_option_left();
-            });
-            this.$el.find('.right-selector .decrease-product').click(function(){
-                self.decrease_option_right();
-            });
-
-            if(this.editing){
-                this.$el.find('.action-image').click(function(){
-                    self.pos.get('selectedOrder').selected_orderline.set_quantity(self.total_quantity);
-                });
-            }else{
-                this.$el.find('.action-image').click(function(){
-                    var options = {};
-                    var category_product = self.selected_product.pos_categ_id[0];
-                    console.log(category_product);
-                    options.quantity = self.total_quantity;
-                    if(category_product == 1){ //product is chicken
-                       console.log('chicken');
-                       options.quantity_leg = self.option_left;
-                       options.quantity_chest = self.option_right;
-                       options.converted = self.converted;
-                       if(self.converted){
-                           options.quantity_normal = 0;
-                       }
-                       console.log(options);
-                    }
-                    if(category_product == 4){ //product is extra
-                        console.log('extra');
-                    }
-                    if(category_product == 3){ //product is icecream
-                        console.log('icecream')
-                    }
-                    if(category_product > 4){ //product is soda
-                        console.log('soda');
-                    }
-                    self.pos.get('selectedOrder').addProduct(self.selected_product,options);
-                });
-            }
-
-            this.$el.find('.left-selector .edition-input').val(this.option_left);
-
-            if(this.has_size) {
-                var products = self.pos.db.get_product_by_category(this.selected_product.pos_categ_id[0]);
-                this.$el.find('.size-selector .small-selector').click(function(){
-                    self.selected_product = products[0];
-                });
-                this.$el.find('.size-selector .medium-selector').click(function(){
-                    self.selected_product = products[1];
-                });
-                this.$el.find('.size-selector .big-selector').click(function(){
-                    self.selected_product = products[2];
-                });
-            }*/
         },
         show:function(){
             this.$el.removeClass('oe_hidden');

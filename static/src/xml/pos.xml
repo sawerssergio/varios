@@ -121,102 +121,10 @@
                             <span class="block-information">CANT.</span>
                         </div>
                         <div class="bottom-block">
-                            <span class="total-quantity">3</span>
+                            <span class="total-quantity">0</span>
                         </div>
                     </div>
                 </ul>
-                <!--
-                <div class="block-selection">
-                    <div class="top-block">
-                        <span class="block-quantity">3</span>
-                    </div>
-                    <div class="bottom-block">
-                        <div class="block-increase">
-                            <img src="/pos_kingdom/static/src/img/chicken_leg.svg"/>
-                        </div>
-                        <div class="block-decrease">
-                            <img src="/pos_kingdom/static/src/img/delete-white.svg"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="block-selection">
-                    <div class="top-block">
-                        <span class="block-quantity">3</span>
-                    </div>
-                    <div class="bottom-block">
-                        <div class="block-increase">
-                            <img src="/pos_kingdom/static/src/img/chicken_leg.svg"/>
-                        </div>
-                        <div class="block-decrease">
-                            <img src="/pos_kingdom/static/src/img/delete-white.svg"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="block-selection">
-                    <div class="top-block">
-                        <span class="block-information">CANT.</span>
-                    </div>
-                    <div class="bottom-block">
-                        <span class="total-quantity">3</span>
-                    </div>
-                </div>
-                -->
-                <!--
-                <div class="left-selector type-selector">
-                    <div class="increase-product">
-                        <t t-if="!widget.has_image">
-                            <img class="options-image" src="/pos_kingdom/static/src/img/chicken_leg.svg"/>
-                        </t>
-                        <t t-if="widget.has_image">
-                            <img t-att-src="widget.get_product_image_url()"/>
-                        </t> 
-                    </div>
-                    <div class="edition-product">
-                        <input class="edition-input font-black" type="text"/>
-                    </div>
-                    <div class="decrease-product">
-                        <img class="options-image" src="/pos_kingdom/static/src/img/delete.svg"/> 
-                    </div>
-                </div>
-                <div class="center-selector">
-                    <div t-att-class=" 'quantity-units font-black '+ (widget.has_center  ? '' : 'only-quantity-total')">
-                        <span class="title-quantity font-black">Cant.</span>
-                        <span class="units-quantity">
-                            <t t-esc="widget.total_quantity"/>
-                        </span>
-                    </div>                   
-                    <div t-att-class=" 'normal-units '+ (widget.has_center  ? '' : 'oe_hidden')" >
-                        <span class="title-quantity">Normal.</span>
-                        <span class="units-quantity">6</span>
-                    </div>
-                </div>
-                <div t-att-class=" 'right-selector '+ (widget.has_right ? (widget.has_size  ? 'size-selector ' : 'type-selector') : '')">
-                    <t t-if="widget.has_right">
-                        <t t-if="widget.has_size">
-                            <div class="small-selector size-selector-item">
-                                <img src="/pos_kingdom/static/src/img/glass.svg"/>
-                            </div>
-                            <div class="medium-selector size-selector-item">
-                                <img src="/pos_kingdom/static/src/img/glass.svg"/>
-                            </div>
-                            <div class="big-selector size-selector-item">
-                                <img src="/pos_kingdom/static/src/img/glass.svg"/>
-                            </div>
-                        </t>
-                        <t t-if="!widget.has_size">
-                            <div class="increase-product">
-                                <img class="options-image" src="/pos_kingdom/static/src/img/chicken_wing.svg"/> 
-                            </div>
-                            <div class="edition-product">
-                                <input class="edition-input font-black" type="text"/>
-                            </div>
-                            <div class="decrease-product">
-                                <img class="options-image" src="/pos_kingdom/static/src/img/delete.svg"/> 
-                            </div>
-                        </t>
-                    </t>
-                </div>
-                -->
             </div>
             <div class="action-selector">
                 <img class="action-image" src="/pos_kingdom/static/src/img/check.svg"/>
@@ -227,7 +135,7 @@
     <t t-name="Value">
         <li class="block-selection" t-att-data-value-id="value.id">
             <div class="top-block">
-                <span class="block-quantity">3</span>
+                <span class="block-quantity">0</span>
             </div>
             <div class="bottom-block">
                 <div class="block-increase">
