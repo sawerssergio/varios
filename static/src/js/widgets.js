@@ -759,17 +759,15 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     className = event.target.parentNode.className;
                 }
 
-                var value = self.attributes[this.dataset['valueId']];
-
-                if(!value){
-                    value = 1;
+                if(!self.attributes[this.dataset['valueId']]){
+                    self.attributes[this.dataset['valueId']] = 0;
                 }
 
                 if(className === "block-increase"){
-                    value++;
+                    self.attributes[this.dataset['valueId']]++;
                 } else if(className === "block-decrease" && value > 0) {
-                    value--;
-                } 
+                    self.attributes[this.dataset['valueId']]--;
+                }
             };
             this.value_cache = new module.DomCache();
         },
