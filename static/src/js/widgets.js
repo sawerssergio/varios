@@ -697,6 +697,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 var product_node = document.createElement('div');
                 product_node.innerHTML = product_html;
                 product_node = product_node.childNodes[1];
+                console.log("PRODUCT_NODE");
+                console.log(product_node);
                 this.product_cache.cache_node(product.id,product_node);
                 return product_node;
             }
@@ -733,6 +735,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
     module.ProductOptionsWidget = module.PosBaseWidget.extend({
         template: 'ProductOptionsWidget',
         init: function(parent, options) {
+            var self = this;
             var options = options || {};
             this._super(parent, options);
             this.total_quantity = options.total_quantity || 1;
@@ -748,7 +751,27 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.has_center = false;
             this.converted = undefined;
             this.editing = false;
+            this.attributes = {};
+            this.click_value_handler = function(event){
+                var className = event.target.className;
 
+                if(!className) {
+                    className = event.target.parentNode.className;
+                }
+
+                var value = self.attributes[this.dataset['valueId']];
+
+                if(!value){
+                    value = 1;
+                }
+
+                if(className === "block-increase"){
+                    value++;
+                } else if(className === "block-decrease" && value > 0) {
+                    value--;
+                } 
+            };
+            this.value_cache = new module.DomCache();
         },
         start: function(){
             var self = this;
@@ -860,9 +883,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 //increase amount
                 this.increase_total_quantity();
                 console.log("mismatch");
-            
             }else{
-                this.set_ui_properties(product);
+                //this.set_ui_properties(product);
+                this.selected_product = product;
                 this.renderElement();
                 this.reset_total_quantity();
             }
@@ -909,20 +932,59 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 return undefined;
             }
         },
+        get_attribute_value_image_url: function(id){
+            return window.location.origin + '/web/binary/image?model=product.attribute.value&field=image&id='+id;
+        },
+        replace: function($target){
+            this.renderElement();
+            var target = $target[0];
+            target.parentNode.replaceChild(this.el,target);
+        },
+        render_value: function(value){
+            var cached = this.value_cache.get_node(value.id);
+            if(!cached){
+                var image_url = this.get_attribute_value_image_url(value.id);
+                var value_html = QWeb.render('Value',{ 
+                        widget:  this, 
+                        value: value, 
+                        image_url: image_url,
+                    });
+                var value_node = document.createElement('div');
+                value_node.innerHTML = value_html;
+                value_node = value_node.childNodes[1];
+                this.value_cache.cache_node(value.id,value_node);
+                return value_node;
+            }
+            return cached;
+
+        },
         renderElement: function(){
             var self = this;
-            this._super();
             var image_url = this.get_product_image_url();
             var el_str  = openerp.qweb.render('ProductOptionsWidget',{widget:this, image_url:image_url});
 
             var el_node = document.createElement('div');
                 el_node.innerHTML = _.str.trim(el_str);
                 el_node = el_node.childNodes[0];
-                console.log(el_node);
+
+            if(this.el && this.el.parentNode){
+                this.el.parentNode.replaceChild(el_node,this.el);
+            }
 
             this.el = el_node;
 
-            this.$el.find('.left-selector .increase-product').click(function(){
+            var value_container = el_node.querySelector('.values-list');
+            if(self.selected_product){
+                for(var line in self.selected_product.line) {
+                    for(var i = 0, len = this.selected_product.line[line].length; i < len; i++){
+                        var value_tmpl = self.pos.db.get_attribute_value_by_id(this.selected_product.line[line][i]);
+                        var value_node = this.render_value(value_tmpl);
+                        value_node.addEventListener('click',this.click_value_handler);
+                        value_container.appendChild(value_node);
+                    };
+                }
+            }
+            /*this.$el.find('.left-selector .increase-product').click(function(){
                 if(self.selected_product.pos_categ_id[0]>2)
                 {
                     self.increase_total_quantity();    
@@ -989,7 +1051,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.$el.find('.size-selector .big-selector').click(function(){
                     self.selected_product = products[2];
                 });
-            }
+            }*/
         },
         show:function(){
             this.$el.removeClass('oe_hidden');

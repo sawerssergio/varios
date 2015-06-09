@@ -418,6 +418,9 @@ function openerp_pos_db(instance, module){
             }
             return count;
         },
+        get_attribute_value_by_id(id) {
+            return this.attribute_value_by_id[id];
+        },
         get_product_by_id: function(id){
             return this.product_by_id[id];
         },
