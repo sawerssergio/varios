@@ -150,7 +150,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 } else {
                     self.pos.get('selectedOrder').selectLine(this.orderline);
                     self.pos_widget.numpad.state.reset();
-                    console.log(this.orderline);
                     //FIXME this should be on a diferent method
                     self.pos.pos_widget.product_options_widget.edit_product(this.orderline.get_product(),{'quantity':this.orderline.get_quantity()});
                     var product = this.orderline.get_product();
@@ -294,6 +293,15 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             if(scrollbottom){
                 this.el.querySelector('.order-scroller').scrollTop = 100 * orderlines.length;
             }
+
+            var pos_widget = this.pos_widget;
+            this.el.querySelector('.action-next-image').addEventListener( "click" , function(){
+
+                if ( pos_widget.screen_selector.get_current_screen() === "products" )
+                    pos_widget.screen_selector.set_current_screen('clientlist');
+                else
+                    pos_widget.screen_selector.back();
+            });
         },
         update_summary: function(){
             var order = this.pos.get('selectedOrder');

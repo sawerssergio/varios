@@ -554,6 +554,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
 
     module.ClientListScreenWidget = module.ScreenWidget.extend({
         template: 'ClientListScreenWidget',
+        back_screen: 'products',
 
         init: function(parent, options){
             this._super(parent, options);
