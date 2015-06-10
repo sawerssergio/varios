@@ -317,8 +317,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.el.querySelector('.action-next-image').addEventListener( "click" , function(){
 
                 if ( pos_widget.screen_selector.get_current_screen() === "products" )
-                    //pos_widget.screen_selector.set_current_screen('invoice');
-                    pos_widget.screen_selector.set_current_screen('clientlist');
+                    pos_widget.screen_selector.set_current_screen('invoice');
                 else
                     pos_widget.screen_selector.back();
             });
@@ -1416,8 +1415,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             this.scale_screen = new module.ScaleScreenWidget(this,{});
             this.scale_screen.appendTo(this.$('.screens'));
-            //this.invoice_screen = new module.InvoiceScreenWidget(this,{});
-            //this.invoice_screen.appendTo(this.$('.screens'));
+            this.invoice_screen = new module.InvoiceScreenWidget(this,{});
+            this.invoice_screen.appendTo(this.$('.screens'));
 
             // -------- Widgets Kingdom --------
             this.product_categories_widget = new module.ProductCategoriesWidget(this, {
@@ -1507,7 +1506,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     'scale':    this.scale_screen,
                     'receipt' : this.receipt_screen,
                     'clientlist': this.clientlist_screen,
-                    //'invoice': this.invoice_screen,
+                    'invoice': this.invoice_screen,
                 },
                 popup_set:{
                     'error': this.error_popup,

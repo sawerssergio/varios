@@ -69,6 +69,8 @@ td {
 
 .pos .oe_hidden{
     display: none !important;
+    opacity: 0;
+    transition: opacity 5s ease-out;
 }
 
 .pos ul, .pos li  {

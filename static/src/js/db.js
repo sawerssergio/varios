@@ -167,8 +167,6 @@ function openerp_pos_db(instance, module){
             for(var i = 0, len = templates.length; i < len; i++){
                 var template = templates[i];
                 var categ_id = template.pos_categ_id ? template.pos_categ_id[0] : this.root_category_id;
-                console.log("categorias desde templates");
-                console.log(categ_id);
 
                 if(!stored_categories[categ_id]){
                     stored_categories[categ_id] = [];
@@ -190,9 +188,6 @@ function openerp_pos_db(instance, module){
                 }
                 this.template_by_id[template.id] = template;
             }
-            console.log("TEMPLATES");
-            console.log(this.template_by_category_id);
-            console.log(this.template_by_id);
         },
         //[FIXME] [KINGDOM] This should be atomic, but now this need execute add_templates previus
         add_lines: function(lines) {
@@ -442,8 +437,6 @@ function openerp_pos_db(instance, module){
         },
         get_product_by_category: function(category_id){
             var product_ids  = this.product_by_category_id[category_id];
-            console.log("PRODUCT IDS");
-            console.log(product_ids);
             var list = [];
             if (product_ids) {
                 for (var i = 0, len = Math.min(product_ids.length, this.limit); i < len; i++) {
@@ -472,8 +465,6 @@ function openerp_pos_db(instance, module){
                     list.push(this.template_by_id[template_ids[i]]);
                 }
             }
-            console.log("TEMPLATE METHOD");
-            console.log(list);
             return list;
         },
         /* returns a list of products with :

@@ -552,6 +552,27 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         },
     });
 
+    module.InvoiceScreenWidget = module.ScreenWidget.extend({
+        template: 'InvoiceScreenWidget',
+        back_screen: 'products',
+        init: function(parent, options){
+            this._super(parent, options);
+        },
+        show_leftpane: false,
+        auto_back: true,
+        show: function(){
+            var self = this;
+            this._super();
+            this.renderElement();
+
+            if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
+                console.log("KEYBOARD");
+                console.log(this.$('.client-vat'));
+                this.pos_widget.onscreen_keyboard.connect(this.$('.client-vat'));
+            }
+        },
+    });
+
     module.ClientListScreenWidget = module.ScreenWidget.extend({
         template: 'ClientListScreenWidget',
         back_screen: 'products',
@@ -582,6 +603,10 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 self.pos_widget.screen_selector.back();
             });
 
+            self.display_client_details('edit',{
+                'country_id': self.pos.company.country_id,
+            });
+            /*
             this.$('.new-customer').click(function(){
                 self.display_client_details('edit',{
                     'country_id': self.pos.company.country_id,
@@ -589,24 +614,24 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             });
 
             var partners = this.pos.db.get_partners_sorted(1000);
-            this.render_list(partners);
-            
+            //this.render_list(partners);
+            */
             this.reload_partners();
-
+            
             if( this.old_client ){
                 this.display_client_details('show',this.old_client,0);
             }
 
-            this.$('.client-list-contents').delegate('.client-line','click',function(event){
+            /*this.$('.client-list-contents').delegate('.client-line','click',function(event){
                 self.line_select(event,$(this),parseInt($(this).data('id')));
-            });
+            });*/
 
             var search_timeout = null;
 
             if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
                 this.pos_widget.onscreen_keyboard.connect(this.$('.searchbox input'));
             }
-
+            /*
             this.$('.searchbox input').on('keyup',function(event){
                 clearTimeout(search_timeout);
 
@@ -619,7 +644,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
 
             this.$('.searchbox .search-clear').click(function(){
                 self.clear_search();
-            });
+            });*/
         },
         barcode_client_action: function(code){
             if (this.editing_client) {
@@ -871,7 +896,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
 
             contents.off('click','.button.edit'); 
             contents.off('click','.button.save'); 
-            contents.off('click','.button.undo'); 
+            //contents.off('click','.button.undo'); 
             contents.on('click','.button.edit',function(){ self.edit_client_details(partner); });
             contents.on('click','.button.save',function(){ self.save_client_details(partner); });
             contents.on('click','.button.undo',function(){ self.undo_client_details(partner); });

@@ -18,6 +18,7 @@
                 </div>
                 <div class="center-bottom">
                 </div>
+                <div class="placeholder-OnscreenKeyboardWidget"></div>
             </div>
             <div class="pos-rightpane">
                 <div class="right-header">
@@ -95,8 +96,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="placeholder-OnscreenKeyboardWidget"></div>
             </div>
 
             <div class="loader">
@@ -380,6 +379,67 @@
         </div>
     </t>
 
+    <t t-name="InvoiceScreenWidget">
+        <div class="invoice-screen screen">
+            <section class="invoice-top">
+                <ul class="client-details">
+                    <li class='client-detail-item'>
+                        <span class='label'>NIT.:</span>
+                        <input class='detail client-vat' name='vat'  placeholder='Vat'></input>
+                    </li>
+                    <li class='client-detail-item'>
+                        <span class='label'>Nombre:</span>
+                        <input class='detail client-name' name='name'  placeholder='Name'></input>
+                    </li>
+                </ul>
+            </section>
+            <section class="invoice-bottom">
+                <ul class="money-list">
+                    <div class="money-details ticket">
+                        <div class="money-detail-item">
+                            <img src="/pos_kingdom/static/src/img/two_hundred.svg"/>
+                        </div>
+                    </div>
+                    <div class="money-details ticket">
+                        <div class="money-detail-item">
+                            <img src="/pos_kingdom/static/src/img/one_hundred.svg"/>
+                        </div>
+                    </div>
+                    <div class="money-details ticket">
+                        <div class="money-detail-item">
+                            <img src="/pos_kingdom/static/src/img/fifty.svg"/>
+                        </div>
+                    </div>
+                    <div class="money-details ticket">
+                        <div class="money-detail-item">
+                            <img src="/pos_kingdom/static/src/img/twenty.svg"/>
+                        </div>
+                    </div>
+                    <div class="money-details ticket">
+                        <div class="money-detail-item">
+                            <img src="/pos_kingdom/static/src/img/ten.svg"/>
+                        </div>
+                    </div>
+                    <div class="money-details ticket">
+                        <div class="money-detail-item">
+                            <ul class="money-subitems">
+                                <li class="money-detail-subitem">
+                                    <img src="/pos_kingdom/static/src/img/five.svg"/>
+                                </li>
+                                <li class="money-detail-subitem">
+                                    <img src="/pos_kingdom/static/src/img/two.svg"/>
+                                </li>
+                                <li class="money-detail-subitem">
+                                    <img src="/pos_kingdom/static/src/img/one.svg"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </ul>
+            </section>
+        </div>
+    </t>
+
     <t t-name="ClientLine">
         <tr class='client-line' t-att-data-id='partner.id'>
             <td><t t-esc='partner.name' /></td>
@@ -401,11 +461,14 @@
             </div>
             <input class='detail client-name' name='name' t-att-value='partner.name' placeholder='Name'></input>
             <div class='edit-buttons'>
+                <!--
                 <div class='button undo'><i class='fa fa-undo' /></div>
+                -->
                 <div class='button save'><i class='fa fa-floppy-o' /></div>
             </div>
             <div class='client-details-box clearfix'>
                 <div class='client-details-left'>
+                    <!--
                     <div class='client-detail'>
                         <span class='label'>Street</span>
                         <input class='detail client-address-street' name='street'       t-att-value='partner.street' placeholder='Street'></input>
@@ -418,6 +481,7 @@
                         <span class='label'>Postcode</span>
                         <input class='detail client-address-zip'    name='zip'          t-att-value='partner.zip' placeholder='ZIP'></input>
                     </div>
+
                     <div class='client-detail'>
                         <span class='label'>Country</span>
                         <select class='detail client-address-country' name='country_id'>
@@ -429,8 +493,10 @@
                             </t>
                         </select>
                     </div>
+                    -->
                 </div>
                 <div class='client-details-right'>
+                    <!--
                     <div class='client-detail'>
                         <span class='label'>Email</span>
                         <input class='detail client-email'  name='email'    type='email'    t-att-value='partner.email || ""'></input>
@@ -443,6 +509,7 @@
                         <span class='label'>Barcode</span>
                         <input class='detail barcode'       name='ean13'    t-att-value='partner.ean13 || ""'></input>
                     </div>
+                    -->
                     <div class='client-detail'>
                         <span class='label'>Tax ID</span>
                         <input class='detail vat'           name='vat'     t-att-value='partner.vat || ""'></input>
@@ -508,6 +575,7 @@
         <div class="clientlist-screen screen">
             <div class="screen-content">
                 <section class="top-content">
+                    <!--
                     <span class='button back'>
                         <i class='fa fa-angle-double-left'></i>
                         Cancel
@@ -516,11 +584,14 @@
                         <input placeholder='Search Customers' />
                         <span class='search-clear'></span>
                     </span>
+
                     <span class='searchbox'></span>
+
                     <span class='button new-customer'>
                         <i class='fa fa-user'></i>
                         <i class='fa fa-plus'></i>
                     </span>
+                    -->
                     <span class='button next oe_hidden highlight'>
                         Select Customer
                         <i class='fa fa-angle-double-right'></i>
@@ -538,6 +609,7 @@
                             <div class='subwindow-container'>
                                 <div class='subwindow-container-fix touch-scrollable scrollable-y'>
                                     <table class='client-list'>
+                                        <!--
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -545,6 +617,7 @@
                                                 <th>Phone</th>
                                             </tr>
                                         </thead>
+                                        -->
                                         <tbody class='client-list-contents'>
                                         </tbody>
                                     </table>
@@ -1321,7 +1394,7 @@
 
     <t t-name="OnscreenKeyboardSimple">
         <div class="keyboard_frame">
-            <ul class="keyboard simple_keyboard">
+            <ul class="keyboard simple_keyboard font-bold">
                 <li class="symbol firstitem row_qwerty"><span class="off">q</span><span class="on">1</span></li>
                 <li class="symbol"><span class="off">w</span><span class="on">2</span></li>
                 <li class="symbol"><span class="off">e</span><span class="on">3</span></li>
@@ -1357,7 +1430,7 @@
                 <li class="symbol"><span class="off">.</span><span class="on">.</span></li>
                 <li class="return lastitem">return</li>
             </ul>
-            <p class="close_button">close</p>
+            <p class="close_button font-bold-condensed">close</p>
         </div>
     </t>
 
