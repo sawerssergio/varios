@@ -155,8 +155,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     var product = this.orderline.get_product();
                     var product_categ = this.orderline.get_product().pos_categ_id[0];
                     var parent_categ = self.pos.db.get_category_parent_id(product_categ);
-                    console.log(product_categ);
-                    console.log(parent_categ);
                     if(parent_categ > 0){
                         //parent
                         self.pos.pos_widget.product_categories_widget.change_category(parent_categ,product.id);
@@ -319,6 +317,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.el.querySelector('.action-next-image').addEventListener( "click" , function(){
 
                 if ( pos_widget.screen_selector.get_current_screen() === "products" )
+                    //pos_widget.screen_selector.set_current_screen('invoice');
                     pos_widget.screen_selector.set_current_screen('clientlist');
                 else
                     pos_widget.screen_selector.back();
@@ -482,7 +481,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 self.set_category(self.pos.db.get_category_by_id(Number(this.dataset['categoryId'])));
                 //FIXME [KINGDOM][VD] This should be separated into another method of this widget.
                 var products = self.pos.db.get_template_by_category(self.category.id);
-                console.log("SWITCH_CATEGORY_HANDLER");
                 self.product_list_widget.set_product_list(products);
                 //self.renderElement();
             };
@@ -681,12 +679,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         set_product_list: function(product_list){
             this.product_list = product_list;
-            console.log(this.product_list);
             this.renderElement();
         },
         set_selected_product:function(id){
             var products = this.el.querySelectorAll('.product');
-            console.log(products);
             for(var i = 0;i<products.length;i++){
                 var product_id = Number(products[i].attributes[0].value);
                     products[i].querySelector('.product-img').className = "product-img";
@@ -718,8 +714,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 var product_node = document.createElement('div');
                 product_node.innerHTML = product_html;
                 product_node = product_node.childNodes[1];
-                console.log("PRODUCT_NODE");
-                console.log(product_node);
                 this.product_cache.cache_node(product.id,product_node);
                 return product_node;
             }
@@ -741,8 +735,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.el = el_node;
 
             var list_container = el_node.querySelector('.product-list');
-            console.log("PRODUCT LISTA");
-            console.log(this.product_list);
             for(var i = 0, len = this.product_list.length; i < len; i++){
                 product_tmpl_id = this.product_list[i].product_tmpl_id;
                 console.log(this.product_list[i]);
@@ -782,6 +774,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 console.log(self.attributes);
             };
             this.value_cache = new module.DomCache();
+            console.log("INIT");
         },
         start: function(){
             var self = this;
@@ -824,6 +817,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.attributes = {};
                 this.total_quantity = 0;
                 this.renderElement();
+                this.show();
             }
 
         },
@@ -836,6 +830,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         get_attribute_value_image_url: function(id){
             return window.location.origin + '/web/binary/image?model=product.attribute.value&field=image&id='+id;
+        },
+        clear_attribute(id) {
+            this.attributes[id] = 0;
+            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").textContent = 0;
         },
         replace: function($target){
             this.renderElement();
@@ -858,7 +856,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 return value_node;
             }
             return cached;
-
         },
         renderElement: function(){
             var self = this;
@@ -874,6 +871,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             }
 
             this.el = el_node;
+
+            this.$el = $(this.el);
 
             var value_container = el_node.querySelector('.values-list');
             if(self.selected_template){
@@ -906,10 +905,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     for(var i = 0, len = this.selected_template.line[line].length; i < len; i++){
                         var value_tmpl = self.pos.db.get_attribute_value_by_id(this.selected_template.line[line][i]);
                         //[FIXME] [KINGDOM] this should be with a variable of the widget and not zero number. Not work in Edit Order.
-                        self.attributes[value_tmpl.id] = 0;
+
                         var value_node = this.render_value(value_tmpl);
                         value_node.addEventListener('click',this.click_value_handler);
                         value_container.appendChild(value_node);
+                        self.clear_attribute(value_tmpl.id);
                     };
                 }
             }
@@ -917,6 +917,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 self.add_template_order(self.selected_template);
             
             });
+            this.hide();
         },
         show:function(){
             this.$el.removeClass('oe_hidden');
@@ -1415,6 +1416,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             this.scale_screen = new module.ScaleScreenWidget(this,{});
             this.scale_screen.appendTo(this.$('.screens'));
+            //this.invoice_screen = new module.InvoiceScreenWidget(this,{});
+            //this.invoice_screen.appendTo(this.$('.screens'));
 
             // -------- Widgets Kingdom --------
             this.product_categories_widget = new module.ProductCategoriesWidget(this, {
@@ -1504,6 +1507,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     'scale':    this.scale_screen,
                     'receipt' : this.receipt_screen,
                     'clientlist': this.clientlist_screen,
+                    //'invoice': this.invoice_screen,
                 },
                 popup_set:{
                     'error': this.error_popup,
