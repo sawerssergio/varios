@@ -244,9 +244,30 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 el_node = el_node.childNodes[0];
                 el_node.orderline = orderline;
                 el_node.addEventListener('click',this.line_click_handler);
+            var detail_container = el_node.querySelector('.product-details');
+            console.log(detail_container);
+            for(var i = 0,len = orderline.details.length;i<len;i++){
+                detail_el_node = this.render_detail({
+                    detail_qty: orderline.details[i]['detail_qty'],
+                    detail: orderline.details[i]['detail']
+                });
+                detail_container.appendChild(detail_el_node);
+            }
             orderline.node = el_node;
             return el_node;
-        }, 
+        },
+        render_detail: function(options){
+            var self = this;
+            var el_str = openerp.qweb.render('Linedetail',{
+                widget:this, 
+                detail_qty: options.detail_qty,
+                detail: options.detail
+            });
+            var el_node = document.createElement('div');
+                el_node.innerHTML = _.str.trim(el_str);
+                el_node = el_node.childNodes[0];
+            return el_node;
+        },
         remove_orderline: function(order_line){
             if(this.pos.get('selectedOrder').get('orderLines').length === 0){
                 this.renderElement();
@@ -738,8 +759,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var self = this;
             var options = options || {};
             this._super(parent, options);
-            this.total_quantity = options.total_quantity || 0;
-            this.selected_product = undefined;
+            this.total_quantity = options.total_quantity || 1;
+            this.selected_template = undefined;
             this.editing = false;
             this.attributes = {};
             this.click_value_handler = function(event){
@@ -758,6 +779,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 } else if(className === "block-decrease" && self.attributes[value_id] > 0) {
                     self.decrease_value(value_id);
                 }
+                console.log(self.attributes);
             };
             this.value_cache = new module.DomCache();
         },
@@ -786,19 +808,19 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.set_total_quantity(options.quantity);
             this.set_option_left(options.quantity);
         },
-        set_product:function(product){
+        set_template:function(product_template){
             this.editing = false;
-            if(product == this.selected_product){
+            if(product_template == this.selected_template){
                 //[FIXME] [KINGDOM] this process should be reversed,
                 //first call to total quantity and then value.
                 if (Object.keys(this.attributes).length === 0) {
                     this.set_total_quantity(this.total_quantity+1);
-                    this.el.querySelector("[data-value-id='"+this.selected_product.id+"'] > .top-block > .block-quantity").textContent = this.total_quantity;
+                    this.el.querySelector("[data-value-id='"+this.selected_template.id+"'] > .top-block > .block-quantity").textContent = this.total_quantity;
                     return;
                 }
                 this.increase_value(Object.keys(this.attributes)[0]);
             }else{
-                this.selected_product = product;
+                this.selected_template = product_template;
                 this.attributes = {};
                 this.total_quantity = 0;
                 this.renderElement();
@@ -806,8 +828,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
         },
         get_product_image_url: function(){
-            if(this.selected_product) {
-            return window.location.origin + '/web/binary/image?model=product.template&field=image&id='+this.selected_product.id;
+            if(this.selected_template) {
+            return window.location.origin + '/web/binary/image?model=product.template&field=image&id='+this.selected_template.id;
             } else {
                 return undefined;
             }
@@ -854,11 +876,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.el = el_node;
 
             var value_container = el_node.querySelector('.values-list');
-            if(self.selected_product){
-                if(!self.selected_product.line){
+            if(self.selected_template){
+                if(!self.selected_template.line){
                     var value_html = QWeb.render('Value',{ 
                             widget:  this, 
-                            value: {id:this.selected_product.id}, 
+                            value: {id:this.selected_template.id}, 
                             image_url: self.get_product_image_url(),
                         });
                     var value_node = document.createElement('div');
@@ -881,9 +903,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     value_container.appendChild(value_node);
                     return;
                 }
-                for(var line in self.selected_product.line) {
-                    for(var i = 0, len = this.selected_product.line[line].length; i < len; i++){
-                        var value_tmpl = self.pos.db.get_attribute_value_by_id(this.selected_product.line[line][i]);
+                for(var line in self.selected_template.line) {
+                    for(var i = 0, len = this.selected_template.line[line].length; i < len; i++){
+                        var value_tmpl = self.pos.db.get_attribute_value_by_id(this.selected_template.line[line][i]);
                         //[FIXME] [KINGDOM] this should be with a variable of the widget and not zero number. Not work in Edit Order.
                         self.attributes[value_tmpl.id] = 0;
                         var value_node = this.render_value(value_tmpl);
@@ -899,6 +921,41 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         hide:function(){
             this.$el.addClass('oe_hidden');
         },
+        add_template_order:function(product_template){
+            var self = this;
+            console.log('Adding template to order');
+            console.log('template');
+            console.log(product_template);
+            console.log(this.attributes);
+            var products = this.pos.db.get_product_by_template(this.selected_template.id);
+            console.log('product');
+            console.log(products[0]);
+            console.log('ATRIBUTOS')
+            console.log(this.attributes);
+            if(product_template.line){
+                for(value_id in this.attributes){
+                    console.log(value_id);
+                    console.log(this.attributes[value_id]);
+                    product_list = products.filter(function(product){
+                        return product.attribute_value_ids[0] == value_id;
+                    });
+                    var value = this.pos.db.get_attribute_value_by_id(value_id);
+                    //for(var i = 0,len = this.attributes[value_id];i<len;i++ ){
+                        self.pos.get('selectedOrder').addProduct(product_list[0],{
+                            template: product_template,
+                            value: value,
+                            attributes: this.attributes
+                        });
+                    //}
+                    console.log('product list');
+                    console.log(product_list);
+                }
+            }else{
+                this.pos.get('selectedOrder').addProduct(products[0],{
+                    template: product_template
+                });
+            }
+        }
     });
 
     module.UsernameWidget = module.PosBaseWidget.extend({

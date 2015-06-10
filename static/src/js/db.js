@@ -453,12 +453,12 @@ function openerp_pos_db(instance, module){
             return list;
         },
         get_product_by_template: function(template_id) {
-            var product_ids = this.product_by_id;
+            var products_ids = this.product_by_id;
             var list = [];
             if(products_ids) {
-                for(var i=0, len= products_ids.length; i < len; i++){
-                    if(template_id === products_ids[i].product_tmpl_id) {
-                        list.push(products_ids[i]);
+                for(var product_id in products_ids){
+                    if(template_id === this.product_by_id[product_id].product_tmpl_id) {
+                        list.push(this.product_by_id[product_id]);
                     }
                 }
             }

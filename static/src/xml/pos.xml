@@ -860,6 +860,50 @@
     </t>
 
     <t t-name="Orderline">
+        <li class="orderline">
+            <div class="product-quantity">
+                <span class="number font-black"><t t-esc="line.get_quantity()"/></span>
+            </div>
+
+            <div class="product-info">
+                <span class="product-name font-black"><t t-esc="line.get_product().display_name"/></span>
+
+                <!--<p class="product-detail-composed">
+                    <span>+2CC</span>
+                    <span>+2SP</span>
+                    <span>+2SB</span>
+                </p>-->
+                <ul class="product-details">
+
+                    <!--<li>
+                        <span class="item-detail">
+                            <pre class="font-medium">6 Wing</pre>
+                        </span>
+                    </li>-->
+                    <!--<li><span class="item-detail">+2CC</span></li>
+                    <li><span class="item-detail">+2SP</span></li>
+                    <li><span class="item-detail">+2SB</span></li>-->
+                </ul>
+            </div>
+
+
+
+            <div class="product-delete">
+                <img class="product-delete-button" src="/pos_kingdom/static/src/img/delete.svg"/>
+            </div>
+
+        </li>
+    </t>
+
+    <t t-name="Linedetail">
+        <li>
+            <span class="item-detail" t-att-data-quantity="detail_qty">
+                <pre class="font-medium"><t t-esc="detail_qty"/> <t t-esc="detail"/></pre>
+            </span>
+        </li>
+    </t>
+
+    <t t-name="Orderline_deprecated">
         <li t-attf-class="orderline #{ line.selected ? 'selected' : '' }">
             <div class="product-quantity"><span class="number font-black"><t t-esc="line.get_quantity()"/></span></div>
             <div class="product-info">

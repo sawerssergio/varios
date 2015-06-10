@@ -1,3 +1,4 @@
+
 function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
     var QWeb = instance.web.qweb;
 	var _t = instance.web._t;
@@ -291,7 +292,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             model:  'product.product',
             fields: ['display_name', 'list_price','price','pos_categ_id', 'taxes_id', 'ean13', 'default_code', 
                      'to_weight', 'uom_id','weight_net', 'uos_id', 'uos_coeff', 'mes_type', 'description_sale', 'description',
-                     'product_tmpl_id','attribute_line_ids'],
+                     'product_tmpl_id','attribute_line_ids','attribute_value_ids'],
             domain: [['sale_ok','=',true],['available_in_pos','=',true]],
             context: function(self){ return { pricelist: self.pricelist.id, display_default_code: false }; },
             loaded: function(self, products){
@@ -675,7 +676,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             this.pos = options.pos;
             this.order = options.order;
             this.product = options.product;
-            this.price   = options.product.price;
+            this.price   = this.product.price;
             this.quantity = 1;
             this.quantityStr = '1';
             this.discount = 0;
@@ -683,10 +684,8 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             this.type = 'unit';
             this.selected = false;
             this.id       = orderline_id++;
-            this.quantity_leg = 0;
-            this.quantity_chest = 0;
-            this.quantity_normal = 0;
-            this.converted = undefined; 
+            this.details = [];
+
         },
         clone: function(){
             var orderline = new module.Orderline({},{
@@ -817,6 +816,55 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         merge: function(orderline){
             this.set_quantity(this.get_quantity() + orderline.get_quantity());
         },
+        can_be_merged_tmpl: function(orderline){
+            var res = false;
+            if(this.template && orderline.template){
+                if(this.template.id == orderline.template.id){
+                    res = true;
+                }
+            }
+            return res;
+        },
+        set_total_quantity: function(){
+            var total = 0;
+            for(var i = 0,len = this.details.length;i<len;i++){
+                total = total + this.details[i]['detail_qty'];
+            }
+            this.set_quantity(total);
+        },
+        merge_details: function(detail){
+            var sameDetail = this.details.filter(function(same_detail){
+                return same_detail['detail'] == detail['detail'];
+            });
+            console.log('SAME DETAIL');
+            console.log(sameDetail);
+            console.log('DETAIL');
+            console.log(detail);
+            if(sameDetail[0]){
+                sameDetail[0]['detail_qty'] = sameDetail[0]['detail_qty'] + detail['detail_qty'];
+            }else{
+                this.details.push(detail);
+            }
+        },
+        merge_tmpl: function(orderline){
+            console.log('merging');
+            //this.set_quantity(this.get_quantity() + orderline.get_quantity());
+            console.log('Details After');
+            console.log(this.details);
+            for(var i = 0,len = orderline.details.length;i<len;i++){
+                this.merge_details(orderline.details[i]);
+            }
+            console.log('Details Before');
+            console.log(this.details);
+            this.set_total_quantity();
+            this.pos.pos_widget.order_widget.rerender_orderline(this);
+            /*if(this.detail && this.detail_qty){
+                this.values = {
+                    'v':this.detail_qty,
+                    'c':orderline.detail_qty
+                }
+            }*/
+        },
         export_as_JSON: function() {
             return {
                 qty: this.get_quantity(),
@@ -868,7 +916,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         get_applicable_taxes: function(){
             // Shenaningans because we need
             // to keep the taxes ordering.
-            var ptaxes_ids = this.get_product().taxes_id;
+            var ptaxes_ids = this.get_product().taxes_id || new Array();//FIXME [rafo] 'template' has no attribute 'taxes_id'
             var ptaxes_set = {};
             for (var i = 0; i < ptaxes_ids.length; i++) {
                 ptaxes_set[ptaxes_ids[i]] = true;
@@ -1054,7 +1102,11 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             var attr = JSON.parse(JSON.stringify(product));
             attr.pos = this.pos;
             attr.order = this;
-            var line = new module.Orderline({}, {pos: this.pos, order: this, product: product});
+            var line = new module.Orderline({}, {
+                pos: this.pos, 
+                order: this, 
+                product: product
+            });
 
             if(options.quantity !== undefined){
                 line.set_quantity(options.quantity);
@@ -1065,26 +1117,43 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             if(options.discount !== undefined){
                 line.set_discount(options.discount);
             }
+
+            if(options.template !== undefined){
+                line.get_product().display_name = options.template.display_name;
+                line.template = options.template;
+            }
+
+            if(options.value !== undefined && options.attributes !== undefined){
+                line.details.push({
+                    detail: options.value.name,
+                    detail_qty: options.attributes[options.value.id]
+                });
+            }
+
             
-            if(options.converted !== undefined){
-                line.set_converted(options.converted);
-            }
-            if(options.quantity_leg !== undefined){
-                line.set_quantity_leg(options.quantity_leg);
-            }
-            if(options.quantity_chest !== undefined){
-                line.set_quantity_chest(options.quantity_chest);
-            }
-            if(options.quantity_normal !== undefined){
-                line.set_quantity_normal(options.quantity_normal);
-            }
+            //var same_product_orderline = this.getSameProductOrderline(line);
+            var same_template_orderline = this.getSameTemplateOrderline(line);
+            console.log('SAME TEMPLATE ORDERLINE');
+            console.log(same_template_orderline);
             
-            var same_product_orderline = this.getSameProductOrderline(line);
+            if( same_template_orderline && options.merge !== false){
+                if(options.template.line){
+                    same_template_orderline.merge_tmpl(line);
+                }else{
+                    same_template_orderline.merge(line);
+                }
+            }else{
+                this.get('orderLines').add(line);
+                if(options.template.line){
+                    line.set_total_quantity();
+                }
+            }
+            /*
             if( same_product_orderline && options.merge !== false){
                 same_product_orderline.merge(line);
             }else{
                 this.get('orderLines').add(line);
-            }
+            }*/
             /*
             if(same_product_orderline){
                 this.selectLine(same_product_orderline);
@@ -1117,6 +1186,20 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                var tmp = orderlines.at(c);
                console.log(tmp);
                if(tmp && tmp.can_be_merged_with(line)) {
+                  result = tmp;
+                  break;
+               }
+            }
+            return result;
+        },
+        getSameTemplateOrderline: function(line){
+            var orderlines = this.get('orderLines');
+            console.log(orderlines);
+            var result = null;
+            for(var c=0; c<orderlines.length; c++){
+               var tmp = orderlines.at(c);
+               console.log(tmp);
+               if(tmp && tmp.can_be_merged_tmpl(line)) {
                   result = tmp;
                   break;
                }
