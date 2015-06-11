@@ -901,7 +901,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                         self.el.querySelector("[data-value-id='"+this.dataset['valueId']+"'] > .top-block > .block-quantity").textContent = self.total_quantity;
                     });
                     value_container.appendChild(value_node);
-                    return;
                 }
                 for(var line in self.selected_template.line) {
                     for(var i = 0, len = this.selected_template.line[line].length; i < len; i++){
@@ -914,6 +913,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     };
                 }
             }
+            this.el.querySelector('.action-image').addEventListener('click',function(){
+                self.add_template_order(self.selected_template);
+            
+            });
         },
         show:function(){
             this.$el.removeClass('oe_hidden');
@@ -934,6 +937,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             console.log(this.attributes);
             if(product_template.line){
                 for(value_id in this.attributes){
+                    if(this.attributes[value_id]>0){
                     console.log(value_id);
                     console.log(this.attributes[value_id]);
                     product_list = products.filter(function(product){
@@ -949,10 +953,14 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     //}
                     console.log('product list');
                     console.log(product_list);
+                    }
                 }
             }else{
+                console.log('HELADO');
+                console.log(product_template);
                 this.pos.get('selectedOrder').addProduct(products[0],{
-                    template: product_template
+                    template: product_template,
+                    quantity: this.total_quantity
                 });
             }
         }
