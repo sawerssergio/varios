@@ -151,8 +151,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     self.pos.get('selectedOrder').selectLine(this.orderline);
                     self.pos_widget.numpad.state.reset();
                     //FIXME this should be on a diferent method
-                    self.pos.pos_widget.product_options_widget.edit_product(this.orderline.get_product(),{'quantity':this.orderline.get_quantity()});
-                    var product = this.orderline.get_product();
+                    self.pos.pos_widget.product_options_widget.edit_options(this.orderline.template,{'quantity':this.orderline.get_quantity(), details: this.orderline.details });
+                    /*var product = this.orderline.get_product();
                     var product_categ = this.orderline.get_product().pos_categ_id[0];
                     var parent_categ = self.pos.db.get_category_parent_id(product_categ);
                     if(parent_categ > 0){
@@ -163,7 +163,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                             //product_categ
                             self.pos.pos_widget.product_categories_widget.change_category(product_categ,product.id);
                         }
-                    }
+                    }*/
                 }
             };
             this.client_change_handler = function(event){
@@ -245,11 +245,13 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var detail_container = el_node.querySelector('.product-details');
             console.log(detail_container);
             for(var i = 0,len = orderline.details.length;i<len;i++){
-                detail_el_node = this.render_detail({
-                    detail_qty: orderline.details[i]['detail_qty'],
-                    detail: orderline.details[i]['detail']
-                });
-                detail_container.appendChild(detail_el_node);
+                if(orderline.details[i]['detail']){
+                    detail_el_node = this.render_detail({
+                        detail_qty: orderline.details[i]['detail_qty'],
+                        detail: orderline.details[i]['detail']
+                    });
+                    detail_container.appendChild(detail_el_node);
+                }
             }
             orderline.node = el_node;
             return el_node;
@@ -285,6 +287,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             target.parentNode.replaceChild(this.el,target);
         },
         renderElement: function(scrollbottom){
+            var self = this;
             this.pos_widget.numpad.state.reset();
 
             var order  = this.pos.get('selectedOrder');
@@ -320,6 +323,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     pos_widget.screen_selector.set_current_screen('invoice');
                 else
                     pos_widget.screen_selector.back();
+            });
+
+            this.el.querySelector('.order-restart').addEventListener("click",function(){
+                self.pos.get('selectedOrder').restart_order();
             });
         },
         update_summary: function(){
@@ -779,6 +786,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var self = this;
             this.hide();
         },
+        set_value: function(id, value){
+            this.attributes[id] = value;
+            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").textContent = value;
+        
+        },
         increase_value: function(id){
             this.attributes[id]++;
             this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").textContent = this.attributes[id];
@@ -793,12 +805,17 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.total_quantity = value;
             this.el.querySelector(".block-selection > .bottom-block > .total-quantity").textContent = this.total_quantity;
         },
-        edit_product:function(product,options){
+        edit_options:function(template,options){
+            var self = this;
             this.editing = true;
-            this.set_ui_properties(product);
+            this.selected_template = template;
+            this.attributes = {};
             this.renderElement();
             this.set_total_quantity(options.quantity);
-            this.set_option_left(options.quantity);
+            options.details.forEach(function(detail){
+                self.set_value(detail.id,detail.detail_qty);
+            });
+            this.show();
         },
         set_template:function(product_template){
             this.editing = false;
@@ -926,38 +943,22 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         add_template_order:function(product_template){
             var self = this;
-            console.log('Adding template to order');
-            console.log('template');
-            console.log(product_template);
-            console.log(this.attributes);
             var products = this.pos.db.get_product_by_template(this.selected_template.id);
-            console.log('product');
-            console.log(products[0]);
-            console.log('ATRIBUTOS')
-            console.log(this.attributes);
             if(product_template.line){
                 for(value_id in this.attributes){
                     if(this.attributes[value_id]>0){
-                    console.log(value_id);
-                    console.log(this.attributes[value_id]);
-                    product_list = products.filter(function(product){
-                        return product.attribute_value_ids[0] == value_id;
-                    });
-                    var value = this.pos.db.get_attribute_value_by_id(value_id);
-                    //for(var i = 0,len = this.attributes[value_id];i<len;i++ ){
+                        product_list = products.filter(function(product){
+                            return product.attribute_value_ids[0] == value_id;
+                        });
+                        var value = this.pos.db.get_attribute_value_by_id(value_id);
                         self.pos.get('selectedOrder').addProduct(product_list[0],{
                             template: product_template,
                             value: value,
                             attributes: this.attributes
                         });
-                    //}
-                    console.log('product list');
-                    console.log(product_list);
                     }
                 }
             }else{
-                console.log('HELADO');
-                console.log(product_template);
                 this.pos.get('selectedOrder').addProduct(products[0],{
                     template: product_template,
                     quantity: this.total_quantity

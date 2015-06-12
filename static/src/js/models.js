@@ -836,34 +836,19 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             var sameDetail = this.details.filter(function(same_detail){
                 return same_detail['detail'] == detail['detail'];
             });
-            console.log('SAME DETAIL');
-            console.log(sameDetail);
-            console.log('DETAIL');
-            console.log(detail);
-            if(sameDetail[0]){
-                sameDetail[0]['detail_qty'] = sameDetail[0]['detail_qty'] + detail['detail_qty'];
+            sameDetail = sameDetail[0];
+            if(sameDetail){
+                sameDetail['detail_qty'] += detail['detail_qty'];
             }else{
                 this.details.push(detail);
             }
         },
         merge_tmpl: function(orderline){
-            console.log('merging');
-            //this.set_quantity(this.get_quantity() + orderline.get_quantity());
-            console.log('Details After');
-            console.log(this.details);
             for(var i = 0,len = orderline.details.length;i<len;i++){
                 this.merge_details(orderline.details[i]);
             }
-            console.log('Details Before');
-            console.log(this.details);
             this.set_total_quantity();
             this.pos.pos_widget.order_widget.rerender_orderline(this);
-            /*if(this.detail && this.detail_qty){
-                this.values = {
-                    'v':this.detail_qty,
-                    'c':orderline.detail_qty
-                }
-            }*/
         },
         export_as_JSON: function() {
             return {
@@ -1125,17 +1110,19 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
 
             if(options.value !== undefined && options.attributes !== undefined){
                 line.details.push({
+                    id: options.value.id,
                     detail: options.value.name,
                     detail_qty: options.attributes[options.value.id]
                 });
+            }else{
+                line.details.push({
+                    id: options.template.id,
+                    detail_qty: options.quantity
+                });
+            
             }
 
-            
-            //var same_product_orderline = this.getSameProductOrderline(line);
             var same_template_orderline = this.getSameTemplateOrderline(line);
-            console.log('SAME TEMPLATE ORDERLINE');
-            console.log(same_template_orderline);
-            
             if( same_template_orderline && options.merge !== false){
                 if(options.template.line){
                     same_template_orderline.merge_tmpl(line);
@@ -1143,23 +1130,15 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                     same_template_orderline.merge(line);
                 }
             }else{
-                this.get('orderLines').add(line);
                 if(options.template.line){
                     line.set_total_quantity();
                 }
+
+                if(line.get_quantity() > 0){
+                    this.get('orderLines').add(line);
+                }
             }
-            /*
-            if( same_product_orderline && options.merge !== false){
-                same_product_orderline.merge(line);
-            }else{
-                this.get('orderLines').add(line);
-            }*/
-            /*
-            if(same_product_orderline){
-                this.selectLine(same_product_orderline);
-            }else{
-                this.selectLine(line);
-            }*/
+
             this.deselectLine();
         },
         removeOrderline: function( line ){
@@ -1177,20 +1156,6 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         },
         getLastOrderline: function(){
             return this.get('orderLines').at(this.get('orderLines').length -1);
-        },
-        getSameProductOrderline: function(line){
-            var orderlines = this.get('orderLines');
-            console.log(orderlines);
-            var result = null;
-            for(var c=0; c<orderlines.length; c++){
-               var tmp = orderlines.at(c);
-               console.log(tmp);
-               if(tmp && tmp.can_be_merged_with(line)) {
-                  result = tmp;
-                  break;
-               }
-            }
-            return result;
         },
         getSameTemplateOrderline: function(line){
             var orderlines = this.get('orderLines');
