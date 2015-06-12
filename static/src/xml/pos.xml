@@ -11,6 +11,26 @@
             <div class="pos-centerpane">
                 <div class="center-top">
                     <span class="placeholder-order-selector"/>
+                    <div class="invoice-option-selector oe_hidden">
+                        <div class="side-pane">
+                            <div class="type-ticket left-item">Bolivianos</div>
+                            <div class="type-ticket left-item">Dolares</div>
+                        </div>
+                        <div class="center-pane">
+                            <div class="center-top">
+                                <div class="title-quantity">EFECTIVO</div>
+                                <div class="units-quantity">200</div>
+                            </div>
+                            <div class="center-bottom">
+                                <div class="title-quantity">CAMBIO</div>
+                                <div class="units-quantity">50</div>
+                            </div>
+                        </div>
+                        <div class="side-pane">
+                            <div class="type-ticket right-item">Mezanine</div>
+                            <div class="type-ticket right-item">Mezon</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="center-middle">
                     <div class="screens"> 

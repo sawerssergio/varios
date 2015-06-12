@@ -130,8 +130,8 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         order: 0;
         -webkit-box-flex: 0;
         -moz-box-flex: 0;
-        -webkit-flex: 0 1 17%;
-        flex: 0 1 17%;
+        -webkit-flex: 0 1 20%;
+        flex: 0 1 20%;
         -webkit-align-self: auto;
         align-self: auto;
         max-height: 17%;
@@ -143,8 +143,8 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         order: 0;
         -webkit-box-flex: 0;
         -moz-box-flex: 0;
-        -webkit-flex: 0 1 73%;
-        flex: 0 1 73%;
+        -webkit-flex: 0 1 72%;
+        flex: 0 1 72%;
         -webkit-align-self: auto;
         align-self: auto;
         max-height: 75%;
@@ -152,9 +152,9 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
             width: 100%;
             height: 100%;
             .screen {
-                padding: 5%;
+                padding: 0 5% 5% 5%;
                 width: 90%;
-                height: 80%;
+                height: 90%;
             }
         }
     }
@@ -165,8 +165,8 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         order: 0;
         -webkit-box-flex: 0;
         -moz-box-flex: 0;
-        -webkit-flex: 0 1 10%;
-        flex: 0 1 10%;
+        -webkit-flex: 0 1 8%;
+        flex: 0 1 8%;
         -webkit-align-self: auto;
         align-self: auto; 
     }
@@ -470,7 +470,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
 }
 .options-selector {
     width: 95%;
-    height: 100%;
+    height: 90%;
     bottom: 0;
     padding: 2% 2.5% 0% 2.5%;
     -webkit-animation: fadeIn 1s;
@@ -561,52 +561,6 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
                 }
             }
         }
-        .left-selector {
-            -webkit-order: 0;
-            order: 0;
-            -webkit-box-flex: 0;
-            -moz-box-flex: 0;
-            -webkit-flex: 0 1 40%;
-            flex: 0 1 40%;
-            -webkit-align-self: auto;
-            align-self: auto;
-        }
-        .center-selector {
-            -webkit-order: 1;
-            order: 1;
-            -webkit-box-flex: 0;
-            -moz-box-flex: 0;
-            -webkit-flex: 0 1 14%;
-            flex: 0 1 14%;
-            -webkit-align-self: auto;
-            align-self: auto;
-            padding-left: .5%;
-            padding-right: .5%;
-            background-color: $co_opntions_selector_center;
-            text-align: center;
-            color: white;
-            position: relative;
-            .quantity-units {
-                width: 100%;
-                min-height: 50%;
-                color: $co_letter_yellow;
-            }
-            .normal-units {
-                max-height: 50%;
-                width: 100%;
-                border-top: 0.15em solid #cdcdcd;
-            }
-        }
-        .right-selector {
-            -webkit-order: 2;
-            order: 2;
-            -webkit-box-flex: 0;
-            -moz-box-flex: 0;
-            -webkit-flex: 0 1 40%;
-            flex: 0 1 40%;
-            -webkit-align-self: auto;
-            align-self: auto;
-        }
     }
     .action-selector {
         width: 8%;
@@ -631,6 +585,101 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
         }
     }
 }
+
+.invoice-option-selector {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    -webkit-align-content: stretch;
+    align-content: stretch;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    border-radius: 1em;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    height: 95%;
+    background: rgba(193,39,44,1);
+    background: -moz-linear-gradient(top, rgba(193,39,44,1) 0%, rgba(145,29,35,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(193,39,44,1)), color-stop(100%, rgba(145,29,35,1)));
+    background: -webkit-linear-gradient(top, rgba(193,39,44,1) 0%, rgba(145,29,35,1) 100%);
+    background: -o-linear-gradient(top, rgba(193,39,44,1) 0%, rgba(145,29,35,1) 100%);
+    background: -ms-linear-gradient(top, rgba(193,39,44,1) 0%, rgba(145,29,35,1) 100%);
+    background: linear-gradient(to bottom, rgba(193,39,44,1) 0%, rgba(145,29,35,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c1272c', endColorstr='#911d23', GradientType=0 );
+    .side-pane {
+        -webkit-order: 0;
+        order: 0;
+        -webkit-flex: 0 1 41%;
+        flex: 0 1 41%;
+        -webkit-align-self: auto;
+        align-self: stretch;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        -webkit-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: space-around;
+        justify-content: space-around;
+        -webkit-align-content: stretch;
+        align-content: stretch;
+        -webkit-align-items: flex-start;
+        align-items: flex-start;
+        .type-ticket {
+            background-color: rgba(0,0,0,0.5);
+            display: block;
+            clear: both;
+            width: 50%;
+            padding: .4em;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            -webkit-order: 0;
+            order: 0;
+            -webkit-flex: 0 1 auto;
+            flex: 0 1 auto;
+        }
+        .left-item {
+            border-radius: 0 .5em .5em 0;
+            float: left;
+            -webkit-align-self: flex-start;
+            align-self: flex-start;
+        }
+        .right-item {
+            border-radius: .5em 0 0 .5em;
+            float: right;
+            -webkit-align-self: flex-end;
+            align-self: flex-end;
+        }
+    }
+    .center-pane {
+        -webkit-order: 0;
+        order: 0;
+        -webkit-flex: 0 1 18%;
+        flex: 0 1 18%;
+        -webkit-align-self: auto;
+        align-self: auto;
+        background-color: rgb(0,0,0);
+        .center-top {
+            display: inline-block;
+            width: 100%;
+            color: $co_letter_yellow;
+        }
+        .center-bottom {
+            display: inline-block;
+            width: 100%;
+            color: white;
+        }
+    }
+}
+
 .title-quantity {
     margin-top: .2em;
     text-align: center;
@@ -650,99 +699,6 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
     top: 50%;
     transform: translate(0, -50%);
     font-size: 1.7em;
-}
-/* SELECTOR QUANTITY PRODUCTS AND TYPE OF PRODUCTS */
-.type-selector {
-    position: relative;
-    padding: 1%;
-    .increase-product {
-        position: absolute;
-        width: 28%;
-        height: 55%;
-        z-index: 2;
-        top: 0; left: 5%; bottom: 0;
-        margin: auto;
-        border-radius: 50%;
-        background-color: white;
-        border: .3em solid $co_options_selector_border;
-        img {
-            position: absolute;
-            top: 0; bottom: 0; left: -8%; right: 0;
-            margin: auto;
-            height: 90%;
-        }
-    }
-    .edition-product {
-        position: absolute;
-        width: 85%;
-        height: 30%;
-        z-index: 1;
-        margin: auto;
-        background-color: white;
-        border-radius: 2em;
-        top: 0; left: 5%; bottom: 0; right: 0;
-        border: .3em solid $co_options_selector_border;
-        input {
-            position: relative;
-            margin: auto;
-            outline: 0;
-            border: none;
-            text-align: right;
-            font-size: 2em;
-            width: 85%;
-            background-color: transparent;
-            font-weight: bold;
-            &:focus {
-                outline: 0;
-            }
-        }
-    }
-    .decrease-product {
-        position: absolute;
-        width: 10%;
-        height: 20%;
-        z-index: 2;
-        right: 5%; top: 0; bottom : 0;
-        margin: auto;
-        img {
-            width: 100%;
-        }
-    }
-}
-/* SELECTOR FOR SIZE PRODUCTS */
-.size-selector {
-    color: white;
-    padding-top: 10%;
-    .small-selector {
-        display: inline-block;
-        width: 20%;
-        vertical-align: middle;
-        img {
-            width: 100%;
-            opacity: .8;
-        }
-    }
-    .medium-selector {
-        display: inline-block;
-        width: 30%;
-        vertical-align: middle;
-        img {
-            width: 100%;
-            opacity: .8;
-        }
-    }
-    .big-selector {
-        display: inline-block;
-        width: 40%;
-        vertical-align: middle;
-        img {
-            width: 100%;
-            opacity: .8;
-        }
-    }
-    .size-selector-item:active > img{
-        opacity: 1;
-    }
 }
 
 .invoice-screen {

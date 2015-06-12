@@ -565,11 +565,76 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             this._super();
             this.renderElement();
 
+            this.old_client = this.pos.get('selectedOrder').get('client');
+            console.log("CLIENT");
+            console.log(this.old_client);
+
             if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
                 console.log("KEYBOARD");
                 console.log(this.$('.client-vat'));
                 this.pos_widget.onscreen_keyboard.connect(this.$('.client-vat'));
+                this.pos_widget.onscreen_keyboard.connect(this.$('.client-name'));
             }
+            /*this.$('.client-vat').click(function(){
+                self.pos_widget.onscreen_keyboard.connect(self.$('.client-vat'));
+            });
+            this.$('.client-name').click(function(){
+                self.pos_widget.onscreen_keyboard.connect(self.$('.client-name'));
+            });*/
+        },
+        // what happens when we save the changes on the client edit form -> we fetch the fields, sanitize them,
+        // send them to the backend for update, and call saved_client_details() when the server tells us the
+        // save was successfull.
+        save_client_details: function(partner) {
+            var self = this;
+            
+            var fields = {}
+            this.$('.client-details-contents .detail').each(function(idx,el){
+                console.log(el);
+                fields[el.name] = el.value;
+            });
+
+            if (!fields.name) {
+                this.pos_widget.screen_selector.show_popup('error',{
+                    message: _t('A Customer Name Is Required'),
+                });
+                return;
+            }
+            
+            if (this.uploaded_picture) {
+                fields.image = this.uploaded_picture;
+            }
+
+            fields.id           = partner.id || false;
+            fields.country_id   = fields.country_id || false;
+            fields.ean13        = fields.ean13 ? this.pos.barcode_reader.sanitize_ean(fields.ean13) : false; 
+
+            new instance.web.Model('res.partner').call('create_from_ui',[fields]).then(function(partner_id){
+                self.saved_client_details(partner_id);
+            },function(err,event){
+                event.preventDefault();
+                self.pos_widget.screen_selector.show_popup('error',{
+                    'message':_t('Error: Could not Save Changes'),
+                    'comment':_t('Your Internet connection is probably down.'),
+                });
+            });
+        },
+        
+        // what happens when we've just pushed modifications for a partner of id partner_id
+        saved_client_details: function(partner_id){
+            var self = this;
+            this.reload_partners().then(function(){
+                var partner = self.pos.db.get_partner_by_id(partner_id);
+                if (partner) {
+                    self.new_client = partner;
+                    self.toggle_save_button();
+                    self.display_client_details('show',partner);
+                } else {
+                    // should never happen, because create_from_ui must return the id of the partner it
+                    // has created, and reload_partner() must have loaded the newly created partner. 
+                    self.display_client_details('hide');
+                }
+            });
         },
     });
 
