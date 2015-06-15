@@ -953,7 +953,7 @@
     </t>
 
     <t t-name="Orderline">
-        <li class="orderline">
+        <li t-attf-class="orderline #{ line.selected ? 'selected' : '' }">
             <div class="product-quantity">
                 <span class="number font-black"><t t-esc="line.get_quantity()"/></span>
             </div>

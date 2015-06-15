@@ -832,6 +832,15 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             }
             this.set_quantity(total);
         },
+        edit_details: function(attributes){
+            for(attr in attributes){
+                var sameDetail = this.details.filter(function(same_detail){
+                    return same_detail['id'] == attr;
+
+                });
+                sameDetail[0]['detail_qty'] = attributes[attr];
+            }
+        },
         merge_details: function(detail){
             var sameDetail = this.details.filter(function(same_detail){
                 return same_detail['detail'] == detail['detail'];
