@@ -949,6 +949,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 self.attributes = {};
                 self.hide();
             });
+            this.hide();
         },
         show:function(){
             this.$el.removeClass('oe_hidden');
