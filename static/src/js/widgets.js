@@ -148,6 +148,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 if(event.target.className === "product-delete-button") {
                    self.pos.get('selectedOrder').removeOrderline(this.orderline);
                 } else {
+                    self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product(); 
                     self.pos.get('selectedOrder').deselectLine();
                     self.pos.get('selectedOrder').selectLine(this.orderline);
                     self.pos_widget.numpad.state.reset();
@@ -155,7 +156,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     self.pos.pos_widget.product_options_widget.edit_options(this.orderline.template,{'quantity':this.orderline.get_quantity(), 'details': this.orderline.details });
                     var template_categ = this.orderline.template.pos_categ_id[0];
                     self.pos.pos_widget.product_categories_widget.change_category(template_categ,this.orderline.template.id);
-                    self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product(); 
 
                     self.pos.pos_widget.product_screen.product_list_widget.set_selected_product(this.orderline.template.id); 
 
