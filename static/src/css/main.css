@@ -1,0 +1,946 @@
+/* DEFINITION OF FONTS */
+@font-face {
+  font-family: Roboto-black;
+  src: url("../fonts/roboto/Roboto-Black.ttf");
+}
+@font-face {
+  font-family: Roboto-bold;
+  src: url("../fonts/roboto/Roboto-Bold.ttf");
+}
+@font-face {
+  font-family: Roboto-bold-condensed;
+  src: url("../fonts/roboto/RobotoCondensed-Bold.ttf");
+}
+@font-face {
+  font-family: Roboto-medium;
+  src: url("../fonts/roboto/Roboto-Medium.ttf");
+}
+@font-face {
+  font-family: Roboto-regular;
+  src: url("../fonts/roboto/Roboto-Regular.ttf");
+}
+/* --------------------------------------------- */
+/* line 36, ../scss/main.scss */
+html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 42, ../scss/main.scss */
+.pos {
+  background-image: url("../img/background.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+/* line 70, ../scss/main.scss */
+.pos button {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* line 77, ../scss/main.scss */
+.pos-leftpane {
+  height: 100%;
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -webkit-order: 0;
+  order: 0;
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 1 8%;
+  flex: 0 1 8%;
+  -webkit-align-self: auto;
+  align-self: auto;
+}
+
+/* line 91, ../scss/main.scss */
+.pos-centerpane {
+  height: 100%;
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -webkit-order: 0;
+  order: 0;
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 1 65%;
+  flex: 0 1 65%;
+  -webkit-align-self: auto;
+  align-self: auto;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  position: relative;
+}
+/* line 126, ../scss/main.scss */
+.pos-centerpane .center-top {
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -webkit-order: 0;
+  order: 0;
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 1 20%;
+  flex: 0 1 20%;
+  -webkit-align-self: auto;
+  align-self: auto;
+  max-height: 17%;
+}
+/* line 139, ../scss/main.scss */
+.pos-centerpane .center-middle {
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -webkit-order: 0;
+  order: 0;
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 1 72%;
+  flex: 0 1 72%;
+  -webkit-align-self: auto;
+  align-self: auto;
+  max-height: 75%;
+}
+/* line 151, ../scss/main.scss */
+.pos-centerpane .center-middle .screens {
+  width: 100%;
+  height: 100%;
+}
+/* line 154, ../scss/main.scss */
+.pos-centerpane .center-middle .screens .screen {
+  padding: 0 5% 5% 5%;
+  width: 90%;
+  height: 90%;
+}
+/* line 161, ../scss/main.scss */
+.pos-centerpane .center-bottom {
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -webkit-order: 0;
+  order: 0;
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 1 8%;
+  flex: 0 1 8%;
+  -webkit-align-self: auto;
+  align-self: auto;
+}
+
+/* line 175, ../scss/main.scss */
+.pos-rightpane {
+  height: 100%;
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -webkit-order: 0;
+  order: 0;
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 1 27%;
+  flex: 0 1 27%;
+  -webkit-align-self: auto;
+  align-self: auto;
+}
+/* line 187, ../scss/main.scss */
+.pos-rightpane .right-header {
+  height: 12%;
+  width: 100%;
+  position: relative;
+}
+/* line 191, ../scss/main.scss */
+.pos-rightpane .right-header .sale {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 85%;
+  height: 80%;
+  float: right;
+  margin-top: 4%;
+  border-radius: 1em 0 0 1em;
+  color: white;
+}
+/* line 199, ../scss/main.scss */
+.pos-rightpane .right-header .sale .sale-type {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: white;
+  display: inline;
+  width: 60%;
+  height: 100%;
+}
+/* line 206, ../scss/main.scss */
+.pos-rightpane .right-header .sale .sale-type p {
+  text-align: center;
+  line-height: 0.3em;
+}
+/* line 212, ../scss/main.scss */
+.pos-rightpane .right-header .user {
+  right: 0;
+  margin-top: 2%;
+  height: 90%;
+  width: 35%;
+  position: absolute;
+}
+/* line 218, ../scss/main.scss */
+.pos-rightpane .right-header .user .user-data {
+  height: 100%;
+}
+/* line 220, ../scss/main.scss */
+.pos-rightpane .right-header .user .user-data .user-image {
+  height: 100%;
+  display: inline-block;
+}
+/* line 223, ../scss/main.scss */
+.pos-rightpane .right-header .user .user-data .user-image img {
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+/* line 232, ../scss/main.scss */
+.pos-rightpane .menu-orders {
+  height: 85%;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 2em 0 0 2em;
+  color: white;
+}
+/* line 238, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container {
+  height: 100%;
+}
+/* line 240, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-header {
+  height: 7%;
+  padding: 2%;
+  border-bottom: 0.3em solid #c1272d;
+}
+/* line 244, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-header .order-header-content {
+  height: 100%;
+  width: 100%;
+  background-color: #c1272d;
+  border-radius: 2em 0 0 0;
+}
+/* line 249, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-header .order-header-content .order-dispatch {
+  float: left;
+  width: 75%;
+  height: 100%;
+  text-align: center;
+}
+/* line 254, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-header .order-header-content .order-dispatch h2 {
+  line-height: .5em;
+}
+/* line 258, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-header .order-header-content .order-restart {
+  float: right;
+  width: 20%;
+  height: 100%;
+}
+/* line 262, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-header .order-header-content .order-restart img {
+  margin-top: 5%;
+  height: 80%;
+}
+/* line 269, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-scroller {
+  width: 100%;
+  height: 73%;
+  overflow-y: auto;
+}
+/* line 273, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-scroller .orderline {
+  width: 100%;
+  margin-top: 1em;
+}
+/* line 276, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-quantity {
+  width: 20%;
+  height: 100%;
+  display: inline-block;
+  line-height: 0;
+  font-size: 1.5em;
+  vertical-align: top;
+  text-align: right;
+}
+/* line 284, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-quantity .number {
+  line-height: 1em;
+  text-align: right;
+  font-size: 1.5em;
+}
+/* line 290, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-info {
+  width: 60%;
+  display: inline-block;
+}
+/* line 293, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-info .product-name {
+  color: white;
+  font-size: 1.2em;
+}
+/* line 297, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-info .product-details, .pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-info .product-detail-composed {
+  color: #ffdf1b;
+  font-size: 1em;
+}
+/* line 302, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-delete {
+  width: 10%;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 306, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-delete img {
+  width: 100%;
+}
+/* line 312, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-summary {
+  width: 95%;
+  height: 14%;
+  border-top: 0.2em solid #c1272d;
+  padding: 2%;
+}
+/* line 317, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-summary .line {
+  background-color: #c1272d;
+  border-radius: 0 0 0 1.6em;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  text-align: center;
+}
+/* line 324, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-summary .line .entry {
+  width: 65%;
+  display: inline-block;
+}
+/* line 327, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-summary .line .entry .value, .pos-rightpane .menu-orders .order-container .order-summary .line .entry .value-cash {
+  color: #ffdf1b;
+}
+/* line 330, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-summary .line .entry .subentry-total {
+  display: block;
+}
+/* line 333, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-summary .line .entry .subentry-cash {
+  display: block;
+}
+/* line 336, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-summary .line .entry .subentry {
+  display: block;
+}
+/* line 340, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-summary .line .action-next {
+  width: 30%;
+  display: inline-block;
+}
+/* line 343, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-summary .line .action-next img {
+  width: 65%;
+}
+
+/* line 352, ../scss/main.scss */
+.categories {
+  top: 3%;
+  width: 80%;
+  height: 78%;
+  background-color: #8c5817;
+  opacity: .8;
+  border-radius: 0em 2em 2em 0em;
+}
+/* line 359, ../scss/main.scss */
+.categories .categories-list {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+/* line 384, ../scss/main.scss */
+.categories .categories-list .category-item {
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -webkit-order: 0;
+  order: 0;
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  align-self: auto;
+  width: 90%;
+}
+/* line 396, ../scss/main.scss */
+.categories .categories-list .category-item img {
+  width: 100%;
+}
+
+/* line 402, ../scss/main.scss */
+.container_products {
+  height: 100%;
+  width: 100%;
+}
+/* line 405, ../scss/main.scss */
+.container_products .product-list-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* line 409, ../scss/main.scss */
+.container_products .product-list-container .product-list-scroller {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+/* line 415, ../scss/main.scss */
+.container_products .product-list-container .product-list-scroller .product-list {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-content: flex-start;
+  align-content: flex-start;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+/* line 440, ../scss/main.scss */
+.container_products .product-list-container .product-list-scroller .product-list .product {
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -webkit-order: 0;
+  order: 0;
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 1 30%;
+  flex: 0 1 30%;
+  -webkit-align-self: auto;
+  align-self: auto;
+}
+/* line 451, ../scss/main.scss */
+.container_products .product-list-container .product-list-scroller .product-list .product .product-img {
+  width: 100%;
+}
+/* line 453, ../scss/main.scss */
+.container_products .product-list-container .product-list-scroller .product-list .product .product-img img {
+  width: 100%;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* line 471, ../scss/main.scss */
+.options-selector {
+  width: 95%;
+  height: 90%;
+  bottom: 0;
+  padding: 2% 2.5% 0% 2.5%;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+/* line 478, ../scss/main.scss */
+.options-selector .options-selector-content {
+  float: left;
+  width: 90%;
+  height: 100%;
+}
+/* line 482, ../scss/main.scss */
+.options-selector .options-selector-content .values-list {
+  width: 100%;
+  height: 100%;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+/* line 503, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection {
+  -webkit-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 24%;
+  flex: 0 1 24%;
+  -webkit-align-self: auto;
+  align-self: auto;
+  height: 90%;
+  margin-right: 1%;
+}
+/* line 512, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .top-block {
+  display: block;
+  width: 100%;
+  height: 49%;
+  font-size: 2em;
+  text-align: center;
+  color: white;
+  background-color: #000000;
+  opacity: .7;
+  border-radius: .5em .5em 0em 0em;
+}
+/* line 522, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .top-block .block-quantity {
+  font-size: 1em;
+}
+/* line 525, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .top-block .block-information {
+  font-size: 0.8em;
+  color: yellow;
+}
+/* line 530, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .bottom-block {
+  display: block;
+  width: 100%;
+  height: 49%;
+  font-size: 3em;
+  text-align: center;
+  color: white;
+  background-color: #c1272d;
+  border-radius: 0em 0em .5em .5em;
+  line-height: 1em;
+}
+/* line 540, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .bottom-block .block-increase {
+  display: inline-block;
+  float: left;
+  height: 100%;
+  width: 48%;
+  border-right: 0.1em solid rgba(0, 0, 0, 0.7);
+}
+/* line 546, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .bottom-block .block-increase img {
+  width: 60%;
+}
+/* line 550, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .bottom-block .block-decrease {
+  display: inline-block;
+  float: right;
+  height: 100%;
+  width: 48%;
+}
+/* line 555, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .bottom-block .block-decrease img {
+  display: block;
+  width: 40%;
+  margin: auto;
+}
+/* line 565, ../scss/main.scss */
+.options-selector .action-selector {
+  width: 8%;
+  height: 100%;
+  float: right;
+  position: relative;
+}
+/* line 570, ../scss/main.scss */
+.options-selector .action-selector img {
+  border-radius: 50%;
+  width: 100%;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  background: #c1272c;
+  background: -moz-linear-gradient(top, #c1272c 0%, #911d23 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #c1272c), color-stop(100%, #911d23));
+  background: -webkit-linear-gradient(top, #c1272c 0%, #911d23 100%);
+  background: -o-linear-gradient(top, #c1272c 0%, #911d23 100%);
+  background: -ms-linear-gradient(top, #c1272c 0%, #911d23 100%);
+  background: linear-gradient(to bottom, #c1272c 0%, #911d23 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c1272c', endColorstr='#911d23', GradientType=0 );
+}
+
+/* line 589, ../scss/main.scss */
+.invoice-option-selector {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  border-radius: 1em;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 1%;
+  height: 95%;
+  background: #c1272c;
+  background: -moz-linear-gradient(top, #c1272c 0%, #911d23 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #c1272c), color-stop(100%, #911d23));
+  background: -webkit-linear-gradient(top, #c1272c 0%, #911d23 100%);
+  background: -o-linear-gradient(top, #c1272c 0%, #911d23 100%);
+  background: -ms-linear-gradient(top, #c1272c 0%, #911d23 100%);
+  background: linear-gradient(to bottom, #c1272c 0%, #911d23 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c1272c', endColorstr='#911d23', GradientType=0 );
+}
+/* line 615, ../scss/main.scss */
+.invoice-option-selector .side-pane {
+  -webkit-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 41%;
+  flex: 0 1 41%;
+  -webkit-align-self: auto;
+  align-self: stretch;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+/* line 634, ../scss/main.scss */
+.invoice-option-selector .side-pane .type-ticket {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: block;
+  clear: both;
+  width: 50%;
+  padding: .4em;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  -webkit-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 auto;
+  flex: 0 1 auto;
+}
+/* line 649, ../scss/main.scss */
+.invoice-option-selector .side-pane .left-item {
+  border-radius: 0 .5em .5em 0;
+  float: left;
+  -webkit-align-self: flex-start;
+  align-self: flex-start;
+}
+/* line 655, ../scss/main.scss */
+.invoice-option-selector .side-pane .right-item {
+  border-radius: .5em 0 0 .5em;
+  float: right;
+  -webkit-align-self: flex-end;
+  align-self: flex-end;
+}
+/* line 662, ../scss/main.scss */
+.invoice-option-selector .center-pane {
+  -webkit-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 18%;
+  flex: 0 1 18%;
+  -webkit-align-self: auto;
+  align-self: auto;
+  background-color: black;
+}
+/* line 670, ../scss/main.scss */
+.invoice-option-selector .center-pane .center-top {
+  display: inline-block;
+  width: 100%;
+  color: #ffdf1b;
+}
+/* line 675, ../scss/main.scss */
+.invoice-option-selector .center-pane .center-bottom {
+  display: inline-block;
+  width: 100%;
+  color: white;
+}
+
+/* line 683, ../scss/main.scss */
+.title-quantity {
+  margin-top: .2em;
+  text-align: center;
+  font-size: .8em;
+  display: block;
+}
+
+/* line 689, ../scss/main.scss */
+.units-quantity {
+  margin-top: .1em;
+  text-align: center;
+  font-size: 2.2em;
+  line-height: .8em;
+  display: block;
+}
+
+/* line 696, ../scss/main.scss */
+.only-quantity-total {
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  transform: translate(0, -50%);
+  font-size: 1.7em;
+}
+
+/* line 704, ../scss/main.scss */
+.invoice-screen {
+  height: 100%;
+  width: 100%;
+}
+/* line 707, ../scss/main.scss */
+.invoice-screen .invoice-top {
+  height: 25%;
+  width: 100%;
+}
+/* line 710, ../scss/main.scss */
+.invoice-screen .invoice-top .client-details {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 2em 2em 0 0;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+/* line 727, ../scss/main.scss */
+.invoice-screen .invoice-top .client-details .client-detail-item {
+  font-size: larger;
+  color: white;
+  -webkit-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 45%;
+  flex: 0 1 45%;
+  -webkit-align-self: auto;
+  align-self: auto;
+}
+/* line 736, ../scss/main.scss */
+.invoice-screen .invoice-top .client-details .client-detail-item .label {
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  float: left;
+  text-align: right;
+  line-height: 2em;
+}
+/* line 744, ../scss/main.scss */
+.invoice-screen .invoice-top .client-details .client-detail-item .detail {
+  display: inline-block;
+  width: 78%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  float: right;
+  color: white;
+  font-size: 1em;
+  text-align: left;
+}
+/* line 758, ../scss/main.scss */
+.invoice-screen .invoice-bottom {
+  height: 75%;
+  width: 100%;
+}
+/* line 761, ../scss/main.scss */
+.invoice-screen .invoice-bottom .money-list {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+/* line 774, ../scss/main.scss */
+.invoice-screen .invoice-bottom .money-list .money-details {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 26%;
+  -ms-flex: 0 1 26%;
+  flex: 0 1 26%;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+/* line 784, ../scss/main.scss */
+.invoice-screen .invoice-bottom .money-list .money-details .money-detail-item {
+  width: 100%;
+}
+/* line 786, ../scss/main.scss */
+.invoice-screen .invoice-bottom .money-list .money-details .money-detail-item img {
+  width: 100%;
+}
+/* line 789, ../scss/main.scss */
+.invoice-screen .invoice-bottom .money-list .money-details .money-detail-item .money-subitems {
+  width: 100%;
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+/* line 804, ../scss/main.scss */
+.invoice-screen .invoice-bottom .money-list .money-details .money-detail-item .money-subitems .money-detail-subitem {
+  -webkit-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 45%;
+  flex: 0 1 45%;
+  -webkit-align-self: auto;
+  align-self: auto;
+}
+/* line 811, ../scss/main.scss */
+.invoice-screen .invoice-bottom .money-list .money-details .money-detail-item .money-subitems .money-detail-subitem img {
+  width: 100%;
+}
+
+/* line 822, ../scss/main.scss */
+.font-black {
+  font-family: Roboto-black;
+}
+
+/* line 825, ../scss/main.scss */
+.font-bold {
+  font-family: Roboto-bold;
+}
+
+/* line 828, ../scss/main.scss */
+.font-bold-condensed {
+  font-family: Roboto-bold-condensed;
+}
+
+/* line 831, ../scss/main.scss */
+.font-medium {
+  font-family: Roboto-medium;
+}
+
+/* line 834, ../scss/main.scss */
+.font-regular {
+  font-family: Roboto-regular;
+}
+
+/* line 838, ../scss/main.scss */
+.selected img {
+  filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+}
