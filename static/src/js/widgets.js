@@ -947,6 +947,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     self.edit_line_order(self.pos.get('selectedOrder').selected_orderline);
                 }
                 self.attributes = {};
+                self.selected_template = undefined;
                 self.hide();
             });
             this.hide();
