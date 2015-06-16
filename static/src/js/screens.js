@@ -560,6 +560,11 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
     module.InvoiceScreenWidget = module.ScreenWidget.extend({
         template: 'InvoiceScreenWidget',
         back_screen: 'products',
+        events: {
+            "change input.client-vat": function() {
+                console.log("HAPPEND");
+            },
+        },
         init: function(parent, options){
             this._super(parent, options);
         },
@@ -586,15 +591,10 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 })
                 //this.pos_widget.onscreen_keyboard.connect(this.$('.client-vat'));
             }
-            
-
-            
-            /*this.$('.client-vat').click(function(){
-                self.pos_widget.onscreen_keyboard.connect(self.$('.client-vat'));
-            });
-            this.$('.client-name').click(function(){
-                self.pos_widget.onscreen_keyboard.connect(self.$('.client-name'));
-            });*/
+            //This should be enable only for event click!
+            //this.$(".client-ok").click(function() {
+            //    self.save_client_details({});
+            //});
         },
         // what happens when we save the changes on the client edit form -> we fetch the fields, sanitize them,
         // send them to the backend for update, and call saved_client_details() when the server tells us the
@@ -603,8 +603,11 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             var self = this;
             
             var fields = {}
-            this.$('.client-details-contents .detail').each(function(idx,el){
-                console.log(el);
+            this.$('.client-details .detail').each(function(idx,el){
+                console.log("VALUE");
+                console.log(el.value);
+                console.log("NAME");
+                console.log(el.name);
                 fields[el.name] = el.value;
             });
 
@@ -638,15 +641,36 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         saved_client_details: function(partner_id){
             var self = this;
             this.reload_partners().then(function(){
+                console.log();
                 var partner = self.pos.db.get_partner_by_id(partner_id);
                 if (partner) {
                     self.new_client = partner;
-                    self.toggle_save_button();
-                    self.display_client_details('show',partner);
+                    console.log("NEW CLIENT");
+                    console.log(self.new_client);
                 } else {
                     // should never happen, because create_from_ui must return the id of the partner it
                     // has created, and reload_partner() must have loaded the newly created partner. 
-                    self.display_client_details('hide');
+                    //self.display_client_details('hide');
+                    console.log("How to pass this.");
+                }
+            });
+        },
+        save_changes: function(){
+            if( this.has_client_changed() ){
+                this.pos.get('selectedOrder').set_client(this.new_client);
+            }
+        },
+        // This fetches partner changes on the server, and in case of changes, 
+        // rerenders the affected views
+        reload_partners: function(){
+            var self = this;
+            return this.pos.load_new_partners().then(function(){
+                //self.render_list(self.pos.db.get_partners_sorted(1000));
+                
+                // update the currently assigned client if it has been changed in db.
+                var curr_client = self.pos.get_order().get_client();
+                if (curr_client) {
+                    self.pos.get_order().set_client(self.pos.db.get_partner_by_id(curr_client.id));
                 }
             });
         },
