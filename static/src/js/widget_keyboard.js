@@ -152,7 +152,7 @@ function openerp_pos_keyboard(instance, module){ //module is instance.pos_kingdo
 
 
             $('.close_button').click(function(){ 
-                self.deleteAllCharacters();
+                //self.deleteAllCharacters();
                 self.hide(); 
             });
 

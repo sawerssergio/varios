@@ -575,11 +575,20 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             console.log(this.old_client);
 
             if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
-                console.log("KEYBOARD");
-                console.log(this.$('.client-vat'));
-                this.pos_widget.onscreen_keyboard.connect(this.$('.client-vat'));
-                this.pos_widget.onscreen_keyboard.connect(this.$('.client-name'));
+                var inputs = self.el.querySelectorAll('input');
+                self.$el.find( 'input').each( function( index , input ){
+                    self.pos_widget.onscreen_keyboard.connect( self.$( input ) );
+                    
+                    input.addEventListener( 'click' , function( evt ){
+                        self.pos_widget.onscreen_keyboard.connect( self.$( evt.target ) );
+                    });
+
+                })
+                //this.pos_widget.onscreen_keyboard.connect(this.$('.client-vat'));
             }
+            
+
+            
             /*this.$('.client-vat').click(function(){
                 self.pos_widget.onscreen_keyboard.connect(self.$('.client-vat'));
             });
