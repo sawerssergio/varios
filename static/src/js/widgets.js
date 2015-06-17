@@ -829,7 +829,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.show();
         },
         set_template:function(product_template){
-            this.editing = false;
             if(product_template == this.selected_template){
                 //[FIXME] [KINGDOM] this process should be reversed,
                 //first call to total quantity and then value.
