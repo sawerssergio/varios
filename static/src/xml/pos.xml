@@ -405,11 +405,11 @@
                 <ul class="client-details">
                     <li class='client-detail-item'>
                         <span class='label'>NIT.:</span>
-                        <input class='detail client-vat' name='vat'  placeholder='Vat'></input>
+                        <input class='detail client-vat' name='vat'  placeholder='Vat' onfocus="this.blur()"></input>
                     </li>
                     <li class='client-detail-item'>
                         <span class='label'>Nombre:</span>
-                        <input class='detail client-name' name='name'  placeholder='Name'></input>
+                        <input class='detail client-name' name='name'  placeholder='Name' onfocus="this.blur()"></input>
                     </li>
                 </ul>
             </section>
