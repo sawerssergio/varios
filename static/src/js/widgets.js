@@ -314,7 +314,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             var pos_widget = this.pos_widget;
             this.el.querySelector('.action-next-image').addEventListener( "click" , function(){
-
+                self.pos.pos_widget.product_options_widget.hide();
                 if ( pos_widget.screen_selector.get_current_screen() === "products" )
                     pos_widget.screen_selector.set_current_screen('invoice');
                 else
@@ -479,6 +479,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.set_category();
             
             this.switch_category_handler = function(event){
+
+                var pos_widget = self.pos.pos_widget;
+
+                if ( pos_widget.screen_selector.get_current_screen() === "invoice" )
+                    pos_widget.screen_selector.set_current_screen('products');
 
                 self.product_list_widget.set_deselected_product();
                 self.pos.get('selectedOrder').deselectLine();
