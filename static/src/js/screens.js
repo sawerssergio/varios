@@ -595,15 +595,22 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 self.pos_widget.onscreen_keyboard.connect(self.$('.client-name'));
             });*/
             //This should be enable only for event click!
-            this.$(".client-ok").click(function() {
+            /*this.$(".client-ok").click(function() {
                 self.save_client_details({});
-            });
+            });*/
             this.$(".money-list .ticket").on("click",function(event) {
-                console.log(this.dataset['ticketValue']);
-                console.log(event);
+                var currentOrder = self.pos.get('selectedOrder');
+                var paidTotal = currentOrder.getPaidTotal() + Number(this.dataset['ticketValue']);
+                self.set_value(paidTotal);
+                self.update_payment_summary();
             });
             var cashregister = this.pos.cashregisters[0];
             self.pos.get('selectedOrder').addPaymentline(cashregister);
+
+            /*this.$(".total").keyup(function(event){
+                self.set_value(event.currentTarget.value);
+                self.update_payment_summary();
+            });*/
         },
         // what happens when we save the changes on the client edit form -> we fetch the fields, sanitize them,
         // send them to the backend for update, and call saved_client_details() when the server tells us the
@@ -658,6 +665,34 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     self.display_client_details('hide');
                 }
             });
+        },
+        update_payment_summary: function() {
+            var currentOrder = this.pos.get('selectedOrder');
+            var paidTotal = currentOrder.getPaidTotal();
+            var dueTotal = currentOrder.getTotalTaxIncluded();
+            var remaining = dueTotal > paidTotal ? dueTotal - paidTotal : 0;
+            var change = paidTotal > dueTotal ? paidTotal - dueTotal : 0;
+
+            this.$('.payment-due-total').html(this.format_currency(dueTotal));
+            this.$('.payment-paid-total').html(this.format_currency(paidTotal));
+            this.$('.payment-remaining').html(this.format_currency(remaining));
+            this.$('.payment-change').html(this.format_currency(change));
+            /*
+            if(currentOrder.selected_orderline === undefined){
+                remaining = 1;  // What is this ? 
+            }
+            
+            if(this.pos_widget.action_bar){
+                this.pos_widget.action_bar.set_button_disabled('validation', !this.is_paid());
+                this.pos_widget.action_bar.set_button_disabled('invoice', !this.is_paid());
+            }*/
+        },
+        set_value: function(val) {
+            var selected_line =this.pos.get('selectedOrder').selected_paymentline;
+            if(selected_line){
+                selected_line.set_amount(val);
+                selected_line.node.querySelector('input').value = selected_line.amount.toFixed(2);
+            }
         },
     });
 

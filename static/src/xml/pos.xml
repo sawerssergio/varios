@@ -407,17 +407,20 @@
                 <ul class="client-details">
                     <li class='client-detail-item'>
                         <span class='label'>NIT.:</span>
-                        <input class='detail client-vat' name='vat'  placeholder='Vat' onfocus="this.blur()"></input>
+                        <input class='detail client-vat' name='vat'  placeholder='Vat'></input>
                     </li>
                     <li class='client-detail-item'>
                         <span class='label'>Nombre:</span>
-                        <input class='detail client-name' name='name'  placeholder='Name' onfocus="this.blur()"></input>
+                        <input class='detail client-name' name='name'  placeholder='Name'></input>
                     </li>
                 </ul>
             </section>
             <section class="invoice-bottom">
                 <!--<input class="total" value="0"/>-->
-                <!--<span class="change">0</span>-->
+                <span class="payment-due-total">0</span>
+                <span class="payment-paid-total">0</span>
+                <span class="payment-remaining">0</span>
+                <span class="payment-change">0</span>
                 <ul class="money-list">
                     <li class="money-details ticket" t-att-data-ticket-value="200">
                         <div class="money-detail-item">
