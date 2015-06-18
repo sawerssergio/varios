@@ -11,6 +11,7 @@
             <div class="pos-centerpane">
                 <div class="center-top">
                     <span class="placeholder-order-selector"/>
+                    <span class="placeholder-invoice-selector"/>
                     <div class="invoice-option-selector oe_hidden">
                         <div class="side-pane">
                             <div class="type-ticket left-item">Bolivianos</div>
@@ -402,6 +403,7 @@
     <t t-name="InvoiceScreenWidget">
         <div class="invoice-screen screen">
             <section class="invoice-top">
+                <!--<button class="client-ok">click me!</button>-->
                 <ul class="client-details">
                     <li class='client-detail-item'>
                         <span class='label'>NIT.:</span>
@@ -414,47 +416,49 @@
                 </ul>
             </section>
             <section class="invoice-bottom">
+                <!--<input class="total" value="0"/>-->
+                <!--<span class="change">0</span>-->
                 <ul class="money-list">
-                    <div class="money-details ticket">
+                    <li class="money-details ticket" t-att-data-ticket-value="200">
                         <div class="money-detail-item">
                             <img src="/pos_kingdom/static/src/img/two_hundred.svg"/>
                         </div>
-                    </div>
-                    <div class="money-details ticket">
+                    </li>
+                    <li class="money-details ticket" t-att-data-ticket-value="100">
                         <div class="money-detail-item">
                             <img src="/pos_kingdom/static/src/img/one_hundred.svg"/>
                         </div>
-                    </div>
-                    <div class="money-details ticket">
+                    </li>
+                    <li class="money-details ticket" t-att-data-ticket-value="50">
                         <div class="money-detail-item">
                             <img src="/pos_kingdom/static/src/img/fifty.svg"/>
                         </div>
-                    </div>
-                    <div class="money-details ticket">
+                    </li>
+                    <li class="money-details ticket" t-att-data-ticket-value="20">
                         <div class="money-detail-item">
                             <img src="/pos_kingdom/static/src/img/twenty.svg"/>
                         </div>
-                    </div>
-                    <div class="money-details ticket">
+                    </li>
+                    <li class="money-details ticket" t-att-data-ticket-value="10">
                         <div class="money-detail-item">
                             <img src="/pos_kingdom/static/src/img/ten.svg"/>
                         </div>
-                    </div>
-                    <div class="money-details ticket">
+                    </li>
+                    <li class="money-details">
                         <div class="money-detail-item">
                             <ul class="money-subitems">
-                                <li class="money-detail-subitem">
+                                <li class="money-detail-subitem ticket" t-att-data-ticket-value="5">
                                     <img src="/pos_kingdom/static/src/img/five.svg"/>
                                 </li>
-                                <li class="money-detail-subitem">
+                                <li class="money-detail-subitem ticket" t-att-data-ticket-value="2">
                                     <img src="/pos_kingdom/static/src/img/two.svg"/>
                                 </li>
-                                <li class="money-detail-subitem">
+                                <li class="money-detail-subitem ticket" t-att-data-ticket-value="1">
                                     <img src="/pos_kingdom/static/src/img/one.svg"/>
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </li>
                 </ul>
             </section>
         </div>

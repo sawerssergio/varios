@@ -1003,6 +1003,24 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         }
     });
 
+    module.InvoiceOptionWidget = module.PosBaseWidget.extend({
+        template: 'InvoiceOptionWidget',
+        init: function(parent, options){
+            var options = options || {};
+            this._super(parent, options);
+            this.currency = options.currency || 'bob';// bob || usd
+            //meson or mezzanine
+            this.intend_for = options.intend_for || 'ms'; // ms || mz 
+            this.hide();
+        },
+        show:function(){
+            this.$el.removeClass('oe_hidden');
+        },
+        hide:function(){
+            this.$el.addClass('oe_hidden');
+        },
+    });
+
     module.UsernameWidget = module.PosBaseWidget.extend({
         template: 'UsernameWidget',
         init: function(parent, options){

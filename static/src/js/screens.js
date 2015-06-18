@@ -588,14 +588,22 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 //this.pos_widget.onscreen_keyboard.connect(this.$('.client-vat'));
             }
             
-
-            
             /*this.$('.client-vat').click(function(){
                 self.pos_widget.onscreen_keyboard.connect(self.$('.client-vat'));
             });
             this.$('.client-name').click(function(){
                 self.pos_widget.onscreen_keyboard.connect(self.$('.client-name'));
             });*/
+            //This should be enable only for event click!
+            this.$(".client-ok").click(function() {
+                self.save_client_details({});
+            });
+            this.$(".money-list .ticket").on("click",function(event) {
+                console.log(this.dataset['ticketValue']);
+                console.log(event);
+            });
+            var cashregister = this.pos.cashregisters[0];
+            self.pos.get('selectedOrder').addPaymentline(cashregister);
         },
         // what happens when we save the changes on the client edit form -> we fetch the fields, sanitize them,
         // send them to the backend for update, and call saved_client_details() when the server tells us the
