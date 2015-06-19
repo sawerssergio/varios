@@ -941,6 +941,11 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
 }
 
 /* line 838, ../scss/main.scss */
-.selected img {
+.selected-product img {
   filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+}
+
+/* line 842, ../scss/main.scss */
+.selected {
+  background-color: #cb3629;
 }

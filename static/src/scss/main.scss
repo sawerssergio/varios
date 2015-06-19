@@ -834,8 +834,11 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
 .font-regular {
     font-family: Roboto-regular;
 }
-.selected {
+.selected-product {
     img {
         filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
     }
+}
+.selected {
+    background-color: $co_order_orderline_selected;
 }

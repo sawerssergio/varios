@@ -708,7 +708,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 }
             }*/
             this.selected_product_id = id; 
-            this.el.querySelector("[data-product-id='"+id+"'] > .product-img").className += ' selected'; 
+            this.el.querySelector("[data-product-id='"+id+"'] > .product-img").className += ' selected-product'; 
         },
         get_product_image_url: function(product){
             return window.location.origin + '/web/binary/image?model=product.product&field=image&id='+product.id;
