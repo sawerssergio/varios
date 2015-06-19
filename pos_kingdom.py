@@ -551,6 +551,14 @@ class pos_session(osv.osv):
             'url':   '/pos/web/',
         }
 
+class pos_destination(osv.osv):
+    _name = "pos.destination"
+    _description = "Place of destination"
+    _columns = {
+        'name': fields.char('Name', required=True, translate=True),
+        'description': fields.char('Description', translate=True),
+    }
+
 class pos_order(osv.osv):
     _name = "pos.order"
     _description = "Point of Sale"
@@ -719,7 +727,7 @@ class pos_order(osv.osv):
         'nb_print': fields.integer('Number of Print', readonly=True, copy=False),
         'pos_reference': fields.char('Receipt Ref', readonly=True, copy=False),
         'sale_journal': fields.related('session_id', 'config_id', 'journal_id', relation='account.journal', type='many2one', string='Sale Journal', store=True, readonly=True),
-        'intend_for': fields.selection([('table','Table'),('mezzanine','Mezzanine'),('drive_in','Drive In')], required=True, help='It is the place where the product must be delivered'),
+        'pos_destination_id': fields.many2one('pos.destination','Point of Sale Destination', help="This is the destination for the order."),
     }
 
     def _default_session(self, cr, uid, context=None):
@@ -1496,7 +1504,5 @@ class res_partner(osv.osv):
             partner_id = self.create(cr, uid, partner, context=context)
         
         return partner_id
-
-
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
