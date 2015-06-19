@@ -313,12 +313,19 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             }
 
             var pos_widget = this.pos_widget;
+            var current_order = this.pos.get('selectedOrder');
             this.el.querySelector('.action-next-image').addEventListener( "click" , function(){
                 self.pos.pos_widget.product_options_widget.hide();
                 if ( pos_widget.screen_selector.get_current_screen() === "products" )
                     pos_widget.screen_selector.set_current_screen('invoice');
-                else
-                    pos_widget.screen_selector.back();
+                else{
+                    if( pos_widget.screen_selector.get_current_screen() === "invoice" ){
+                        pos_widget.payment_screen.validate_order(current_order);
+                        current_order.destroy();
+                        pos_widget.screen_selector.set_current_screen("products");
+                        //pos_widget.screen_selector.back();
+                    }
+                }
             });
 
             this.el.querySelector('.order-restart').addEventListener("click",function(){
