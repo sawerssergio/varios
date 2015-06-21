@@ -290,7 +290,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             },
         },{
             model:  'pos.destination',
-            fields: [],
+            fields: ['id','name'],
             domain: null,
             loaded: function(self, destinations){
                 self.db.add_destinations(destinations);

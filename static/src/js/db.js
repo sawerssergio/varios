@@ -21,7 +21,7 @@ function openerp_pos_db(instance, module){
             this.attribute_by_id = [];
             this.attribute_value_by_id = {};
             this.template_by_category_id = {};
-            this.destinations_by_id = {};
+            this.destination_by_id = {};
 
             this.product_by_id = {};
             this.product_by_ean13 = {};
@@ -120,8 +120,14 @@ function openerp_pos_db(instance, module){
         },
         add_destinations: function(destinations){
             var self = this;
-            console.log("DESTINATIONS");
-            console.log(destinations);
+            if(!destinations instanceof Array){
+                destinations = [destinations];
+            }
+
+            for(var i=0, len = destinations.length; i < len; i++){
+                var destination = destinations[i];
+                self.destination_by_id[destination.id] = destination;
+            }
         },
         /* loads a record store from the database. returns default if nothing is found */
         load: function(store,deft){
