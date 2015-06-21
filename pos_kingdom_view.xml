@@ -591,8 +591,47 @@
         <menuitem name="Configuration" parent="menu_point_root"
             id="menu_point_config_product" sequence="25" groups="group_pos_manager"/>
 
+        <record model="ir.ui.view" id="view_pos_destination_form">
+            <field name="name">pos.destination.form.view</field>
+            <field name="model">pos.destination</field>
+            <field name="arch" type="xml">
+                <form string="Destination Configuration">
+                    <header>
+                        <button string="Set to Active" name="set_active" type="object" states="inactive"/>
+                        <button string="Set to Inactive" name="set_inactive" type="object" states="active" />
+                        <div class="oe_right">
+                            <field name="state" widget="statusbar" statusbar_visible="active,inactive" statusbar_colors='{"inactive" : "red"}' nolabel="1"/>
+                        </div>
+                    </header>
+
+                    <sheet>
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group col="4">
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_pos_destination_tree">
+            <field name="name">pos.destination.tree.view</field>
+            <field name="model">pos.destination</field>
+            <field name="arch" type="xml">
+                <tree string="Destination Configuration" colors="grey:state == 'inactive'">
+                    <field name="name" />
+                    <field name="description"/>
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
         <record id="action_pos_destination_form" model="ir.actions.act_window">
             <field name="name">Destinations</field>
+            <field name="type">ir.actions.act_window</field>
             <field name="res_model">pos.destination</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -715,6 +754,14 @@
                                 <field name="name" />
                                 <field name="type" />
                                 <field name="cash_control" />
+                            </tree>
+                        </field>
+                        <separator string="Available Destinations" colspan="4"/>
+                        <field name="destination_ids" colspan="4" nolabel="1">
+                            <tree string="destinations">
+                                <field name="name" />
+                                <field name="description" />
+                                <!--<field name="state" />-->
                             </tree>
                         </field>
                         <group string="Features" >

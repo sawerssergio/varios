@@ -561,6 +561,13 @@ class pos_destination(osv.osv):
 
     _name = "pos.destination"
     _description = "Place of destination"
+
+    def set_active(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state' : 'active'}, context=context)
+
+    def set_inactive(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state' : 'inactive'}, context=context)
+
     _columns = {
         'name': fields.char('Name', required=True, translate=True),
         'description': fields.char('Description', translate=True),
@@ -568,7 +575,7 @@ class pos_destination(osv.osv):
     }
 
     _defaults = {
-        'state' : POS_CONFIG_STATE[0][0],
+        'state' : POS_DESTINATION_STATE[0][0],
     }
 
 class pos_order(osv.osv):
