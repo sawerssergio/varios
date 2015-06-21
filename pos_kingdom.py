@@ -85,6 +85,7 @@ class pos_config(osv.osv):
         'group_by' : fields.boolean('Group Journal Items', help="Check this if you want to group the Journal Items by Product while closing a Session"),
         'pricelist_id': fields.many2one('product.pricelist','Pricelist', required=True),
         'company_id': fields.many2one('res.company', 'Company', required=True),
+        'destination_ids' : fields.many2many('pos.destination', string="Destinations"),
         'barcode_product':  fields.char('Product Barcodes', size=64, help='The pattern that identifies product barcodes'),
         'barcode_cashier':  fields.char('Cashier Barcodes', size=64, help='The pattern that identifies cashier login barcodes'),
         'barcode_customer': fields.char('Customer Barcodes',size=64, help='The pattern that identifies customer\'s client card barcodes'),
@@ -552,11 +553,22 @@ class pos_session(osv.osv):
         }
 
 class pos_destination(osv.osv):
+
+    POS_DESTINATION_STATE = [
+        ('active', 'Active'),
+        ('inactive', 'Inactive'),
+    ]
+
     _name = "pos.destination"
     _description = "Place of destination"
     _columns = {
         'name': fields.char('Name', required=True, translate=True),
         'description': fields.char('Description', translate=True),
+        'state' : fields.selection(POS_DESTINATION_STATE, 'Status', required=True, readonly=True, copy=False),
+    }
+
+    _defaults = {
+        'state' : POS_CONFIG_STATE[0][0],
     }
 
 class pos_order(osv.osv):

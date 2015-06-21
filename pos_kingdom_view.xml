@@ -591,6 +591,25 @@
         <menuitem name="Configuration" parent="menu_point_root"
             id="menu_point_config_product" sequence="25" groups="group_pos_manager"/>
 
+        <record id="action_pos_destination_form" model="ir.actions.act_window">
+            <field name="name">Destinations</field>
+            <field name="res_model">pos.destination</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a destination.
+              </p><p>
+                Destinations are places for dispatch products.
+              </p>
+            </field>
+        </record>
+
+        <menuitem action="action_pos_destination_form"
+            id="menu_action_pos_destination_form_open"
+            parent="menu_point_config_product"
+            sequence="21"/>
+
         <record id="action_account_journal_form" model="ir.actions.act_window">
             <field name="name">Payment Methods</field>
             <field name="res_model">account.journal</field>
