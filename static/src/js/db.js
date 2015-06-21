@@ -21,6 +21,7 @@ function openerp_pos_db(instance, module){
             this.attribute_by_id = [];
             this.attribute_value_by_id = {};
             this.template_by_category_id = {};
+            this.destinations_by_id = {};
 
             this.product_by_id = {};
             this.product_by_ean13 = {};
@@ -116,6 +117,11 @@ function openerp_pos_db(instance, module){
                 }
             }
             make_ancestors(this.root_category_id, []);
+        },
+        add_destinations: function(destinations){
+            var self = this;
+            console.log("DESTINATIONS");
+            console.log(destinations);
         },
         /* loads a record store from the database. returns default if nothing is found */
         load: function(store,deft){
