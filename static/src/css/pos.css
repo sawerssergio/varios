@@ -1004,11 +1004,13 @@ td {
     width: 360px;
 }
 .pos .payment-due-total {
+    /*
     text-align: center;
     font-weight: bold;
     font-size: 48px;
     margin: 27px;
     text-shadow: 0px 2px rgb(202, 202, 202);
+    */
 }
 .pos .paymentline{
     position: relative;

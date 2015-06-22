@@ -557,22 +557,16 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         },
     });
 
-    module.InvoiceScreenWidget = module.ScreenWidget.extend({
-        template: 'InvoiceScreenWidget',
+    module.ClientScreenWidget = module.ScreenWidget.extend({
+        template: 'ClientScreenWidget',
         back_screen: 'products',
-        init: function(parent, options){
-            this._super(parent, options);
-        },
-        show_leftpane: false,
         auto_back: true,
+        show_leftpane: false,
         show: function(){
             var self = this;
             this._super();
-            this.renderElement();
 
             this.old_client = this.pos.get('selectedOrder').get('client');
-            console.log("CLIENT");
-            console.log(this.old_client);
 
             if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
                 self.$el.find( 'input').each( function( index , input ){
@@ -584,7 +578,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                         self.pos_widget.onscreen_keyboard.connect( self.$( evt.target ) );
                     });
 
-                })
+                });
                 //this.pos_widget.onscreen_keyboard.connect(this.$('.client-vat'));
             }
             
@@ -598,19 +592,6 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             /*this.$(".client-ok").click(function() {
                 self.save_client_details({});
             });*/
-            this.$(".money-list .ticket").on("click",function(event) {
-                var currentOrder = self.pos.get('selectedOrder');
-                var paidTotal = currentOrder.getPaidTotal() + Number(this.dataset['ticketValue']);
-                self.set_value(paidTotal);
-                self.update_payment_summary();
-            });
-            var cashregister = this.pos.cashregisters[0];
-            self.pos.get('selectedOrder').addPaymentline(cashregister);
-
-            /*this.$(".total").keyup(function(event){
-                self.set_value(event.currentTarget.value);
-                self.update_payment_summary();
-            });*/
         },
         // what happens when we save the changes on the client edit form -> we fetch the fields, sanitize them,
         // send them to the backend for update, and call saved_client_details() when the server tells us the
@@ -620,7 +601,6 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             
             var fields = {}
             this.$('.client-details-contents .detail').each(function(idx,el){
-                console.log(el);
                 fields[el.name] = el.value;
             });
 
@@ -666,6 +646,35 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 }
             });
         },
+    });
+
+    module.InvoiceScreenWidget = module.ScreenWidget.extend({
+        template: 'InvoiceScreenWidget',
+        back_screen: 'products',
+        init: function(parent, options){
+            this._super(parent, options);
+        },
+        show_leftpane: false,
+        auto_back: true,
+        show: function(){
+            var self = this;
+            this._super();
+            this.renderElement();
+
+            this.$(".money-list .ticket").on("click",function(event) {
+                var currentOrder = self.pos.get('selectedOrder');
+                var paidTotal = currentOrder.getPaidTotal() + Number(this.dataset['ticketValue']);
+                self.set_value(paidTotal);
+                self.update_payment_summary();
+            });
+            var cashregister = this.pos.cashregisters[0];
+            self.pos.get('selectedOrder').addPaymentline(cashregister);
+            this.update_payment_summary();
+            /*this.$(".total").keyup(function(event){
+                self.set_value(event.currentTarget.value);
+                self.update_payment_summary();
+            });*/
+        },
         update_payment_summary: function() {
             var currentOrder = this.pos.get('selectedOrder');
             var paidTotal = currentOrder.getPaidTotal();
@@ -673,10 +682,14 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             var remaining = dueTotal > paidTotal ? dueTotal - paidTotal : 0;
             var change = paidTotal > dueTotal ? paidTotal - dueTotal : 0;
 
-            this.$('.payment-due-total').html(this.format_currency(dueTotal));
+            /*this.$('.payment-due-total').html(this.format_currency(dueTotal));
             this.$('.payment-paid-total').html(this.format_currency(paidTotal));
             this.$('.payment-remaining').html(this.format_currency(remaining));
-            this.$('.payment-change').html(this.format_currency(change));
+            this.$('.payment-change').html(this.format_currency(change));*/
+            this.$('.payment-due-total').html(dueTotal);
+            this.$('.payment-paid-total').html(paidTotal);
+            this.$('.payment-remaining').html(remaining);
+            this.$('.payment-change').html(change);
             /*
             if(currentOrder.selected_orderline === undefined){
                 remaining = 1;  // What is this ? 

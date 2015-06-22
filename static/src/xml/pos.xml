@@ -400,27 +400,44 @@
         </div>
     </t>
 
+    <t t-name="ClientScreenWidget">
+        <div class="client-screen screen">
+            <section class="header-screen">
+                <h2 class="name-screen">Cliente</h2>
+            </section>
+            <!--<button class="client-ok">click me!</button>-->
+            <ul class="client-details">
+                <li class='client-detail-item'>
+                    <span class='label'>NIT:</span>
+                    <input class='detail client-vat' name='vat'  placeholder='Vat'></input>
+                </li>
+                <li class='client-detail-item'>
+                    <span class='label'>Nombre:</span>
+                    <input class='detail client-name' name='name'  placeholder='Name'></input>
+                </li>
+                <li class='client-detail-item'>
+                    <span class='label'>Celular:</span>
+                    <input class='detail client-mobile' name='mobile'  placeholder='Telefono Celular'></input>
+                </li>
+                <li class='client-detail-item'>
+                    <span class='label'>Telefono:</span>
+                    <input class='detail client-phone' name='phone'  placeholder='Telefono'></input>
+                </li>
+                <li class='client-detail-item'>
+                    <span class='label'>Direccion:</span>
+                    <input class='detail client-street' name='street'  placeholder='Direccion'></input>
+                </li>
+            </ul>
+        </div>
+    </t>
+
     <t t-name="InvoiceScreenWidget">
         <div class="invoice-screen screen">
-            <section class="invoice-top">
-                <!--<button class="client-ok">click me!</button>-->
-                <ul class="client-details">
-                    <li class='client-detail-item'>
-                        <span class='label'>NIT.:</span>
-                        <input class='detail client-vat' name='vat'  placeholder='Vat'></input>
-                    </li>
-                    <li class='client-detail-item'>
-                        <span class='label'>Nombre:</span>
-                        <input class='detail client-name' name='name'  placeholder='Name'></input>
-                    </li>
-                </ul>
+            <section class="header-screen">
+                <h2 class="name-screen">Facturacion</h2>
+                <button class="button-screen">Dolares</button>
+                <button class="button-screen">Bolivianos</button>
             </section>
-            <section class="invoice-bottom">
-                <!--<input class="total" value="0"/>-->
-                <span class="payment-due-total">0</span>
-                <span class="payment-paid-total">0</span>
-                <span class="payment-remaining">0</span>
-                <span class="payment-change">0</span>
                 <ul class="money-list">
                     <li class="money-details ticket" t-att-data-ticket-value="200">
                         <div class="money-detail-item">
@@ -463,7 +480,28 @@
                         </div>
                     </li>
                 </ul>
-            </section>
+                <section class="bottom-screen">
+                    <h2 class="name-bottom">MONTO</h2>
+                    <ul class="amounts">
+                        <li class="amount">
+                            <span class="title-amount">ORDEN</span>
+                            <span class="payment-due-total value-amount">0</span>
+                        </li>
+                        <li class="amount">
+                            <span class="title-amount">TOTAL</span>
+                            <span class="payment-paid-total value-amount">0</span>
+                        </li>
+                        <li class="amount">
+                            <span class="title-amount">FALTA</span>
+                            <span class="payment-remaining value-amount">0</span>
+                        </li>
+                        <li class="amount">
+                            <span class="title-amount">CAMBIO</span>
+                            <span class="payment-change value-amount">0</span>
+                        </li>
+                    </ul>
+                </section>
+                <!--<input class="total" value="0"/>-->
         </div>
     </t>
 
