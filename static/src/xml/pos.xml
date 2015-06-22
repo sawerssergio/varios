@@ -11,6 +11,7 @@
             <div class="pos-centerpane">
                 <div class="center-top">
                     <span class="placeholder-order-selector"/>
+                    <span class="placeholder-destination-selector"/>
                 </div>
                 <div class="center-middle">
                     <div class="screens"> 
@@ -129,6 +130,19 @@
                 <img class="action-image" src="/pos_kingdom/static/src/img/check.svg"/>
             </div>
         </div>
+    </t>
+
+    <t t-name="DestinationSelectorWidget">
+        <div class="destination-selector">
+            <ul class="destination-list">
+            </ul>
+        </div>
+    </t>
+
+    <t t-name="Destination">
+        <li t-att-class=" 'destination '+ (is_selected  ? ' selected' : '')" t-att-data-destination-id="destination.id">
+            <t t-esc="destination.name"/>
+        </li>
     </t>
 
     <t t-name="Value">

@@ -425,6 +425,9 @@ function openerp_pos_db(instance, module){
             }
             return count;
         },
+        get_destination_by_id(id){
+            return this.destination_by_id[id];
+        },
         get_attribute_value_by_id(id) {
             return this.attribute_value_by_id[id];
         },

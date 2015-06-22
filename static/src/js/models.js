@@ -291,7 +291,9 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         },{
             model:  'pos.destination',
             fields: ['id','name'],
-            domain: null,
+            domain: function(self){
+                return [['id','in', self.config.destination_ids]];
+            },
             loaded: function(self, destinations){
                 self.db.add_destinations(destinations);
             },
@@ -1064,6 +1066,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 paymentLines:   new module.PaymentlineCollection(),
                 name:           _t("Order ") + this.uid,
                 client:         null,
+                destination:    null,
             });
             this.selected_orderline   = undefined;
             this.selected_paymentline = undefined;
@@ -1175,11 +1178,9 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         },
         getSameTemplateOrderline: function(line){
             var orderlines = this.get('orderLines');
-            console.log(orderlines);
             var result = null;
             for(var c=0; c<orderlines.length; c++){
                var tmp = orderlines.at(c);
-               console.log(tmp);
                if(tmp && tmp.can_be_merged_tmpl(line)) {
                   result = tmp;
                   break;
@@ -1269,6 +1270,12 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         },
         get_receipt_type: function(){
             return this.receipt_type;
+        },
+        set_destination: function(destination){
+            this.set('destination',destination);
+        },
+        get_destination: function(){
+            return this.get('destination');
         },
         // the client related to the current order.
         set_client: function(client){

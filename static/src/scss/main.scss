@@ -640,6 +640,56 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
     font-size: 1.7em;
 }
 
+
+.destination-selector{
+    width: 60%;
+    height: 60%;
+    margin: auto;
+    margin-top: 2%;
+    color: white;
+    font-size: 1.2em;
+    .destination-list{
+        display: -webkit-flex;
+        display: flex;
+        height: 100%;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-align-content: stretch;
+        align-content: stretch;
+        -webkit-align-items: stretch;
+        align-items: stretch;
+        .destination{
+            background-color: $co_menu_red;
+            text-align: center;
+            line-height: 4em;
+            -webkit-order: 0;
+            -ms-flex-order: 0;
+            order: 0;
+            -webkit-flex: 0 1 25%;
+            -ms-flex: 0 1 25%;
+            flex: 0 1 25%;
+            -webkit-align-self: auto;
+            -ms-flex-item-align: auto;
+            align-self: auto;
+            border-left: .1em solid rgba(255,255,255,.6);
+            opacity: .6;
+        }
+        .destination:first-child{
+            border-radius: 1em 0 0 1em;
+            border-left: none !important;
+        }
+        .destination:last-child{
+            border-radius: 0 1em 1em 0;
+        }
+        .selected {
+            opacity: 1;
+        }
+    }
+}
 .invoice-screen {
     height: 100%;
     width: 100%;

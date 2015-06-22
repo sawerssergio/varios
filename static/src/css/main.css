@@ -718,14 +718,70 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   font-size: 1.7em;
 }
 
-/* line 643, ../scss/main.scss */
+/* line 644, ../scss/main.scss */
+.destination-selector {
+  width: 60%;
+  height: 60%;
+  margin: auto;
+  margin-top: 2%;
+  color: white;
+  font-size: 1.2em;
+}
+/* line 651, ../scss/main.scss */
+.destination-selector .destination-list {
+  display: -webkit-flex;
+  display: flex;
+  height: 100%;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+/* line 665, ../scss/main.scss */
+.destination-selector .destination-list .destination {
+  background-color: #c1272d;
+  text-align: center;
+  line-height: 4em;
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 25%;
+  -ms-flex: 0 1 25%;
+  flex: 0 1 25%;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+  border-left: 0.1em solid rgba(255, 255, 255, 0.6);
+  opacity: .6;
+}
+/* line 681, ../scss/main.scss */
+.destination-selector .destination-list .destination:first-child {
+  border-radius: 1em 0 0 1em;
+  border-left: none !important;
+}
+/* line 685, ../scss/main.scss */
+.destination-selector .destination-list .destination:last-child {
+  border-radius: 0 1em 1em 0;
+}
+/* line 688, ../scss/main.scss */
+.destination-selector .destination-list .selected {
+  opacity: 1;
+}
+
+/* line 693, ../scss/main.scss */
 .invoice-screen {
   height: 100%;
   width: 100%;
   height: 75%;
   width: 100%;
 }
-/* line 648, ../scss/main.scss */
+/* line 698, ../scss/main.scss */
 .invoice-screen .money-list {
   display: -webkit-flex;
   display: flex;
@@ -742,7 +798,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   height: 72%;
   width: 100%;
 }
-/* line 663, ../scss/main.scss */
+/* line 713, ../scss/main.scss */
 .invoice-screen .money-list .money-details {
   -webkit-order: 0;
   -ms-flex-order: 0;
@@ -754,15 +810,15 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   -ms-flex-item-align: auto;
   align-self: auto;
 }
-/* line 673, ../scss/main.scss */
+/* line 723, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item {
   width: 100%;
 }
-/* line 675, ../scss/main.scss */
+/* line 725, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item img {
   width: 100%;
 }
-/* line 678, ../scss/main.scss */
+/* line 728, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item .money-subitems {
   width: 100%;
   height: 100%;
@@ -779,7 +835,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   -webkit-align-items: stretch;
   align-items: stretch;
 }
-/* line 693, ../scss/main.scss */
+/* line 743, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item .money-subitems .money-detail-subitem {
   -webkit-order: 0;
   order: 0;
@@ -788,17 +844,17 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   -webkit-align-self: auto;
   align-self: auto;
 }
-/* line 700, ../scss/main.scss */
+/* line 750, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item .money-subitems .money-detail-subitem img {
   width: 100%;
 }
-/* line 708, ../scss/main.scss */
+/* line 758, ../scss/main.scss */
 .invoice-screen .bottom-screen {
   height: 12%;
   width: 100%;
   border-top: .1em solid white;
 }
-/* line 712, ../scss/main.scss */
+/* line 762, ../scss/main.scss */
 .invoice-screen .bottom-screen .name-bottom {
   display: inline-block;
   width: 30%;
@@ -806,7 +862,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   height: 40%;
   color: white;
 }
-/* line 719, ../scss/main.scss */
+/* line 769, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts {
   color: white;
   float: right;
@@ -814,7 +870,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   height: 100%;
   margin-top: 1%;
 }
-/* line 725, ../scss/main.scss */
+/* line 775, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount {
   float: left;
   height: 80%;
@@ -823,7 +879,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   background-color: #c1272d;
   border-left: 0.2em solid rgba(255, 255, 255, 0.7);
 }
-/* line 732, ../scss/main.scss */
+/* line 782, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount .title-amount {
   height: 28%;
   width: 100%;
@@ -832,7 +888,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   font-size: .8em;
   color: #ffdf1b;
 }
-/* line 740, ../scss/main.scss */
+/* line 790, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount .value-amount {
   height: 70%;
   width: 100%;
@@ -840,22 +896,22 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   padding: 1% 0;
   font-size: 1.6em;
 }
-/* line 748, ../scss/main.scss */
+/* line 798, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount:first-child {
   border-left: none !important;
   border-radius: .5em 0 0 .5em;
 }
-/* line 752, ../scss/main.scss */
+/* line 802, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount:last-child {
   border-radius: 0 .5em .5em 0;
 }
 
-/* line 759, ../scss/main.scss */
+/* line 809, ../scss/main.scss */
 .client-screen {
   width: 100%;
   height: 100%;
 }
-/* line 762, ../scss/main.scss */
+/* line 812, ../scss/main.scss */
 .client-screen .client-details {
   height: 85%;
   width: 100%;
@@ -872,7 +928,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   -webkit-align-items: stretch;
   align-items: stretch;
 }
-/* line 777, ../scss/main.scss */
+/* line 827, ../scss/main.scss */
 .client-screen .client-details .client-detail-item {
   font-size: larger;
   color: white;
@@ -885,7 +941,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   max-height: 16%;
   font-size: 1.4em;
 }
-/* line 788, ../scss/main.scss */
+/* line 838, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .label {
   display: inline-block;
   width: 18%;
@@ -894,7 +950,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   text-align: right;
   line-height: 3.5em;
 }
-/* line 796, ../scss/main.scss */
+/* line 846, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .detail {
   display: inline-block;
   width: 75%;
@@ -908,37 +964,37 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application > div {
   margin: 2.5%;
 }
 
-/* line 812, ../scss/main.scss */
+/* line 862, ../scss/main.scss */
 .font-black {
   font-family: Roboto-black;
 }
 
-/* line 815, ../scss/main.scss */
+/* line 865, ../scss/main.scss */
 .font-bold {
   font-family: Roboto-bold;
 }
 
-/* line 818, ../scss/main.scss */
+/* line 868, ../scss/main.scss */
 .font-bold-condensed {
   font-family: Roboto-bold-condensed;
 }
 
-/* line 821, ../scss/main.scss */
+/* line 871, ../scss/main.scss */
 .font-medium {
   font-family: Roboto-medium;
 }
 
-/* line 824, ../scss/main.scss */
+/* line 874, ../scss/main.scss */
 .font-regular {
   font-family: Roboto-regular;
 }
 
-/* line 828, ../scss/main.scss */
+/* line 878, ../scss/main.scss */
 .selected-product img {
   filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
 }
 
-/* line 832, ../scss/main.scss */
+/* line 882, ../scss/main.scss */
 .selected {
   background-color: #cb3629;
 }
