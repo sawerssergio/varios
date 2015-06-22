@@ -92,6 +92,8 @@ class pos_config(osv.osv):
         'barcode_price':    fields.char('Price Barcodes',   size=64, help='The pattern that identifies a product with a barcode encoded price'),
         'barcode_weight':   fields.char('Weight Barcodes',  size=64, help='The pattern that identifies a product with a barcode encoded weight'),
         'barcode_discount': fields.char('Discount Barcodes',  size=64, help='The pattern that identifies a product with a barcode encoded discount'),
+        'authorization':fields.char('authorization', size=64, help='authorization'),
+        'key':fields.char('key',size=64, help='key'),
     }
 
     def _check_cash_control(self, cr, uid, ids, context=None):
