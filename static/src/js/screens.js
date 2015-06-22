@@ -653,13 +653,20 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         back_screen: 'products',
         init: function(parent, options){
             this._super(parent, options);
+            this.is_dolar=false;
         },
         show_leftpane: false,
         auto_back: true,
         show: function(){
             var self = this;
             this._super();
-            this.renderElement();
+
+            var cashregister = this.pos.cashregisters[0];
+            self.pos.get('selectedOrder').addPaymentline(cashregister);
+        },
+        renderElement: function(){
+            var self = this;
+            this._super();
 
             this.$(".money-list .ticket").on("click",function(event) {
                 var currentOrder = self.pos.get('selectedOrder');
@@ -667,13 +674,20 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 self.set_value(paidTotal);
                 self.update_payment_summary();
             });
-            var cashregister = this.pos.cashregisters[0];
-            self.pos.get('selectedOrder').addPaymentline(cashregister);
+
+            this.$(".dolar").click(function(){
+                if(!self.is_dolar){
+                    self.is_dolar=true;
+                    self.renderElement();
+                }
+            });
+            this.$(".bolivian").click(function(){
+                if(self.is_dolar){
+                    self.is_dolar=false;
+                    self.renderElement();
+                }
+            });
             this.update_payment_summary();
-            /*this.$(".total").keyup(function(event){
-                self.set_value(event.currentTarget.value);
-                self.update_payment_summary();
-            });*/
         },
         update_payment_summary: function() {
             var currentOrder = this.pos.get('selectedOrder');

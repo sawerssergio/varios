@@ -11,27 +11,6 @@
             <div class="pos-centerpane">
                 <div class="center-top">
                     <span class="placeholder-order-selector"/>
-                    <span class="placeholder-invoice-selector"/>
-                    <div class="invoice-option-selector oe_hidden">
-                        <div class="side-pane">
-                            <div class="type-ticket left-item">Bolivianos</div>
-                            <div class="type-ticket left-item">Dolares</div>
-                        </div>
-                        <div class="center-pane">
-                            <div class="center-top">
-                                <div class="title-quantity">EFECTIVO</div>
-                                <div class="units-quantity">200</div>
-                            </div>
-                            <div class="center-bottom">
-                                <div class="title-quantity">CAMBIO</div>
-                                <div class="units-quantity">50</div>
-                            </div>
-                        </div>
-                        <div class="side-pane">
-                            <div class="type-ticket right-item">Mezanine</div>
-                            <div class="type-ticket right-item">Mezon</div>
-                        </div>
-                    </div>
                 </div>
                 <div class="center-middle">
                     <div class="screens"> 
@@ -403,27 +382,27 @@
     <t t-name="ClientScreenWidget">
         <div class="client-screen screen">
             <section class="header-screen">
-                <h2 class="name-screen">Cliente</h2>
+                <h2 class="name-screen font-bold-condensed">CLIENTE</h2>
             </section>
             <!--<button class="client-ok">click me!</button>-->
             <ul class="client-details">
-                <li class='client-detail-item'>
+                <li class='client-detail-item font-medium'>
                     <span class='label'>NIT:</span>
                     <input class='detail client-vat' name='vat'  placeholder='Vat'></input>
                 </li>
-                <li class='client-detail-item'>
+                <li class='client-detail-item font-medium'>
                     <span class='label'>Nombre:</span>
                     <input class='detail client-name' name='name'  placeholder='Name'></input>
                 </li>
-                <li class='client-detail-item'>
+                <li class='client-detail-item font-medium'>
                     <span class='label'>Celular:</span>
                     <input class='detail client-mobile' name='mobile'  placeholder='Telefono Celular'></input>
                 </li>
-                <li class='client-detail-item'>
+                <li class='client-detail-item font-medium'>
                     <span class='label'>Telefono:</span>
                     <input class='detail client-phone' name='phone'  placeholder='Telefono'></input>
                 </li>
-                <li class='client-detail-item'>
+                <li class='client-detail-item font-medium'>
                     <span class='label'>Direccion:</span>
                     <input class='detail client-street' name='street'  placeholder='Direccion'></input>
                 </li>
@@ -434,75 +413,118 @@
     <t t-name="InvoiceScreenWidget">
         <div class="invoice-screen screen">
             <section class="header-screen">
-                <h2 class="name-screen">Facturacion</h2>
-                <button class="button-screen">Dolares</button>
-                <button class="button-screen">Bolivianos</button>
+                <h2 class="name-screen font-bold-condensed">FACTURACION</h2>
+                <button t-att-class=" 'font-regular button-screen dolar'+ (widget.is_dolar  ? ' selected' : '')">Dolares</button>
+                <button t-att-class=" 'font-regular button-screen bolivian'+ (widget.is_dolar  ? '' : ' selected')">Bolivianos</button>
             </section>
-                <ul class="money-list">
-                    <li class="money-details ticket" t-att-data-ticket-value="200">
-                        <div class="money-detail-item">
-                            <img src="/pos_kingdom/static/src/img/two_hundred.svg"/>
-                        </div>
+            <t t-if="widget.is_dolar">
+                <t t-call="DolarTickets"/>
+            </t>
+            <t t-if="!widget.is_dolar">
+                <t t-call="BolivianTickets"/>
+            </t>
+            <section class="bottom-screen">
+                <h2 class="name-bottom font-bold-condensed">MONTO</h2>
+                <ul class="amounts font-black">
+                    <li class="amount">
+                        <span class="title-amount">ORDEN</span>
+                        <span class="payment-due-total value-amount">0</span>
                     </li>
-                    <li class="money-details ticket" t-att-data-ticket-value="100">
-                        <div class="money-detail-item">
-                            <img src="/pos_kingdom/static/src/img/one_hundred.svg"/>
-                        </div>
+                    <li class="amount">
+                        <span class="title-amount">TOTAL</span>
+                        <span class="payment-paid-total value-amount">0</span>
                     </li>
-                    <li class="money-details ticket" t-att-data-ticket-value="50">
-                        <div class="money-detail-item">
-                            <img src="/pos_kingdom/static/src/img/fifty.svg"/>
-                        </div>
+                    <li class="amount">
+                        <span class="title-amount">FALTA</span>
+                        <span class="payment-remaining value-amount">0</span>
                     </li>
-                    <li class="money-details ticket" t-att-data-ticket-value="20">
-                        <div class="money-detail-item">
-                            <img src="/pos_kingdom/static/src/img/twenty.svg"/>
-                        </div>
-                    </li>
-                    <li class="money-details ticket" t-att-data-ticket-value="10">
-                        <div class="money-detail-item">
-                            <img src="/pos_kingdom/static/src/img/ten.svg"/>
-                        </div>
-                    </li>
-                    <li class="money-details">
-                        <div class="money-detail-item">
-                            <ul class="money-subitems">
-                                <li class="money-detail-subitem ticket" t-att-data-ticket-value="5">
-                                    <img src="/pos_kingdom/static/src/img/five.svg"/>
-                                </li>
-                                <li class="money-detail-subitem ticket" t-att-data-ticket-value="2">
-                                    <img src="/pos_kingdom/static/src/img/two.svg"/>
-                                </li>
-                                <li class="money-detail-subitem ticket" t-att-data-ticket-value="1">
-                                    <img src="/pos_kingdom/static/src/img/one.svg"/>
-                                </li>
-                            </ul>
-                        </div>
+                    <li class="amount">
+                        <span class="title-amount">CAMBIO</span>
+                        <span class="payment-change value-amount">0</span>
                     </li>
                 </ul>
-                <section class="bottom-screen">
-                    <h2 class="name-bottom">MONTO</h2>
-                    <ul class="amounts">
-                        <li class="amount">
-                            <span class="title-amount">ORDEN</span>
-                            <span class="payment-due-total value-amount">0</span>
+            </section>
+        </div>
+    </t>
+
+    <t t-name="BolivianTickets">
+        <ul class="money-list">
+            <li class="money-details ticket" t-att-data-ticket-value="200">
+                <div class="money-detail-item">
+                    <img src="/pos_kingdom/static/src/img/bob_two_hundred.svg"/>
+                </div>
+            </li>
+            <li class="money-details ticket" t-att-data-ticket-value="100">
+                <div class="money-detail-item">
+                    <img src="/pos_kingdom/static/src/img/bob_one_hundred.svg"/>
+                </div>
+            </li>
+            <li class="money-details ticket" t-att-data-ticket-value="50">
+                <div class="money-detail-item">
+                    <img src="/pos_kingdom/static/src/img/bob_fifty.svg"/>
+                </div>
+            </li>
+            <li class="money-details ticket" t-att-data-ticket-value="20">
+                <div class="money-detail-item">
+                    <img src="/pos_kingdom/static/src/img/bob_twenty.svg"/>
+                </div>
+            </li>
+            <li class="money-details ticket" t-att-data-ticket-value="10">
+                <div class="money-detail-item">
+                    <img src="/pos_kingdom/static/src/img/bob_ten.svg"/>
+                </div>
+            </li>
+            <li class="money-details">
+                <div class="money-detail-item">
+                    <ul class="money-subitems">
+                        <li class="money-detail-subitem ticket" t-att-data-ticket-value="5">
+                            <img src="/pos_kingdom/static/src/img/bob_five.svg"/>
                         </li>
-                        <li class="amount">
-                            <span class="title-amount">TOTAL</span>
-                            <span class="payment-paid-total value-amount">0</span>
+                        <li class="money-detail-subitem ticket" t-att-data-ticket-value="2">
+                            <img src="/pos_kingdom/static/src/img/bob_two.svg"/>
                         </li>
-                        <li class="amount">
-                            <span class="title-amount">FALTA</span>
-                            <span class="payment-remaining value-amount">0</span>
-                        </li>
-                        <li class="amount">
-                            <span class="title-amount">CAMBIO</span>
-                            <span class="payment-change value-amount">0</span>
+                        <li class="money-detail-subitem ticket" t-att-data-ticket-value="1">
+                            <img src="/pos_kingdom/static/src/img/bob_one.svg"/>
                         </li>
                     </ul>
-                </section>
-                <!--<input class="total" value="0"/>-->
-        </div>
+                </div>
+            </li>
+        </ul>
+    </t>
+
+    <t t-name="DolarTickets">
+        <ul class="money-list">
+            <li class="money-details ticket" t-att-data-ticket-value="693">
+                <div class="money-detail-item">
+                    <img src="/pos_kingdom/static/src/img/dolar_one_hundred.svg"/>
+                </div>
+            </li>
+            <li class="money-details ticket" t-att-data-ticket-value="346">
+                <div class="money-detail-item">
+                    <img src="/pos_kingdom/static/src/img/dolar_fifty.svg"/>
+                </div>
+            </li>
+            <li class="money-details ticket" t-att-data-ticket-value="138">
+                <div class="money-detail-item">
+                    <img src="/pos_kingdom/static/src/img/dolar_twenty.svg"/>
+                </div>
+            </li>
+            <li class="money-details ticket" t-att-data-ticket-value="69">
+                <div class="money-detail-item">
+                    <img src="/pos_kingdom/static/src/img/dolar_ten.svg"/>
+                </div>
+            </li>
+            <li class="money-details ticket" t-att-data-ticket-value="34">
+                <div class="money-detail-item">
+                    <img src="/pos_kingdom/static/src/img/dolar_five.svg"/>
+                </div>
+            </li>
+            <li class="money-details ticket" t-att-data-ticket-value="6">
+                <div class="money-detail-item">
+                    <img src="/pos_kingdom/static/src/img/dolar_one.svg"/>
+                </div>
+            </li>
+        </ul>
     </t>
 
     <t t-name="ClientLine">

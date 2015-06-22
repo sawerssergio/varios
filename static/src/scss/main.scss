@@ -181,6 +181,11 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
                         margin: 3% 5%;
                         background-color: $co_menu_red;
                         border-radius: .8em;
+                        color: white;
+                        opacity: .5;
+                    }
+                    .selected{
+                        opacity: 1;
                     }
                 }
             }
@@ -610,100 +615,6 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
             background: -ms-linear-gradient(top, rgba(193,39,44,1) 0%, rgba(145,29,35,1) 100%);
             background: linear-gradient(to bottom, rgba(193,39,44,1) 0%, rgba(145,29,35,1) 100%);
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c1272c', endColorstr='#911d23', GradientType=0 );
-        }
-    }
-}
-
-.invoice-option-selector {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    -webkit-justify-content: space-around;
-    justify-content: space-around;
-    -webkit-align-content: stretch;
-    align-content: stretch;
-    -webkit-align-items: stretch;
-    align-items: stretch;
-    border-radius: 1em;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 1%;
-    height: 95%;
-    background: rgba(193,39,44,1);
-    background: -moz-linear-gradient(top, rgba(193,39,44,1) 0%, rgba(145,29,35,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(193,39,44,1)), color-stop(100%, rgba(145,29,35,1)));
-    background: -webkit-linear-gradient(top, rgba(193,39,44,1) 0%, rgba(145,29,35,1) 100%);
-    background: -o-linear-gradient(top, rgba(193,39,44,1) 0%, rgba(145,29,35,1) 100%);
-    background: -ms-linear-gradient(top, rgba(193,39,44,1) 0%, rgba(145,29,35,1) 100%);
-    background: linear-gradient(to bottom, rgba(193,39,44,1) 0%, rgba(145,29,35,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c1272c', endColorstr='#911d23', GradientType=0 );
-    .side-pane {
-        -webkit-order: 0;
-        order: 0;
-        -webkit-flex: 0 1 41%;
-        flex: 0 1 41%;
-        -webkit-align-self: auto;
-        align-self: stretch;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex-direction: column;
-        flex-direction: column;
-        -webkit-flex-wrap: nowrap;
-        flex-wrap: nowrap;
-        -webkit-justify-content: space-around;
-        justify-content: space-around;
-        -webkit-align-content: stretch;
-        align-content: stretch;
-        -webkit-align-items: flex-start;
-        align-items: flex-start;
-        .type-ticket {
-            background-color: rgba(0,0,0,0.5);
-            display: block;
-            clear: both;
-            width: 50%;
-            padding: .4em;
-            color: white;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.2em;
-            -webkit-order: 0;
-            order: 0;
-            -webkit-flex: 0 1 auto;
-            flex: 0 1 auto;
-        }
-        .left-item {
-            border-radius: 0 .5em .5em 0;
-            float: left;
-            -webkit-align-self: flex-start;
-            align-self: flex-start;
-        }
-        .right-item {
-            border-radius: .5em 0 0 .5em;
-            float: right;
-            -webkit-align-self: flex-end;
-            align-self: flex-end;
-        }
-    }
-    .center-pane {
-        -webkit-order: 0;
-        order: 0;
-        -webkit-flex: 0 1 18%;
-        flex: 0 1 18%;
-        -webkit-align-self: auto;
-        align-self: auto;
-        background-color: rgb(0,0,0);
-        .center-top {
-            display: inline-block;
-            width: 100%;
-            color: $co_letter_yellow;
-        }
-        .center-bottom {
-            display: inline-block;
-            width: 100%;
-            color: white;
         }
     }
 }
