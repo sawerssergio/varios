@@ -1,0 +1,3 @@
+[submodule "codigoControl"]
+	path = codigoControl
+	url = gitolite3@52.26.57.210:codigoControl
