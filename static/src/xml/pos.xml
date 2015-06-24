@@ -402,23 +402,23 @@
             <ul class="client-details">
                 <li class='client-detail-item font-medium'>
                     <span class='label'>NIT:</span>
-                    <input class='detail client-vat' name='vat'  placeholder='Vat'></input>
+                    <input class='detail client-vat' name='vat'  placeholder='Vat' type="number" onfocus="blur()"></input>
                 </li>
                 <li class='client-detail-item font-medium'>
                     <span class='label'>Nombre:</span>
-                    <input class='detail client-name' name='name'  placeholder='Name'></input>
+                    <input class='detail client-name' name='name'  placeholder='Name' type="text" onfocus="blur()"></input>
                 </li>
                 <li class='client-detail-item font-medium'>
                     <span class='label'>Celular:</span>
-                    <input class='detail client-mobile' name='mobile'  placeholder='Telefono Celular'></input>
+                    <input class='detail client-mobile' name='mobile'  placeholder='Telefono Celular' type="number" onfocus="blur()"></input>
                 </li>
                 <li class='client-detail-item font-medium'>
                     <span class='label'>Telefono:</span>
-                    <input class='detail client-phone' name='phone'  placeholder='Telefono'></input>
+                    <input class='detail client-phone' name='phone'  placeholder='Telefono' type="number" onfocus="blur()"></input>
                 </li>
                 <li class='client-detail-item font-medium'>
                     <span class='label'>Direccion:</span>
-                    <input class='detail client-street' name='street'  placeholder='Direccion'></input>
+                    <input class='detail client-street' name='street'  placeholder='Direccion' type="text" onfocus="blur()"></input>
                 </li>
             </ul>
         </div>
@@ -1535,19 +1535,23 @@
         </div>
     </t>
 
-    <t t-name="OnscreenKeyboardLiteral">
+    <t t-name="OnscreenKeyboardNumeral">
         <div class="keyboard_frame">
-            <ul class="literal_keyboard font-bold">
-                <li class="symbol firstitem row_qwerty"><span class="off">1</span></li>
+            <ul class="keyboard numeral_keyboard font-bold">
+                <li class="symbol firstitem"><span class="off">1</span></li>
                 <li class="symbol"><span class="off">2</span></li>
                 <li class="symbol"><span class="off">3</span></li>
-                <li class="symbol"><span class="off">4</span></li>
+                <li class="symbol firstitem"><span class="off">4</span></li>
                 <li class="symbol"><span class="off">5</span></li>
                 <li class="symbol"><span class="off">6</span></li>
-                <li class="symbol"><span class="off">7</span></li>
+                <li class="symbol firstitem"><span class="off">7</span></li>
                 <li class="symbol"><span class="off">8</span></li>
                 <li class="symbol"><span class="off">9</span></li>
-                <li class="symbol delete"><span class="off">DELETE</span></li>
+                <li class="symbol delete firstitem">
+                    <span class="off">
+                        <img src="/pos_kingdom/static/src/img/backspace.png" width="29" height="25" />
+                    </span>
+                </li>
                 <li class="symbol"><span class="off">0</span></li>
                 <li class="symbol return"><span class="off">NEXT</span></li>
             </ul>

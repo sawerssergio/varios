@@ -24,7 +24,9 @@ function openerp_pos_keyboard(instance, module){ //module is instance.pos_kingdo
             this.keyboard_model = options.keyboard_model || 'full';
             if(this.keyboard_model === 'full'){
                 this.template = 'OnscreenKeyboardFull';
-            }
+             } else if(this.keyboard_model === 'numeral') {
+                this.template = 'OnscreenKeyboardNumeral';
+             }
 
             this.input_selector = options.input_selector || '.searchbox input';
             this.$target = null;
@@ -35,10 +37,20 @@ function openerp_pos_keyboard(instance, module){ //module is instance.pos_kingdo
             this.numlock  = false;
         },
         
-        connect : function(target){
+        connect : function(target, model){
             var self = this;
             this.$target = $(target);
-            this.$target.focus(function(){self.show();});
+            this.$target.focus(function(){
+                console.log("focus");
+            });
+            if(model === 'number'){
+                this.template = 'OnscreenKeyboardNumeral';
+            } else {
+                this.template = 'OnscreenKeyboardSimple';
+            }
+            self.renderElement();
+            self.show();
+            //this.show();
         },
         generateEvent: function(type,key){
             var event = document.createEvent("KeyboardEvent");
@@ -145,11 +157,9 @@ function openerp_pos_keyboard(instance, module){ //module is instance.pos_kingdo
         },
 
         //called after the keyboard is in the DOM, sets up the key bindings.
-        start: function(){
+        renderElement: function(){
             var self = this;
-
-            //this.show();
-
+            this._super();
 
             $('.close_button').click(function(){ 
                 //self.deleteAllCharacters();

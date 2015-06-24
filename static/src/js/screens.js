@@ -566,14 +566,13 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
 
             if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
                 self.$el.find( 'input').each( function( index , input ){
-                    self.pos_widget.onscreen_keyboard.connect( self.$( input ) );
-                    input.addEventListener( 'click' , function( evt ){
+                    //self.pos_widget.onscreen_keyboard.connect( self.$( input ), input.getAttribute('type'));
+                    input.addEventListener( window.is_mobile ? 'touchend' : 'click' , function( evt ){
                         self.$( evt.target ).parent().parent()
                         .find('input').css('background' , 'transparent');
                         self.$( evt.target ).css("background", '#1F3710');
-                        self.pos_widget.onscreen_keyboard.connect( self.$( evt.target ) );
+                        self.pos_widget.onscreen_keyboard.connect( self.$( evt.target ), input.getAttribute('type'));
                     });
-
                 });
                 //this.pos_widget.onscreen_keyboard.connect(this.$('.client-vat'));
             }
