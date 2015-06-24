@@ -1415,6 +1415,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         start: function() {
             this._super(arguments[0],{});
             var self = this;
+            window.is_mobile = false;
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                window.is_mobile = true;
+            }
             return self.pos.ready.done(function() {
                 // remove default webclient handlers that induce click delay
                 $(document).off();
