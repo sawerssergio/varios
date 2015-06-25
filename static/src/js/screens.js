@@ -573,11 +573,16 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                         self.$( evt.target ).css("background", '#C1272D');
                         self.pos_widget.onscreen_keyboard.connect( self.$( evt.target ), input.getAttribute('type'), function(){
                             var inputs = $(input_event).closest('.client-details').find(':input');
-                            if(window.is_mobile){
-                                inputs.eq( inputs.index(input_event)+ 1 ).trigger('touchend');
-                            } else {
-                                inputs.eq( inputs.index(input_event)+ 1 ).focus().click();
+                            var next_input = inputs.eq( inputs.index(input_event)+ 1 );
+                            if(next_input.length !== 0 ){
+                                if(window.is_mobile){
+                                    next_input.trigger('touchend');
+                                } else {
+                                    next_input.focus().click();
+                                }
+                                return;
                             }
+                            self.pos_widget.onscreen_keyboard.hide();
                         });
                     });
                 });
