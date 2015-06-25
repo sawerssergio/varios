@@ -37,7 +37,7 @@ function openerp_pos_keyboard(instance, module){ //module is instance.pos_kingdo
             this.numlock  = false;
         },
         
-        connect : function(target, model){
+        connect : function(target, model, enter_execute){
             var self = this;
             this.$target = $(target);
             this.$target.focus(function(){
@@ -48,6 +48,7 @@ function openerp_pos_keyboard(instance, module){ //module is instance.pos_kingdo
             } else {
                 this.template = 'OnscreenKeyboardSimple';
             }
+            this.enter_execute = enter_execute;
             self.renderElement();
             self.show();
             //this.show();
@@ -196,7 +197,10 @@ function openerp_pos_keyboard(instance, module){ //module is instance.pos_kingdo
                 if ($this.hasClass('symbol')) character = $('span:visible', $this).html();
                 if ($this.hasClass('space')) character = ' ';
                 if ($this.hasClass('tab')) character = "\t";
-                if ($this.hasClass('return')) character = "\n";
+                if ($this.hasClass('return')){
+                    self.enter_execute();
+                    character = "\n"
+                };
                 
                 // Uppercase letter
                 if ($this.hasClass('uppercase')) character = character.toUpperCase();

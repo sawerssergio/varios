@@ -566,23 +566,22 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
 
             if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
                 self.$el.find( 'input').each( function( index , input ){
-                    //self.pos_widget.onscreen_keyboard.connect( self.$( input ), input.getAttribute('type'));
-                    input.addEventListener( window.is_mobile ? 'touchend' : 'click' , function( evt ){
+                    $(input).on( window.is_mobile ? 'touchend' : 'click' , function( evt ){
+                        var input_event = this;
                         self.$( evt.target ).parent().parent()
                         .find('input').css('background' , 'transparent');
-                        self.$( evt.target ).css("background", '#1F3710');
-                        self.pos_widget.onscreen_keyboard.connect( self.$( evt.target ), input.getAttribute('type'));
+                        self.$( evt.target ).css("background", '#C1272D');
+                        self.pos_widget.onscreen_keyboard.connect( self.$( evt.target ), input.getAttribute('type'), function(){
+                            var inputs = $(input_event).closest('.client-details').find(':input');
+                            if(window.is_mobile){
+                                inputs.eq( inputs.index(input_event)+ 1 ).trigger('touchend');
+                            } else {
+                                inputs.eq( inputs.index(input_event)+ 1 ).focus().click();
+                            }
+                        });
                     });
                 });
-                //this.pos_widget.onscreen_keyboard.connect(this.$('.client-vat'));
             }
-            
-            /*this.$('.client-vat').click(function(){
-                self.pos_widget.onscreen_keyboard.connect(self.$('.client-vat'));
-            });
-            this.$('.client-name').click(function(){
-                self.pos_widget.onscreen_keyboard.connect(self.$('.client-name'));
-            });*/
             //This should be enable only for event click!
             /*this.$(".client-ok").click(function() {
                 self.save_client_details({});
