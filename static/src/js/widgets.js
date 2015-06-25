@@ -146,14 +146,14 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     return;
                 }
                 if(event.target.className === "product-delete-button") {
-                   self.pos.get('selectedOrder').removeOrderline(this.orderline);
+                   self.pos.get('selectedOrder').deleteOrderline(this.orderline);
                 } else {
                     self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product(); 
                     self.pos.get('selectedOrder').deselectLine();
                     self.pos.get('selectedOrder').selectLine(this.orderline);
                     self.pos_widget.numpad.state.reset();
                     //FIXME this should be on a diferent method
-                    self.pos.pos_widget.product_options_widget.edit_options(this.orderline.template,{'quantity':this.orderline.get_quantity(), 'details': this.orderline.details });
+                    self.pos.pos_widget.product_options_widget.edit_options(this.orderline.template,{'quantity':this.orderline.get_quantity_display(), 'details': this.orderline.details });
                     var template_categ = this.orderline.template.pos_categ_id[0];
                     self.pos.pos_widget.product_categories_widget.change_category(template_categ,this.orderline.template.id);
 
@@ -273,7 +273,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         rerender_orderline: function(order_line){
             var node = order_line.node;
             var replacement_line = this.render_orderline(order_line);
-            node.parentNode.replaceChild(replacement_line,node);
+            if(node.parentNode){
+                node.parentNode.replaceChild(replacement_line,node);
+            }
         },
         // overriding the openerp framework replace method for performance reasons
         replace: function($target){
@@ -298,7 +300,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var list_container = el_node.querySelector('.orderlines');
             for(var i = 0, len = orderlines.length; i < len; i++){
                 var orderline = this.render_orderline(orderlines[i]);
-                list_container.appendChild(orderline);
+                if(orderlines[i].not_display == undefined){
+                    list_container.appendChild(orderline);
+                }
             }
 
             if(this.el && this.el.parentNode){
@@ -314,13 +318,14 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var pos_widget = this.pos_widget;
             var current_order = this.pos.get('selectedOrder');
             this.el.querySelector('.action-next-image').addEventListener( "click" , function(){
-                self.pos.pos_widget.product_options_widget.hide();
+                self.pos.pos_widget.product_options_widget.reset();
+                self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product();
                 if ( pos_widget.screen_selector.get_current_screen() === "products" ){
                     pos_widget.screen_selector.set_current_screen('client');
                 }
                 else if ( pos_widget.screen_selector.get_current_screen() === "client" ){
                     pos_widget.screen_selector.set_current_screen('invoice');
-        }
+                }
                 else if( pos_widget.screen_selector.get_current_screen() === "invoice" ){
                     if(self.pos_widget.destination_selector_widget.only_one_destination()){
                         pos_widget.destination_selector_widget.hide();
@@ -495,10 +500,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 if ( pos_widget.screen_selector.get_current_screen() !== "products" ) {
                     pos_widget.screen_selector.set_current_screen('products');
                 }
+                self.pos.pos_widget.product_options_widget.reset();
                 self.product_list_widget.set_deselected_product();
                 self.pos.get('selectedOrder').deselectLine();
-                self.pos.pos_widget.product_options_widget.hide();
-                self.pos.pos_widget.product_options_widget.attributes = {};
                 //DOMStringMap
                 self.set_category(self.pos.db.get_category_by_id(Number(this.dataset['categoryId'])));
                 //FIXME [KINGDOM][VD] This should be separated into another method of this widget.
@@ -909,9 +913,16 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.attributes = {};
             this.renderElement();
             this.set_total_quantity(options.quantity);
-            options.details.forEach(function(detail){
-                self.set_value(detail.id,detail.detail_qty);
-            });
+            if(this.selected_template.line){
+                options.details.forEach(function(detail){
+                    self.set_value(detail.id,detail.detail_qty);
+                });
+            }else{
+                self.set_value(this.selected_template.id,options.quantity);
+            
+            }
+
+
             this.show();
         },
         set_template:function(product_template){
@@ -1031,9 +1042,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 }else{
                     self.edit_line_order(self.pos.get('selectedOrder').selected_orderline);
                 }
-                self.attributes = {};
-                self.selected_template = undefined;
-                self.hide();
+                self.reset();
             });
             this.hide();
         },
@@ -1049,21 +1058,22 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 orderline.set_total_quantity();
             }else{
                 orderline.set_quantity(this.total_quantity);
-                /*for(attr in this.attributes){
-                    window._attr = this.attributes;
-                    orderline.set_quantity(this.attributes[attr]);
-                }*/
+                orderline.set_quantity_display(this.total_quantity);
+                
+                if(orderline.quantity == 0){
+                    this.pos.get('selectedOrder').removeOrderline(orderline);
+                }
             }
             this.pos.pos_widget.order_widget.rerender_orderline(orderline);
             this.editable = false;
-            window._orderline = orderline
         },
-        add_template_order:function(product_template){
+        add_template_order:function(product_template,attrs){
+            var attributes = attrs || this.attributes;
             var self = this;
             var products = this.pos.db.get_product_by_template(this.selected_template.id);
             if(product_template.line){
-                for(value_id in this.attributes){
-                    if(this.attributes[value_id]>0){
+                for(value_id in attributes){
+                    if(attributes[value_id]>0){
                         product_list = products.filter(function(product){
                             return product.attribute_value_ids[0] == value_id;
                         });
@@ -1071,7 +1081,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                         self.pos.get('selectedOrder').addProduct(product_list[0],{
                             template: product_template,
                             value: value,
-                            attributes: this.attributes
+                            attributes: attributes,
+                            quantity: attributes[value_id]
                         });
                     }
                 }
@@ -1081,6 +1092,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     quantity: this.total_quantity
                 });
             }
+        },
+        reset: function(){
+            this.attributes = {};
+            this.selected_template = undefined;
+            this.hide();
         }
     });
 

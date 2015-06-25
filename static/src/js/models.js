@@ -694,7 +694,8 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             this.selected = false;
             this.id       = orderline_id++;
             this.details = [];
-
+            this.sub_orderlines = [];
+            this.quantity_display = 1;
         },
         clone: function(){
             var orderline = new module.Orderline({},{
@@ -717,19 +718,6 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             this.discountStr = '' + disc;
             this.trigger('change',this);
         },
-        set_quantity_leg: function(quantity){
-            this.quantity_leg = quantity;
-        },
-        set_quantity_chest: function(quantity){
-            this.quantity_chest = quantity;
-        },
-        set_quantity_normal: function(quantity){
-            this.quantity_normal = quantity;
-        
-        },
-        set_converted: function(bool){
-            this.converted = bool;
-        },
         // returns the discount [0,100]%
         get_discount: function(){
             return this.discount;
@@ -739,6 +727,9 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         },
         get_product_type: function(){
             return this.type;
+        },
+        set_quantity_display: function(quantity){
+            this.quantity_display = quantity;
         },
         // sets the quantity of the product. The quantity will be rounded according to the 
         // product's unity of measure properties. Quantities greater than zero will not get 
@@ -766,6 +757,9 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             this.trigger('change',this);
         },
         // return the quantity of product
+        get_quantity_display: function(){
+            return this.quantity_display;
+        },
         get_quantity: function(){
             return this.quantity;
         },
@@ -823,7 +817,10 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             }
         },
         merge: function(orderline){
-            this.set_quantity(this.get_quantity() + orderline.get_quantity());
+            var quantity = this.get_quantity() + orderline.get_quantity(); 
+            this.set_quantity(quantity);
+            this.set_quantity_display(quantity);
+            this.pos.pos_widget.order_widget.renderElement();
         },
         can_be_merged_tmpl: function(orderline){
             var res = false;
@@ -839,15 +836,102 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             for(var i = 0,len = this.details.length;i<len;i++){
                 total = total + this.details[i]['detail_qty'];
             }
-            this.set_quantity(total);
+            if(this.not_display != undefined){
+                this.set_quantity(total);
+            }else{
+                this.set_quantity_display(total);
+            }
+        },
+        remove_detail: function(id){
+            var pos = undefined;
+            for(var i = 0,len = this.details.length;i<len;i++){
+                if(this.details[i]['id'] == id){
+                    pos = i;
+                    break;
+                }
+            }
+            if(pos == 0){
+                this.details.splice(pos,1);
+            
+            }else{
+                this.details.splice(pos,pos);
+            }
+
+        },
+        remove_suborderline_at: function(index){
+            if(index == 0){
+                this.sub_orderlines.splice(index,1);
+            }else{
+                this.sub_orderlines.splice(index,index); 
+            }
+        },
+        set_detail: function(id,qty){ 
+            var sameDetail = this.details.filter(function(same_detail){
+                return same_detail['id'] == id;
+
+            });
+            sameDetail[0]['detail_qty'] = qty;
         },
         edit_details: function(attributes){
+            var self = this;
+            var suborderlines = this.sub_orderlines;
             for(attr in attributes){
-                var sameDetail = this.details.filter(function(same_detail){
-                    return same_detail['id'] == attr;
-
+                var subOrderlineWithSameAttr = suborderlines.filter(function(orderline,index){
+                    return orderline.details[0]['id'] == attr;
                 });
-                sameDetail[0]['detail_qty'] = attributes[attr];
+
+                subOrderlineWithSameAttr = subOrderlineWithSameAttr[0];
+                //alert('subOrderlineWithSameAttr: ' + subOrderlineWithSameAttr);
+                if(subOrderlineWithSameAttr != undefined){
+                    if(attributes[attr]>0){
+                        //alert('seteando suborderline');
+                        subOrderlineWithSameAttr.set_detail(attr,attributes[attr]);
+                        subOrderlineWithSameAttr.set_quantity(attributes[attr]);
+                        this.set_detail(attr,attributes[attr]);
+                    }
+                    if(attributes[attr]==0){
+                        //alert('removiendo suborderline');
+                        var posSubOrderline = suborderlines.indexOf(subOrderlineWithSameAttr);
+                        self.pos.get('selectedOrder').removeOrderline(subOrderlineWithSameAttr);
+                        this.remove_detail(attr);
+                        this.remove_suborderline_at(posSubOrderline);
+                        //alert('Pos de suborderline: ' + posSubOrderline); 
+                    }
+                }else{
+                    if(this.details[0]){
+                    if(this.details[0]['id'] == attr){
+                        if(attributes[attr]>0){
+                            //alert('seteando orderline principal');
+                            this.set_detail(attr,attributes[attr]);
+                            this.set_quantity(attributes[attr]); 
+                        }
+                        if(attributes[attr]==0){
+                            if(this.sub_orderlines.length > 0){
+                                //alert('eliminado orderline principal')
+                                var firstSubOrderline = this.sub_orderlines[0];
+                                this.set_quantity(firstSubOrderline.get_quantity());
+                                this.product = firstSubOrderline.get_product();
+                                this.sub_orderlines.splice(0,1);
+                                self.pos.get('selectedOrder').removeOrderline(firstSubOrderline);
+                                this.remove_detail(attr);
+                            }else{
+                                //alert('eliminando orderline principal sin suborderlines');
+                                self.pos.get('selectedOrder').removeOrderline(this);
+                            }
+                        }
+                    }else{
+                        if(attributes[attr]>0){
+                            //alert('crear orderline');
+                            var attrs = {};
+                            attrs[attr] = attributes[attr];
+                            self.pos.pos_widget.product_options_widget.add_template_order(this.template,attrs);
+                        }else{
+                            //alert('nada que hacer');
+                        
+                        } 
+                    }
+                    }
+                }
             }
         },
         merge_details: function(detail){
@@ -861,9 +945,33 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 this.details.push(detail);
             }
         },
+        merge_orderline: function(orderline){
+            var quantity = this.get_quantity() + orderline.get_quantity();
+            this.set_quantity(quantity);
+            //this.merge_details(orderline.details[0]);
+            //this.set_total_quantity();
+        },
         merge_tmpl: function(orderline){
             for(var i = 0,len = orderline.details.length;i<len;i++){
                 this.merge_details(orderline.details[i]);
+            }
+            //push suborderlines
+            orderline.not_display = true;
+            //orderline.set_total_quantity();
+            var same_product_orderline = this.pos.get('selectedOrder').getSameProductOrderline(orderline);
+            if(orderline.details[0].id == this.details[0].id){
+                this.set_quantity(this.get_quantity() + orderline.get_quantity());
+            }else{
+                if(same_product_orderline){
+                    var pos = this.sub_orderlines.indexOf(same_product_orderline);
+                    same_product_orderline.merge_orderline(orderline);
+                    this.remove_suborderline_at(pos);
+                    this.sub_orderlines.push(same_product_orderline);
+
+                }else{
+                    orderline.order.get('orderLines').add(orderline);
+                    this.sub_orderlines.push(orderline);
+                }
             }
             this.set_total_quantity();
             this.pos.pos_widget.order_widget.rerender_orderline(this);
@@ -1114,6 +1222,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
 
             if(options.quantity !== undefined){
                 line.set_quantity(options.quantity);
+                line.set_quantity_display(options.quantity);
             }
             if(options.price !== undefined){
                 line.set_unit_price(options.price);
@@ -1133,15 +1242,9 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                     detail: options.value.name,
                     detail_qty: options.attributes[options.value.id]
                 });
-            }else{
-                line.details.push({
-                    id: options.template.id,
-                    detail_qty: options.quantity
-                });
-            
             }
-
             var same_template_orderline = this.getSameTemplateOrderline(line);
+            //var same_template_orderline = undefined;
             if( same_template_orderline && options.merge !== false){
                 if(options.template.line){
                     same_template_orderline.merge_tmpl(line);
@@ -1159,6 +1262,13 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             }
 
             this.deselectLine();
+        },
+        deleteOrderline: function(line){
+            var suborderlines = line.sub_orderlines;
+            for(var i = 0,len = suborderlines.length;i<len;i++){
+                this.removeOrderline(suborderlines[i]);
+            }
+            this.removeOrderline(line);
         },
         removeOrderline: function( line ){
             this.get('orderLines').remove(line);
@@ -1182,6 +1292,18 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             for(var c=0; c<orderlines.length; c++){
                var tmp = orderlines.at(c);
                if(tmp && tmp.can_be_merged_tmpl(line)) {
+                  result = tmp;
+                  break;
+               }
+            }
+            return result;
+        },
+        getSameProductOrderline: function(line){
+            var orderlines = this.get('orderLines');
+            var result = null;
+            for(var c=0; c<orderlines.length; c++){
+               var tmp = orderlines.at(c);
+               if(tmp && tmp.can_be_merged_with(line)) {
                   result = tmp;
                   break;
                }
