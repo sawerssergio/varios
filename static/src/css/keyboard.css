@@ -45,7 +45,7 @@
     border: 1px solid #F0F0F0;
     top: 0px;
     cursor: pointer;
-    width: 27%;
+    width: 26%;
     border-radius: 10%;
     color: #FFF;
     font-size: 1.6em;
@@ -132,7 +132,7 @@
 }
 .pos .full_keyboard .space {
 	clear: left;
-	width: 673px;
+	width: 640px;
 }
 
 /* ---- simplified keyboard ---- */
@@ -174,14 +174,14 @@
     margin-left:55px !important;
 }
 .pos .simple_keyboard .delete{
-    width: 103px;
+    width: 14%;
 }
 .pos .simple_keyboard .return{
-    width: 103px;
+    width: 17%;
 }
 .pos .simple_keyboard .space{
-    width:273px;
+    width:50%;
 }
 .pos .simple_keyboard .numlock{
-    width:103px;
+    width:10%;
 }
