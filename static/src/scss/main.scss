@@ -39,6 +39,15 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
     margin: 0;
     padding: 0;
 }
+/* Unset default button in input type=number*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
 .pos {
     background-image: url('../img/background.svg');
     background-repeat: no-repeat;
@@ -554,6 +563,11 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
                     border-radius: .5em .5em 0em 0em;
                     .block-quantity {
                         font-size: 1em;
+                        width: 80%;
+                        text-align: center;
+                        background-color: transparent;
+                        color: white;
+                        border: none;
                     }
                     .block-information {
                         font-size: 0.8em;

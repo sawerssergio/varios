@@ -886,17 +886,17 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         set_value: function(id, value){
             this.attributes[id] = value;
-            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").textContent = value;
+            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").value = value;
         
         },
         increase_value: function(id){
             this.attributes[id]++;
-            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").textContent = this.attributes[id];
+            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").value = this.attributes[id];
             this.set_total_quantity(this.total_quantity+1);
         },
         decrease_value: function(id){
             this.attributes[id]--;
-            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").textContent = this.attributes[id];
+            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").value = this.attributes[id];
             this.set_total_quantity(this.total_quantity-1);
         },
         set_total_quantity: function(value){
@@ -931,7 +931,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 //first call to total quantity and then value.
                 if (Object.keys(this.attributes).length === 0) {
                     this.set_total_quantity(this.total_quantity+1);
-                    this.el.querySelector("[data-value-id='"+this.selected_template.id+"'] > .top-block > .block-quantity").textContent = this.total_quantity;
+                    this.el.querySelector("[data-value-id='"+this.selected_template.id+"'] > .top-block > .block-quantity").value = this.total_quantity;
                     return;
                 }
                 this.increase_value(Object.keys(this.attributes)[0]);
@@ -956,7 +956,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         clear_attribute(id) {
             this.attributes[id] = 0;
-            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").textContent = 0;
+            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").value = 0;
         },
         replace: function($target){
             this.renderElement();
@@ -1020,7 +1020,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                         } else if(className === "block-decrease" && self.total_quantity > 0) {
                             self.set_total_quantity(self.total_quantity-1);
                         }
-                        self.el.querySelector("[data-value-id='"+this.dataset['valueId']+"'] > .top-block > .block-quantity").textContent = self.total_quantity;
+                        self.el.querySelector("[data-value-id='"+this.dataset['valueId']+"'] > .top-block > .block-quantity").value = self.total_quantity;
                     });
                     value_container.appendChild(value_node);
                 }
