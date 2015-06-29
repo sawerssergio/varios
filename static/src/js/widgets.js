@@ -892,13 +892,17 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         //parameter. Or when you want to set the value, pass the third parameter 
         //as true.
         set_value: function(id, value, is_set){
-            if(!this.attributes[id] && is_set) {
-                this.set_total_quantity(value);
-                return;
-            }
+            //if(!this.attributes[id] && is_set) {
+            //    this.attributes[id]=0;
+            //}
             if(is_set){
+                if(this.attributes[id]){
                 this.set_total_quantity(this.total_quantity-this.attributes[id]+value);
                 this.attributes[id] = value;
+                } else {
+                    this.attributes[id] = value;
+                    this.set_total_quantity(value);
+                }
             } else {
                 this.attributes[id] += value;
                 this.set_total_quantity(this.total_quantity+value);
@@ -918,7 +922,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.selected_template = template;
             this.attributes = {};
             this.renderElement();
-            this.set_total_quantity(options.quantity);
+            //this.set_total_quantity(options.quantity);
             if(this.selected_template.line){
                 options.details.forEach(function(detail){
                     self.set_value(detail.id,detail.detail_qty,true);
