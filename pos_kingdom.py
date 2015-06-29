@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-			
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -23,7 +23,7 @@ import logging
 import time
 
 from openerp import tools
-from openerp.osv import fields, osv
+from openerp import models, fields, api, _
 from openerp.tools import float_is_zero
 from openerp.tools.translate import _
 
@@ -32,7 +32,7 @@ import openerp.addons.product.product
 
 _logger = logging.getLogger(__name__)
 
-class pos_config(osv.osv):
+class pos_config(models.Model):
     _name = 'pos.config'
 
     POS_CONFIG_STATE = [
@@ -41,7 +41,7 @@ class pos_config(osv.osv):
         ('deprecated', 'Deprecated')
     ]
 
-    def _get_currency(self, cr, uid, ids, fieldnames, args, context=None):
+    def _get_currency(self, cr, uid, ids, context=None):
         result = dict.fromkeys(ids, False)
         for pos_config in self.browse(cr, uid, ids, context=context):
             if pos_config.journal_id:
@@ -51,50 +51,49 @@ class pos_config(osv.osv):
             result[pos_config.id] = currency_id
         return result
 
-    _columns = {
-        'name' : fields.char('Point of Sale Name', select=1,
-             required=True, help="An internal identification of the point of sale"),
-        'journal_ids' : fields.many2many('account.journal', 'pos_config_journal_rel', 
+    name                   = fields.Char('Point of Sale Name', select=1, required=True,
+           help="An internal identification of the point of sale")
+    journal_ids            = fields.Many2many('account.journal', 'pos_config_journal_rel',
              'pos_config_id', 'journal_id', 'Available Payment Methods',
-             domain="[('journal_user', '=', True ), ('type', 'in', ['bank', 'cash'])]",),
-        'picking_type_id': fields.many2one('stock.picking.type', 'Picking Type'),
-        'stock_location_id': fields.many2one('stock.location', 'Stock Location', domain=[('usage', '=', 'internal')], required=True),
-        'journal_id' : fields.many2one('account.journal', 'Sale Journal',
+             domain="[('journal_user', '=', True ), ('type', 'in', ['bank', 'cash'])]",)
+    picking_type_id        = fields.Many2one('stock.picking.type', 'Picking Type')
+    stock_location_id      = fields.Many2one('stock.location', 'Stock Location', domain=[('usage', '=', 'internal')], required=True)
+    journal_id             = fields.Many2one('account.journal', 'Sale Journal',
              domain=[('type', '=', 'sale')],
-             help="Accounting journal used to post sales entries."),
-        'currency_id' : fields.function(_get_currency, type="many2one", string="Currency", relation="res.currency"),
-        'iface_self_checkout' : fields.boolean('Self Checkout Mode', # FIXME : this field is obsolete
-             help="Check this if this point of sale should open by default in a self checkout mode. If unchecked, SawersSystem uses the normal cashier mode by default."),
-        'iface_cashdrawer' : fields.boolean('Cashdrawer', help="Automatically open the cashdrawer"),
-        'iface_payment_terminal' : fields.boolean('Payment Terminal', help="Enables Payment Terminal integration"),
-        'iface_electronic_scale' : fields.boolean('Electronic Scale', help="Enables Electronic Scale integration"),
-        'iface_vkeyboard' : fields.boolean('Virtual KeyBoard', help="Enables an integrated Virtual Keyboard"),
-        'iface_print_via_proxy' : fields.boolean('Print via Proxy', help="Bypass browser printing and prints via the hardware proxy"),
-        'iface_scan_via_proxy' : fields.boolean('Scan via Proxy', help="Enable barcode scanning with a remotely connected barcode scanner"),
-        'iface_invoicing': fields.boolean('Invoicing',help='Enables invoice generation from the Point of Sale'),
-        'iface_big_scrollbars': fields.boolean('Large Scrollbars',help='For imprecise industrial touchscreens'),
-        'receipt_header': fields.text('Receipt Header',help="A short text that will be inserted as a header in the printed receipt"),
-        'receipt_footer': fields.text('Receipt Footer',help="A short text that will be inserted as a footer in the printed receipt"),
-        'proxy_ip':       fields.char('IP Address', help='The hostname or ip address of the hardware proxy, Will be autodetected if left empty', size=45),
+             help="Accounting journal used to post sales entries.")
+    currency_id            = fields.Many2one(compute="_get_currency", comodel_name="res.currency")
+    iface_self_checkout    = fields.Boolean('Self Checkout Mode', # FIXME = this field is obsolete
+             help="Check this if this point of sale should open by default in a self checkout mode. If unchecked, SawersSystem uses the normal cashier mode by default.")
+    iface_cashdrawer       = fields.Boolean('Cashdrawer', help="Automatically open the cashdrawer")
+    iface_payment_terminal = fields.Boolean('Payment Terminal', help="Enables Payment Terminal integration")
+    iface_electronic_scale = fields.Boolean('Electronic Scale', help="Enables Electronic Scale integration")
+    iface_vkeyboard        = fields.Boolean('Virtual KeyBoard', help="Enables an integrated Virtual Keyboard")
+    iface_print_via_proxy  = fields.Boolean('Print via Proxy', help="Bypass browser printing and prints via the hardware proxy")
+    iface_scan_via_proxy   = fields.Boolean('Scan via Proxy', help="Enable barcode scanning with a remotely connected barcode scanner")
+    iface_invoicing        = fields.Boolean('Invoicing',help='Enables invoice generation from the Point of Sale')
+    iface_big_scrollbars   = fields.Boolean('Large Scrollbars',help='For imprecise industrial touchscreens')
+    receipt_header   = fields.Text('Receipt Header',help="A short text that will be inserted as a header in the printed receipt")
+    receipt_footer   = fields.Text('Receipt Footer',help="A short text that will be inserted as a footer in the printed receipt")
+    proxy_ip         =       fields.Char('IP Address', help='The hostname or ip address of the hardware proxy, Will be autodetected if left empty', size=45)
 
-        'state' : fields.selection(POS_CONFIG_STATE, 'Status', required=True, readonly=True, copy=False),
-        'sequence_id' : fields.many2one('ir.sequence', 'Order IDs Sequence', readonly=True,
+    state            = fields.Selection(POS_CONFIG_STATE, 'Status', required=True, readonly=True, copy=False)
+    sequence_id      = fields.Many2one('ir.sequence', 'Order IDs Sequence', readonly=True,
             help="This sequence is automatically created by SawersSystem but you can change it "\
-                "to customize the reference numbers of your orders.", copy=False),
-        'session_ids': fields.one2many('pos.session', 'config_id', 'Sessions'),
-        'group_by' : fields.boolean('Group Journal Items', help="Check this if you want to group the Journal Items by Product while closing a Session"),
-        'pricelist_id': fields.many2one('product.pricelist','Pricelist', required=True),
-        'company_id': fields.many2one('res.company', 'Company', required=True),
-        'destination_ids' : fields.many2many('pos.destination', string="Destinations"),
-        'barcode_product':  fields.char('Product Barcodes', size=64, help='The pattern that identifies product barcodes'),
-        'barcode_cashier':  fields.char('Cashier Barcodes', size=64, help='The pattern that identifies cashier login barcodes'),
-        'barcode_customer': fields.char('Customer Barcodes',size=64, help='The pattern that identifies customer\'s client card barcodes'),
-        'barcode_price':    fields.char('Price Barcodes',   size=64, help='The pattern that identifies a product with a barcode encoded price'),
-        'barcode_weight':   fields.char('Weight Barcodes',  size=64, help='The pattern that identifies a product with a barcode encoded weight'),
-        'barcode_discount': fields.char('Discount Barcodes',  size=64, help='The pattern that identifies a product with a barcode encoded discount'),
-        'authorization':fields.char('authorization', size=64, help='authorization'),
-        'key':fields.char('key',size=64, help='key'),
-    }
+                "to customize the reference numbers of your orders.", copy=False)
+    session_ids      = fields.One2many('pos.session', 'config_id', 'Sessions')
+    group_by         = fields.Boolean('Group Journal Items', help="Check this if you want to group the Journal Items by Product while closing a Session")
+    pricelist_id     = fields.Many2one('product.pricelist','Pricelist', required=True)
+    company_id       = fields.Many2one('res.company', 'Company', required=True)
+    destination_ids  = fields.Many2many('pos.destination', string="Destinations")
+    barcode_product  = fields.Char('Product Barcodes', size=64, help='The pattern that identifies product barcodes')
+    barcode_cashier  = fields.Char('Cashier Barcodes', size=64, help='The pattern that identifies cashier login barcodes')
+    barcode_customer = fields.Char('Customer Barcodes',size=64, help='The pattern that identifies customer\'s client card barcodes')
+    barcode_price    = fields.Char('Price Barcodes',   size=64, help='The pattern that identifies a product with a barcode encoded price')
+    barcode_weight   = fields.Char('Weight Barcodes',  size=64, help='The pattern that identifies a product with a barcode encoded weight')
+    barcode_discount = fields.Char('Discount Barcodes',  size=64, help='The pattern that identifies a product with a barcode encoded discount')
+    authorization    = fields.Char('authorization', size=64, help='authorization')
+    key              = fields.Char('key',size=64, help='key')
+    limit_date       = fields.Datetime('Limit Date')
 
     def _check_cash_control(self, cr, uid, ids, context=None):
         return all(
@@ -229,7 +228,7 @@ class pos_config(osv.osv):
                 obj.sequence_id.unlink()
         return super(pos_config, self).unlink(cr, uid, ids, context=context)
 
-class pos_session(osv.osv):
+class pos_session(models.Model):
     _name = 'pos.session'
     _order = 'id desc'
 
@@ -240,7 +239,7 @@ class pos_session(osv.osv):
         ('closed', 'Closed & Posted'),
     ]
 
-    def _compute_cash_all(self, cr, uid, ids, fieldnames, args, context=None):
+    def _compute_cash_all(self, cr, uid, ids, context=None):
         result = dict()
 
         for record in self.browse(cr, uid, ids, context=context):
@@ -257,88 +256,84 @@ class pos_session(osv.osv):
 
         return result
 
-    _columns = {
-        'config_id' : fields.many2one('pos.config', 'Point of Sale',
-                                      help="The physical point of sale you will use.",
-                                      required=True,
-                                      select=1,
-                                      domain="[('state', '=', 'active')]",
-                                     ),
+    config_id = fields.Many2one(comodel_name='pos.config', string='Point of Sale',
+                              help="The physical point of sale you will use.",
+                              required=True,
+                              select=1,
+                              domain="[('state', '=', 'active')]",
+                     )
 
-        'name' : fields.char('Session ID', required=True, readonly=True),
-        'user_id' : fields.many2one('res.users', 'Responsible',
-                                    required=True,
-                                    select=1,
-                                    readonly=True,
-                                    states={'opening_control' : [('readonly', False)]}
-                                   ),
-        'currency_id' : fields.related('config_id', 'currency_id', type="many2one", relation='res.currency', string="Currnecy"),
-        'start_at' : fields.datetime('Opening Date', readonly=True), 
-        'stop_at' : fields.datetime('Closing Date', readonly=True),
+    name = fields.Char('Session ID', required=True, readonly=True)
+    user_id = fields.Many2one(comodel_name='res.users', string='Responsible',
+                                required=True,
+                                select=1,
+                                readonly=True,
+                                states={'opening_control' : [('readonly', False)]}
+                       )
+    currency_id = fields.Many2one( comodel_name='res.currency' )
+    start_at = fields.Datetime('Opening Date', readonly=True)
+    stop_at = fields.Datetime('Closing Date', readonly=True)
 
-        'state' : fields.selection(POS_SESSION_STATE, 'Status',
+    state = fields.Selection(POS_SESSION_STATE, 'Status',
                 required=True, readonly=True,
-                select=1, copy=False),
-        
-        'sequence_number': fields.integer('Order Sequence Number', help='A sequence number that is incremented with each order'),
-        'login_number':  fields.integer('Login Sequence Number', help='A sequence number that is incremented each time a user resumes the pos session'),
+                select=1, copy=False)
 
-        'cash_control' : fields.function(_compute_cash_all,
-                                         multi='cash',
-                                         type='boolean', string='Has Cash Control'),
-        'cash_journal_id' : fields.function(_compute_cash_all,
-                                            multi='cash',
-                                            type='many2one', relation='account.journal',
-                                            string='Cash Journal', store=True),
-        'cash_register_id' : fields.function(_compute_cash_all,
-                                             multi='cash',
-                                             type='many2one', relation='account.bank.statement',
-                                             string='Cash Register', store=True),
+    sequence_number = fields.Integer('Order Sequence Number', help='A sequence number that is incremented with each order')
+    login_number = fields.Integer('Login Sequence Number', help='A sequence number that is incremented each time a user resumes the pos session')
 
-        'opening_details_ids' : fields.related('cash_register_id', 'opening_details_ids', 
-                type='one2many', relation='account.cashbox.line',
-                string='Opening Cash Control'),
-        'details_ids' : fields.related('cash_register_id', 'details_ids', 
-                type='one2many', relation='account.cashbox.line',
-                string='Cash Control'),
+    cash_control = fields.Boolean(compute='_compute_cash_all',
+                                     multi='cash',
+                                     string='Has Cash Control')
+    cash_journal_id = fields.Many2one(compute='_compute_cash_all',
+                                        multi='cash', comodel_name='account.journal',
+                                        string='Cash Journal', store=True)
+    cash_register_id = fields.Many2one(compute='_compute_cash_all',
+                                         multi='cash', comodel_name='account.bank.statement',
+                                         string='Cash Register', store=True)
 
-        'cash_register_balance_end_real' : fields.related('cash_register_id', 'balance_end_real',
-                type='float',
+    #type='one2many', related='account.cashbox.line',
+    opening_details_ids = fields.One2many(related = 'cash_register_id.opening_details_ids', comodel_name='account.cashbox.line',
+                string='Opening Cash Control')
+
+    #type='one2many', related='account.cashbox.line', 
+    details_ids = fields.One2many(related='cash_register_id.details_ids', string='Cash Control', comodel_name='account.cashbox.line')
+
+    cash_register_balance_end_real = fields.Float(related='cash_register_id.balance_end_real',
                 digits_compute=dp.get_precision('Account'),
                 string="Ending Balance",
                 help="Total of closing cash control lines.",
-                readonly=True),
-        'cash_register_balance_start' : fields.related('cash_register_id', 'balance_start',
-                type='float',
+                readonly=True)
+
+    cash_register_balance_start = fields.Float(related='cash_register_id.balance_start',
                 digits_compute=dp.get_precision('Account'),
                 string="Starting Balance",
                 help="Total of opening cash control lines.",
-                readonly=True),
-        'cash_register_total_entry_encoding' : fields.related('cash_register_id', 'total_entry_encoding',
+                readonly=True)
+
+    cash_register_total_entry_encoding = fields.Float(related='cash_register_id.total_entry_encoding',
                 string='Total Cash Transaction',
                 readonly=True,
-                help="Total of all paid sale orders"),
-        'cash_register_balance_end' : fields.related('cash_register_id', 'balance_end',
+                help="Total of all paid sale orders")
+
+    cash_register_balance_end = fields.Float(related='cash_register_id.balance_end',
                 type='float',
                 digits_compute=dp.get_precision('Account'),
                 string="Theoretical Closing Balance",
                 help="Sum of opening balance and transactions.",
-                readonly=True),
-        'cash_register_difference' : fields.related('cash_register_id', 'difference',
+                readonly=True)
+
+    cash_register_difference = fields.Float(related='cash_register_id.difference',
                 type='float',
                 string='Difference',
                 help="Difference between the theoretical closing balance and the real closing balance.",
-                readonly=True),
+                readonly=True)
 
-        'journal_ids' : fields.related('config_id', 'journal_ids',
-                                       type='many2many',
-                                       readonly=True,
-                                       relation='account.journal',
-                                       string='Available Payment Methods'),
-        'order_ids' : fields.one2many('pos.order', 'session_id', 'Orders'),
+    journal_ids = fields.Many2many(related='config_id.journal_ids',
+                                       readonly=True, comodel_name='account.journal',
+                                       string='Available Payment Methods')
+    order_ids = fields.One2many('pos.order', 'session_id', 'Orders')
 
-        'statement_ids' : fields.one2many('account.bank.statement', 'pos_session_id', 'Bank Statement', readonly=True),
-    }
+    statement_ids = fields.One2many('account.bank.statement', 'pos_session_id', 'Bank Statement', readonly=True)
 
     _defaults = {
         'name' : '/',
@@ -554,7 +549,7 @@ class pos_session(osv.osv):
             'url':   '/pos/web/',
         }
 
-class pos_destination(osv.osv):
+class pos_destination(models.Model):
 
     POS_DESTINATION_STATE = [
         ('active', 'Active'),
@@ -570,17 +565,15 @@ class pos_destination(osv.osv):
     def set_inactive(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state' : 'inactive'}, context=context)
 
-    _columns = {
-        'name': fields.char('Name', required=True, translate=True),
-        'description': fields.char('Description', translate=True),
-        'state' : fields.selection(POS_DESTINATION_STATE, 'Status', required=True, readonly=True, copy=False),
-    }
+    name = fields.Char('Name', required=True, translate=True)
+    description = fields.Char('Description', translate=True)
+    state = fields.Selection(POS_DESTINATION_STATE, 'Status', required=True, readonly=True, copy=False)
 
     _defaults = {
         'state' : POS_DESTINATION_STATE[0][0],
     }
 
-class pos_order(osv.osv):
+class pos_order(models.Model):
     _name = "pos.order"
     _description = "Point of Sale"
     _order = "id desc"
@@ -710,46 +703,49 @@ class pos_order(osv.osv):
             res[order.id]['amount_total'] = cur_obj.round(cr, uid, cur, val1)
         return res
 
-    _columns = {
-        'name': fields.char('Order Ref', required=True, readonly=True, copy=False),
-        'company_id':fields.many2one('res.company', 'Company', required=True, readonly=True),
-        'date_order': fields.datetime('Order Date', readonly=True, select=True),
-        'user_id': fields.many2one('res.users', 'Salesman', help="Person who uses the the cash register. It can be a reliever, a student or an interim employee."),
-        'amount_tax': fields.function(_amount_all, string='Taxes', digits_compute=dp.get_precision('Account'), multi='all'),
-        'amount_total': fields.function(_amount_all, string='Total', digits_compute=dp.get_precision('Account'),  multi='all'),
-        'amount_paid': fields.function(_amount_all, string='Paid', states={'draft': [('readonly', False)]}, readonly=True, digits_compute=dp.get_precision('Account'), multi='all'),
-        'amount_return': fields.function(_amount_all, 'Returned', digits_compute=dp.get_precision('Account'), multi='all'),
-        'lines': fields.one2many('pos.order.line', 'order_id', 'Order Lines', states={'draft': [('readonly', False)]}, readonly=True, copy=True),
-        'statement_ids': fields.one2many('account.bank.statement.line', 'pos_statement_id', 'Payments', states={'draft': [('readonly', False)]}, readonly=True),
-        'pricelist_id': fields.many2one('product.pricelist', 'Pricelist', required=True, states={'draft': [('readonly', False)]}, readonly=True),
-        'partner_id': fields.many2one('res.partner', 'Customer', change_default=True, select=1, states={'draft': [('readonly', False)], 'paid': [('readonly', False)]}),
-        'sequence_number': fields.integer('Sequence Number', help='A session-unique sequence number for the order'),
+    @api.onchange('amount_total','date_order','lines','partner_id', 'sequence_number',)
+    def _gen_control_code(self):
+        self.control_code="TE-ST"
 
-        'session_id' : fields.many2one('pos.session', 'Session', 
+    name       = fields.Char('Order Ref', required=True, readonly=True, copy=False)
+    company_id = fields.Many2one('res.company', 'Company', required=True, readonly=True)
+    date_order = fields.Datetime('Order Date', readonly=True, select=True)
+    user_id    = fields.Many2one('res.users', 'Salesman', help="Person who uses the the cash register. It can be a reliever, a student or an interim employee.")
+    amount_tax = fields.Float(compute='_amount_all', string='Taxes', digits_compute=dp.get_precision('Account'), multi='all')
+    amount_total    = fields.Float(compute='_amount_all', string='Total', digits_compute=dp.get_precision('Account'),  multi='all')
+    amount_paid     = fields.Float(compute='_amount_all', string='Paid', states={'draft': [('readonly', False)]}, readonly=True, digits_compute=dp.get_precision('Account'), multi='all')
+    amount_return   = fields.Float(compute='_amount_all', digits_compute=dp.get_precision('Account'), multi='all') #  'Returned',
+    lines           = fields.One2many('pos.order.line', 'order_id', 'Order Lines', states={'draft': [('readonly', False)]}, readonly=True, copy=True)
+    statement_ids   = fields.One2many('account.bank.statement.line', 'pos_statement_id', 'Payments', states={'draft': [('readonly', False)]}, readonly=True)
+    pricelist_id    = fields.Many2one('product.pricelist', 'Pricelist', required=True, states={'draft': [('readonly', False)]}, readonly=True)
+    partner_id      = fields.Many2one('res.partner', 'Customer', change_default=True, select=1, states={'draft': [('readonly', False)], 'paid': [('readonly', False)]})
+    sequence_number = fields.Integer('Sequence Number', help='A session-unique sequence number for the order')
+
+    session_id = fields.Many2one('pos.session', 'Session', 
                                         #required=True,
                                         select=1,
                                         domain="[('state', '=', 'opened')]",
                                         states={'draft' : [('readonly', False)]},
-                                        readonly=True),
+                                        readonly=True)
 
-        'state': fields.selection([('draft', 'New'),
+    state = fields.Selection([('draft', 'New'),
                                    ('cancel', 'Cancelled'),
                                    ('paid', 'Paid'),
                                    ('done', 'Posted'),
                                    ('invoiced', 'Invoiced')],
-                                  'Status', readonly=True, copy=False),
+                                  'Status', readonly=True, copy=False)
 
-        'invoice_id': fields.many2one('account.invoice', 'Invoice', copy=False),
-        'account_move': fields.many2one('account.move', 'Journal Entry', readonly=True, copy=False),
-        'picking_id': fields.many2one('stock.picking', 'Picking', readonly=True, copy=False),
-        'picking_type_id': fields.related('session_id', 'config_id', 'picking_type_id', string="Picking Type", type='many2one', relation='stock.picking.type'),
-        'location_id': fields.related('session_id', 'config_id', 'stock_location_id', string="Location", type='many2one', store=True, relation='stock.location'),
-        'note': fields.text('Internal Notes'),
-        'nb_print': fields.integer('Number of Print', readonly=True, copy=False),
-        'pos_reference': fields.char('Receipt Ref', readonly=True, copy=False),
-        'sale_journal': fields.related('session_id', 'config_id', 'journal_id', relation='account.journal', type='many2one', string='Sale Journal', store=True, readonly=True),
-        'pos_destination_id': fields.many2one('pos.destination','Point of Sale Destination', help="This is the destination for the order."),
-    }
+    invoice_id      = fields.Many2one('account.invoice', 'Invoice', copy=False)
+    account_move    = fields.Many2one('account.move', 'Journal Entry', readonly=True, copy=False)
+    picking_id      = fields.Many2one('stock.picking', 'Picking', readonly=True, copy=False)
+    picking_type_id = fields.Many2one(related='session_id.config_id.picking_type_id', string="Picking Type") #, type='many2one', relation='stock.picking.type'
+    location_id     = fields.Many2one(related='session_id.config_id.stock_location_id', string="Location", store=True) #, type='many2one', relation='stock.location'
+    note            = fields.Text('Internal Notes')
+    nb_print        = fields.Integer('Number of Print', readonly=True, copy=False)
+    pos_reference   = fields.Char('Receipt Ref', readonly=True, copy=False)
+    sale_journal    = fields.Many2one(related='session_id.config_id.journal_id', string='Sale Journal', store=True, readonly=True) #, relation='account.journal', type='many2one'
+    pos_destination_id = fields.Many2one('pos.destination','Point of Sale Destination', help="This is the destination for the order.")
+    control_code       = fields.Char('Control Code', readonly=True, copy=False)
 
     def _default_session(self, cr, uid, context=None):
         so = self.pool.get('pos.session')
@@ -852,7 +848,7 @@ class pos_order(osv.osv):
                     'location_id': location_id if line.qty >= 0 else destination_id,
                     'location_dest_id': destination_id if line.qty >= 0 else location_id,
                 }, context=context))
-                
+
             if picking_id:
                 picking_obj.action_confirm(cr, uid, [picking_id], context=context)
                 picking_obj.force_assign(cr, uid, [picking_id], context=context)
@@ -934,7 +930,7 @@ class pos_order(osv.osv):
         """Create a copy of order  for refund order"""
         clone_list = []
         line_obj = self.pool.get('pos.order.line')
-        
+
         for order in self.browse(cr, uid, ids, context=context):
             current_session_ids = self.pool.get('pos.session').search(cr, uid, [
                 ('state', '!=', 'closed'),
@@ -1278,28 +1274,24 @@ class pos_order(osv.osv):
         self.create_account_move(cr, uid, ids, context=context)
         return True
 
-class account_bank_statement(osv.osv):
+class account_bank_statement(models.Model):
     _inherit = 'account.bank.statement'
-    _columns= {
-        'user_id': fields.many2one('res.users', 'User', readonly=True),
-    }
+    user_id = fields.Many2one('res.users', 'User', readonly=True)
     _defaults = {
         'user_id': lambda self,cr,uid,c={}: uid
     }
 
-class account_bank_statement_line(osv.osv):
+class account_bank_statement_line(models.Model):
     _inherit = 'account.bank.statement.line'
-    _columns= {
-        'pos_statement_id': fields.many2one('pos.order', ondelete='cascade'),
-    }
+    pos_statement_id = fields.Many2one('pos.order', ondelete='cascade')
 
 
-class pos_order_line(osv.osv):
+class pos_order_line(models.Model):
     _name = "pos.order.line"
     _description = "Lines of Point of Sale"
     _rec_name = "product_id"
 
-    def _amount_line_all(self, cr, uid, ids, field_names, arg, context=None):
+    def _amount_line_all(self, cr, uid, ids, context=None):
         res = dict([(i, {}) for i in ids])
         account_tax_obj = self.pool.get('account.tax')
         cur_obj = self.pool.get('res.currency')
@@ -1345,19 +1337,17 @@ class pos_order_line(osv.osv):
         result['price_subtotal_incl'] = taxes['total_included']
         return {'value': result}
 
-    _columns = {
-        'company_id': fields.many2one('res.company', 'Company', required=True),
-        'name': fields.char('Line No', required=True, copy=False),
-        'notice': fields.char('Discount Notice'),
-        'product_id': fields.many2one('product.product', 'Product', domain=[('sale_ok', '=', True)], required=True, change_default=True),
-        'price_unit': fields.float(string='Unit Price', digits_compute=dp.get_precision('Account')),
-        'qty': fields.float('Quantity', digits_compute=dp.get_precision('Product UoS')),
-        'price_subtotal': fields.function(_amount_line_all, multi='pos_order_line_amount', digits_compute=dp.get_precision('Account'), string='Subtotal w/o Tax', store=True),
-        'price_subtotal_incl': fields.function(_amount_line_all, multi='pos_order_line_amount', digits_compute=dp.get_precision('Account'), string='Subtotal', store=True),
-        'discount': fields.float('Discount (%)', digits_compute=dp.get_precision('Account')),
-        'order_id': fields.many2one('pos.order', 'Order Ref', ondelete='cascade'),
-        'create_date': fields.datetime('Creation Date', readonly=True),
-    }
+    company_id = fields.Many2one('res.company', 'Company', required=True)
+    name = fields.Char('Line No', required=True, copy=False)
+    notice = fields.Char('Discount Notice')
+    product_id = fields.Many2one('product.product', 'Product', domain=[('sale_ok', '=', True)], required=True, change_default=True)
+    price_unit = fields.Float(string='Unit Price', digits_compute=dp.get_precision('Account'))
+    qty = fields.Float('Quantity', digits_compute=dp.get_precision('Product UoS'))
+    price_subtotal = fields.Float(compute='_amount_line_all', multi='pos_order_line_amount', digits_compute=dp.get_precision('Account'), string='Subtotal w/o Tax', store=True)
+    price_subtotal_incl = fields.Float(compute='_amount_line_all', multi='pos_order_line_amount', digits_compute=dp.get_precision('Account'), string='Subtotal', store=True)
+    discount = fields.Float('Discount (%)', digits_compute=dp.get_precision('Account'))
+    order_id = fields.Many2one('pos.order', 'Order Ref', ondelete='cascade')
+    create_date = fields.Datetime('Creation Date', readonly=True)
 
     _defaults = {
         'name': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid, 'pos.order.line'),
@@ -1366,11 +1356,9 @@ class pos_order_line(osv.osv):
         'company_id': lambda self,cr,uid,c: self.pool.get('res.users').browse(cr, uid, uid, c).company_id.id,
     }
 
-class ean_wizard(osv.osv_memory):
+class ean_wizard(models.TransientModel):
     _name = 'pos.ean_wizard'
-    _columns = {
-        'ean13_pattern': fields.char('Reference', size=13, required=True, translate=True),
-    }
+    ean13_pattern = fields.Char('Reference', size=13, required=True, translate=True)
     def sanitize_ean13(self, cr, uid, ids, context):
         for r in self.browse(cr,uid,ids):
             ean13 = openerp.addons.product.product.sanitize_ean13(r.ean13_pattern)
@@ -1379,13 +1367,13 @@ class ean_wizard(osv.osv_memory):
             self.pool[m].write(cr,uid,[m_id],{'ean13':ean13})
         return { 'type' : 'ir.actions.act_window_close' }
 
-class pos_category(osv.osv):
+class pos_category(models.Model):
     _name = "pos.category"
     _description = "Public Category"
     _order = "sequence, name"
 
     _constraints = [
-        (osv.osv._check_recursion, 'Error ! You cannot create recursive categories.', ['parent_id'])
+        (models.Model._check_recursion, 'Error ! You cannot create recursive categories.', ['parent_id'])
     ]
 
     def name_get(self, cr, uid, ids, context=None):
@@ -1399,52 +1387,50 @@ class pos_category(osv.osv):
             res.append((cat.id, ' / '.join(reversed(names))))
         return res
 
-    def _name_get_fnc(self, cr, uid, ids, prop, unknow_none, context=None):
+    def _name_get_fnc(self, cr, uid, ids, context=None):
         res = self.name_get(cr, uid, ids, context=context)
         return dict(res)
 
-    def _get_image(self, cr, uid, ids, name, args, context=None):
+    def _get_image(self, cr, uid, ids, context=None):
         result = dict.fromkeys(ids, False)
         for obj in self.browse(cr, uid, ids, context=context):
             result[obj.id] = tools.image_get_resized_images(obj.image)
         return result
-    
+
     def _set_image(self, cr, uid, id, name, value, args, context=None):
         return self.write(cr, uid, [id], {'image': tools.image_resize_image_big(value)}, context=context)
 
-    _columns = {
-        'name': fields.char('Name', required=True, translate=True),
-        'complete_name': fields.function(_name_get_fnc, type="char", string='Name'),
-        'parent_id': fields.many2one('pos.category','Parent Category', select=True),
-        'child_id': fields.one2many('pos.category', 'parent_id', string='Children Categories'),
-        'sequence': fields.integer('Sequence', help="Gives the sequence order when displaying a list of product categories."),
-        
-        # NOTE: there is no 'default image', because by default we don't show thumbnails for categories. However if we have a thumbnail
-        # for at least one category, then we display a default image on the other, so that the buttons have consistent styling.
-        # In this case, the default image is set by the js code.
-        # NOTE2: image: all image fields are base64 encoded and PIL-supported
-        'image': fields.binary("Image",
-            help="This field holds the image used as image for the cateogry, limited to 1024x1024px."),
-        'image_medium': fields.function(_get_image, fnct_inv=_set_image,
-            string="Medium-sized image", type="binary", multi="_get_image",
+    name = fields.Char('Name', required=True, translate=True)
+    complete_name = fields.Char(compute='_name_get_fnc', string='Name')
+    parent_id = fields.Many2one('pos.category','Parent Category', select=True)
+    child_id = fields.One2many('pos.category', 'parent_id', string='Children Categories')
+    sequence = fields.Integer('Sequence', help="Gives the sequence order when displaying a list of product categories.")
+
+    # NOTE: there is no 'default image', because by default we don't show thumbnails for categories. However if we have a thumbnail
+    # for at least one category, then we display a default image on the other, so that the buttons have consistent styling.
+    # In this case, the default image is set by the js code.
+    # NOTE2: image: all image fields are base64 encoded and PIL-supported
+    image = fields.Binary("Image",
+            help="This field holds the image used as image for the cateogry, limited to 1024x1024px.")
+    image_medium = fields.Binary(compute='_get_image', fnct_inv=_set_image,
+            string="Medium-sized image", multi="_get_image",
             store={
                 'pos.category': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10),
             },
             help="Medium-sized image of the category. It is automatically "\
                  "resized as a 128x128px image, with aspect ratio preserved. "\
-                 "Use this field in form views or some kanban views."),
-        'image_small': fields.function(_get_image, fnct_inv=_set_image,
-            string="Small-sized image", type="binary", multi="_get_image",
+                 "Use this field in form views or some kanban views.")
+    image_small = fields.Binary(compute='_get_image', fnct_inv=_set_image,
+            string="Small-sized image", multi="_get_image",
             store={
                 'pos.category': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10),
             },
             help="Small-sized image of the category. It is automatically "\
                  "resized as a 64x64px image, with aspect ratio preserved. "\
-                 "Use this field anywhere a small image is required."),
-    }
+                 "Use this field anywhere a small image is required.")
 
 
-class product_attribute_value(osv.osv):
+class product_attribute_value(models.Model):
     _inherit = 'product.attribute.value'
 
     def _get_image(self, cr, uid, ids, name, args, context=None):
@@ -1452,45 +1438,40 @@ class product_attribute_value(osv.osv):
         for obj in self.browse(cr, uid, ids, context=context):
             result[obj.id] = tools.image_get_resized_images(obj.image)
         return result
-    
+
     def _set_image(self, cr, uid, id, name, value, args, context=None):
         return self.write(cr, uid, [id], {'image': tools.image_resize_image_big(value)}, context=context)
 
-    _columns = {
-        'image': fields.binary("Image",help="This field holds the image used as image for the attribute value, limited to 1024x1024px."),
-        'image_medium': fields.function(_get_image, fnct_inv=_set_image, string="Medium-sized image", type="binary", multi="_get_image",
+    image = fields.Binary("Image",help="This field holds the image used as image for the attribute value, limited to 1024x1024px.")
+    image_medium = fields.Binary(compute='_get_image', fnct_inv=_set_image, string="Medium-sized image", multi="_get_image",
         store={
             'product.attribute.value': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10)
         },
         help="Medium-sized image of the attribute value, It is automatically "\
              "resized as a 128x128px image, with aspect ratio preserved. "\
-             "Use this field in form views or some kanban views."),
+             "Use this field in form views or some kanban views.")
 
-        'image_small': fields.function(_get_image, fnct_inv=_set_image, string="Small-sized image", type="binary", multi="_get_image",
+    image_small = fields.Binary(compute='_get_image', fnct_inv=_set_image, string="Small-sized image", multi="_get_image",
         store={
             'product.attribute.value': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10)
         },
         help="Small-sized image of the attribute value, It is automatically "\
              "resized as a 64x64px image, with aspect ratio preserved. "\
-             "Use this field anywhere a small image is required."),
+             "Use this field anywhere a small image is required.")
 
-
-    }
-
-
-
-
-
-class product_template(osv.osv):
+class product_template(models.Model):
     _inherit = 'product.template'
 
-    _columns = {
-        'income_pdt': fields.boolean('Point of Sale Cash In', help="Check if, this is a product you can use to put cash into a statement for the point of sale backend."),
-        'expense_pdt': fields.boolean('Point of Sale Cash Out', help="Check if, this is a product you can use to take cash from a statement for the point of sale backend, example: money lost, transfer to bank, etc."),
-        'available_in_pos': fields.boolean('Available in the Point of Sale', help='Check if you want this product to appear in the Point of Sale'), 
-        'to_weight' : fields.boolean('To Weigh With Scale', help="Check if the product should be weighted using the hardware scale integration"),
-        'pos_categ_id': fields.many2one('pos.category','Point of Sale Category', help="Those categories are used to group similar products for point of sale."),
-    }
+    income_pdt       = fields.Boolean('Point of Sale Cash In',
+        help="Check if, this is a product you can use to put cash into a statement for the point of sale backend.")
+    expense_pdt      = fields.Boolean('Point of Sale Cash Out',
+        help="Check if, this is a product you can use to take cash from a statement for the point of sale backend, example: money lost, transfer to bank, etc.")
+    available_in_pos = fields.Boolean('Available in the Point of Sale',
+        help='Check if you want this product to appear in the Point of Sale')
+    to_weight        = fields.Boolean('To Weigh With Scale',
+        help="Check if the product should be weighted using the hardware scale integration")
+    pos_categ_id     = fields.Many2one('pos.category','Point of Sale Category',
+        help="Those categories are used to group similar products for point of sale.")
 
     _defaults = {
         'to_weight' : False,
@@ -1505,7 +1486,7 @@ class product_template(osv.osv):
                     _('You cannot delete a product saleable in point of sale while a session is still opened.'))
         return super(product_template, self).unlink(cr, uid, ids, context=context)
 
-class res_partner(osv.osv):
+class res_partner(models.Model):
     _inherit = 'res.partner'
 
     def create_from_ui(self, cr, uid, partner, context=None):
@@ -1523,7 +1504,7 @@ class res_partner(osv.osv):
             self.write(cr, uid, [partner_id], partner, context=context)
         else:
             partner_id = self.create(cr, uid, partner, context=context)
-        
+
         return partner_id
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
