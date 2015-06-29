@@ -148,7 +148,7 @@
     <t t-name="Value">
         <li class="block-selection" t-att-data-value-id="value.id">
             <div class="top-block">
-                <input class="block-quantity" type="number" value="0"/>
+                <input class="block-quantity" type="number" value="0" onfocus="blur()"/>
             </div>
             <div class="bottom-block">
                 <div class="block-increase">

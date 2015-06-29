@@ -873,9 +873,13 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 }
 
                 if(className === "block-increase"){
-                    self.increase_value(value_id);
+                    self.set_value(value_id,1);
                 } else if(className === "block-decrease" && self.attributes[value_id] > 0) {
-                    self.decrease_value(value_id);
+                    self.set_value(value_id,-1);
+                } else if(className === "block-quantity"){
+                    self.pos_widget.onscreen_keyboard.connect( self.$( event.target ), event.target.getAttribute('type'), function(){
+                        self.pos_widget.onscreen_keyboard.hide();
+                    });
                 }
             };
             this.value_cache = new module.DomCache();
@@ -884,20 +888,22 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var self = this;
             this.hide();
         },
-        set_value: function(id, value){
-            this.attributes[id] = value;
-            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").value = value;
-        
-        },
-        increase_value: function(id){
-            this.attributes[id]++;
+        //When you want to increase or decrease the value, do not pass the third
+        //parameter. Or when you want to set the value, pass the third parameter 
+        //as true.
+        set_value: function(id, value, is_set){
+            if(!this.attributes[id] && is_set) {
+                this.set_total_quantity(value);
+                return;
+            }
+            if(is_set){
+                this.set_total_quantity(this.total_quantity-this.attributes[id]+value);
+                this.attributes[id] = value;
+            } else {
+                this.attributes[id] += value;
+                this.set_total_quantity(this.total_quantity+value);
+            }
             this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").value = this.attributes[id];
-            this.set_total_quantity(this.total_quantity+1);
-        },
-        decrease_value: function(id){
-            this.attributes[id]--;
-            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").value = this.attributes[id];
-            this.set_total_quantity(this.total_quantity-1);
         },
         set_total_quantity: function(value){
             this.total_quantity = value;
@@ -915,14 +921,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.set_total_quantity(options.quantity);
             if(this.selected_template.line){
                 options.details.forEach(function(detail){
-                    self.set_value(detail.id,detail.detail_qty);
+                    self.set_value(detail.id,detail.detail_qty,true);
                 });
             }else{
-                self.set_value(this.selected_template.id,options.quantity);
-            
+                self.set_value(this.selected_template.id,options.quantity,true);
             }
-
-
             this.show();
         },
         set_template:function(product_template){
@@ -934,7 +937,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     this.el.querySelector("[data-value-id='"+this.selected_template.id+"'] > .top-block > .block-quantity").value = this.total_quantity;
                     return;
                 }
-                this.increase_value(Object.keys(this.attributes)[0]);
+                this.set_value(Object.keys(this.attributes)[0],1);
             }else{
                 this.selected_template = product_template;
                 this.attributes = {};
@@ -942,7 +945,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.renderElement();
                 this.show();
             }
-
         },
         get_product_image_url: function(){
             if(this.selected_template) {
@@ -954,7 +956,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         get_attribute_value_image_url: function(id){
             return window.location.origin + '/web/binary/image?model=product.attribute.value&field=image&id='+id;
         },
-        clear_attribute(id) {
+        clear_attribute: function(id) {
             this.attributes[id] = 0;
             this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").value = 0;
         },
@@ -964,6 +966,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             target.parentNode.replaceChild(this.el,target);
         },
         render_value: function(value){
+            var self = this;
             var cached = this.value_cache.get_node(value.id);
             if(!cached){
                 var image_url = this.get_attribute_value_image_url(value.id);
@@ -975,6 +978,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 var value_node = document.createElement('div');
                 value_node.innerHTML = value_html;
                 value_node = value_node.childNodes[1];
+                $(value_node).find('.block-quantity').on('keyup',function(event){
+                    self.set_value(value.id,Number(event.target.value), true);
+                });
                 this.value_cache.cache_node(value.id,value_node);
                 return value_node;
             }
@@ -1008,6 +1014,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     var value_node = document.createElement('div');
                     value_node.innerHTML = value_html;
                     value_node = value_node.childNodes[1];
+                    $(value_node).find('.block-quantity').on('keyup',function(event){
+                        self.set_value(self.selected_template.id,Number(event.target.value), true);
+                    });
                     value_node.addEventListener('click', function(event) {
                         var className = event.target.className;
 
@@ -1019,6 +1028,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                             self.set_total_quantity(self.total_quantity+1);
                         } else if(className === "block-decrease" && self.total_quantity > 0) {
                             self.set_total_quantity(self.total_quantity-1);
+                        } else if(className === "block-quantity"){
+                            self.pos_widget.onscreen_keyboard.connect( self.$( event.target ), event.target.getAttribute('type'), function(){
+                                self.pos_widget.onscreen_keyboard.hide();
+                            });
                         }
                         self.el.querySelector("[data-value-id='"+this.dataset['valueId']+"'] > .top-block > .block-quantity").value = self.total_quantity;
                     });
