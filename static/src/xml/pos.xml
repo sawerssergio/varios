@@ -1396,6 +1396,16 @@
                     <t t-esc="widget.format_currency(order.getChange())"/>
                     </td></tr>
             </table>
+            <table>
+                <tr><td>Numero de Autorización:</td><td class="pos-right-align">
+                    <t t-esc="widget.pos.config.authorization"/>
+                    </td></tr>
+            </table>
+            <table>
+                <tr><td>Fecha Limite de Emisión:</td><td class="pos-right-align">
+                    <t t-esc="widget.pos.config.limit_date"/>
+                    </td></tr>
+            </table>
             <t t-if="widget.pos.config.receipt_footer">
                 <br />
                 <div style='text-align:center'>

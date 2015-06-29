@@ -1410,21 +1410,21 @@ class pos_category(models.Model):
     # for at least one category, then we display a default image on the other, so that the buttons have consistent styling.
     # In this case, the default image is set by the js code.
     # NOTE2: image: all image fields are base64 encoded and PIL-supported
+#image = fields.Binary('Image')
+#    image_medium = fields.Binary('Medium', compute="_get_image", store=True)
+#    image_thumb = fields.Binary('Thumbnail', compute="_get_image", store=True)
+
     image = fields.Binary("Image",
             help="This field holds the image used as image for the cateogry, limited to 1024x1024px.")
-    image_medium = fields.Binary(compute='_get_image', fnct_inv=_set_image,
+    image_medium = fields.Binary(compute='_get_image', inverse=_set_image,
             string="Medium-sized image", multi="_get_image",
-            store={
-                'pos.category': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10),
-            },
+            store=True,
             help="Medium-sized image of the category. It is automatically "\
                  "resized as a 128x128px image, with aspect ratio preserved. "\
                  "Use this field in form views or some kanban views.")
-    image_small = fields.Binary(compute='_get_image', fnct_inv=_set_image,
+    image_small = fields.Binary(compute='_get_image', inverse=_set_image,
             string="Small-sized image", multi="_get_image",
-            store={
-                'pos.category': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10),
-            },
+            store=True,
             help="Small-sized image of the category. It is automatically "\
                  "resized as a 64x64px image, with aspect ratio preserved. "\
                  "Use this field anywhere a small image is required.")
@@ -1443,7 +1443,7 @@ class product_attribute_value(models.Model):
         return self.write(cr, uid, [id], {'image': tools.image_resize_image_big(value)}, context=context)
 
     image = fields.Binary("Image",help="This field holds the image used as image for the attribute value, limited to 1024x1024px.")
-    image_medium = fields.Binary(compute='_get_image', fnct_inv=_set_image, string="Medium-sized image", multi="_get_image",
+    image_medium = fields.Binary(compute='_get_image', inverse=_set_image, string="Medium-sized image", multi="_get_image",
         store={
             'product.attribute.value': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10)
         },
@@ -1451,7 +1451,7 @@ class product_attribute_value(models.Model):
              "resized as a 128x128px image, with aspect ratio preserved. "\
              "Use this field in form views or some kanban views.")
 
-    image_small = fields.Binary(compute='_get_image', fnct_inv=_set_image, string="Small-sized image", multi="_get_image",
+    image_small = fields.Binary(compute='_get_image', inverse=_set_image, string="Small-sized image", multi="_get_image",
         store={
             'product.attribute.value': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10)
         },
