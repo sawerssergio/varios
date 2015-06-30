@@ -440,13 +440,13 @@
             <field name="attribute_line_ids" eval="[(6,0,[ref('product_attribute_line_coca_1')])]"/>
         </record>
         <!-- -->
-        <record id="product_drink_price_1" model="product.attribute.price">
+        <record id="attribute_size_value_2_price_1" model="product.attribute.price">
             <field name="product_tmpl_id" ref="product_drink_coca_1_product_template"/>
             <field name="value_id" ref="attribute_size_value_2"/>
             <field name="price_extra">1</field>
         </record>
 
-        <record id="product_drink_price_2" model="product.attribute.price">
+        <record id="attribute_size_value_3_price_2" model="product.attribute.price">
             <field name="product_tmpl_id" ref="product_drink_coca_1_product_template"/>
             <field name="value_id" ref="attribute_size_value_3"/>
             <field name="price_extra">2</field>
@@ -495,13 +495,13 @@
             <field name="attribute_line_ids" eval="[(6,0,[ref('product_attribute_line_fanta_1')])]"/>
         </record>
         <!-- -->
-        <record id="product_drink_price_1" model="product.attribute.price">
+        <record id="attribute_size_value_2_price_3" model="product.attribute.price">
             <field name="product_tmpl_id" ref="product_drink_fanta_1_product_template"/>
             <field name="value_id" ref="attribute_size_value_2"/>
             <field name="price_extra">1</field>
         </record>
 
-        <record id="product_drink_price_2" model="product.attribute.price">
+        <record id="attribute_size_value_3_price_4" model="product.attribute.price">
             <field name="product_tmpl_id" ref="product_drink_fanta_1_product_template"/>
             <field name="value_id" ref="attribute_size_value_3"/>
             <field name="price_extra">2</field>
@@ -550,13 +550,13 @@
             <field name="attribute_line_ids" eval="[(6,0,[ref('product_attribute_line_sprite_1')])]"/>
         </record>
         <!-- -->
-        <record id="product_drink_price_1" model="product.attribute.price">
+        <record id="attribute_size_value_2_price_5" model="product.attribute.price">
             <field name="product_tmpl_id" ref="product_drink_sprite_1_product_template"/>
             <field name="value_id" ref="attribute_size_value_2"/>
             <field name="price_extra">1</field>
         </record>
 
-        <record id="product_drink_price_2" model="product.attribute.price">
+        <record id="attribute_size_value_3_price_6" model="product.attribute.price">
             <field name="product_tmpl_id" ref="product_drink_sprite_1_product_template"/>
             <field name="value_id" ref="attribute_size_value_3"/>
             <field name="price_extra">2</field>
@@ -605,13 +605,13 @@
             <field name="attribute_line_ids" eval="[(6,0,[ref('product_attribute_line_simba_1')])]"/>
         </record>
         <!-- -->
-        <record id="product_drink_price_1" model="product.attribute.price">
+        <record id="attribute_size_value_2_price_7" model="product.attribute.price">
             <field name="product_tmpl_id" ref="product_drink_simba_1_product_template"/>
             <field name="value_id" ref="attribute_size_value_2"/>
             <field name="price_extra">1</field>
         </record>
 
-        <record id="product_drink_price_2" model="product.attribute.price">
+        <record id="attribute_size_value_3_price_8" model="product.attribute.price">
             <field name="product_tmpl_id" ref="product_drink_simba_1_product_template"/>
             <field name="value_id" ref="attribute_size_value_3"/>
             <field name="price_extra">2</field>
@@ -660,13 +660,13 @@
             <field name="attribute_line_ids" eval="[(6,0,[ref('product_attribute_line_coca_2')])]"/>
         </record>
         <!-- -->
-        <record id="product_drink_price_1" model="product.attribute.price">
+        <record id="attribute_size_value_2_price_9" model="product.attribute.price">
             <field name="product_tmpl_id" ref="product_drink_coca_2_product_template"/>
             <field name="value_id" ref="attribute_size_value_2"/>
             <field name="price_extra">1</field>
         </record>
 
-        <record id="product_drink_price_2" model="product.attribute.price">
+        <record id="attribute_size_value_3_price_10" model="product.attribute.price">
             <field name="product_tmpl_id" ref="product_drink_coca_2_product_template"/>
             <field name="value_id" ref="attribute_size_value_3"/>
             <field name="price_extra">2</field>
