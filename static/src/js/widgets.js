@@ -155,7 +155,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     //FIXME this should be on a diferent method
                     self.pos.pos_widget.product_options_widget.edit_options(this.orderline.template,{'quantity':this.orderline.get_quantity_display(), 'details': this.orderline.details });
                     var template_categ = this.orderline.template.pos_categ_id[0];
-                    self.pos.pos_widget.product_categories_widget.change_category(template_categ,this.orderline.template.id);
+                    self.pos.pos_widget.product_categories_widget.change_category(template_categ);
 
                     self.pos.pos_widget.product_screen.product_list_widget.set_selected_product(this.orderline.template.id); 
 
@@ -526,7 +526,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 },70);
             };
         },
-        change_category: function(category_id,template_id){
+        change_category: function(category_id){
             var category = this.pos.db.get_category_by_id(category_id);
             this.set_category(category);
             var templates = this.pos.db.get_template_by_category(category_id);
@@ -1056,6 +1056,12 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.el.querySelector('.action-image').addEventListener('click',function(){
                 if(!self.editable){
                     self.add_template_order(self.selected_template);
+                    if(self.selected_template.id == 58 || self.selected_template.id == 61){
+                        self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product(); 
+                        var drinks_categ_id = 2;
+                        self.pos.get('selectedOrder').set_screen_data('drinks_to_discount',self.total_quantity);
+                        self.pos.pos_widget.product_categories_widget.change_category(drinks_categ_id);
+                    }
                 }else{
                     self.edit_line_order(self.pos.get('selectedOrder').selected_orderline);
                 }
