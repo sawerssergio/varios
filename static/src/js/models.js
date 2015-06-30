@@ -826,7 +826,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             var res = false;
             if(this.template && orderline.template){
                 if(this.template.id == orderline.template.id){
-                    if(this.price === orderline.price){
+                    if(this.price_discount == undefined){
                         res = true;
                     }
                 }
@@ -1246,7 +1246,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 });
             }
 
-            if(this.screen_data['drinks_to_discount'] > 0){
+            if(this.screen_data['drinks_to_discount'] > 0 && line.template.pos_categ_id[0] == 2){
                 //alert(this.screen_data['drinks_to_discount']);
                 if(line.get_quantity() === 1){
                     this.screen_data['drinks_to_discount'] -= 1;
@@ -1274,6 +1274,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 }else{ 
                     line.set_unit_price(0);
                 }
+                line.price_discount = true;
             }
 
             var same_template_orderline = this.getSameTemplateOrderline(line);
