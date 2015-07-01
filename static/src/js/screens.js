@@ -614,7 +614,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
 
             this.$el = $(this.el);
             //This should be enable only for event click!
-            this.$(".client-find").click(function() {
+            /*this.$(".client-find").click(function() {
                 var value = self.$('.client-details .client-vat')[0].value;
                 var partner = new instance.web.Model('res.partner');
                 partner.query(['name', 'vat', 'phone'])
@@ -625,7 +625,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             });
             this.$(".client-ok").click(function() {
                 self.save_client_details({});
-            });
+            });*/
         },
         search_client_by_vat: function(vat) {
             var self = this;
