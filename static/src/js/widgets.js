@@ -324,6 +324,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     pos_widget.screen_selector.set_current_screen('client');
                 }
                 else if ( pos_widget.screen_selector.get_current_screen() === "client" ){
+                    pos_widget.client_screen.save_client();
+                    pos_widget.onscreen_keyboard.hide();
                     pos_widget.screen_selector.set_current_screen('invoice');
                 }
                 else if( pos_widget.screen_selector.get_current_screen() === "invoice" ){

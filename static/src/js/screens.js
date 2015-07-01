@@ -558,6 +558,10 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         back_screen: 'products',
         auto_back: true,
         show_leftpane: false,
+        init: function(parent, options){
+            this._super(parent);
+            this.new_client = undefined;
+        },
         show: function(){
             var self = this;
             this._super();
@@ -566,12 +570,16 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
 
             if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
                 self.$el.find( 'input').each( function( index , input ){
+                    input.value="";
                     $(input).on( window.is_mobile ? 'touchend' : 'click' , function( evt ){
                         var input_event = this;
                         self.$( evt.target ).parent().parent()
                         .find('input').css('background' , 'transparent');
                         self.$( evt.target ).css("background", '#C1272D');
                         self.pos_widget.onscreen_keyboard.connect( self.$( evt.target ), input.getAttribute('type'), function(){
+                            if(evt.target.classList.contains("client-vat")){
+                                self.search_client_by_vat(evt.target.value);
+                            }
                             var inputs = $(input_event).closest('.client-details').find(':input');
                             var next_input = inputs.eq( inputs.index(input_event)+ 1 );
                             if(next_input.length !== 0 ){
@@ -587,10 +595,51 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     });
                 });
             }
+        },
+        renderElement: function(){
+            var self = this;
+            this._super();
+
+            var el_str  = openerp.qweb.render('ClientScreenWidget',{widget:this, partner:self.new_client});
+
+            var el_node = document.createElement('div');
+                el_node.innerHTML = _.str.trim(el_str);
+                el_node = el_node.childNodes[0];
+
+            if(this.el && this.el.parentNode){
+                this.el.parentNode.replaceChild(el_node,this.el);
+            }
+
+            this.el = el_node;
+
+            this.$el = $(this.el);
             //This should be enable only for event click!
-            /*this.$(".client-ok").click(function() {
+            this.$(".client-find").click(function() {
+                var value = self.$('.client-details .client-vat')[0].value;
+                var partner = new instance.web.Model('res.partner');
+                partner.query(['name', 'vat', 'phone'])
+                    .filter([['vat', '=', value]])
+                    .limit(1)
+                    .all().then(function (users) {
+                });
+            });
+            this.$(".client-ok").click(function() {
                 self.save_client_details({});
-            });*/
+            });
+        },
+        search_client_by_vat: function(vat) {
+            var self = this;
+            var partner = new instance.web.Model('res.partner');
+            partner.query(['name', 'vat', 'phone'])
+                .filter([['vat', '=', vat]])
+                .limit(1)
+                .all().then(function (users) {
+                    if(users.length > 0){
+                        self.new_client = users[0];
+                        self.renderElement();
+                        self.pos_widget.onscreen_keyboard.hide();
+                    }
+            });
         },
         // what happens when we save the changes on the client edit form -> we fetch the fields, sanitize them,
         // send them to the backend for update, and call saved_client_details() when the server tells us the
@@ -599,7 +648,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             var self = this;
             
             var fields = {}
-            this.$('.client-details-contents .detail').each(function(idx,el){
+            this.$('.client-details .detail').each(function(idx,el){
                 fields[el.name] = el.value;
             });
 
@@ -632,7 +681,15 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         // what happens when we've just pushed modifications for a partner of id partner_id
         saved_client_details: function(partner_id){
             var self = this;
-            this.reload_partners().then(function(){
+            var partner = new instance.web.Model('res.partner');
+            partner.query(['name', 'vat', 'phone'])
+                .filter([['id', '=', partner_id]])
+                .limit(1)
+                .all().then(function (users) {
+                    //self.new_client = users[0];
+                    self.pos.get('selectedOrder').set_client(users[0]);
+            });
+            /*this.reload_partners().then(function(){
                 var partner = self.pos.db.get_partner_by_id(partner_id);
                 if (partner) {
                     self.new_client = partner;
@@ -643,7 +700,10 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     // has created, and reload_partner() must have loaded the newly created partner. 
                     self.display_client_details('hide');
                 }
-            });
+            });*/
+        },
+        save_client: function(){
+            this.save_client_details({});
         },
     });
 

@@ -398,29 +398,71 @@
             <section class="header-screen">
                 <h2 class="name-screen font-bold-condensed">CLIENTE</h2>
             </section>
-            <!--<button class="client-ok">click me!</button>-->
-            <ul class="client-details">
-                <li class='client-detail-item font-medium'>
-                    <span class='label'>NIT:</span>
-                    <input class='detail client-vat' name='vat'  placeholder='Vat' type="number" onfocus="blur()"></input>
-                </li>
-                <li class='client-detail-item font-medium'>
-                    <span class='label'>Nombre:</span>
-                    <input class='detail client-name' name='name'  placeholder='Name' type="text" onfocus="blur()"></input>
-                </li>
-                <li class='client-detail-item font-medium'>
-                    <span class='label'>Celular:</span>
-                    <input class='detail client-mobile' name='mobile'  placeholder='Telefono Celular' type="number" onfocus="blur()"></input>
-                </li>
-                <li class='client-detail-item font-medium'>
-                    <span class='label'>Telefono:</span>
-                    <input class='detail client-phone' name='phone'  placeholder='Telefono' type="number" onfocus="blur()"></input>
-                </li>
-                <li class='client-detail-item font-medium'>
-                    <span class='label'>Direccion:</span>
-                    <input class='detail client-street' name='street'  placeholder='Direccion' type="text" onfocus="blur()"></input>
-                </li>
-            </ul>
+            <button class="client-ok">click me!</button>
+            <button class="client-find">find me!</button>
+            <t t-if="!partner">
+                <ul class="client-details">
+                    <li class='client-detail-item font-medium'>
+                        <span class='label'>NIT:</span>
+                        <input class='detail client-vat' name='vat'  placeholder='Vat' type="number" onfocus="blur()"></input>
+                    </li>
+                    <li class='client-detail-item font-medium'>
+                        <span class='label'>Nombre:</span>
+                        <input class='detail client-name' name='name'  placeholder='Name' type="text" onfocus="blur()"></input>
+                    </li>
+                    <li class='client-detail-item font-medium'>
+                        <span class='label'>Celular:</span>
+                        <input class='detail client-mobile' name='mobile'  placeholder='Telefono Celular' type="number" onfocus="blur()"></input>
+                    </li>
+                    <li class='client-detail-item font-medium'>
+                        <span class='label'>Telefono:</span>
+                        <input class='detail client-phone' name='phone'  placeholder='Telefono' type="number" onfocus="blur()"></input>
+                    </li>
+                    <li class='client-detail-item font-medium'>
+                        <span class='label'>Direccion:</span>
+                        <input class='detail client-street' name='street'  placeholder='Direccion' type="text" onfocus="blur()"></input>
+                    </li>
+                </ul>
+            </t>
+            <t t-if="partner">
+                <ul class="client-details">
+                    <li class='client-detail-item font-medium'>
+                        <span class='label'>NIT:</span>
+                        <span class='detail client-vat'><t t-esc='partner.vat' /></span>
+                    </li>
+                    <li class='client-detail-item font-medium'>
+                        <span class='label'>Nombre:</span>
+                        <span class='detail client-name'><t t-esc='partner.name' /></span>
+                    </li>
+                    <li class='client-detail-item font-medium'>
+                        <span class='label'>Celular:</span>
+                        <t t-if='partner.mobile'>
+                            <span class='detail client-mobile'><t t-esc='partner.mobile' /></span>
+                        </t>
+                        <t t-if="!partner.mobile">
+                            <span class='detail client-mobile'>N/A</span>
+                        </t>
+                    </li>
+                    <li class='client-detail-item font-medium'>
+                        <span class='label'>Telefono:</span>
+                        <t t-if='partner.phone'>
+                            <span class='detail client-phone'><t t-esc='partner.phone' /></span>
+                        </t>
+                        <t t-if='!partner.phone'>
+                            <span class='detail client-phone'>N/A</span>
+                        </t>
+                    </li>
+                    <li class='client-detail-item font-medium'>
+                        <span class='label'>Direccion:</span>
+                        <t t-if='partner.street'>
+                            <span class='detail client-street'><t t-esc='partner.street' /></span>
+                        </t>
+                        <t t-if='!partner.street'>
+                            <span class='detail client-street'>N/A</span>
+                        </t>
+                    </li>
+                </ul>
+            </t>
         </div>
     </t>
 
