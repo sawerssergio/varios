@@ -924,7 +924,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.selected_template = template;
             this.attributes = {};
             this.renderElement();
-            //this.set_total_quantity(options.quantity);
             if(this.selected_template.line){
                 options.details.forEach(function(detail){
                     self.set_value(detail.id,detail.detail_qty,true);
@@ -932,6 +931,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             }else{
                 self.set_value(this.selected_template.id,options.quantity,true);
             }
+            this.set_total_quantity(options.quantity);
             this.show();
         },
         set_template:function(product_template){
