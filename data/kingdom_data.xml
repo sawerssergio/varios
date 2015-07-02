@@ -172,7 +172,6 @@
 
         <record id="chicken_1_product_template" model="product.template">
             <field name="attribute_line_ids" eval="[(6,0,[ref('chicken_1_attribute_line_1')])]"/>
-
         </record>
 
         <record id="attribute_piece_value_2_price_1" model="product.attribute.price">
@@ -226,6 +225,7 @@
 
         <record id="chicken_2_product_template" model="product.template">
             <field name="attribute_line_ids" eval="[(6,0,[ref('chicken_2_attribute_line_2')])]"/>
+            <field name="is_combo">true</field>
         </record>
 
         <record id="attribute_piece_value_2_price_2" model="product.attribute.price">
@@ -355,6 +355,7 @@
 
         <record id="chicken_5_product_template" model="product.template">
             <field name="attribute_line_ids" eval="[(6,0,[ref('chicken_5_attribute_line_5')])]"/>
+            <field name="is_combo">true</field>
         </record>
 
         <!-- End Queen Menu -->

@@ -1058,7 +1058,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.el.querySelector('.action-image').addEventListener('click',function(){
                 if(!self.editable){
                     self.add_template_order(self.selected_template);
-                    if(self.selected_template.id == 58 || self.selected_template.id == 61){
+                    if(self.selected_template.is_combo){
                         self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product(); 
                         var drinks_categ_id = 2;
                         self.pos.get('selectedOrder').set_screen_data('drinks_to_discount',self.total_quantity);

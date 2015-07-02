@@ -1472,6 +1472,7 @@ class product_template(models.Model):
         help="Check if the product should be weighted using the hardware scale integration")
     pos_categ_id     = fields.Many2one('pos.category','Point of Sale Category',
         help="Those categories are used to group similar products for point of sale.")
+    is_combo = fields.Boolean('Point of Sale Combo')
 
     _defaults = {
         'to_weight' : False,

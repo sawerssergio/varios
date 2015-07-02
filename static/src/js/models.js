@@ -248,7 +248,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         },{
             model:  'product.template',
             fields: ['display_name', 'list_price','price','pos_categ_id', 'default_code', 
-                     'description','attribute_line_ids'],
+                     'description','attribute_line_ids','is_combo'],
             loaded: function(self, templates){ self.db.add_templates(templates) },
         },{
             model:  'product.attribute',
@@ -1246,7 +1246,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 });
             }
 
-            if(this.screen_data['drinks_to_discount'] > 0 && line.template.pos_categ_id[0] == 2){
+            if(this.screen_data['drinks_to_discount'] > 0 && line.template.pos_categ_id[1] === "Soda"){
                 //alert(this.screen_data['drinks_to_discount']);
                 if(line.get_quantity() === 1){
                     this.screen_data['drinks_to_discount'] -= 1;
@@ -1269,7 +1269,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                         this.screen_data['drinks_to_discount'] -= line.get_quantity();
                     }
                 }
-                if(line.get_product().attribute_value_ids[0] === 8){
+                if(line.get_product().price === 7){
                     line.set_unit_price(2);
                 }else{ 
                     line.set_unit_price(0);
