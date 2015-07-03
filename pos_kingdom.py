@@ -682,7 +682,7 @@ class pos_order(models.Model):
         pricelist = self.pool.get('res.partner').browse(cr, uid, part, context=context).property_product_pricelist.id
         return {'value': {'pricelist_id': pricelist}}
 
-    def _amount_all(self, cr, uid, ids, name, args, context=None):
+    def _amount_all(self, cr, uid, ids, args, context=None):
         cur_obj = self.pool.get('res.currency')
         res = {}
         for order in self.browse(cr, uid, ids, context=context):
@@ -711,7 +711,7 @@ class pos_order(models.Model):
     company_id = fields.Many2one('res.company', 'Company', required=True, readonly=True)
     date_order = fields.Datetime('Order Date', readonly=True, select=True)
     user_id    = fields.Many2one('res.users', 'Salesman', help="Person who uses the the cash register. It can be a reliever, a student or an interim employee.")
-    amount_tax = fields.Float(compute='_amount_all', string='Taxes', digits_compute=dp.get_precision('Account'), multi='all')
+    amount_tax = fields.Float(compute='_amount_all', string='Taxes', digits_compute=dp.get_precision('Account'))
     amount_total    = fields.Float(compute='_amount_all', string='Total', digits_compute=dp.get_precision('Account'),  multi='all')
     amount_paid     = fields.Float(compute='_amount_all', string='Paid', states={'draft': [('readonly', False)]}, readonly=True, digits_compute=dp.get_precision('Account'), multi='all')
     amount_return   = fields.Float(compute='_amount_all', digits_compute=dp.get_precision('Account'), multi='all') #  'Returned',
@@ -1391,7 +1391,7 @@ class pos_category(models.Model):
         res = self.name_get(cr, uid, ids, context=context)
         return dict(res)
 
-    def _get_image(self, cr, uid, ids, context=None):
+    def _get_image(self, cr, uid, ids, name, args, context=None):
         result = dict.fromkeys(ids, False)
         for obj in self.browse(cr, uid, ids, context=context):
             result[obj.id] = tools.image_get_resized_images(obj.image)
@@ -1416,13 +1416,13 @@ class pos_category(models.Model):
 
     image = fields.Binary("Image",
             help="This field holds the image used as image for the cateogry, limited to 1024x1024px.")
-    image_medium = fields.Binary(compute='_get_image', inverse=_set_image,
+    image_medium = fields.Binary(compute='_get_image', inverse='_set_image',
             string="Medium-sized image", multi="_get_image",
             store=True,
             help="Medium-sized image of the category. It is automatically "\
                  "resized as a 128x128px image, with aspect ratio preserved. "\
                  "Use this field in form views or some kanban views.")
-    image_small = fields.Binary(compute='_get_image', inverse=_set_image,
+    image_small = fields.Binary(compute='_get_image', inverse='_set_image',
             string="Small-sized image", multi="_get_image",
             store=True,
             help="Small-sized image of the category. It is automatically "\
@@ -1443,7 +1443,7 @@ class product_attribute_value(models.Model):
         return self.write(cr, uid, [id], {'image': tools.image_resize_image_big(value)}, context=context)
 
     image = fields.Binary("Image",help="This field holds the image used as image for the attribute value, limited to 1024x1024px.")
-    image_medium = fields.Binary(compute='_get_image', inverse=_set_image, string="Medium-sized image", multi="_get_image",
+    image_medium = fields.Binary(compute='_get_image', inverse='_set_image', string="Medium-sized image", multi="_get_image",
         store={
             'product.attribute.value': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10)
         },
@@ -1451,7 +1451,7 @@ class product_attribute_value(models.Model):
              "resized as a 128x128px image, with aspect ratio preserved. "\
              "Use this field in form views or some kanban views.")
 
-    image_small = fields.Binary(compute='_get_image', inverse=_set_image, string="Small-sized image", multi="_get_image",
+    image_small = fields.Binary(compute='_get_image', inverse='_set_image', string="Small-sized image", multi="_get_image",
         store={
             'product.attribute.value': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10)
         },
