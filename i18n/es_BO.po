@@ -43,7 +43,7 @@ msgstr "(update)"
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
 msgid ") is \""
-msgstr ") is \""
+msgstr ") esta \""
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
@@ -87,9 +87,9 @@ msgid "<p class=\"oe_view_nocontent_create\">\n"
 "              </p>\n"
 "            "
 msgstr "<p class=\"oe_view_nocontent_create\">\n"
-"                Click to add a destination.\n"
+"                Click para agregar un destino.\n"
 "              </p><p>\n"
-"                Destinations are places for dispatch products.\n"
+"                Los destinos son lugares para despachar productos.\n"
 "              </p>\n"
 "            "
 
@@ -313,7 +313,7 @@ msgstr "Admin Badge"
 #: model:ir.actions.act_window,name:pos_kingdom.action_pos_session
 #: model:ir.ui.menu,name:pos_kingdom.menu_pos_session_all
 msgid "All Sessions"
-msgstr "All Sessions"
+msgstr "Todas las sesiones"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_pos_all_sales_lines
@@ -646,7 +646,7 @@ msgstr "Children Categories"
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
 msgid "Click to continue the session."
-msgstr "Click to continue the session."
+msgstr "Click para continuar la sesión."
 
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
@@ -671,7 +671,7 @@ msgstr "Close"
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
 msgid "Close Session"
-msgstr "Close Session"
+msgstr "Cerrar Sesión"
 
 #. module: pos_kingdom
 #: view:account.bank.statement:pos_kingdom.view_pos_confirm_cash_statement_filter
@@ -889,7 +889,7 @@ msgstr "Customer Invoice"
 #. module: pos_kingdom
 #: model:ir.ui.menu,name:pos_kingdom.menu_pos_kingdom
 msgid "Daily Operations"
-msgstr "Daily Operations"
+msgstr "Operaciones Diarias"
 
 #. module: pos_kingdom
 #: field:report.transaction.pos,date_create:0
@@ -985,7 +985,7 @@ msgstr "Destination Configuration"
 #: model:ir.ui.menu,name:pos_kingdom.menu_action_pos_destination_form_open
 #: field:pos.config,destination_ids:0
 msgid "Destinations"
-msgstr "Destinations"
+msgstr "Destinos"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -1430,7 +1430,7 @@ msgstr "Image"
 #: selection:pos.session.opening,pos_state:0
 #, python-format
 msgid "In Progress"
-msgstr "In Progress"
+msgstr "En Progreso"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:676
@@ -2001,7 +2001,7 @@ msgstr "Order lines"
 #: model:ir.ui.menu,name:pos_kingdom.menu_point_ofsale
 #: field:pos.session,order_ids:0
 msgid "Orders"
-msgstr "Orders"
+msgstr "Pedidos"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_report_pos_order_all
@@ -2125,7 +2125,7 @@ msgstr "Payment Date"
 #: model:ir.actions.act_window,name:pos_kingdom.action_account_journal_form
 #: model:ir.ui.menu,name:pos_kingdom.menu_action_account_journal_form_open
 msgid "Payment Methods"
-msgstr "Payment Methods"
+msgstr "Metodos de pago"
 
 #. module: pos_kingdom
 #: field:pos.make.payment,journal_id:0
@@ -2268,7 +2268,7 @@ msgstr "PoS Session Opening"
 #: view:res.users:pos_kingdom.res_users_form_view
 #: view:website:pos_kingdom.report_sessionsummary
 msgid "Point of Sale"
-msgstr "Point of Sale"
+msgstr "Punto de Venta"
 
 #. module: pos_kingdom
 #: view:report.pos.order:pos_kingdom.view_report_pos_order_graph
@@ -2339,7 +2339,7 @@ msgstr "Point of Sale Session"
 #: model:ir.ui.menu,name:pos_kingdom.menu_pos_config_pos
 #: view:pos.session:pos_kingdom.view_pos_session_search
 msgid "Point of Sales"
-msgstr "Point of Sales"
+msgstr "Puntos de venta"
 
 #. module: pos_kingdom
 #: view:pos.category:pos_kingdom.product_pos_category_form_view
@@ -2350,7 +2350,7 @@ msgstr "Pos Categories"
 #: model:ir.actions.act_window,name:pos_kingdom.product_pos_category_action
 #: model:ir.ui.menu,name:pos_kingdom.menu_product_pos_category
 msgid "Pos Product Categories"
-msgstr "Pos Product Categories"
+msgstr "Categorías de productos"
 
 #. module: pos_kingdom
 #: field:account.bank.statement.line,pos_statement_id:0
@@ -2619,7 +2619,7 @@ msgstr "Responsable"
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
 msgid "Resume Session"
-msgstr "Resume Session"
+msgstr "Continuar Sesión"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:955
@@ -3234,7 +3234,7 @@ msgstr "The provided file could not be read due to an unknown error"
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
 msgid "The session"
-msgstr "The session"
+msgstr "La sesión"
 
 #. module: pos_kingdom
 #: view:pos.open.statement:pos_kingdom.view_pos_open_statement
@@ -3601,7 +3601,7 @@ msgstr "Year"
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
 msgid "You can continue sales from the touchscreen interface by clicking on \"Start Selling\" or close the cash register session."
-msgstr "You can continue sales from the touchscreen interface by clicking on \"Start Selling\" or close the cash register session."
+msgstr "Puedes continuar las ventas desde la interfaz tactil haciendo click  en  \"Continuar Sesión\" o cerrar la sesión de la caja registradora."
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
@@ -3706,7 +3706,7 @@ msgstr "Your Internet connection is probably down."
 #: model:ir.actions.act_window,name:pos_kingdom.action_pos_session_opening
 #: model:ir.ui.menu,name:pos_kingdom.menu_pos_session_opening
 msgid "Your Session"
-msgstr "Your Session"
+msgstr "Tu sesión"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:496
@@ -3726,7 +3726,7 @@ msgstr "Your internet connection is probably down."
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1214
 #, python-format
 msgid "Your shopping cart is empty"
-msgstr "Your shopping cart is empty"
+msgstr "La orden se encuentra vacía"
 
 #. module: pos_kingdom
 #: field:pos.config,authorization:0
