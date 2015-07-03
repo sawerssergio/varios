@@ -1200,7 +1200,7 @@
             <div class="order-header">
                 <div class="order-header-content">
                     <div class="order-dispatch">
-                        <h2 class="font-black">Para llevar</h2>
+                        <h2 class="type-order font-black">Para Aqui</h2>
                     </div>
                     <div class="order-restart">
                         <img src="/pos_kingdom/static/src/img/trash.svg"/>

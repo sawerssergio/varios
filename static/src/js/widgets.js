@@ -152,6 +152,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         init: function(parent, options) {
             var self = this;
             this._super(parent,options);
+            this.type = "this";
             this.editable = false;
             this.pos.bind('change:selectedOrder', this.change_selected_order, this);
             this.line_click_handler = function(event){
@@ -327,7 +328,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             if(scrollbottom){
                 this.el.querySelector('.order-scroller').scrollTop = 100 * orderlines.length;
             }
-
+            if(this.type==="those"){
+                this.el.querySelector('.type-order').textContent = "Para Llevar";
+            }
             var pos_widget = this.pos_widget;
             var current_order = this.pos.get('selectedOrder');
             this.el.querySelector('.action-next-image').addEventListener( "click" , function(){
@@ -353,6 +356,19 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             this.el.querySelector('.order-restart').addEventListener("click",function(){
                 self.pos.get('selectedOrder').restart_order();
+            });
+            this.el.querySelector('.order-dispatch').addEventListener('click',function(event){
+                if(event.target.nodeName == "H2"){
+                    if(self.type=="those")
+                    {
+                        event.target.textContent = "Para Aqui";
+                        self.type = "this";
+                        return;
+                    }
+                    event.target.textContent = "Para Llevar";
+                    self.type="those";
+                } 
+                console.log(event.target.nodeName);
             });
         },
         update_summary: function(){
