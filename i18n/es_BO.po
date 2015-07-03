@@ -651,7 +651,7 @@ msgstr "Click para continuar la sesión."
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
 msgid "Click to start a session."
-msgstr "Click to start a session."
+msgstr "Click para iniciar una nueva sesión."
 
 #. module: pos_kingdom
 #. openerp-web
@@ -1749,7 +1749,7 @@ msgstr "New"
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
 msgid "New Session"
-msgstr "New Session"
+msgstr "Nueva Sesión"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -2310,7 +2310,7 @@ msgstr "Point of Sale Destination"
 #. module: pos_kingdom
 #: field:pos.config,name:0
 msgid "Point of Sale Name"
-msgstr "Point of Sale Name"
+msgstr "Nombre de Punto de Venta"
 
 #. module: pos_kingdom
 #: view:pos.order:pos_kingdom.view_pos_pos_form
@@ -3030,7 +3030,7 @@ msgstr "Estado"
 #. module: pos_kingdom
 #: field:pos.config,stock_location_id:0
 msgid "Stock Location"
-msgstr "Stock Location"
+msgstr "Ubicacion de Almacen"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3678,8 +3678,8 @@ msgstr "You have to select a pricelist in the sale form !\n"
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
 msgid "You may have to control your cash amount in your cash register, before\n"
 "                          being able to start selling through the touchscreen interface."
-msgstr "You may have to control your cash amount in your cash register, before\n"
-"                          being able to start selling through the touchscreen interface."
+msgstr "Puede que tenga que controlar la cantidad de su dinero en efectivo en la caja registradora, antes de\n"
+"                          empezar a vender a travez de la interfaz de pantalla tactil."
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:383
