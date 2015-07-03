@@ -150,12 +150,13 @@ input[type=number] {
         position: relative;
         .sale {
             background-color: $co_menu_background;
-            width: 85%;
+            width: 75%;
             height: 80%;
             float: right;
-            margin-top: 4%;
+            margin-top: 2%;
             border-radius: 1em 0 0 1em;
             color: white;
+            padding-left: 25%;
             .sale-type {
                 font-size: 1.2em;
                 font-weight: bold;
@@ -172,18 +173,68 @@ input[type=number] {
         .user {
             right: 0;
             margin-top: 2%;
-            height: 90%;
+            height: 75%;
             width: 35%;
             position: absolute;
             .user-data {
                 height: 100%;
+                position: relative;
                 .user-image {
                     height: 100%;
                     display: inline-block;
+                    margin-left: 40%;
                     img {
                         height: 100%;
                         border-radius: 50%;
                         border: 2px solid black;
+                    }
+                }
+                .active {
+                    display: block !important;
+                    z-index: 10;
+                }
+                .user-options {
+                    display: none;
+                    margin:0px; padding:0px;
+                    position: absolute;
+                    width: 100%;
+                    background-color:rgba(0,0,0,.9);
+                    color: white;
+                    clear: both;
+                    border-radius: 1em;
+                    li {
+                        list-style-type:none; margin:10px 0 0 0;
+                        a {
+                            display:block;
+                            padding:5px 10px;
+                            text-decoration:none;
+                            color: white;
+                        }
+                        &:active {
+                            background-color: $co_menu_red;
+                        }
+                    }
+                    &:after {
+                        content: "";
+                        width: 0;
+                        height: 0;
+                        position: absolute;
+                        bottom: 100%;
+                        right: 34%;
+                        border-width: 0 6px 6px 6px;
+                        border-style: solid;
+                        border-color: rgba(0,0,0,.8) transparent;
+                    }
+                    &:before {
+                        content: "";
+                        width: 0;
+                        height: 0;
+                        position: absolute;
+                        bottom: 100%;
+                        right: 36%;
+                        border-width: 0 8px 8px 8px;
+                        border-style: solid;
+                        border-color: rgba(0,0,0,0.1) transparent;
                     }
                 }
             }

@@ -232,7 +232,7 @@
             <button class="input-button number-char">0</button>
             <button class="input-button number-char">.</button>
             <button class="input-button numpad-backspace">
-                <img src="/pos_kingdom/static/src/img/backspace.png" width="24" height="21" />
+            <img src="/pos_kingdom/static/src/img/backspace.png" width="24" height="21" />
             </button>
             <br />
         </div>
@@ -1349,6 +1349,11 @@
             <span class="user-image">
                 <img t-att-src="widget.get_image()"/>
             </span>
+            <ul class="user-options">
+                <li><a href="#">Ayuda</a></li>
+                <li><a href="#">Otros</a></li>
+                <li class="close"><a>Salir</a></li>
+            </ul>
          </div>
      </t>
 

@@ -53,6 +53,19 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         get_image: function(){
             return '/web/binary/image?model=res.partner&id='+this.pos.user.partner_id[0]+'&field=image_small';
+        },
+        close_session: function(){
+        },
+        renderElement: function(){
+            var self = this;
+            this._super();
+            this.$(".close").click(function(){
+                self.pos_widget.close();
+            });
+            this.$(".user-image").click(function(event){
+                self.$(".user-options").toggleClass('active');
+                return false;
+            });
         }
     });
 
