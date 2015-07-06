@@ -4,7 +4,7 @@
     'version': '1.0.1',
     'category': 'Point Of Sale',
     'sequence': 6,
-    'summary': 'Touchscreen Interface for Shops',
+    'summary': 'Punto de Venta Chicken\'s Kingdom',
     'description': """
 Quick and Easy sale process
 ===========================

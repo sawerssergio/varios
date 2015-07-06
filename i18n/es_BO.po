@@ -132,12 +132,12 @@ msgid "<p class=\"oe_view_nocontent_create\">\n"
 "              </p>\n"
 "            "
 msgstr "<p class=\"oe_view_nocontent_create\">\n"
-"                Click to add a payment method.\n"
+"                Click para añadir una forma de pago.\n"
 "              </p><p>\n"
-"                Payment methods are defined by accounting journals having the\n"
-"                field <i>PoS Payment Method</i> checked. In order to be useable\n"
-"                from the touchscreen interface, you must set the payment method\n"
-"                on the <i>Point of Sale</i> configuration.\n"
+"                Las formas de pago se relacionan con una cuenta contable, esta tiene\n"
+"                que estar en el campo <i>PoS Payment Method</i> habilitado. Para que esto sea usable\n"
+"                desde el Punto de Venta, es necesario definir las formas de pago\n"
+"                en la configuracion del <i>Punto de Venta</i>.\n"
 "              </p>\n"
 "            "
 
@@ -152,11 +152,11 @@ msgid "<p class=\"oe_view_nocontent_create\">\n"
 "              </p>\n"
 "            "
 msgstr "<p class=\"oe_view_nocontent_create\">\n"
-"                Click to create a new order.\n"
+"                Click para crear un nuevo pedido .\n"
 "              </p><p>\n"
-"                Use this menu to browse previous orders. To record new\n"
-"                orders, you may use the menu <i>Your Session</i> for\n"
-"                the touchscreen interface.\n"
+"                Utilice este menú para ver pedidos anteriores. Para crear un nuevo\n"
+"                pedido, puede utilizar el menú <i>Su Sesión</i> y crear\n"
+"                el pedido desde el Punto de Venta.\n"
 "              </p>\n"
 "            "
 
@@ -200,15 +200,15 @@ msgid "<p class=\"oe_view_nocontent_create\">\n"
 "              </p>\n"
 "            "
 msgstr "<p class=\"oe_view_nocontent_create\">\n"
-"                Click to start a new session.\n"
+"                Click para iniciar una nueva sesión.\n"
 "              </p><p>\n"
-"                A session is a period of time, usually one day, during which\n"
-"                you sell through the point of sale. The user has to check the\n"
-"                currencies in your cash registers at the beginning and the end\n"
-"                of each session.\n"
+"                Una sesión es un período de tiempo, generalmente un día, durante el cual\n"
+"                se pueden realizar ventas mediante el Punto de Venta. El usuario tiene que comprobar\n"
+"                la cantidad de dinero en efectivo al pricipio y al final\n"
+"                de cada sesión.\n"
 "              </p><p>\n"
-"                Note that you may use the menu <i>Your Session</i>\n"
-"                to quickly open a new session.\n"
+"                Tenga en cuenta que puede utilizar el menú <i>Su sesión</i>\n"
+"                para abrir rápidamente una nueva sesión.\n"
 "              </p>\n"
 "            "
 
@@ -2339,7 +2339,7 @@ msgstr "Point of Sale Session"
 #: model:ir.ui.menu,name:pos_kingdom.menu_pos_config_pos
 #: view:pos.session:pos_kingdom.view_pos_session_search
 msgid "Point of Sales"
-msgstr "Puntos de venta"
+msgstr "Puntos de Venta"
 
 #. module: pos_kingdom
 #: view:pos.category:pos_kingdom.product_pos_category_form_view
@@ -3679,7 +3679,7 @@ msgstr "You have to select a pricelist in the sale form !\n"
 msgid "You may have to control your cash amount in your cash register, before\n"
 "                          being able to start selling through the touchscreen interface."
 msgstr "Puede que tenga que controlar la cantidad de su dinero en efectivo en la caja registradora, antes de\n"
-"                          empezar a vender a travez de la interfaz de pantalla tactil."
+"                          empezar a vender a travez del Punto de Venta."
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:383
@@ -3706,7 +3706,7 @@ msgstr "Your Internet connection is probably down."
 #: model:ir.actions.act_window,name:pos_kingdom.action_pos_session_opening
 #: model:ir.ui.menu,name:pos_kingdom.menu_pos_session_opening
 msgid "Your Session"
-msgstr "Tu sesión"
+msgstr "Su sesión"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:496
