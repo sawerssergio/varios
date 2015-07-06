@@ -30,8 +30,63 @@ from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 import openerp.addons.product.product
 from num2words import num2words
+from PIL import Image
+
+try:
+    import cStringIO as StringIO
+except ImportError:
+    import StringIO
 
 _logger = logging.getLogger(__name__)
+
+# ----------------------------------------
+# Crop Image
+# ----------------------------------------
+def crop_image(data, type='top', ratio=False, thumbnail_ratio=None, image_format="PNG"):
+    """ Used for cropping image and create thumbnail
+        :param data: base64 data of image.
+        :param type: Used for cropping position possible
+            Possible Values : 'top', 'center', 'bottom'
+        :param ratio: Cropping ratio
+            e.g for (4,3), (16,9), (16,10) etc
+            send ratio(1,1) to generate square image
+        :param thumbnail_ratio: It is size reduce ratio for thumbnail
+            e.g. thumbnail_ratio=2 will reduce your 500x500 image converted in to 250x250
+        :param image_format: return image format PNG,JPEG etc
+    """
+    if not data:
+        return False
+    image_stream = Image.open(StringIO.StringIO(data.decode('base64')))
+    output_stream = StringIO.StringIO()
+    w, h = image_stream.size
+    new_h = h
+    new_w = w
+
+    if ratio:
+        w_ratio, h_ratio = ratio
+        new_h = (w * h_ratio) / w_ratio
+        new_w = w
+        if new_h > h:
+            new_h = h
+            new_w = (h * w_ratio) / h_ratio
+
+    if type == "top":
+        cropped_image = image_stream.crop((0, 0, new_w, new_h))
+        cropped_image.save(output_stream, format=image_format)
+    elif type == "center":
+        cropped_image = image_stream.crop(((w - new_w) / 2, (h - new_h) / 2, (w + new_w) / 2, (h + new_h) / 2))
+        cropped_image.save(output_stream, format=image_format)
+    elif type == "bottom":
+        cropped_image = image_stream.crop((0, h - new_h, new_w, h))
+        cropped_image.save(output_stream, format=image_format)
+    else:
+        raise ValueError('ERROR: invalid value for crop_type')
+    # TDE FIXME: should not have a ratio, makes no sense -> should have maximum width (std: 64; 256 px)
+    if thumbnail_ratio:
+        thumb_image = Image.open(StringIO.StringIO(output_stream.getvalue()))
+        thumb_image.thumbnail((new_w / thumbnail_ratio, new_h / thumbnail_ratio), Image.ANTIALIAS)
+        thumb_image.save(output_stream, image_format)
+    return output_stream.getvalue().encode('base64')
 
 class pos_config(models.Model):
     _name = 'pos.config'
@@ -1398,30 +1453,11 @@ class pos_category(models.Model):
         res = self.name_get(cr, uid, ids, context=context)
         return dict(res)
 
-    @api.depends('image')
-    def _get_image(self):
-        for record in self:
-            if record.image:
-                record.image_medium = image.crop_image(record.image, thumbnail_ratio=3)
-                record.image_thumb = image.crop_image(record.image, thumbnail_ratio=4)
-            else:
-                record.image_medium = False
-                record.iamge_thumb = False
-
     name = fields.Char('Name', required=True, translate=True)
     complete_name = fields.Char(compute='_name_get_fnc', string='Name')
     parent_id = fields.Many2one('pos.category','Parent Category', select=True)
     child_id = fields.One2many('pos.category', 'parent_id', string='Children Categories')
     sequence = fields.Integer('Sequence', help="Gives the sequence order when displaying a list of product categories.")
-
-    # NOTE: there is no 'default image', because by default we don't show thumbnails for categories. However if we have a thumbnail
-    # for at least one category, then we display a default image on the other, so that the buttons have consistent styling.
-    # In this case, the default image is set by the js code.
-    # NOTE2: image: all image fields are base64 encoded and PIL-supported
-#image = fields.Binary('Image')
-#    image_medium = fields.Binary('Medium', compute="_get_image", store=True)
-#    image_thumb = fields.Binary('Thumbnail', compute="_get_image", store=True)
-
     image = fields.Binary("Image",
             help="This field holds the image used as image for the cateogry, limited to 1024x1024px.")
     image_medium = fields.Binary(compute='_get_image',
@@ -1436,6 +1472,16 @@ class pos_category(models.Model):
             help="Small-sized image of the category. It is automatically "\
                  "resized as a 64x64px image, with aspect ratio preserved. "\
                  "Use this field anywhere a small image is required.")
+
+    @api.depends('image')
+    def _get_image(self):
+        for record in self:
+            if record.image:
+                record.image_medium = crop_image(record.image, thumbnail_ratio=3)
+                record.image_thumb = crop_image(record.image, thumbnail_ratio=4)
+            else:
+                record.image_medium = False
+                record.iamge_thumb = False
 
 
 class product_attribute_value(models.Model):
