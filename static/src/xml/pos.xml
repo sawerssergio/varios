@@ -1434,12 +1434,12 @@
             Son: CINCUENTA Y SEIS 00/100 Bs
             <br/>
             Emitido por: <t t-esc="widget.pos.cashier ? widget.pos.cashier.name : widget.pos.user.name"/><br />
-            Codigo de Control: 71-E4-65-5C
+            Codigo de Control: <t t-esc="order.control_code" />
             <br/>
             Fecha limite emision: <t t-esc="widget.pos.config.limit_date"/>
             <br/>
             <br/>
-            Pedido: 150
+            Pedido: <t t-esc="order.sequence_number" />
             <br/>
             <t t-if="widget.pos.config.receipt_footer">
                 <br />

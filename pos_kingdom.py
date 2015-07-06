@@ -29,6 +29,7 @@ from openerp.tools.translate import _
 
 import openerp.addons.decimal_precision as dp
 import openerp.addons.product.product
+from num2words import num2words
 
 _logger = logging.getLogger(__name__)
 
@@ -707,6 +708,11 @@ class pos_order(models.Model):
     def _gen_control_code(self):
         self.control_code="TE-ST"
 
+    @api.onchange('amount_total')
+    def _amount_words(self):
+        return num2words(self.amount_total)
+
+
     name       = fields.Char('Order Ref', required=True, readonly=True, copy=False)
     company_id = fields.Many2one('res.company', 'Company', required=True, readonly=True)
     date_order = fields.Datetime('Order Date', readonly=True, select=True)
@@ -746,6 +752,7 @@ class pos_order(models.Model):
     sale_journal    = fields.Many2one(related='session_id.config_id.journal_id', string='Sale Journal', store=True, readonly=True) #, relation='account.journal', type='many2one'
     pos_destination_id = fields.Many2one('pos.destination','Point of Sale Destination', help="This is the destination for the order.")
     control_code       = fields.Char('Control Code', readonly=True, copy=False)
+    amount_words       = fields.Char('Monto', readonly=True, compute='_amount_words')
 
     def _default_session(self, cr, uid, context=None):
         so = self.pool.get('pos.session')
@@ -1391,14 +1398,15 @@ class pos_category(models.Model):
         res = self.name_get(cr, uid, ids, context=context)
         return dict(res)
 
-    def _get_image(self, cr, uid, ids, name, args, context=None):
-        result = dict.fromkeys(ids, False)
-        for obj in self.browse(cr, uid, ids, context=context):
-            result[obj.id] = tools.image_get_resized_images(obj.image)
-        return result
-
-    def _set_image(self, cr, uid, id, name, value, args, context=None):
-        return self.write(cr, uid, [id], {'image': tools.image_resize_image_big(value)}, context=context)
+    @api.depends('image')
+    def _get_image(self):
+        for record in self:
+            if record.image:
+                record.image_medium = image.crop_image(record.image, thumbnail_ratio=3)
+                record.image_thumb = image.crop_image(record.image, thumbnail_ratio=4)
+            else:
+                record.image_medium = False
+                record.iamge_thumb = False
 
     name = fields.Char('Name', required=True, translate=True)
     complete_name = fields.Char(compute='_name_get_fnc', string='Name')
@@ -1416,14 +1424,14 @@ class pos_category(models.Model):
 
     image = fields.Binary("Image",
             help="This field holds the image used as image for the cateogry, limited to 1024x1024px.")
-    image_medium = fields.Binary(compute='_get_image', inverse='_set_image',
-            string="Medium-sized image", multi="_get_image",
+    image_medium = fields.Binary(compute='_get_image',
+            string="Medium-sized image",
             store=True,
             help="Medium-sized image of the category. It is automatically "\
                  "resized as a 128x128px image, with aspect ratio preserved. "\
                  "Use this field in form views or some kanban views.")
-    image_small = fields.Binary(compute='_get_image', inverse='_set_image',
-            string="Small-sized image", multi="_get_image",
+    image_small = fields.Binary(compute='_get_image',
+            string="Small-sized image",
             store=True,
             help="Small-sized image of the category. It is automatically "\
                  "resized as a 64x64px image, with aspect ratio preserved. "\
