@@ -288,7 +288,7 @@ msgstr "Accounting journal used to post sales entries."
 #: selection:pos.config,state:0
 #: selection:pos.destination,state:0
 msgid "Active"
-msgstr "Active"
+msgstr "Activo"
 
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_pos_discount
@@ -372,13 +372,13 @@ msgstr "Automatically open the cashdrawer"
 #. module: pos_kingdom
 #: view:pos.config:pos_kingdom.view_pos_config_form
 msgid "Available Destinations"
-msgstr "Available Destinations"
+msgstr "Destinos Disponibles"
 
 #. module: pos_kingdom
 #: view:pos.config:pos_kingdom.view_pos_config_form
 #: field:pos.config,journal_ids:0
 msgid "Available Payment Methods"
-msgstr "Available Payment Methods"
+msgstr "Formas de Pago Disponibles"
 
 #. module: pos_kingdom
 #: field:product.template,available_in_pos:0
@@ -561,7 +561,7 @@ msgstr "Cashbox Lines"
 #. module: pos_kingdom
 #: field:pos.config,iface_cashdrawer:0
 msgid "Cashdrawer"
-msgstr "Cashdrawer"
+msgstr "Caja Registradora"
 
 #. module: pos_kingdom
 #: field:pos.config,barcode_cashier:0
@@ -957,7 +957,7 @@ msgstr "Delete Unsent Orders ?"
 #. module: pos_kingdom
 #: selection:pos.config,state:0
 msgid "Deprecated"
-msgstr "Deprecated"
+msgstr "Depreciado"
 
 #. module: pos_kingdom
 #: field:pos.destination,description:0
@@ -1141,7 +1141,7 @@ msgstr "Edit Ean"
 #: field:pos.config,iface_electronic_scale:0
 #, python-format
 msgid "Electronic Scale"
-msgstr "Electronic Scale"
+msgstr "Escala Electronica"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -1165,7 +1165,7 @@ msgstr "Enable barcode scanning with a remotely connected barcode scanner"
 #. module: pos_kingdom
 #: help:pos.config,iface_electronic_scale:0
 msgid "Enables Electronic Scale integration"
-msgstr "Enables Electronic Scale integration"
+msgstr "Permite la integración de una Escala electrónica"
 
 #. module: pos_kingdom
 #: help:pos.config,iface_payment_terminal:0
@@ -1303,7 +1303,7 @@ msgstr "Fanta"
 #. module: pos_kingdom
 #: view:pos.config:pos_kingdom.view_pos_config_form
 msgid "Features"
-msgstr "Features"
+msgstr "Características"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -1411,7 +1411,7 @@ msgstr "ID"
 #. module: pos_kingdom
 #: field:pos.config,proxy_ip:0
 msgid "IP Address"
-msgstr "IP Address"
+msgstr "Dirección IP"
 
 #. module: pos_kingdom
 #: model:pos.category,name:pos_kingdom.icecream
@@ -1443,7 +1443,7 @@ msgstr "In order to delete a sale, it must be new or cancelled."
 #: selection:pos.config,state:0
 #: selection:pos.destination,state:0
 msgid "Inactive"
-msgstr "Inactive"
+msgstr "Inactivo"
 
 #. module: pos_kingdom
 #: field:pos.order,note:0
@@ -1489,7 +1489,7 @@ msgstr "Facturas"
 #. module: pos_kingdom
 #: field:pos.config,iface_invoicing:0
 msgid "Invoicing"
-msgstr "Invoicing"
+msgstr "Facturación"
 
 #. module: pos_kingdom
 #: view:account.bank.statement:pos_kingdom.view_pos_confirm_cash_statement_filter
@@ -1521,7 +1521,7 @@ msgstr "King Menu"
 #. module: pos_kingdom
 #: field:pos.config,iface_big_scrollbars:0
 msgid "Large Scrollbars"
-msgstr "Large Scrollbars"
+msgstr "Barras Grandes de Desplazamiento"
 
 #. module: pos_kingdom
 #: field:pos.category,write_uid:0
@@ -1565,7 +1565,7 @@ msgstr "Convertido de pierna"
 #. module: pos_kingdom
 #: field:pos.config,limit_date:0
 msgid "Limit Date"
-msgstr "Limit Date"
+msgstr "Fecha Limite de Emision"
 
 #. module: pos_kingdom
 #: field:pos.order.line,name:0
@@ -2198,7 +2198,7 @@ msgstr "Picking"
 #. module: pos_kingdom
 #: field:pos.config,picking_type_id:0
 msgid "Picking Type"
-msgstr "Picking Type"
+msgstr "Tipo de Recolección"
 
 #. module: pos_kingdom
 #: model:product.attribute,name:pos_kingdom.attribute_piece_1
@@ -2433,7 +2433,7 @@ msgstr "Fecha de impresión"
 #. module: pos_kingdom
 #: field:pos.config,iface_print_via_proxy:0
 msgid "Print via Proxy"
-msgstr "Print via Proxy"
+msgstr "Imprimir via Proxy"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -2564,17 +2564,17 @@ msgstr "Real Closing Balance"
 #: model:ir.actions.report.xml,name:pos_kingdom.action_report_pos_receipt
 #: view:pos.config:pos_kingdom.view_pos_config_form
 msgid "Receipt"
-msgstr "Receipt"
+msgstr "Recibo"
 
 #. module: pos_kingdom
 #: field:pos.config,receipt_footer:0
 msgid "Receipt Footer"
-msgstr "Receipt Footer"
+msgstr "Pie de página"
 
 #. module: pos_kingdom
 #: field:pos.config,receipt_header:0
 msgid "Receipt Header"
-msgstr "Receipt Header"
+msgstr "Encabezado"
 
 #. module: pos_kingdom
 #: field:pos.order,pos_reference:0
@@ -2638,7 +2638,7 @@ msgstr "Sale Details"
 #: field:pos.config,journal_id:0
 #: field:pos.order,sale_journal:0
 msgid "Sale Journal"
-msgstr "Sale Journal"
+msgstr "Diario de Ventas"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_pos_order_line
@@ -2727,7 +2727,7 @@ msgstr "Scale"
 #. module: pos_kingdom
 #: field:pos.config,iface_scan_via_proxy:0
 msgid "Scan via Proxy"
-msgstr "Scan via Proxy"
+msgstr "Explorar via Proxy"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -2857,18 +2857,18 @@ msgstr "Set a Custom EAN"
 #: view:pos.config:pos_kingdom.view_pos_config_form
 #: view:pos.destination:pos_kingdom.view_pos_destination_form
 msgid "Set to Active"
-msgstr "Set to Active"
+msgstr "Establecer en Activo"
 
 #. module: pos_kingdom
 #: view:pos.config:pos_kingdom.view_pos_config_form
 msgid "Set to Deprecated"
-msgstr "Set to Deprecated"
+msgstr "Establecer en Desuso"
 
 #. module: pos_kingdom
 #: view:pos.config:pos_kingdom.view_pos_config_form
 #: view:pos.destination:pos_kingdom.view_pos_destination_form
 msgid "Set to Inactive"
-msgstr "Set to Inactive"
+msgstr "Establecer en Inactivo"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3175,7 +3175,7 @@ msgstr "The company of the stock location is different than the one of point of 
 #. module: pos_kingdom
 #: help:pos.config,proxy_ip:0
 msgid "The hostname or ip address of the hardware proxy, Will be autodetected if left empty"
-msgstr "The hostname or ip address of the hardware proxy, Will be autodetected if left empty"
+msgstr "El nombre de host o dirección IP del proxy de hardware, será detectado automáticamente si se deja vacío"
 
 #. module: pos_kingdom
 #: sql_constraint:pos.session:0
@@ -3567,7 +3567,7 @@ msgstr "Vat"
 #. module: pos_kingdom
 #: field:pos.config,iface_vkeyboard:0
 msgid "Virtual KeyBoard"
-msgstr "Virtual KeyBoard"
+msgstr "Teclado Virtual"
 
 #. module: pos_kingdom
 #: field:pos.config,barcode_weight:0
@@ -3732,7 +3732,7 @@ msgstr "La orden se encuentra vacía"
 #: field:pos.config,authorization:0
 #: help:pos.config,authorization:0
 msgid "authorization"
-msgstr "authorization"
+msgstr "Autorizacion"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3773,7 +3773,7 @@ msgstr "error!"
 #: field:pos.config,key:0
 #: help:pos.config,key:0
 msgid "key"
-msgstr "key"
+msgstr "Clave"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:143
