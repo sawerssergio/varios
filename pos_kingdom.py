@@ -738,10 +738,11 @@ class pos_order(models.Model):
         pricelist = self.pool.get('res.partner').browse(cr, uid, part, context=context).property_product_pricelist.id
         return {'value': {'pricelist_id': pricelist}}
 
-    def _amount_all(self, cr, uid, ids, args, context=None):
-        cur_obj = self.pool.get('res.currency')
+    @api.multi
+    def _amount_all(self):
+        cur_obj = self.env['res.currency']
         res = {}
-        for order in self.browse(cr, uid, ids, context=context):
+        for order in self.browse([]):
             res[order.id] = {
                 'amount_paid': 0.0,
                 'amount_return':0.0,
@@ -755,8 +756,8 @@ class pos_order(models.Model):
             for line in order.lines:
                 val1 += line.price_subtotal_incl
                 val2 += line.price_subtotal
-            res[order.id]['amount_tax'] = cur_obj.round(cr, uid, cur, val1-val2)
-            res[order.id]['amount_total'] = cur_obj.round(cr, uid, cur, val1)
+            res[order.id]['amount_tax'] = cur_obj.round(self.env.cr, self.env.uid, cur, val1-val2)
+            res[order.id]['amount_total'] = cur_obj.round(self.env.cr, self.env.uid, cur, val1)
         return res
 
     @api.onchange('amount_total','date_order','lines','partner_id', 'sequence_number',)
@@ -773,8 +774,8 @@ class pos_order(models.Model):
     date_order = fields.Datetime('Order Date', readonly=True, select=True)
     user_id    = fields.Many2one('res.users', 'Salesman', help="Person who uses the the cash register. It can be a reliever, a student or an interim employee.")
     amount_tax = fields.Float(compute='_amount_all', string='Taxes', digits_compute=dp.get_precision('Account'))
-    amount_total    = fields.Float(compute='_amount_all', string='Total', digits_compute=dp.get_precision('Account'),  multi='all')
-    amount_paid     = fields.Float(compute='_amount_all', string='Paid', states={'draft': [('readonly', False)]}, readonly=True, digits_compute=dp.get_precision('Account'), multi='all')
+    amount_total    = fields.Float(compute='_amount_all', string='Total', digits_compute=dp.get_precision('Account'))
+    amount_paid     = fields.Float(compute='_amount_all', string='Paid', states={'draft': [('readonly', False)]}, readonly=True, digits_compute=dp.get_precision('Account'))
     amount_return   = fields.Float(compute='_amount_all', digits_compute=dp.get_precision('Account'), multi='all') #  'Returned',
     lines           = fields.One2many('pos.order.line', 'order_id', 'Order Lines', states={'draft': [('readonly', False)]}, readonly=True, copy=True)
     statement_ids   = fields.One2many('account.bank.statement.line', 'pos_statement_id', 'Payments', states={'draft': [('readonly', False)]}, readonly=True)
