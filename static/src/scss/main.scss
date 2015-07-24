@@ -49,9 +49,11 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 .pos {
-    background-image: url('../img/background.svg');
+    background-image: url(../img/background.svg);
+    background-attachment: fixed;
+    background-position: center center;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     width: 100%;
     height: 100%;
     @include flexbox((
