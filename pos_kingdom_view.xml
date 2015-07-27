@@ -22,7 +22,7 @@
                         <field name="state" widget="statusbar" statusbar_visible="draft,paid,done,delivered" statusbar_colors='{"cancel":"red","delivered":"green"}'/>
                     </header>
                     <sheet>
-                    <group col="4" colspan="4">
+                    <group name="preferences" col="4" colspan="4">
                         <field name="name"/>
                         <field name="date_order"/>
                         <field name="session_id" required="1"/>
