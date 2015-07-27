@@ -46,6 +46,14 @@
       <field name="kind">function</field>
     </record>
 
+    <record model="workflow.activity" id="act_delivered">
+      <field name="wkf_id" ref="wkf_pos"/>
+      <field name="name">delivered</field>
+      <field name="flow_stop">True</field>
+      <field name="action">action_deliver()</field>
+      <field name="kind">function</field>
+    </record>
+
 
 <!--Transitions-->
 
@@ -74,6 +82,17 @@
       <field name="signal">cancel</field>
     </record>
 
+    <record model="workflow.transition" id="trans_paid_delivered">
+      <field name="act_from" ref="act_paid"/>
+      <field name="act_to" ref="act_delivered"/>
+      <field name="signal">delivered</field>
+    </record>
+
+    <record model="workflow.transition" id="trans_invoice_delivered">
+      <field name="act_from" ref="act_invoiced"/>
+      <field name="act_to" ref="act_delivered"/>
+      <field name="signal">delivered</field>
+    </record>
 
   </data>
 

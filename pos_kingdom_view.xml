@@ -19,7 +19,7 @@
                         <button name="refund" string="Return Products" type="object" 
                             attrs="{'invisible':[('state','=','draft')]}"/>
                         <button name="%(action_report_pos_receipt)d" string="Reprint" type="action" states="paid,done,invoiced"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,paid,done" statusbar_colors='{"cancel":"red"}'/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,paid,done,delivered" statusbar_colors='{"cancel":"red","delivered":"green"}'/>
                     </header>
                     <sheet>
                     <group col="4" colspan="4">

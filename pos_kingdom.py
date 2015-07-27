@@ -794,7 +794,8 @@ class pos_order(models.Model):
                                    ('cancel', 'Cancelled'),
                                    ('paid', 'Paid'),
                                    ('done', 'Posted'),
-                                   ('invoiced', 'Invoiced')],
+                                   ('invoiced', 'Invoiced'),
+                                   ('delivered', 'Delivered')],
                                   'Status', readonly=True, copy=False)
 
     invoice_id      = fields.Many2one('account.invoice', 'Invoice', copy=False)
@@ -1331,6 +1332,10 @@ class pos_order(models.Model):
 
     def action_cancel(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
+        return True
+
+    def action_deliver(self, cr, uid, ids, context=None):
+        self.write(cr, uid, ids, {'state': 'delivered'}, context=context)
         return True
 
     def action_done(self, cr, uid, ids, context=None):
