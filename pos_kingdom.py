@@ -140,7 +140,6 @@ class pos_config(models.Model):
     group_by         = fields.Boolean('Group Journal Items', help="Check this if you want to group the Journal Items by Product while closing a Session")
     pricelist_id     = fields.Many2one('product.pricelist','Pricelist', required=True)
     company_id       = fields.Many2one('res.company', 'Company', required=True)
-    destination_ids  = fields.Many2many('pos.destination', string="Destinations")
     barcode_product  = fields.Char('Product Barcodes', size=64, help='The pattern that identifies product barcodes')
     barcode_cashier  = fields.Char('Cashier Barcodes', size=64, help='The pattern that identifies cashier login barcodes')
     barcode_customer = fields.Char('Customer Barcodes',size=64, help='The pattern that identifies customer\'s client card barcodes')
@@ -605,30 +604,6 @@ class pos_session(models.Model):
             'url':   '/pos/web/',
         }
 
-class pos_destination(models.Model):
-
-    POS_DESTINATION_STATE = [
-        ('active', 'Active'),
-        ('inactive', 'Inactive'),
-    ]
-
-    _name = "pos.destination"
-    _description = "Place of destination"
-
-    def set_active(self, cr, uid, ids, context=None):
-        return self.write(cr, uid, ids, {'state' : 'active'}, context=context)
-
-    def set_inactive(self, cr, uid, ids, context=None):
-        return self.write(cr, uid, ids, {'state' : 'inactive'}, context=context)
-
-    name = fields.Char('Name', required=True, translate=True)
-    description = fields.Char('Description', translate=True)
-    state = fields.Selection(POS_DESTINATION_STATE, 'Status', required=True, readonly=True, copy=False)
-
-    _defaults = {
-        'state' : POS_DESTINATION_STATE[0][0],
-    }
-
 class pos_order(models.Model):
     _name = "pos.order"
     _description = "Point of Sale"
@@ -807,7 +782,6 @@ class pos_order(models.Model):
     nb_print        = fields.Integer('Number of Print', readonly=True, copy=False)
     pos_reference   = fields.Char('Receipt Ref', readonly=True, copy=False)
     sale_journal    = fields.Many2one(related='session_id.config_id.journal_id', string='Sale Journal', store=True, readonly=True) #, relation='account.journal', type='many2one'
-    pos_destination_id = fields.Many2one('pos.destination','Point of Sale Destination', help="This is the destination for the order.")
     control_code       = fields.Char('Control Code', readonly=True, copy=False)
     amount_words       = fields.Char('Monto', readonly=True, compute='_amount_words')
 
