@@ -345,12 +345,12 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     pos_widget.screen_selector.set_current_screen('invoice');
                 }
                 else if( pos_widget.screen_selector.get_current_screen() === "invoice" ){
-                    if(self.pos_widget.destination_selector_widget.only_one_destination()){
-                        pos_widget.destination_selector_widget.hide();
-                        pos_widget.payment_screen.validate_order(current_order);
+                    //if(self.pos_widget.destination_selector_widget.only_one_destination()){
+                       // pos_widget.destination_selector_widget.hide();
+                        pos_widget.payment_screen.validate_order({invoice: true});
                         current_order.destroy();
                         pos_widget.screen_selector.set_current_screen("products");
-                    }
+                    //}
                 }
             });
 
