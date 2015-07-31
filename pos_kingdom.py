@@ -713,27 +713,21 @@ class pos_order(models.Model):
         pricelist = self.pool.get('res.partner').browse(cr, uid, part, context=context).property_product_pricelist.id
         return {'value': {'pricelist_id': pricelist}}
 
-    @api.multi
+    @api.one
+    @api.depends('statement_ids','lines')
     def _amount_all(self):
-        cur_obj = self.env['res.currency']
-        res = {}
-        for order in self.browse([]):
-            res[order.id] = {
-                'amount_paid': 0.0,
-                'amount_return':0.0,
-                'amount_tax':0.0,
-            }
-            val1 = val2 = 0.0
-            cur = order.pricelist_id.currency_id
-            for payment in order.statement_ids:
-                res[order.id]['amount_paid'] +=  payment.amount
-                res[order.id]['amount_return'] += (payment.amount < 0 and payment.amount or 0)
-            for line in order.lines:
-                val1 += line.price_subtotal_incl
-                val2 += line.price_subtotal
-            res[order.id]['amount_tax'] = cur_obj.round(self.env.cr, self.env.uid, cur, val1-val2)
-            res[order.id]['amount_total'] = cur_obj.round(self.env.cr, self.env.uid, cur, val1)
-        return res
+        val1 = val2 = 0
+        self.amount_paid = 0.0
+        self.amount_return = 0.0
+        self.amount_tax = 0.0
+        for payment in self.statement_ids:
+            self.amount_paid +=  payment.amount
+            self.amount_return += (payment.amount < 0 and payment.amount or 0)
+        for line in self.lines:
+            val1 += line.price_subtotal_incl
+            val2 += line.price_subtotal
+        self.amount_tax = val1-val2
+        self.amount_total = val1
 
     @api.onchange('amount_total','date_order','lines','partner_id', 'sequence_number',)
     def _gen_control_code(self):
@@ -1333,20 +1327,17 @@ class pos_order_line(models.Model):
     _description = "Lines of Point of Sale"
     _rec_name = "product_id"
 
-    @api.multi
+    @api.one
+    @api.depends('qty','order_id','product_id','price_unit','discount')
     def _amount_line_all(self):
-        res = dict([(i, {}) for i in self])
         account_tax_obj = self.env['account.tax']
         cur_obj = self.env['res.currency']
-        for line in self.browse([]):
-            taxes_ids = [ tax for tax in line.product_id.taxes_id if tax.company_id.id == line.order_id.company_id.id ]
-            price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            taxes = account_tax_obj.compute_all(self.env.cr, self.env.uid, taxes_ids, price, line.qty, product=line.product_id, partner=line.order_id.partner_id or False)
-
-            cur = line.order_id.pricelist_id.currency_id
-            res[line.id]['price_subtotal'] = cur_obj.round(self.env.cr, self.env.uid, cur, taxes['total'])
-            res[line.id]['price_subtotal_incl'] = cur_obj.round(self.env.cr, self.env.uid, cur, taxes['total_included'])
-        return res
+        taxes_ids = [ tax for tax in self.product_id.taxes_id if tax.company_id.id == self.order_id.company_id.id ]
+        price = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
+        taxes = account_tax_obj.compute_all(price, self.qty, self.product_id, self.order_id.partner_id or False, False)
+        #[FIXME] This should rounding to currency_id.
+        self.price_subtotal = taxes['total']
+        self.price_subtotal_incl = taxes['total_included']
 
     def onchange_product_id(self, cr, uid, ids, pricelist, product_id, qty=0, partner_id=False, context=None):
        context = context or {}
