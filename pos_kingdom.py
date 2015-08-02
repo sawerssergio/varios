@@ -97,6 +97,7 @@ class pos_config(models.Model):
         ('deprecated', 'Deprecated')
     ]
 
+    @api.v7
     def _get_currency(self, cr, uid, ids, context=None):
         result = dict.fromkeys(ids, False)
         for pos_config in self.browse(cr, uid, ids, context=context):
@@ -106,6 +107,15 @@ class pos_config(models.Model):
                 currency_id = self.pool['res.users'].browse(cr, uid, uid, context=context).company_id.currency_id.id
             result[pos_config.id] = currency_id
         return result
+
+    @api.v8
+    @api.one
+    @api.depends('journal_id')
+    def _get_currency(self):
+        if self.journal_id:
+            self.currency_id = self.journal_id.currency.id or self.journal_id.company_id.currency_id.id
+        else:
+            self.currency_id = self.env.user.company_id.currency_id.id
 
     name                   = fields.Char('Point of Sale Name', select=1, required=True,
            help="An internal identification of the point of sale")
@@ -325,7 +335,7 @@ class pos_session(models.Model):
                                 readonly=True,
                                 states={'opening_control' : [('readonly', False)]}
                        )
-    currency_id = fields.Many2one( comodel_name='res.currency' )
+    currency_id = fields.Many2one(string="Currency", related='config_id.currency_id')
     start_at = fields.Datetime('Opening Date', readonly=True)
     stop_at = fields.Datetime('Closing Date', readonly=True)
 
@@ -1331,13 +1341,14 @@ class pos_order_line(models.Model):
     @api.depends('qty','order_id','product_id','price_unit','discount')
     def _amount_line_all(self):
         account_tax_obj = self.env['account.tax']
-        cur_obj = self.env['res.currency']
         taxes_ids = [ tax for tax in self.product_id.taxes_id if tax.company_id.id == self.order_id.company_id.id ]
         price = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
         taxes = account_tax_obj.compute_all(price, self.qty, self.product_id, self.order_id.partner_id or False, False)
-        #[FIXME] This should rounding to currency_id.
-        self.price_subtotal = taxes['total']
-        self.price_subtotal_incl = taxes['total_included']
+        #[FIXME] This should rounding to 
+        #currency_id from self.env['res.currency'].
+        currency =  self.order_id.session_id.currency_id
+        self.price_subtotal = currency.round(taxes['total'])
+        self.price_subtotal_incl = currency.round(taxes['total_included'])
 
     def onchange_product_id(self, cr, uid, ids, pricelist, product_id, qty=0, partner_id=False, context=None):
        context = context or {}
