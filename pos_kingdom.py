@@ -22,7 +22,7 @@
 import logging
 import time
 
-from openerp import tools
+from openerp import tools, osv
 from openerp import models, fields, api, _
 from openerp.tools import float_is_zero
 from openerp.tools.translate import _
