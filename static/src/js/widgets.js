@@ -354,10 +354,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 }
             });
 
-            this.el.querySelector('.order-restart').addEventListener("click",function(){
+            /*this.el.querySelector('.order-restart').addEventListener("click",function(){
                 self.pos.get('selectedOrder').restart_order();
-            });
-            this.el.querySelector('.order-dispatch').addEventListener('click',function(event){
+            });*/
+            /*this.el.querySelector('.order-dispatch').addEventListener('click',function(event){
                 if(event.target.nodeName == "H2"){
                     if(self.type=="those")
                     {
@@ -369,7 +369,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     self.type="those";
                 } 
                 console.log(event.target.nodeName);
-            });
+            });*/
         },
         update_summary: function(){
             var order = this.pos.get('selectedOrder');

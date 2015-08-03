@@ -7,6 +7,10 @@ $co_letter_yellow: #ffdf1b;
 $co_letter_white: white;
 $co_categories_list : #8c5817;
 $co_order_orderline_selected: #cb3629;
+$orange_color: rgba(242, 101, 34,1);
+$orange_opacity_color: rgba(242, 101, 34, .5);
+$yellow_opacity_color: rgba(255,153,0,.5);
+$black_opacity_color: rgba(0,0,0,.4);
 
 @import "compass";
 
@@ -143,12 +147,12 @@ input[type=number] {
 
 .pos-rightpane {
     height: 100%;
-    @include flex(0 1 27%);
+    @include flex(0 1 27vw);
     .right-header {
         height: 10vh;
         width: 100%;
         position: relative;
-        background-color: #f47532;
+        background-color: $orange_color;
         .sale {
             width: 75%;
             height: 80%;
@@ -245,30 +249,41 @@ input[type=number] {
         color: white;
         .order-container {
             height: 100%;
-            background-color: #f79734;
+            background-color: $yellow_opacity_color;
             .order-header {
-                height: 7vh;
-                padding: 2%;
+                height: 8vh;
+                background-color: $orange_opacity_color;
                 .order-header-content {
                     height: 100%;
                     width: 100%;
-                    background-color: $co_menu_red;
                     .order-dispatch {
-                        float: left;
-                        width: 75%;
+                        width: 100%;
                         height: 100%;
-                        text-align:center;
-                        h2 {
-                            line-height: .5em;
+                        text-align: center;
+                        @include flexbox((
+                            display: flex,
+                            flex-direction: row,
+                            flex-wrap:nowrap,
+                            justify-content: space-between,
+                            align-content: stretch,
+                            align-items: stretch
+                        ));
+                        .dispatch {
+                            @include flex(0 1 50%);
+                            text-align: center;
+                            .helper {
+                                display: inline-block;
+                                height: 100%;
+                                vertical-align: middle;
+                            }
+                            img {
+                                height: 6vh;
+                                display: inline-block;
+                                vertical-align: middle;
+                            }
                         }
-                    }
-                    .order-restart {
-                        float: right;
-                        width: 20%;
-                        height: 100%;
-                        img {
-                            margin-top: 5%;
-                            height: 80%;
+                        .outside {
+                            border-left: .25em solid rgba(255,255,255,.5);
                         }
                     }
                 }
@@ -317,12 +332,10 @@ input[type=number] {
                 }
             }
             .order-summary {
-                width: 95%;
+                width: 100%;
                 height: 10vh;
-                padding: 2%;
+                background-color: $orange_color;
                 .line {
-                    background-color: $co_menu_red;
-                    border-radius: 0 0 0 1.6em;
                     width: 100%;
                     height: 100%;
                     font-weight: bold;
@@ -358,7 +371,7 @@ input[type=number] {
 .categories {
     width: 7vw;
     height: 100%;
-    background-color: #f79734;
+    background-color: $yellow_opacity_color;
     opacity: .8;
     .categories-list {
         width: 100%;

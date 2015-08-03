@@ -1200,10 +1200,14 @@
             <div class="order-header">
                 <div class="order-header-content">
                     <div class="order-dispatch">
-                        <h2 class="type-order font-black">Para Aqui</h2>
-                    </div>
-                    <div class="order-restart">
-                        <img src="/pos_kingdom/static/src/img/trash.svg"/>
+                        <div class="inside dispatch">
+                            <span class="helper"></span>
+                            <img src="/pos_kingdom/static/src/img/inside.svg"/>
+                        </div>
+                        <div class="outside dispatch">
+                            <span class="helper"></span>
+                            <img src="/pos_kingdom/static/src/img/outside.svg"/>
+                        </div>
                     </div>
                 </div>
             </div>
