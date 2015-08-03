@@ -73,7 +73,7 @@ input[type=number] {
 }
 .pos-leftpane {
     height: 100%;
-    @include flex(0 1 8%);
+    @include flex(0 1 9%);
 }
 
 .pos-centerpane {
@@ -98,8 +98,6 @@ input[type=number] {
         .screens {
             width: 92%;
             height: 100%;
-            background-color: rgba(0,0,0,.1);
-            border-radius: 2em;
             .screen {
                 padding: 0 5%;
                 width: 90%;
@@ -147,16 +145,15 @@ input[type=number] {
     height: 100%;
     @include flex(0 1 27%);
     .right-header {
-        height: 12%;
+        height: 10vh;
         width: 100%;
         position: relative;
+        background-color: #f47532;
         .sale {
-            background-color: $co_menu_background;
             width: 75%;
             height: 80%;
             float: right;
             margin-top: 2%;
-            border-radius: 1em 0 0 1em;
             color: white;
             padding-left: 25%;
             .sale-type {
@@ -243,22 +240,19 @@ input[type=number] {
         }
     }
     .menu-orders {
-        height: 85%;
+        height: 90vh;
         right: 0;
-        background-color: $co_menu_background;
-        border-radius: 2em 0 0 2em;
         color: white;
         .order-container {
             height: 100%;
+            background-color: #f79734;
             .order-header {
-                height: 7%;
+                height: 7vh;
                 padding: 2%;
-                border-bottom: .3em solid $co_menu_red;
                 .order-header-content {
                     height: 100%;
                     width: 100%;
                     background-color: $co_menu_red;
-                    border-radius: 2em 0 0 0;
                     .order-dispatch {
                         float: left;
                         width: 75%;
@@ -281,7 +275,7 @@ input[type=number] {
             }
             .order-scroller {
                 width: 100%;
-                height: 73%;
+                height: 72vh;
                 overflow-y: auto;
                 .orderline {
                     width: 100%;
@@ -324,8 +318,7 @@ input[type=number] {
             }
             .order-summary {
                 width: 95%;
-                height: 14%;
-                border-top: .2em solid $co_menu_red;
+                height: 10vh;
                 padding: 2%;
                 .line {
                     background-color: $co_menu_red;
@@ -363,12 +356,10 @@ input[type=number] {
     }
 }
 .categories {
-    top: 3%;
-    width: 80%;
-    height: 78%;
-    background-color: $co_categories_list;
+    width: 7vw;
+    height: 100%;
+    background-color: #f79734;
     opacity: .8;
-    border-radius: 0em 2em 2em 0em;
     .categories-list {
         width: 100%;
         height: 100%;
