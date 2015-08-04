@@ -116,11 +116,11 @@
         <div class="options-selector">
             <div class="options-selector-content">
                 <ul class="values-list">
-                    <div class="block-selection">
-                        <div class="top-block">
+                    <div class="block-selection total-selection">
+                        <div class="top-block font-black">
                             <span class="block-information">CANT.</span>
                         </div>
-                        <div class="bottom-block">
+                        <div class="bottom-block font-black">
                             <span class="total-quantity">0</span>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
     <t t-name="Value">
         <li class="block-selection" t-att-data-value-id="value.id">
             <div class="top-block">
-                <input class="block-quantity" type="number" value="0" onfocus="blur()"/>
+                <input class="block-quantity font-black" type="number" value="0" onfocus="blur()"/>
             </div>
             <div class="bottom-block">
                 <div class="block-increase">
@@ -157,6 +157,7 @@
                 </div>
                 <div class="block-decrease">
                     <!-- Remenber,this should not have a class, if you want to add a class, go to the ProductOptionsWidget and modify click_value_handler function-->
+                    <span class="helper"></span>
                     <img src="/pos_kingdom/static/src/img/delete-white.svg"/>
                 </div>
             </div>
@@ -260,6 +261,9 @@
 
     <t t-name="ProductCategoriesWidget">
         <div class="categories">
+            <div class="time font-black">
+                15:00
+            </div>
             <ul class="categories-list">
                 <!--
                 <li class="category-item"><img src="/pos_kingdom/static/src/img/chicken_leg.svg"/></li>
@@ -314,53 +318,12 @@
 
     <t t-name="ProductScreenWidget">
         <div class="product-screen screen">
-            <div class="subcategories-product"></div>
+            <section class="header-screen">
+                <h4 class="name-screen font-bold-condensed">CLIENTE</h4>
+            </section>
             <div class="container_products">
                 <span class="placeholder-ProductListWidget" />
-                <!--
-                <ul class="product_list">
-                    <li class="product_item">
-                        <div class="smallLeft"></div>
-                        <img src="/pos_kingdom/static/src/img/comboL.svg" width="100%"/>
-                        <div class="smallRight"></div>
-                    </li>
-                    <li class="product_item">
-                        <div class="smallLeft"></div>
-                        <img src="/pos_kingdom/static/src/img/comboL1.svg" width="100%"/>
-                        <div class="smallRight"></div>
-                    </li>
-                    <li class="product_item">
-                        <div class="smallLeft"></div>
-                        <img src="/pos_kingdom/static/src/img/comboL.svg" width="100%"/>
-                        <div class="smallRight"></div>
-                    </li>
-                    <li class="product_item">
-                        <div class="smallLeft"></div>
-                        <img src="/pos_kingdom/static/src/img/comboL1.svg" width="100%"/>
-                        <div class="smallRight"></div>
-                    </li>
-                </ul>
-                -->
             </div>
-            <!--
-            <div class="layout-table">
-
-                <div class="header-row">
-                    <div class="header-cell">
-                        <span class="placeholder-ProductCategoriesWidget" />
-                    </div>
-                </div>
-
-                <div class="content-row">
-                    <div class="content-cell">
-                        <div class="content-container">
-                            <span class="placeholder-ProductListWidget" />
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            -->
         </div>
     </t>
 
@@ -396,7 +359,7 @@
     <t t-name="ClientScreenWidget">
         <div class="client-screen screen">
             <section class="header-screen">
-                <h2 class="name-screen font-bold-condensed">CLIENTE</h2>
+                <h4 class="name-screen font-bold-condensed">CLIENTE</h4>
             </section>
             <!--<button class="client-ok">click me!</button>-->
             <!--<button class="client-find">find me!</button>-->
@@ -469,7 +432,7 @@
     <t t-name="InvoiceScreenWidget">
         <div class="invoice-screen screen">
             <section class="header-screen">
-                <h2 class="name-screen font-bold-condensed">FACTURACION</h2>
+                <h4 class="name-screen font-bold-condensed">FACTURACION</h4>
                 <button t-att-class=" 'font-regular button-screen dolar'+ (widget.is_dolar  ? ' selected' : '')">Dolares</button>
                 <button t-att-class=" 'font-regular button-screen bolivian'+ (widget.is_dolar  ? '' : ' selected')">Bolivianos</button>
             </section>
@@ -480,7 +443,6 @@
                 <t t-call="BolivianTickets"/>
             </t>
             <section class="bottom-screen">
-                <h2 class="name-bottom font-bold-condensed">MONTO</h2>
                 <ul class="amounts font-black">
                     <li class="amount">
                         <span class="title-amount">ORDEN</span>
@@ -1227,12 +1189,6 @@
                     <div class='entry total'>
                         <div class="subentry-total font-bold">
                             <span class="label">Total: </span> <span class="value">0.00 €</span>
-                        </div>
-                        <div class='subentry-cash font-bold'>
-                            <span class="label-cash">Pago Efectivo: </span><span class="value-cash"> 0</span>
-                        </div>
-                        <div class="subentry font-bold">
-                            <span class="label">Cambio: </span><span class="value">0.00€</span>
                         </div>
                     </div>
                     <div class="action-next">

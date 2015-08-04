@@ -11,6 +11,7 @@ $orange_color: rgba(242, 101, 34,1);
 $orange_opacity_color: rgba(242, 101, 34, .5);
 $yellow_opacity_color: rgba(255,153,0,.5);
 $black_opacity_color: rgba(0,0,0,.4);
+$yellow_letter_color: rgba(255,223,27,1);
 
 @import "compass";
 
@@ -77,12 +78,12 @@ input[type=number] {
 }
 .pos-leftpane {
     height: 100%;
-    @include flex(0 1 9%);
+    @include flex(0 1 7vw);
 }
 
 .pos-centerpane {
     height: 100%;
-    @include flex(0 1 65%);
+    @include flex(0 1 66vw);
     @include flexbox((
         display: flex,
         flex-direction: column,
@@ -93,41 +94,42 @@ input[type=number] {
     ));
     position: relative;
     .center-top {
-        @include flex(0 1 17%);
-        max-height: 17%;
+        @include flex(0 1 18vh);
     }
     .center-middle {
-        @include flex(0 1 72%);
-        max-height: 75%;
+        @include flex(0 1 66vh);
+        max-height: 66vh;
         .screens {
-            width: 92%;
+            width: 100%;
             height: 100%;
             .screen {
                 padding: 0 5%;
                 width: 90%;
                 height: 100%;
                 .header-screen{
-                    height: 12%;
                     width: 90%;
-                    display: block;
+                    display: inline-block;
                     padding-left: 5%;
                     padding-right: 5%;
                     border-bottom: .1em solid white;
                     color: white;
+                    height: 11vh;
+                    position: relative;
                     .name-screen{
                         display: inline-block;
-                        float: left;
                         width: 30%;
-                        height: 40%;
-                        text-align: center;
+                        text-align: left;
+                        margin: 0;
+                        left: 5%;
+                        position: absolute;
+                        bottom: 10%;
                     }
                     .button-screen{
                         display: inline-block;
-                        float: left;
                         width: 23%;
                         height: 50%;
                         text-align: center;
-                        margin: 3% 5%;
+                        margin: 3.5% 5.5%;
                         background-color: $co_menu_red;
                         border-radius: .8em;
                         color: white;
@@ -141,7 +143,8 @@ input[type=number] {
         }
     }
     .center-bottom {
-        @include flex(0 1 8%);
+        @include flex(0 1 16vh);
+        border-top: .1em solid white;
     }
 }
 
@@ -294,7 +297,8 @@ input[type=number] {
                 overflow-y: auto;
                 .orderline {
                     width: 100%;
-                    margin-top: 1em;
+                    margin-top: .5em;
+                    border-bottom: .3em solid $orange_opacity_color;
                     .product-quantity {
                         width: 20%;
                         height: 100%;
@@ -306,7 +310,7 @@ input[type=number] {
                         .number {
                             line-height: 1em;
                             text-align: right;
-                            font-size: 1.5em;
+                            font-size: 5vh;
                         }
                     }
                     .product-info {
@@ -322,7 +326,7 @@ input[type=number] {
                         }
                     }
                     .product-delete {
-                        width: 10%;
+                        width: 13%;
                         display: inline-block;
                         vertical-align: top;
                         img {
@@ -373,9 +377,17 @@ input[type=number] {
     height: 100%;
     background-color: $yellow_opacity_color;
     opacity: .8;
+    .time {
+        height: 10%;
+        width: 100%;
+        background-color: $orange_color;
+        text-align: center;
+        line-height: 10vh;
+        color: white;
+    }
     .categories-list {
         width: 100%;
-        height: 100%;
+        height: 90%;
         @include flexbox((
             display: flex,
             flex-direction: column,
@@ -394,7 +406,7 @@ input[type=number] {
     }
 }
 .container_products {
-    height: 100%;
+    height: 55vh;
     width: 100%;
     .product-list-container {
         width: 100%;
@@ -441,15 +453,18 @@ input[type=number] {
 }
 .options-selector {
     width: 95%;
-    height: 90%;
+    height: 100%;
     bottom: 0;
-    padding: 2% 2.5% 0% 2.5%;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
     .options-selector-content{
         float: left;
         width: 90%;
         height: 100%;
+        background: -moz-linear-gradient(top, $orange_color 57%, $yellow_opacity_color 57%); /* FF3.6+ */
+        background: -webkit-linear-gradient(top, $orange_color 57%,$yellow_opacity_color 57%); /* Chrome10+,Safari5.1+ */
+        background: linear-gradient(to bottom, $orange_color 10vh,$yellow_opacity_color 10vh); /* W3C */
+        border-radius: 0em 0em 1.5em 1.5em;
         .values-list {
             width: 100%;
             height: 100%;
@@ -463,47 +478,44 @@ input[type=number] {
             ));
             .block-selection {
                 @include flex(0 1 24%);
-                height: 90%;
+                height: 100%;
                 margin-right: 1%;
+                position: relative;
                 .top-block {
                     display: block;
                     width: 100%;
-                    height: 49%;
-                    font-size: 2em;
+                    height: 10vh;
+                    font-size: 3.3vh;
                     text-align: center;
-                    color: white;
-                    background-color: #000000;
-                    opacity: .7;
-                    border-radius: .5em .5em 0em 0em;
+                    position: relative;
+                    vertical-align: middle;
+                    color: $yellow_letter_color;
                     .block-quantity {
-                        font-size: 1em;
-                        width: 80%;
+                        width: 100%;
                         text-align: center;
                         background-color: transparent;
-                        color: white;
                         border: none;
-                    }
-                    .block-information {
-                        font-size: 0.8em;
-                        color: yellow;
+                        height: 70%;
+                        margin: 5% 0px;
+                        color: $yellow_letter_color;
+                        border-right: .2vw solid rgba(255,255,255, 0.5);
+                        font-size: 5vh;
                     }
                 }
                 .bottom-block {
                     display: block;
                     width: 100%;
-                    height: 49%;
-                    font-size: 3em;
                     text-align: center;
                     color: white;
-                    background-color: $co_menu_red;
-                    border-radius: 0em 0em .5em .5em;
-                    line-height: 1em;
+                    border-right: 0.2vw solid rgba(255, 255, 255, 0.5);
+                    height: 6vh;
+                    margin: 1vh 0px;
+                    line-height: 0.5em;
                     .block-increase {
                         display: inline-block;
                         float: left;
                         height: 100%;
                         width: 48%;
-                        border-right: 0.1em solid $co_menu_background;
                         img {
                             width: 60%;
                         }
@@ -513,11 +525,30 @@ input[type=number] {
                         float: right;
                         height: 100%;
                         width: 48%;
-                        img {
-                            display: block;
-                            width: 40%;
-                            margin: auto;
+                        text-align: center;
+                        .helper {
+                            display: inline-block;
+                            height: 100%;
+                            vertical-align: middle;
                         }
+                        img {
+                            width: 50%;
+                        }
+                    }
+                }
+            }
+            .total-selection {
+                order: 100;
+                .top-block {
+                    .block-information {
+                        font-size: .7em;
+                    }
+                }
+                .bottom-block {
+                    border: none;
+                    .total-quantity {
+                        line-height: 1em;
+                        font-size: 2em;
                     }
                 }
             }
@@ -620,7 +651,7 @@ input[type=number] {
             align-content: stretch,
             align-items: stretch
         ));
-        height: 72%;
+        height: 38vh;
         width: 100%;
         .money-details {
             @include flex(0 1 26%);
@@ -651,7 +682,7 @@ input[type=number] {
         }
     }
     .bottom-screen{
-        height: 12%;
+        height: 14vh;
         width: 100%;
         border-top: .1em solid white;
         .name-bottom{
