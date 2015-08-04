@@ -342,11 +342,14 @@ input[type=number] {
                 .line {
                     width: 100%;
                     height: 100%;
-                    font-weight: bold;
                     text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    font-size: 4vh;
                     .entry {
                         width: 65%;
                         display: inline-block;
+                        align-self: center;
                         .value, .value-cash {
                             color: $co_letter_yellow;
                         }
@@ -482,13 +485,12 @@ input[type=number] {
                 margin-right: 1%;
                 position: relative;
                 .top-block {
-                    display: block;
+                    display: flex;
                     width: 100%;
                     height: 10vh;
                     font-size: 3.3vh;
                     text-align: center;
                     position: relative;
-                    vertical-align: middle;
                     color: $yellow_letter_color;
                     .block-quantity {
                         width: 100%;
@@ -542,6 +544,9 @@ input[type=number] {
                 .top-block {
                     .block-information {
                         font-size: .7em;
+                        width: 100%;
+                        padding-bottom: 20%;
+                        align-self: flex-end;
                     }
                 }
                 .bottom-block {

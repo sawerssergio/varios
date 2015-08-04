@@ -319,7 +319,7 @@
     <t t-name="ProductScreenWidget">
         <div class="product-screen screen">
             <section class="header-screen">
-                <h4 class="name-screen font-bold-condensed">CLIENTE</h4>
+                <h4 class="name-screen font-bold-condensed">CATEGORIAS</h4>
             </section>
             <div class="container_products">
                 <span class="placeholder-ProductListWidget" />
@@ -1188,7 +1188,7 @@
                 <div t-attf-class="line #{orderlines.length === 0 ? 'empty' : ''}">
                     <div class='entry total'>
                         <div class="subentry-total font-bold">
-                            <span class="label">Total: </span> <span class="value">0.00 €</span>
+                            <span class="label">Bs: </span> <span class="value font-bold">0.00</span>
                         </div>
                     </div>
                     <div class="action-next">
