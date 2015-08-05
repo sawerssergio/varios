@@ -1641,8 +1641,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             });
             this.product_options_widget.replace(this.$('.placeholder-order-selector'));
 
-            this.destination_selector_widget = new module.DestinationSelectorWidget(this, {});
-            this.destination_selector_widget.replace(this.$('.placeholder-destination-selector'));
+            //this.destination_selector_widget = new module.DestinationSelectorWidget(this, {});
+            //this.destination_selector_widget.replace(this.$('.placeholder-destination-selector'));
 
             // --------  Popups ---------
 
@@ -1695,7 +1695,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.username.replace(this.$('.placeholder-UsernameWidget'));
 
             this.action_bar = new module.ActionBarWidget(this);
-            this.action_bar.replace(this.$(".placeholder-RightActionBar"));
+            this.action_bar.replace(this.$(".placeholder-ActionBarWidget"));
 
             this.paypad = new module.PaypadWidget(this, {});
             this.paypad.replace(this.$('.placeholder-PaypadWidget'));

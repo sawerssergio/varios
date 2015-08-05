@@ -11,13 +11,13 @@
             <div class="pos-centerpane">
                 <div class="center-top">
                     <span class="placeholder-order-selector"/>
-                    <span class="placeholder-destination-selector"/>
                 </div>
                 <div class="center-middle">
                     <div class="screens"> 
                     </div>
                 </div>
                 <div class="center-bottom">
+                    <span class="placeholder-ActionBarWidget"/>
                 </div>
                 <div class="placeholder-OnscreenKeyboardWidget"></div>
             </div>
@@ -445,11 +445,11 @@
             <section class="bottom-screen">
                 <ul class="amounts font-black">
                     <li class="amount">
-                        <span class="title-amount">ORDEN</span>
+                        <span class="title-amount">TOTAL</span>
                         <span class="payment-due-total value-amount">0</span>
                     </li>
                     <li class="amount">
-                        <span class="title-amount">TOTAL</span>
+                        <span class="title-amount">PAGO</span>
                         <span class="payment-paid-total value-amount">0</span>
                     </li>
                     <li class="amount">

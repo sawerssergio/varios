@@ -95,6 +95,12 @@ input[type=number] {
     position: relative;
     .center-top {
         @include flex(0 1 18vh);
+        position: relative;
+        background-image: url("../img/company.svg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 18vh auto;
+        width: 100%;
     }
     .center-middle {
         @include flex(0 1 66vh);
@@ -130,7 +136,7 @@ input[type=number] {
                         height: 50%;
                         text-align: center;
                         margin: 3.5% 5.5%;
-                        background-color: $co_menu_red;
+                        background-color: $orange_color;
                         border-radius: .8em;
                         color: white;
                         opacity: .5;
@@ -656,8 +662,9 @@ input[type=number] {
             align-content: stretch,
             align-items: stretch
         ));
-        height: 38vh;
-        width: 100%;
+        height: 40vh;
+        width: 69%;
+        margin: auto;
         .money-details {
             @include flex(0 1 26%);
             .money-detail-item {
@@ -687,9 +694,8 @@ input[type=number] {
         }
     }
     .bottom-screen{
-        height: 14vh;
+        height: 9vh;
         width: 100%;
-        border-top: .1em solid white;
         .name-bottom{
             display: inline-block;
             width: 30%;
@@ -708,7 +714,7 @@ input[type=number] {
                 height: 80%;
                 width: 22%;
                 padding: 1.8% 0%;
-                background-color: $co_menu_red;
+                background-color: $orange_color;
                 border-left: .2em solid rgba(255,255,255,.7);
                 .title-amount{
                     height: 28%;
