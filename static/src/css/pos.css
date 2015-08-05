@@ -1580,13 +1580,13 @@ td {
 /*  ********* The ActionBarWidget  ********* */
 
 .pos .pos-actionbar{
-    height: 105px;
-    background: #f5f5f5;    /*#ebebeb;*/
+    /*height: 105px;
+    background: #f5f5f5;
     border-top: solid 1px #cecece;
-    z-index:900;
+    z-index:900;*/
 }
 
-.pos .pos-actionbar ul{
+/*.pos .pos-actionbar ul{
     list-style:  none;
 }
 
@@ -1622,6 +1622,9 @@ td {
 .pos .pos-actionbar .button .icon{
     margin-top: 10px;
 }
+.pos .pos-actionbar .button .icon img{
+    width: 100%;
+}
 .pos .pos-actionbar .button:active{
     color: white;
     background: #7f82ac;
@@ -1645,7 +1648,8 @@ td {
 
 .pos .pos-actionbar .button.rightalign{
     float:right;
-}
+}*/
+
 /*  ********* The Debug Widget  ********* */
 
 .pos .debug-widget{

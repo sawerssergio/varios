@@ -1542,7 +1542,7 @@
         <li t-att-class=" 'button '+ (widget.rightalign  ? 'rightalign ' : '') + (widget.disabled ? 'disabled ' : '')">
             <div class='icon'>
                 <img t-att-src="widget.icon" />
-                <div class='iconlabel'><t t-esc="widget.label" /></div>
+                <!--<div class='iconlabel'><t t-esc="widget.label" /></div>-->
             </div>
         </li>
     </t>

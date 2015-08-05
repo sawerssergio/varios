@@ -151,6 +151,32 @@ input[type=number] {
     .center-bottom {
         @include flex(0 1 16vh);
         border-top: .1em solid white;
+        .pos-actionbar {
+            width: 100%;
+            height: 100%;
+            .pos-actionbar-button-list {
+                list-style:  none;
+                height: inherit;
+                width: inherit;
+                @include flexbox((
+                    display: flex,
+                    flex-direction: row,
+                    flex-wrap: nowrap,
+                    justify-content: flex-end,
+                    align-content: center,
+                    align-items: center
+                ));
+                .button {
+                    @include flex(0 1 5.6vw);
+                    .icon {
+                        width: 100%;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

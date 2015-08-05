@@ -518,7 +518,6 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                         self.pos.pos_widget.product_options_widget.set_template(product);
                         self.product_list_widget.set_deselected_product();
                         self.product_list_widget.set_selected_product(product.id); 
-
                     }
                 },
                 product_list: this.pos.db.get_template_by_category(1)
@@ -540,6 +539,13 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             this.product_categories_widget.renderElement();
 
             this.pos_widget.order_widget.set_editable(true);
+            this.add_action_button({
+                    label: _t('Check'),
+                    icon: '/pos_kingdom/static/src/img/check.svg',
+                    click: function(){
+                        self.pos.pos_widget.product_options_widget.checkAction();
+                    },
+                });
         },
 
         close: function(){
