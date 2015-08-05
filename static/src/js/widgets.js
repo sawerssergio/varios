@@ -1151,6 +1151,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.attributes = {};
             this.selected_template = undefined;
             this.hide();
+        },
+        is_content: function(){
+            return this.selected_template !== undefined;
         }
     });
 

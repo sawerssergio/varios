@@ -502,7 +502,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
 
         show_numpad:     false,
         show_leftpane:   false,
-
+        next_screen: 'client',
         start: function(){ //FIXME this should work as renderElement... but then the categories aren't properly set. explore why
             var self = this;
 
@@ -543,7 +543,11 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     label: _t('Check'),
                     icon: '/pos_kingdom/static/src/img/check.svg',
                     click: function(){
-                        self.pos.pos_widget.product_options_widget.checkAction();
+                        if(self.pos.pos_widget.product_options_widget.is_content()){
+                            self.pos.pos_widget.product_options_widget.checkAction();
+                        } else{
+                            self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
+                        }
                     },
                 });
         },
