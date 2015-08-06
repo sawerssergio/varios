@@ -1080,9 +1080,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     };
                 }
             }
-            this.el.querySelector('.action-image').addEventListener('click',function(){
-                self.checkAction();
-            });
             this.hide();
         },
         checkAction: function(){

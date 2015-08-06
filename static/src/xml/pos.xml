@@ -126,9 +126,6 @@
                     </div>
                 </ul>
             </div>
-            <div class="action-selector">
-                <img class="action-image" src="/pos_kingdom/static/src/img/check.svg"/>
-            </div>
         </div>
     </t>
 

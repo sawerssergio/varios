@@ -541,7 +541,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             this.pos_widget.order_widget.set_editable(true);
             this.add_action_button({
                     label: _t('Check'),
-                    icon: '/pos_kingdom/static/src/img/check.svg',
+                    icon: '/pos_kingdom/static/src/img/checking.svg',
                     click: function(){
                         if(self.pos.pos_widget.product_options_widget.is_content()){
                             self.pos.pos_widget.product_options_widget.checkAction();
@@ -624,7 +624,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 });
             this.add_action_button({
                     label: _t('Check'),
-                    icon: '/pos_kingdom/static/src/img/check.svg',
+                    icon: '/pos_kingdom/static/src/img/checking.svg',
                     click: function(){
                         self.pos.pos_widget.client_screen.save_client();
                         self.pos.pos_widget.onscreen_keyboard.hide();
@@ -776,10 +776,10 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 });
             this.add_action_button({
                     label: _t('Check'),
-                    icon: '/pos_kingdom/static/src/img/check.svg',
+                    icon: '/pos_kingdom/static/src/img/checking.svg',
                     click: function(){
                         self.pos.pos_widget.payment_screen.validate_order({invoice: true});
-                        this.pos.get('selectedOrder').destroy();
+                        self.pos.get('selectedOrder').destroy();
                         self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
                     },
                 });
