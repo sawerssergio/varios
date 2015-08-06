@@ -383,7 +383,7 @@ input[type=number] {
                     justify-content: center;
                     font-size: 4vh;
                     .entry {
-                        width: 65%;
+                        width: 80%;
                         display: inline-block;
                         align-self: center;
                         .value, .value-cash {
@@ -400,10 +400,12 @@ input[type=number] {
                         }
                     }
                     .action-next {
-                        width: 30%;
+                        width: 15%;
                         display: inline-block;
+                        text-align: center;
+                        align-self: center;
                         img {
-                            width: 65%;
+                            width: 80%;
                         }
                     }
                 }
@@ -445,7 +447,7 @@ input[type=number] {
     }
 }
 .container_products {
-    height: 55vh;
+    height: 54vh;
     width: 100%;
     .product-list-container {
         width: 100%;
@@ -756,7 +758,7 @@ input[type=number] {
     width: 100%;
     height: 100%;
     .client-details {
-        height: 85%;
+        height: 54vh;
         width: 100%;
         @include flexbox((
             display: flex,

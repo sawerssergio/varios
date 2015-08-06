@@ -1189,7 +1189,7 @@
                         </div>
                     </div>
                     <div class="action-next">
-                        <img class="action-next-image" src="/pos_kingdom/static/src/img/payment_process.svg"/>
+                        <img class="order-restart" src="/pos_kingdom/static/src/img/trash.svg"/>
                     </div>
                 </div>
             </div>

@@ -746,7 +746,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
     module.InvoiceScreenWidget = module.ScreenWidget.extend({
         template: 'InvoiceScreenWidget',
         back_screen: 'client',
-        next_screen: 'product',
+        next_screen: 'products',
         init: function(parent, options){
             this._super(parent, options);
             this.is_dolar=false;
