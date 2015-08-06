@@ -566,6 +566,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
     module.ClientScreenWidget = module.ScreenWidget.extend({
         template: 'ClientScreenWidget',
         back_screen: 'products',
+        next_screen: 'invoice',
         auto_back: true,
         show_leftpane: false,
         init: function(parent, options){
@@ -605,6 +606,31 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     });
                 });
             }
+            this.add_action_button({
+                    label: _t('Reload'),
+                    icon: '/pos_kingdom/static/src/img/refresh.svg',
+                    click: function(){
+                        console.log("refresh");
+                    },
+                });
+            this.add_action_button({
+                    label: _t('Back'),
+                    icon: '/pos_kingdom/static/src/img/back.svg',
+                    click: function(){
+                        console.log("back");
+                        self.pos.pos_widget.onscreen_keyboard.hide();
+                        self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
+                    },
+                });
+            this.add_action_button({
+                    label: _t('Check'),
+                    icon: '/pos_kingdom/static/src/img/check.svg',
+                    click: function(){
+                        self.pos.pos_widget.client_screen.save_client();
+                        self.pos.pos_widget.onscreen_keyboard.hide();
+                        self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
+                    },
+                });
         },
         renderElement: function(){
             var self = this;
@@ -719,7 +745,8 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
 
     module.InvoiceScreenWidget = module.ScreenWidget.extend({
         template: 'InvoiceScreenWidget',
-        back_screen: 'products',
+        back_screen: 'client',
+        next_screen: 'product',
         init: function(parent, options){
             this._super(parent, options);
             this.is_dolar=false;
@@ -732,6 +759,30 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
 
             var cashregister = this.pos.cashregisters[0];
             self.pos.get('selectedOrder').addPaymentline(cashregister);
+            this.add_action_button({
+                    label: _t('Reload'),
+                    icon: '/pos_kingdom/static/src/img/refresh.svg',
+                    click: function(){
+                        console.log("refresh");
+                    },
+                });
+            this.add_action_button({
+                    label: _t('Back'),
+                    icon: '/pos_kingdom/static/src/img/back.svg',
+                    click: function(){
+                        console.log("back");
+                        self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
+                    },
+                });
+            this.add_action_button({
+                    label: _t('Check'),
+                    icon: '/pos_kingdom/static/src/img/check.svg',
+                    click: function(){
+                        self.pos.pos_widget.payment_screen.validate_order({invoice: true});
+                        this.pos.get('selectedOrder').destroy();
+                        self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
+                    },
+                });
         },
         renderElement: function(){
             var self = this;
