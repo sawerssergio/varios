@@ -636,7 +636,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                         var input_event = this;
                         self.$( evt.target ).parent().parent()
                         .find('input').css('background' , 'transparent');
-                        self.$( evt.target ).css("background", '#C1272D');
+                        self.$( evt.target ).css("background", '#F26522');
                         self.pos_widget.onscreen_keyboard.connect( self.$( evt.target ), input.getAttribute('type'), function(){
                             if(evt.target.classList.contains("client-vat")){
                                 self.search_client_by_vat(evt.target.value);
