@@ -24,7 +24,7 @@
             <div class="pos-rightpane">
                 <div class="right-header">
                     <div class="sale">
-                        <button type="button" class="sale-type font-black"><p>VENTAS</p></button>
+                        <button type="button" class="sale-type font-black">VENTAS</button>
                     </div>
                     <div class="user">
                         <span class="placeholder-UserWidget"></span>
@@ -1304,9 +1304,10 @@
 
     <t t-name="UserWidget">
          <div class="user-data">
-            <span class="user-image">
+            <div class="user-image">
+                <span class="helper"></span>
                 <img t-att-src="widget.get_image()"/>
-            </span>
+            </div>
             <ul class="user-options">
                 <li><a href="#">Ayuda</a></li>
                 <li><a href="#">Otros</a></li>

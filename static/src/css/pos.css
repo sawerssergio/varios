@@ -58,10 +58,10 @@ td {
 }
 
 .pos button{
-    box-shadow: none;
+    /*box-shadow: none;
     outline: none;
     border: none;
-    font-family: 'Lato';
+    font-family: 'Lato';*/
 }
 .pos button:hover{
     background: default;
