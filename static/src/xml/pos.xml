@@ -388,37 +388,38 @@
                 <ul class="client-details">
                     <li class='client-detail-item font-medium'>
                         <span class='label'>NIT:</span>
-                        <span class='detail client-vat'><t t-esc='partner.vat' /></span>
+                        <input class='detail client-vat' name='vat'  placeholder='Vat' type="number" onfocus="blur()" t-att-value="partner.vat"></input>
                     </li>
                     <li class='client-detail-item font-medium'>
                         <span class='label'>Nombre:</span>
-                        <span class='detail client-name'><t t-esc='partner.name' /></span>
+                        <input class='detail client-name' name='name'  placeholder='Name' type="text" onfocus="blur()" t-att-value="partner.name"></input>
                     </li>
                     <li class='client-detail-item font-medium'>
                         <span class='label'>Celular:</span>
+
                         <t t-if='partner.mobile'>
-                            <span class='detail client-mobile'><t t-esc='partner.mobile' /></span>
+                            <input class='detail client-mobile' name='mobile'  placeholder='Telefono Celular' type="number" onfocus="blur()" t-att-value="partner.mobile"></input>
                         </t>
                         <t t-if="!partner.mobile">
-                            <span class='detail client-mobile'>N/A</span>
+                            <input class='detail client-mobile' name='mobile'  placeholder='Telefono Celular' type="number" onfocus="blur()" value="0"></input>
                         </t>
                     </li>
                     <li class='client-detail-item font-medium'>
                         <span class='label'>Telefono:</span>
                         <t t-if='partner.phone'>
-                            <span class='detail client-phone'><t t-esc='partner.phone' /></span>
+                            <input class='detail client-phone' name='phone'  placeholder='Telefono' type="number" onfocus="blur()" t-att-value="partner.phone"></input>
                         </t>
                         <t t-if='!partner.phone'>
-                            <span class='detail client-phone'>N/A</span>
+                            <input class='detail client-phone' name='phone'  placeholder='Telefono' type="number" onfocus="blur()" value="0"></input>
                         </t>
                     </li>
                     <li class='client-detail-item font-medium'>
                         <span class='label'>Direccion:</span>
                         <t t-if='partner.street'>
-                            <span class='detail client-street'><t t-esc='partner.street' /></span>
+                            <input class='detail client-street' name='street'  placeholder='Direccion' type="text" onfocus="blur()" t-att-value="partner.street"></input>
                         </t>
                         <t t-if='!partner.street'>
-                            <span class='detail client-street'>N/A</span>
+                            <input class='detail client-street' name='street'  placeholder='Direccion' type="text" onfocus="blur()" value="N/A"></input>
                         </t>
                     </li>
                 </ul>

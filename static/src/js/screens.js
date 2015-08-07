@@ -578,46 +578,19 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             this._super();
 
             this.old_client = this.pos.get('selectedOrder').get('client');
-
-            if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
-                self.$el.find( 'input').each( function( index , input ){
-                    input.value="";
-                    $(input).on( window.is_mobile ? 'touchend' : 'click' , function( evt ){
-                        var input_event = this;
-                        self.$( evt.target ).parent().parent()
-                        .find('input').css('background' , 'transparent');
-                        self.$( evt.target ).css("background", '#C1272D');
-                        self.pos_widget.onscreen_keyboard.connect( self.$( evt.target ), input.getAttribute('type'), function(){
-                            if(evt.target.classList.contains("client-vat")){
-                                self.search_client_by_vat(evt.target.value);
-                            }
-                            var inputs = $(input_event).closest('.client-details').find(':input');
-                            var next_input = inputs.eq( inputs.index(input_event)+ 1 );
-                            if(next_input.length !== 0 ){
-                                if(window.is_mobile){
-                                    next_input.trigger('touchend');
-                                } else {
-                                    next_input.focus().click();
-                                }
-                                return;
-                            }
-                            self.pos_widget.onscreen_keyboard.hide();
-                        });
-                    });
-                });
-            }
+            this.renderElement();
             this.add_action_button({
                     label: _t('Reload'),
                     icon: '/pos_kingdom/static/src/img/refresh.svg',
                     click: function(){
-                        console.log("refresh");
+                        self.new_client = undefined;
+                        self.renderElement();
                     },
                 });
             this.add_action_button({
                     label: _t('Back'),
                     icon: '/pos_kingdom/static/src/img/back.svg',
                     click: function(){
-                        console.log("back");
                         self.pos.pos_widget.onscreen_keyboard.hide();
                         self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
                     },
@@ -649,6 +622,34 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             this.el = el_node;
 
             this.$el = $(this.el);
+
+            if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
+                self.$el.find( 'input').each( function( index , input ){
+                    //input.value="";
+                    $(input).on( window.is_mobile ? 'touchend' : 'click' , function( evt ){
+                        var input_event = this;
+                        self.$( evt.target ).parent().parent()
+                        .find('input').css('background' , 'transparent');
+                        self.$( evt.target ).css("background", '#C1272D');
+                        self.pos_widget.onscreen_keyboard.connect( self.$( evt.target ), input.getAttribute('type'), function(){
+                            if(evt.target.classList.contains("client-vat")){
+                                self.search_client_by_vat(evt.target.value);
+                            }
+                            var inputs = $(input_event).closest('.client-details').find(':input');
+                            var next_input = inputs.eq( inputs.index(input_event)+ 1 );
+                            if(next_input.length !== 0 ){
+                                if(window.is_mobile){
+                                    next_input.trigger('touchend');
+                                } else {
+                                    next_input.focus().click();
+                                }
+                                return;
+                            }
+                            self.pos_widget.onscreen_keyboard.hide();
+                        });
+                    });
+                });
+            }
             //This should be enable only for event click!
             /*this.$(".client-find").click(function() {
                 var value = self.$('.client-details .client-vat')[0].value;
@@ -666,7 +667,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         search_client_by_vat: function(vat) {
             var self = this;
             var partner = new instance.web.Model('res.partner');
-            partner.query(['name', 'vat', 'phone'])
+            partner.query(['name', 'vat', 'phone','street','mobile'])
                 .filter([['vat', '=', vat]])
                 .limit(1)
                 .all().then(function (users) {
@@ -759,11 +760,13 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
 
             var cashregister = this.pos.cashregisters[0];
             self.pos.get('selectedOrder').addPaymentline(cashregister);
+            self.update_payment_summary();
             this.add_action_button({
                     label: _t('Reload'),
                     icon: '/pos_kingdom/static/src/img/refresh.svg',
                     click: function(){
-                        console.log("refresh");
+                        self.set_value(0);
+                        self.update_payment_summary();
                     },
                 });
             this.add_action_button({
