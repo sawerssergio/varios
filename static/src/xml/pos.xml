@@ -237,7 +237,10 @@
     </t>
 
     <t t-name="CategoryButton">
-        <li class="category-item js-category-switch" t-att-data-category-id="category.id"><img t-att-src="image_url"/></li>
+        <li class="category-item js-category-switch" t-att-data-category-id="category.id">
+            <span class="helper"></span>
+            <img t-att-src="image_url"/>
+        </li>
         <!--
         <span class='category-button js-category-switch' t-att-data-category-id="category.id" >
             <div class="category-img">
@@ -262,12 +265,6 @@
                 15:00
             </div>
             <ul class="categories-list">
-                <!--
-                <li class="category-item"><img src="/pos_kingdom/static/src/img/chicken_leg.svg"/></li>
-                <li class="category-item"><img src="/pos_kingdom/static/src/img/coca_cola.svg"/></li>
-                <li class="category-item"><img src="/pos_kingdom/static/src/img/icecream.svg"/></li>
-                <li class="category-item"><img src="/pos_kingdom/static/src/img/chips.svg"/></li>
-                -->
             </ul>
         </div>
         <!--

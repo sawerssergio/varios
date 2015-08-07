@@ -515,6 +515,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 self.pos.get('selectedOrder').deselectLine();
                 //DOMStringMap
                 self.set_category(self.pos.db.get_category_by_id(Number(this.dataset['categoryId'])));
+                if(self.el.querySelector(".categories-list > .selected")){
+                    self.el.querySelector(".categories-list > .selected").classList.remove('selected');
+                }
+                self.el.querySelector("[data-category-id='"+this.dataset['categoryId']+"']").classList.add('selected');
+                console.log(self.el.querySelector("[data-category-id='"+this.dataset['categoryId']+"']").classList);
                 //FIXME [KINGDOM][VD] This should be separated into another method of this widget.
                 var products = self.pos.db.get_template_by_category(self.category.id);
                 self.product_list_widget.set_product_list(products);

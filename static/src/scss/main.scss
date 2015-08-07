@@ -340,7 +340,7 @@ input[type=number] {
                 overflow-y: auto;
                 .orderline {
                     width: 100%;
-                    margin-top: .5em;
+                    padding-top: .5em;
                     border-bottom: .3em solid $orange_opacity_color;
                     .product-quantity {
                         width: 20%;
@@ -440,15 +440,21 @@ input[type=number] {
             display: flex,
             flex-direction: column,
             flex-wrap:nowrap,
-            justify-content: space-around,
+            justify-content: flex-end,
             align-content: stretch,
             align-items: stretch
         ));
         .category-item {
-            @include flex(0 1 auto);
-            max-width: 90%;
+            @include flex(0 1 20vh);
+            text-align: center;
+            .helper {
+                display: inline-block;
+                vertical-align: middle;
+            }
             img {
                 width: 100%;
+                display: inline-block;
+                vertical-align: middle;
             }
         }
     }
