@@ -572,6 +572,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         init: function(parent, options){
             this._super(parent);
             this.new_client = undefined;
+            this.editing_client = false;
         },
         show: function(){
             var self = this;
@@ -584,6 +585,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     icon: '/pos_kingdom/static/src/img/refresh.svg',
                     click: function(){
                         self.new_client = undefined;
+                        self.editing_client = false;
                         self.renderElement();
                     },
                 });
@@ -599,7 +601,11 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     label: _t('Check'),
                     icon: '/pos_kingdom/static/src/img/checking.svg',
                     click: function(){
-                        self.pos.pos_widget.client_screen.save_client();
+                        if(self.editing_client) {
+                            self.save_client(self.new_client);
+                        } else {
+                            self.save_client({});
+                        }
                         self.pos.pos_widget.onscreen_keyboard.hide();
                         self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
                     },
@@ -673,6 +679,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 .all().then(function (users) {
                     if(users.length > 0){
                         self.new_client = users[0];
+                        self.editing_client = true;
                         self.renderElement();
                         self.pos_widget.onscreen_keyboard.hide();
                     }
@@ -719,12 +726,13 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         saved_client_details: function(partner_id){
             var self = this;
             var partner = new instance.web.Model('res.partner');
-            partner.query(['name', 'vat', 'phone'])
+            partner.query(['name', 'vat', 'phone','street','mobile'])
                 .filter([['id', '=', partner_id]])
                 .limit(1)
                 .all().then(function (users) {
-                    //self.new_client = users[0];
-                    self.pos.get('selectedOrder').set_client(users[0]);
+                    self.new_client = users[0];
+                    //self.save_changes();
+                    self.pos.get('selectedOrder').set_client(self.new_client);
             });
             /*this.reload_partners().then(function(){
                 var partner = self.pos.db.get_partner_by_id(partner_id);
@@ -739,8 +747,20 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 }
             });*/
         },
-        save_client: function(){
-            this.save_client_details({});
+        save_client: function(partner){
+            this.save_client_details(partner);
+        },
+        save_changes: function(){
+            if( this.has_client_changed() ){
+                this.pos.get('selectedOrder').set_client(this.new_client);
+            }
+        },
+        has_client_changed: function(){
+            if( this.old_client && this.new_client ){
+                return this.old_client.id !== this.new_client.id;
+            }else{
+                return !!this.old_client !== !!this.new_client;
+            }
         },
     });
 
@@ -781,8 +801,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     label: _t('Check'),
                     icon: '/pos_kingdom/static/src/img/checking.svg',
                     click: function(){
-                        self.pos.pos_widget.payment_screen.validate_order({invoice: true});
-                        self.pos.get('selectedOrder').destroy();
+                        self.validate_order({invoice: true});
                         self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
                     },
                 });
@@ -843,6 +862,108 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 selected_line.set_amount(val);
                 selected_line.node.querySelector('input').value = selected_line.amount.toFixed(2);
             }
+        },
+        is_paid: function(){
+            var currentOrder = this.pos.get('selectedOrder');
+            return (currentOrder.getTotalTaxIncluded() < 0.000001 
+                   || currentOrder.getPaidTotal() + 0.000001 >= currentOrder.getTotalTaxIncluded());
+
+        },
+        validate_order: function(options) {
+            var self = this;
+            options = options || {};
+
+            var currentOrder = this.pos.get('selectedOrder');
+
+            if(currentOrder.get('orderLines').models.length === 0){
+                this.pos_widget.screen_selector.show_popup('error',{
+                    'message': _t('Empty Order'),
+                    'comment': _t('There must be at least one product in your order before it can be validated'),
+                });
+                return;
+            }
+
+            var plines = currentOrder.get('paymentLines').models;
+            for (var i = 0; i < plines.length; i++) {
+                if (plines[i].get_type() === 'bank' && plines[i].get_amount() < 0) {
+                    this.pos_widget.screen_selector.show_popup('error',{
+                        'message': _t('Negative Bank Payment'),
+                        'comment': _t('You cannot have a negative amount in a Bank payment. Use a cash payment method to return money to the customer.'),
+                    });
+                    return;
+                }
+            }
+
+            if(!this.is_paid()){
+                return;
+            }
+
+            // The exact amount must be paid if there is no cash payment method defined.
+            if (Math.abs(currentOrder.getTotalTaxIncluded() - currentOrder.getPaidTotal()) > 0.00001) {
+                var cash = false;
+                for (var i = 0; i < this.pos.cashregisters.length; i++) {
+                    cash = cash || (this.pos.cashregisters[i].journal.type === 'cash');
+                }
+                if (!cash) {
+                    this.pos_widget.screen_selector.show_popup('error',{
+                        message: _t('Cannot return change without a cash payment method'),
+                        comment: _t('There is no cash payment method available in this point of sale to handle the change.\n\n Please pay the exact amount or add a cash payment method in the point of sale configuration'),
+                    });
+                    return;
+                }
+            }
+
+            if (this.pos.config.iface_cashdrawer) {
+                    this.pos.proxy.open_cashbox();
+            }
+
+            if(options.invoice){
+                // deactivate the validation button while we try to send the order
+                this.pos_widget.action_bar.set_button_disabled('validation',true);
+                this.pos_widget.action_bar.set_button_disabled('invoice',true);
+
+                var invoiced = this.pos.push_and_invoice_order(currentOrder);
+
+                invoiced.fail(function(error){
+                    if(error === 'error-no-client'){
+                        self.pos_widget.screen_selector.show_popup('error',{
+                            message: _t('An anonymous order cannot be invoiced'),
+                            comment: _t('Please select a client for this order. This can be done by clicking the order tab'),
+                        });
+                    }else{
+                        self.pos_widget.screen_selector.show_popup('error',{
+                            message: _t('The order could not be sent'),
+                            comment: _t('Check your internet connection and try again.'),
+                        });
+                    }
+                    self.pos_widget.action_bar.set_button_disabled('validation',false);
+                    self.pos_widget.action_bar.set_button_disabled('invoice',false);
+                });
+
+                invoiced.done(function(){
+                    self.pos_widget.action_bar.set_button_disabled('validation',false);
+                    self.pos_widget.action_bar.set_button_disabled('invoice',false);
+                    self.pos.get('selectedOrder').destroy();
+                });
+
+            }else{
+                this.pos.push_order(currentOrder) 
+                if(this.pos.config.iface_print_via_proxy){
+                    var receipt = currentOrder.export_for_printing();
+                    this.pos.proxy.print_receipt(QWeb.render('XmlReceipt',{
+                        receipt: receipt, widget: self,
+                    }));
+                    this.pos.get('selectedOrder').destroy();    //finish order and go back to scan screen
+                }else{
+                    this.pos_widget.screen_selector.set_current_screen(this.next_screen);
+                }
+            }
+
+            // hide onscreen (iOS) keyboard 
+            setTimeout(function(){
+                document.activeElement.blur();
+                $("input").blur();
+            },250);
         },
     });
 
