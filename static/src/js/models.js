@@ -1176,7 +1176,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 paymentLines:   new module.PaymentlineCollection(),
                 name:           _t("Order ") + this.uid,
                 client:         null,
-                destination:    null,
+                type_of:        'inside',
             });
             this.selected_orderline   = undefined;
             this.selected_paymentline = undefined;
@@ -1432,6 +1432,12 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         },
         get_destination: function(){
             return this.get('destination');
+        },
+        set_type_of: function(type_of){
+            this.set('type_of',type_of);
+        },
+        get_type_of: function(){
+            return this.get('type_of');
         },
         // the client related to the current order.
         set_client: function(client){

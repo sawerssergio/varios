@@ -297,42 +297,40 @@ input[type=number] {
             .order-header {
                 height: 8vh;
                 background-color: $orange_opacity_color;
-                .order-header-content {
-                    height: 100%;
+                .order-type-of {
                     width: 100%;
-                    .order-dispatch {
-                        width: 100%;
-                        height: 100%;
+                    height: 100%;
+                    text-align: center;
+                    float: left;
+                    @include flexbox((
+                        display: flex,
+                        flex-direction: row,
+                        flex-wrap:nowrap,
+                        justify-content: space-between,
+                        align-content: stretch,
+                        align-items: stretch
+                    ));
+                    .type-of {
+                        @include flex(0 1 50%);
                         text-align: center;
-                        @include flexbox((
-                            display: flex,
-                            flex-direction: row,
-                            flex-wrap:nowrap,
-                            justify-content: space-between,
-                            align-content: stretch,
-                            align-items: stretch
-                        ));
-                        .dispatch {
-                            @include flex(0 1 50%);
-                            text-align: center;
-                            .helper {
-                                display: inline-block;
-                                height: 100%;
-                                vertical-align: middle;
-                            }
-                            img {
-                                height: 6vh;
-                                display: inline-block;
-                                vertical-align: middle;
-                            }
+                        .helper {
+                            display: inline-block;
+                            height: 100%;
+                            vertical-align: middle;
                         }
-                        .outside {
-                            border-left: .2em solid rgba(255, 255, 255, 0.5);
-                            margin: 10% 0px;
-                            height: 80%;
+                        img {
+                            height: 6vh;
+                            display: inline-block;
+                            vertical-align: middle;
+
                         }
                     }
-                }
+                    .outside {
+                        border-left: .2em solid rgba(255, 255, 255, 0.5);
+                        margin: 10% 0px;
+                        height: 80%;
+                    }
+                    }
             }
             .order-scroller {
                 width: 100%;

@@ -1155,16 +1155,14 @@
     <t t-name="OrderWidget">
         <div class="order-container">
             <div class="order-header">
-                <div class="order-header-content">
-                    <div class="order-dispatch">
-                        <div class="inside dispatch">
-                            <span class="helper"></span>
-                            <img src="/pos_kingdom/static/src/img/inside.svg"/>
-                        </div>
-                        <div class="outside dispatch">
-                            <span class="helper"></span>
-                            <img src="/pos_kingdom/static/src/img/outside.svg"/>
-                        </div>
+                <div class="order-type-of">
+                    <div class="inside type-of">
+                        <span class="helper"></span>
+                        <img src="/pos_kingdom/static/src/img/inside.svg"/>
+                    </div>
+                    <div class="outside type-of">
+                        <span class="helper"></span>
+                        <img src="/pos_kingdom/static/src/img/outside.svg"/>
                     </div>
                 </div>
             </div>

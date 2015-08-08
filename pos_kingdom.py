@@ -788,6 +788,10 @@ class pos_order(models.Model):
     sale_journal    = fields.Many2one(related='session_id.config_id.journal_id', string='Sale Journal', store=True, readonly=True) #, relation='account.journal', type='many2one'
     control_code       = fields.Char('Control Code', readonly=True, copy=False)
     amount_words       = fields.Char('Monto', readonly=True, compute='_amount_words')
+    type_of = fields.Selection([('inside', 'to go'),
+                               ('outside', 'for here')],
+                              'Status', readonly=True, copy=False,
+                              default='inside')
 
     def _default_session(self, cr, uid, context=None):
         so = self.pool.get('pos.session')

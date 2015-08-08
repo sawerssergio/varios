@@ -152,7 +152,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         init: function(parent, options) {
             var self = this;
             this._super(parent,options);
-            this.type = "this";
+            this.type_of = 'inside';
             this.editable = false;
             this.pos.bind('change:selectedOrder', this.change_selected_order, this);
             this.line_click_handler = function(event){
@@ -328,27 +328,27 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             if(scrollbottom){
                 this.el.querySelector('.order-scroller').scrollTop = 100 * orderlines.length;
             }
-            if(this.type==="those"){
-                this.el.querySelector('.type-order').textContent = "Para Llevar";
-            }
-            var pos_widget = this.pos_widget;
-            var current_order = this.pos.get('selectedOrder');
             this.el.querySelector('.order-restart').addEventListener("click",function(){
                 self.pos.get('selectedOrder').restart_order();
             });
-            /*this.el.querySelector('.order-dispatch').addEventListener('click',function(event){
-                if(event.target.nodeName == "H2"){
-                    if(self.type=="those")
-                    {
-                        event.target.textContent = "Para Aqui";
-                        self.type = "this";
-                        return;
+            var list_type_of = this.el.querySelectorAll('.type-of');
+            for( var i=0; i < list_type_of.length; i++){
+                list_type_of[i].addEventListener("click",function(target){
+                    if(self.set_type_of(this.classList[0])) {
+                        if(self.el
+                            .querySelector(".order-type-of>.selected")){
+                            self.el
+                            .querySelector(".order-type-of>.selected")
+                            .classList.remove('selected');
+                        }
+                        this.classList.add('selected');
                     }
-                    event.target.textContent = "Para Llevar";
-                    self.type="those";
-                } 
-                console.log(event.target.nodeName);
-            });*/
+                });
+                if(list_type_of[i].classList[0]==="inside"){
+                    list_type_of[i].classList.add('selected');
+                    self.set_type_of(list_type_of[i].classList[0]);
+                }
+            }
         },
         update_summary: function(){
             var order = this.pos.get('selectedOrder');
@@ -358,6 +358,14 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.el.querySelector('.order-summary .total > .subentry-total > .value').textContent = this.format_currency(total);
             //this.el.querySelector('.order-summary .total .subentry .value').textContent = this.format_currency(taxes);
 
+        },
+        set_type_of: function(type_of){
+            if(this.type_of !== type_of) {
+                this.pos.get('selectedOrder').set_type_of(type_of);
+                this.type_of = type_of;
+                return true;
+            }
+            return false;
         },
     });
 
@@ -519,7 +527,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     self.el.querySelector(".categories-list > .selected").classList.remove('selected');
                 }
                 self.el.querySelector("[data-category-id='"+this.dataset['categoryId']+"']").classList.add('selected');
-                console.log(self.el.querySelector("[data-category-id='"+this.dataset['categoryId']+"']").classList);
                 //FIXME [KINGDOM][VD] This should be separated into another method of this widget.
                 var products = self.pos.db.get_template_by_category(self.category.id);
                 self.product_list_widget.set_product_list(products);

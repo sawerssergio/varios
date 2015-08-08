@@ -350,15 +350,11 @@ input[type=number] {
   background-color: rgba(242, 101, 34, 0.5);
 }
 /* line 300, ../scss/main.scss */
-.pos-rightpane .menu-orders .order-container .order-header .order-header-content {
-  height: 100%;
-  width: 100%;
-}
-/* line 303, ../scss/main.scss */
-.pos-rightpane .menu-orders .order-container .order-header .order-header-content .order-dispatch {
+.pos-rightpane .menu-orders .order-container .order-header .order-type-of {
   width: 100%;
   height: 100%;
   text-align: center;
+  float: left;
   display: -webkit-flex;
   -webkit-flex-direction: row;
   -webkit-flex-wrap: nowrap;
@@ -372,43 +368,43 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 315, ../scss/main.scss */
-.pos-rightpane .menu-orders .order-container .order-header .order-header-content .order-dispatch .dispatch {
+/* line 313, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-header .order-type-of .type-of {
   -webkit-flex: 0 1 50%;
   flex: 0 1 50%;
   text-align: center;
 }
-/* line 318, ../scss/main.scss */
-.pos-rightpane .menu-orders .order-container .order-header .order-header-content .order-dispatch .dispatch .helper {
+/* line 316, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-header .order-type-of .type-of .helper {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
-/* line 323, ../scss/main.scss */
-.pos-rightpane .menu-orders .order-container .order-header .order-header-content .order-dispatch .dispatch img {
+/* line 321, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-header .order-type-of .type-of img {
   height: 6vh;
   display: inline-block;
   vertical-align: middle;
 }
-/* line 329, ../scss/main.scss */
-.pos-rightpane .menu-orders .order-container .order-header .order-header-content .order-dispatch .outside {
+/* line 328, ../scss/main.scss */
+.pos-rightpane .menu-orders .order-container .order-header .order-type-of .outside {
   border-left: 0.2em solid rgba(255, 255, 255, 0.5);
   margin: 10% 0px;
   height: 80%;
 }
-/* line 337, ../scss/main.scss */
+/* line 335, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-scroller {
   width: 100%;
   height: 72vh;
   overflow-y: auto;
 }
-/* line 341, ../scss/main.scss */
+/* line 339, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-scroller .orderline {
   width: 100%;
   padding-top: .5em;
   border-bottom: 0.3em solid rgba(242, 101, 34, 0.5);
 }
-/* line 345, ../scss/main.scss */
+/* line 343, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-quantity {
   width: 20%;
   height: 100%;
@@ -418,44 +414,44 @@ input[type=number] {
   vertical-align: top;
   text-align: right;
 }
-/* line 353, ../scss/main.scss */
+/* line 351, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-quantity .number {
   line-height: 1em;
   text-align: right;
   font-size: 5vh;
 }
-/* line 359, ../scss/main.scss */
+/* line 357, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-info {
   width: 60%;
   display: inline-block;
 }
-/* line 362, ../scss/main.scss */
+/* line 360, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-info .product-name {
   color: white;
   font-size: 1.2em;
 }
-/* line 366, ../scss/main.scss */
+/* line 364, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-info .product-details, .pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-info .product-detail-composed {
   color: #ffdf1b;
   font-size: 1em;
 }
-/* line 371, ../scss/main.scss */
+/* line 369, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-delete {
   width: 13%;
   display: inline-block;
   vertical-align: top;
 }
-/* line 375, ../scss/main.scss */
+/* line 373, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-delete img {
   width: 100%;
 }
-/* line 381, ../scss/main.scss */
+/* line 379, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-summary {
   width: 100%;
   height: 10vh;
   background-color: #f26522;
 }
-/* line 385, ../scss/main.scss */
+/* line 383, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-summary .line {
   width: 100%;
   height: 100%;
@@ -464,48 +460,48 @@ input[type=number] {
   justify-content: center;
   font-size: 4vh;
 }
-/* line 392, ../scss/main.scss */
+/* line 390, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-summary .line .entry {
   width: 80%;
   display: inline-block;
   align-self: center;
 }
-/* line 396, ../scss/main.scss */
+/* line 394, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-summary .line .entry .value, .pos-rightpane .menu-orders .order-container .order-summary .line .entry .value-cash {
   color: #ffdf1b;
 }
-/* line 399, ../scss/main.scss */
+/* line 397, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-summary .line .entry .subentry-total {
   display: block;
 }
-/* line 402, ../scss/main.scss */
+/* line 400, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-summary .line .entry .subentry-cash {
   display: block;
 }
-/* line 405, ../scss/main.scss */
+/* line 403, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-summary .line .entry .subentry {
   display: block;
 }
-/* line 409, ../scss/main.scss */
+/* line 407, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-summary .line .action-next {
   width: 15%;
   display: inline-block;
   text-align: center;
   align-self: center;
 }
-/* line 414, ../scss/main.scss */
+/* line 412, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-summary .line .action-next img {
   width: 80%;
 }
 
-/* line 423, ../scss/main.scss */
+/* line 421, ../scss/main.scss */
 .categories {
   width: 7vw;
   height: 100%;
   background-color: rgba(255, 153, 0, 0.5);
   opacity: .8;
 }
-/* line 428, ../scss/main.scss */
+/* line 426, ../scss/main.scss */
 .categories .time {
   height: 10%;
   width: 100%;
@@ -514,7 +510,7 @@ input[type=number] {
   line-height: 10vh;
   color: white;
 }
-/* line 436, ../scss/main.scss */
+/* line 434, ../scss/main.scss */
 .categories .categories-list {
   width: 100%;
   height: 90%;
@@ -531,36 +527,36 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 447, ../scss/main.scss */
+/* line 445, ../scss/main.scss */
 .categories .categories-list .category-item {
   -webkit-flex: 0 1 20vh;
   flex: 0 1 20vh;
   text-align: center;
 }
-/* line 450, ../scss/main.scss */
+/* line 448, ../scss/main.scss */
 .categories .categories-list .category-item .helper {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 454, ../scss/main.scss */
+/* line 452, ../scss/main.scss */
 .categories .categories-list .category-item img {
   width: 100%;
   display: inline-block;
   vertical-align: middle;
 }
 
-/* line 462, ../scss/main.scss */
+/* line 460, ../scss/main.scss */
 .container_products {
   height: 54vh;
   width: 100%;
 }
-/* line 465, ../scss/main.scss */
+/* line 463, ../scss/main.scss */
 .container_products .product-list-container {
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
-/* line 469, ../scss/main.scss */
+/* line 467, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller {
   box-sizing: border-box;
   width: 100%;
@@ -568,7 +564,7 @@ input[type=number] {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
-/* line 475, ../scss/main.scss */
+/* line 473, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list {
   width: 100%;
   height: 100%;
@@ -585,16 +581,16 @@ input[type=number] {
   align-content: flex-start;
   align-items: stretch;
 }
-/* line 486, ../scss/main.scss */
+/* line 484, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product {
   -webkit-flex: 0 1 30%;
   flex: 0 1 30%;
 }
-/* line 488, ../scss/main.scss */
+/* line 486, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product .product-img {
   width: 100%;
 }
-/* line 490, ../scss/main.scss */
+/* line 488, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product .product-img img {
   width: 100%;
 }
@@ -615,7 +611,7 @@ input[type=number] {
     opacity: 1;
   }
 }
-/* line 508, ../scss/main.scss */
+/* line 506, ../scss/main.scss */
 .options-selector {
   width: 95%;
   height: 100%;
@@ -624,7 +620,7 @@ input[type=number] {
   animation: fadeIn 1s;
   padding: 0 2.5%;
 }
-/* line 515, ../scss/main.scss */
+/* line 513, ../scss/main.scss */
 .options-selector .options-selector-content {
   float: left;
   width: 100%;
@@ -637,7 +633,7 @@ input[type=number] {
   /* W3C */
   border-radius: 0em 0em 1.5em 1.5em;
 }
-/* line 523, ../scss/main.scss */
+/* line 521, ../scss/main.scss */
 .options-selector .options-selector-content .values-list {
   width: 100%;
   height: 100%;
@@ -654,7 +650,7 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 534, ../scss/main.scss */
+/* line 532, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection {
   -webkit-flex: 0 1 24%;
   flex: 0 1 24%;
@@ -662,7 +658,7 @@ input[type=number] {
   margin-right: 1%;
   position: relative;
 }
-/* line 539, ../scss/main.scss */
+/* line 537, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .top-block {
   display: flex;
   width: 100%;
@@ -672,7 +668,7 @@ input[type=number] {
   position: relative;
   color: #ffdf1b;
 }
-/* line 547, ../scss/main.scss */
+/* line 545, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .top-block .block-quantity {
   width: 100%;
   text-align: center;
@@ -684,7 +680,7 @@ input[type=number] {
   border-right: 0.2vw solid rgba(255, 255, 255, 0.5);
   font-size: 5vh;
 }
-/* line 559, ../scss/main.scss */
+/* line 557, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block {
   display: block;
   width: 100%;
@@ -695,18 +691,18 @@ input[type=number] {
   margin: 1vh 0px;
   line-height: 0.5em;
 }
-/* line 568, ../scss/main.scss */
+/* line 566, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-increase {
   display: inline-block;
   float: left;
   height: 100%;
   width: 48%;
 }
-/* line 573, ../scss/main.scss */
+/* line 571, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-increase img {
   width: 60%;
 }
-/* line 577, ../scss/main.scss */
+/* line 575, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-decrease {
   display: inline-block;
   float: right;
@@ -714,38 +710,38 @@ input[type=number] {
   width: 48%;
   text-align: center;
 }
-/* line 583, ../scss/main.scss */
+/* line 581, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-decrease .helper {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
-/* line 588, ../scss/main.scss */
+/* line 586, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-decrease img {
   width: 50%;
 }
-/* line 594, ../scss/main.scss */
+/* line 592, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .total-selection {
   order: 100;
 }
-/* line 597, ../scss/main.scss */
+/* line 595, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .total-selection .top-block .block-information {
   font-size: .7em;
   width: 100%;
   padding-bottom: 20%;
   align-self: flex-end;
 }
-/* line 604, ../scss/main.scss */
+/* line 602, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .total-selection .bottom-block {
   border: none;
 }
-/* line 606, ../scss/main.scss */
+/* line 604, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .total-selection .bottom-block .total-quantity {
   line-height: 1em;
   font-size: 2em;
 }
 
-/* line 616, ../scss/main.scss */
+/* line 614, ../scss/main.scss */
 .title-quantity {
   margin-top: .2em;
   text-align: center;
@@ -753,7 +749,7 @@ input[type=number] {
   display: block;
 }
 
-/* line 622, ../scss/main.scss */
+/* line 620, ../scss/main.scss */
 .units-quantity {
   margin-top: .1em;
   text-align: center;
@@ -762,7 +758,7 @@ input[type=number] {
   display: block;
 }
 
-/* line 629, ../scss/main.scss */
+/* line 627, ../scss/main.scss */
 .only-quantity-total {
   position: absolute;
   margin: auto;
@@ -771,7 +767,7 @@ input[type=number] {
   font-size: 1.7em;
 }
 
-/* line 638, ../scss/main.scss */
+/* line 636, ../scss/main.scss */
 .destination-selector {
   width: 60%;
   height: 60%;
@@ -780,7 +776,7 @@ input[type=number] {
   color: white;
   font-size: 1.2em;
 }
-/* line 645, ../scss/main.scss */
+/* line 643, ../scss/main.scss */
 .destination-selector .destination-list {
   display: -webkit-flex;
   -webkit-flex-direction: row;
@@ -796,7 +792,7 @@ input[type=number] {
   align-items: stretch;
   height: 100%;
 }
-/* line 655, ../scss/main.scss */
+/* line 653, ../scss/main.scss */
 .destination-selector .destination-list .destination {
   -webkit-flex: 0 1 25%;
   flex: 0 1 25%;
@@ -806,28 +802,28 @@ input[type=number] {
   border-left: 0.1em solid rgba(255, 255, 255, 0.6);
   opacity: .6;
 }
-/* line 663, ../scss/main.scss */
+/* line 661, ../scss/main.scss */
 .destination-selector .destination-list .destination:first-child {
   border-radius: 1em 0 0 1em;
   border-left: none !important;
 }
-/* line 667, ../scss/main.scss */
+/* line 665, ../scss/main.scss */
 .destination-selector .destination-list .destination:last-child {
   border-radius: 0 1em 1em 0;
 }
-/* line 670, ../scss/main.scss */
+/* line 668, ../scss/main.scss */
 .destination-selector .destination-list .selected {
   opacity: 1;
 }
 
-/* line 675, ../scss/main.scss */
+/* line 673, ../scss/main.scss */
 .invoice-screen {
   height: 100%;
   width: 100%;
   height: 75%;
   width: 100%;
 }
-/* line 680, ../scss/main.scss */
+/* line 678, ../scss/main.scss */
 .invoice-screen .money-list {
   display: -webkit-flex;
   -webkit-flex-direction: row;
@@ -845,20 +841,20 @@ input[type=number] {
   width: 69%;
   margin: auto;
 }
-/* line 692, ../scss/main.scss */
+/* line 690, ../scss/main.scss */
 .invoice-screen .money-list .money-details {
   -webkit-flex: 0 1 26%;
   flex: 0 1 26%;
 }
-/* line 694, ../scss/main.scss */
+/* line 692, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item {
   width: 100%;
 }
-/* line 696, ../scss/main.scss */
+/* line 694, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item img {
   width: 100%;
 }
-/* line 699, ../scss/main.scss */
+/* line 697, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item .money-subitems {
   width: 100%;
   height: 100%;
@@ -875,21 +871,21 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 710, ../scss/main.scss */
+/* line 708, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item .money-subitems .money-detail-subitem {
   -webkit-flex: 0 1 45%;
   flex: 0 1 45%;
 }
-/* line 712, ../scss/main.scss */
+/* line 710, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item .money-subitems .money-detail-subitem img {
   width: 100%;
 }
-/* line 720, ../scss/main.scss */
+/* line 718, ../scss/main.scss */
 .invoice-screen .bottom-screen {
   height: 9vh;
   width: 100%;
 }
-/* line 723, ../scss/main.scss */
+/* line 721, ../scss/main.scss */
 .invoice-screen .bottom-screen .name-bottom {
   display: inline-block;
   width: 30%;
@@ -897,14 +893,14 @@ input[type=number] {
   height: 40%;
   color: white;
 }
-/* line 730, ../scss/main.scss */
+/* line 728, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts {
   color: white;
   width: 63%;
   height: 100%;
   margin: auto;
 }
-/* line 735, ../scss/main.scss */
+/* line 733, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount {
   float: left;
   height: 80%;
@@ -913,7 +909,7 @@ input[type=number] {
   background-color: #f26522;
   border-left: 0.2em solid rgba(255, 255, 255, 0.7);
 }
-/* line 742, ../scss/main.scss */
+/* line 740, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount .title-amount {
   height: 28%;
   width: 100%;
@@ -923,7 +919,7 @@ input[type=number] {
   font-size: .6em;
   line-height: .5em;
 }
-/* line 751, ../scss/main.scss */
+/* line 749, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount .value-amount {
   height: 70%;
   width: 100%;
@@ -931,22 +927,22 @@ input[type=number] {
   padding: 1% 0;
   font-size: 1.4em;
 }
-/* line 759, ../scss/main.scss */
+/* line 757, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount:first-child {
   border-left: none !important;
   border-radius: .5em 0 0 .5em;
 }
-/* line 763, ../scss/main.scss */
+/* line 761, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount:last-child {
   border-radius: 0 .5em .5em 0;
 }
 
-/* line 770, ../scss/main.scss */
+/* line 768, ../scss/main.scss */
 .client-screen {
   width: 100%;
   height: 100%;
 }
-/* line 773, ../scss/main.scss */
+/* line 771, ../scss/main.scss */
 .client-screen .client-details {
   height: 54vh;
   width: 100%;
@@ -963,7 +959,7 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 784, ../scss/main.scss */
+/* line 782, ../scss/main.scss */
 .client-screen .client-details .client-detail-item {
   font-size: larger;
   color: white;
@@ -972,7 +968,7 @@ input[type=number] {
   max-height: 16%;
   font-size: 1.4em;
 }
-/* line 790, ../scss/main.scss */
+/* line 788, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .label {
   display: inline-block;
   width: 18%;
@@ -981,7 +977,7 @@ input[type=number] {
   text-align: right;
   line-height: 3.5em;
 }
-/* line 798, ../scss/main.scss */
+/* line 796, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .detail {
   display: inline-block;
   width: 75%;
@@ -995,37 +991,37 @@ input[type=number] {
   margin: 2.5%;
 }
 
-/* line 814, ../scss/main.scss */
+/* line 812, ../scss/main.scss */
 .font-black {
   font-family: Roboto-black;
 }
 
-/* line 817, ../scss/main.scss */
+/* line 815, ../scss/main.scss */
 .font-bold {
   font-family: Roboto-bold;
 }
 
-/* line 820, ../scss/main.scss */
+/* line 818, ../scss/main.scss */
 .font-bold-condensed {
   font-family: Roboto-bold-condensed;
 }
 
-/* line 823, ../scss/main.scss */
+/* line 821, ../scss/main.scss */
 .font-medium {
   font-family: Roboto-medium;
 }
 
-/* line 826, ../scss/main.scss */
+/* line 824, ../scss/main.scss */
 .font-regular {
   font-family: Roboto-regular;
 }
 
-/* line 830, ../scss/main.scss */
+/* line 828, ../scss/main.scss */
 .selected-product img {
   filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
 }
 
-/* line 834, ../scss/main.scss */
+/* line 832, ../scss/main.scss */
 .selected {
   background-color: #f26522;
 }
