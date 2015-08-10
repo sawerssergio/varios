@@ -627,6 +627,7 @@ class pos_order(models.Model):
             'lines':        ui_order['lines'],
             'pos_reference':ui_order['name'],
             'partner_id':   ui_order['partner_id'] or False,
+            'type_of':      ui_order['type_of'] or False,
         }
 
     def _payment_fields(self, cr, uid, ui_paymentline, context=None):

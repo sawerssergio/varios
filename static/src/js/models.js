@@ -1300,7 +1300,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             console.log("addOrderline!!!");
             console.log(this.export_as_JSON());
 
-            openerp.jsonRpc( '/display/set', 'call', {"order":this.export_as_JSON()}).then(function( data){initialData=data;});
+            openerp.jsonRpc( '/display/set', 'call', {"order":this.export_as_JSON()}).then(function( data){var initialData=data;});
 
         },
         deleteOrderline: function(line){
@@ -1560,6 +1560,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 user_id: this.pos.cashier ? this.pos.cashier.id : this.pos.user.id,
                 uid: this.uid,
                 sequence_number: this.sequence_number,
+                type_of: this.get_type_of(),
             };
         },
         getSelectedLine: function(){
