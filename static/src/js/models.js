@@ -1210,6 +1210,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             line.order = this;
             this.get('orderLines').add(line);
             this.selectLine(this.getLastOrderline());
+
         },
         addProduct: function(product, options){
             options = options || {};
@@ -1296,6 +1297,11 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             }
 
             this.deselectLine();
+            console.log("addOrderline!!!");
+            console.log(this.export_as_JSON());
+
+            openerp.jsonRpc( '/display/set', 'call', {"order":this.export_as_JSON()}).then(function( data){initialData=data;});
+
         },
         deleteOrderline: function(line){
             var suborderlines = line.sub_orderlines;
