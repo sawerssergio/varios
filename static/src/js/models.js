@@ -1,11 +1,11 @@
 
 function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
     var QWeb = instance.web.qweb;
-	var _t = instance.web._t;
+    var _t = instance.web._t;
 
     var round_di = instance.web.round_decimals;
     var round_pr = instance.web.round_precision
-    
+
     // The PosModel contains the Point Of Sale's representation of the backend.
     // Since the PoS must work in standalone ( Without connection to the server ) 
     // it must contains a representation of the server's PoS backend. 
@@ -20,7 +20,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         initialize: function(session, attributes) {
             Backbone.Model.prototype.initialize.call(this, attributes);
             var  self = this;
-            this.session = session;                 
+            this.session = session;
             this.flush_mutex = new $.Mutex();                   // used to make sure the orders are sent to the server once at time
             this.pos_widget = attributes.pos_widget;
 
@@ -29,7 +29,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             this.proxy_queue = new module.JobQueue();           // used to prevent parallels communications to the proxy
             this.db = new module.PosDB();                       // a local database used to search trough products and categories & store pending orders
             this.debug = jQuery.deparam(jQuery.param.querystring()).debug !== undefined;    //debug mode 
-            
+
             // Business data; loaded from the server at launch
             this.accounting_precision = 2; //TODO
             this.company_logo = null;
@@ -72,7 +72,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             this.get('orders').bind('remove', function(order,_unused_,options){ 
                 self.on_removed_order(order,options.index,options.reason); 
             });
-            
+
             // We fetch the backend data on the server asynchronously. this is done only when the pos user interface is launched,
             // Any change on this data made on the server is thus not reflected on the point of sale until it is relaunched. 
             // when all the data has loaded, we compute some stuff, and declare the Pos ready to be used. 
@@ -1296,7 +1296,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 "config_id": this.pos.config.id,
                 "id":this.pos.config.name,
                 "order":this.export_as_JSON()
-            }).then(function( data){var initialData=data;});
+            });
 
         },
         deleteOrderline: function(line){
