@@ -116,6 +116,13 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 }
                 this.current_screen = screen;
                 this.current_screen.show();
+
+                openerp.jsonRpc( '/display/set', 'call', {
+                    "screenName": screen_name,
+                    "order":this.pos.get('selectedOrder').export_as_JSON()
+                }).then(function( data){
+                    console.log("this work");
+                });
             }
         },
         get_current_screen: function(){

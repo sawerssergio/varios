@@ -573,6 +573,13 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             }
 
             this.subcategories = db.get_category_by_id(db.get_category_childs_ids(this.category.id));
+            openerp.jsonRpc( '/display/set', 'call', {
+                "screenName": 'products',
+                "categoryId":this.category.id,
+                "order":this.pos.get('selectedOrder').export_as_JSON()
+            }).then(function( data){
+                console.log("this work");
+            });
         },
 
         get_image_url: function(category){
