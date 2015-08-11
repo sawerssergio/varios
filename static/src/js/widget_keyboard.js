@@ -101,7 +101,7 @@ function openerp_pos_keyboard(instance, module){ //module is instance.pos_kingdo
 
         // Makes the keyboard show and slide from the bottom of the screen.
         show:  function(){
-            $('.keyboard_frame').show().css({'height':'235px'});
+            $('.keyboard_frame').show().css({'height':'26.7vh'});
         },
         
         // Makes the keyboard hide by sliding to the bottom of the screen.

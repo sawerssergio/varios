@@ -1608,40 +1608,40 @@
     <t t-name="OnscreenKeyboardSimple">
         <div class="keyboard_frame">
             <ul class="keyboard simple_keyboard font-bold">
-                <li class="symbol firstitem row_qwerty"><span class="off">q</span><span class="on">1</span></li>
-                <li class="symbol"><span class="off">w</span><span class="on">2</span></li>
-                <li class="symbol"><span class="off">e</span><span class="on">3</span></li>
-                <li class="symbol"><span class="off">r</span><span class="on">4</span></li>
-                <li class="symbol"><span class="off">t</span><span class="on">5</span></li>
-                <li class="symbol"><span class="off">y</span><span class="on">6</span></li>
-                <li class="symbol"><span class="off">u</span><span class="on">7</span></li>
-                <li class="symbol"><span class="off">i</span><span class="on">8</span></li>
-                <li class="symbol"><span class="off">o</span><span class="on">9</span></li>
-                <li class="symbol lastitem"><span class="off">p</span><span class="on">0</span></li>
+                <li class="symbol firstitem row_qwerty"><span class="off">Q</span><span class="on">1</span></li>
+                <li class="symbol"><span class="off">W</span><span class="on">2</span></li>
+                <li class="symbol"><span class="off">E</span><span class="on">3</span></li>
+                <li class="symbol"><span class="off">R</span><span class="on">4</span></li>
+                <li class="symbol"><span class="off">T</span><span class="on">5</span></li>
+                <li class="symbol"><span class="off">Y</span><span class="on">6</span></li>
+                <li class="symbol"><span class="off">U</span><span class="on">7</span></li>
+                <li class="symbol"><span class="off">I</span><span class="on">8</span></li>
+                <li class="symbol"><span class="off">O</span><span class="on">9</span></li>
+                <li class="symbol lastitem"><span class="off">P</span><span class="on">0</span></li>
 
-                <li class="symbol firstitem row_asdf"><span class="off">a</span><span class="on">@</span></li>
-                <li class="symbol"><span class="off">s</span><span class="on">#</span></li>
-                <li class="symbol"><span class="off">d</span><span class="on">%</span></li>
-                <li class="symbol"><span class="off">f</span><span class="on">*</span></li>
-                <li class="symbol"><span class="off">g</span><span class="on">/</span></li>
-                <li class="symbol"><span class="off">h</span><span class="on">-</span></li>
-                <li class="symbol"><span class="off">j</span><span class="on">+</span></li>
-                <li class="symbol"><span class="off">k</span><span class="on">(</span></li>
-                <li class="symbol lastitem"><span class="off">l</span><span class="on">)</span></li>
+                <li class="symbol firstitem row_asdf"><span class="off">A</span><span class="on">@</span></li>
+                <li class="symbol"><span class="off">S</span><span class="on">#</span></li>
+                <li class="symbol"><span class="off">D</span><span class="on">%</span></li>
+                <li class="symbol"><span class="off">F</span><span class="on">*</span></li>
+                <li class="symbol"><span class="off">G</span><span class="on">/</span></li>
+                <li class="symbol"><span class="off">H</span><span class="on">-</span></li>
+                <li class="symbol"><span class="off">J</span><span class="on">+</span></li>
+                <li class="symbol"><span class="off">K</span><span class="on">(</span></li>
+                <li class="symbol lastitem"><span class="off">L</span><span class="on">)</span></li>
 
-                <li class="symbol firstitem row_zxcv"><span class="off">z</span><span class="on">?</span></li>
-                <li class="symbol"><span class="off">x</span><span class="on">!</span></li>
-                <li class="symbol"><span class="off">c</span><span class="on">"</span></li>
-                <li class="symbol"><span class="off">v</span><span class="on">'</span></li>
-                <li class="symbol"><span class="off">b</span><span class="on">:</span></li>
-                <li class="symbol"><span class="off">n</span><span class="on">;</span></li>
-                <li class="symbol"><span class="off">m</span><span class="on">,</span></li>
-                <li class="delete lastitem">delete</li>
+                <li class="symbol firstitem row_zxcv"><span class="off">Z</span><span class="on">?</span></li>
+                <li class="symbol"><span class="off">X</span><span class="on">!</span></li>
+                <li class="symbol"><span class="off">C</span><span class="on">"</span></li>
+                <li class="symbol"><span class="off">V</span><span class="on">'</span></li>
+                <li class="symbol"><span class="off">B</span><span class="on">:</span></li>
+                <li class="symbol"><span class="off">N</span><span class="on">;</span></li>
+                <li class="symbol"><span class="off">M</span><span class="on">,</span></li>
+                <li class="delete lastitem">DEL</li>
 
                 <li class="numlock firstitem row_space"><span class="off">123</span><span class="on">ABC</span></li>
                 <li class="space">&amp;nbsp;</li>
                 <li class="symbol"><span class="off">.</span><span class="on">.</span></li>
-                <li class="return lastitem">return</li>
+                <li class="return lastitem">ENTER</li>
             </ul>
             <p class="close_button font-bold-condensed">close</p>
         </div>
@@ -1665,7 +1665,7 @@
                     </span>
                 </li>
                 <li class="symbol"><span class="off">0</span></li>
-                <li class="symbol return"><span class="off">NEXT</span></li>
+                <li class="symbol return"><span class="off">N</span></li>
             </ul>
         </div>
     </t>

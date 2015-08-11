@@ -34,10 +34,10 @@
     position:absolute;
     top:0;
     right:15px;
-	cursor: pointer;
-        border: .2em solid white;
-        border-radius: 50%;
-        line-height: 60px;
+    cursor: pointer;
+    border: .2em solid white;
+    border-radius: 50%;
+    line-height: 60px;
 }
 .pos .keyboard li {
     float: left;
@@ -45,17 +45,24 @@
     border: 1px solid #F0F0F0;
     top: 0px;
     cursor: pointer;
-    width: 26%;
-    border-radius: 10%;
-    color: #FFF;
+    width: 4vw;
+    height: 5.5vh;
+    line-height: 5.5vh;
+    border-radius: .4em;
+    /*color: #FFF;*/
     font-size: 1.6em;
-    padding: 3% 0%;
-    margin: 2.4%;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
+    margin: .5vh .2vw;
     -webkit-transition-property: top, background-color;
     -webkit-transition-duration: 0.2s;
     -webkit-transition-timing-function: linear;
+    background: rgb(250, 250, 250);
+    background: -moz-linear-gradient(top, rgb(210, 210, 210), rgb(255, 255, 255));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(210, 210, 210)), to(rgb(255, 255, 255)));
+    color:  rgb(50, 50, 50);
+    text-shadow: 0 0 2px rgb(255, 255, 255);
+    -moz-box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+    -webkit-box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+    box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
 }
 .pos .keyboard .delete {
     background-color: white;
@@ -76,15 +83,16 @@
     -webkit-transition-timing-function: ease-out;
 }
 .pos .numeral_keyboard {
-    width: 31%;
-    height: 100%;
+    width: 14vw;
+    height: 99%;
     position: absolute;
     margin: auto;
     right: 0px;
     left: 0px;
     bottom: 0px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 0.5em 0.5em 0px 0px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 1em 1em 0px 0px;
+    padding: .5% .5% 0 .5%;
 }
 .pos .uppercase {
 	text-transform: uppercase;
@@ -144,6 +152,8 @@
     height: 220px;
     margin-left: auto !important;
     margin-right: auto !important;
+    background-color: rgba(255,255,255,.2);
+    border-radius: 1em 1em 0 0;
 }
 .pos .simple_keyboard li{
     /*margin: 0 5px 5px 0 !important;
@@ -160,28 +170,32 @@
     border: 1px solid #F0F0F0;
     top: 0px;
     cursor: pointer;
-    width: 8%;
-    border-radius: .4em;
-    color: #FFF;
-    font-size: 1.6em;
-    margin: 0.6%;
-    padding: 1% 0%;
+    /*width: 8%;*/
+    /*border-radius: .4em;*/
+    /*color: #FFF;*/
+    /*font-size: 1.6em;*/
+    /*margin: 0.6%;
+    padding: 1% 0%;*/
+}
+.pos .simple_keyboard .firstitem.row_qwerty{
+    margin-left:.5vw !important;
 }
 .pos .simple_keyboard .firstitem.row_asdf{
-    margin-left:25px !important;
+    margin-left:2vw !important;
 }
 .pos .simple_keyboard .firstitem.row_zxcv{
-    margin-left:55px !important;
+    margin-left:3.5vw !important;
 }
 .pos .simple_keyboard .delete{
-    width: 14%;
+    width: 6vw;
 }
 .pos .simple_keyboard .return{
-    width: 17%;
+    width: 8vw;
 }
 .pos .simple_keyboard .space{
-    width:50%;
+    width:26vw;
 }
 .pos .simple_keyboard .numlock{
-    width:10%;
+    margin-left:.5vw !important;
+    width:5vw;
 }
