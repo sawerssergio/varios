@@ -656,19 +656,25 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     });
                 });
             }
-            //This should be enable only for event click!
-            /*this.$(".client-find").click(function() {
-                var value = self.$('.client-details .client-vat')[0].value;
-                var partner = new instance.web.Model('res.partner');
-                partner.query(['name', 'vat', 'phone'])
-                    .filter([['vat', '=', value]])
-                    .limit(1)
-                    .all().then(function (users) {
+            self.$('.client-vat').keyup(function(data){
+                console.log("client vat");
+                console.log(data.currentTarget.valueAsNumber);
+                openerp.jsonRpc( '/display/set/partner', 'call', {
+                    "config_id":self.pos.config.id,
+                    "nit":data.currentTarget.valueAsNumber,
+                }).then(function( data){
+                    console.log("this work");
                 });
             });
-            this.$(".client-ok").click(function() {
-                self.save_client_details({});
-            });*/
+            self.$('.client-name').keyup(function(data){
+                openerp.jsonRpc( '/display/set/partner', 'call', {
+                    "config_id":self.pos.config.id,
+                    "name":data.currentTarget.value,
+                }).then(function( data){
+                    console.log("this work");
+                });
+                console.log(data.currentTarget.value);
+            });
         },
         search_client_by_vat: function(vat) {
             var self = this;
@@ -679,6 +685,12 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 .all().then(function (users) {
                     if(users.length > 0){
                         self.new_client = users[0];
+                        openerp.jsonRpc( '/display/set/partner', 'call', {
+                            "config_id" : self.pos.config.id,
+                            "name" : self.new_client.name,
+                        }).then(function( data){
+                            console.log("this work");
+                        });
                         self.editing_client = true;
                         self.renderElement();
                         self.pos_widget.onscreen_keyboard.hide();
