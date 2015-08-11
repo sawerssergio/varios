@@ -736,7 +736,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         set_deselected_product: function(){
             if(this.selected_product_id){ 
-                this.el.querySelector("[data-product-id='"+this.selected_product_id+"'] > .product-img").className = 'product-img';
+                //this.el.querySelector("[data-product-id='"+this.selected_product_id+"'] > .product-img").className = 'product-img';
                 this.selected_product_id = undefined; 
             }
         },
