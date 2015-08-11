@@ -991,38 +991,54 @@ input[type=number] {
   text-align: left;
   margin: 2.5%;
 }
+/* line 61, ../../../../../../../../../home/vladwelt/.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+.client-screen .client-details .client-detail-item .detail:-moz-placeholder {
+  color: white;
+}
+/* line 64, ../../../../../../../../../home/vladwelt/.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+.client-screen .client-details .client-detail-item .detail::-moz-placeholder {
+  color: white;
+}
+/* line 67, ../../../../../../../../../home/vladwelt/.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+.client-screen .client-details .client-detail-item .detail:-ms-input-placeholder {
+  color: white;
+}
+/* line 56, ../../../../../../../../../home/vladwelt/.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+.client-screen .client-details .client-detail-item .detail::-webkit-input-placeholder {
+  color: white;
+}
 
-/* line 813, ../scss/main.scss */
+/* line 816, ../scss/main.scss */
 .font-black {
   font-family: Roboto-black;
 }
 
-/* line 816, ../scss/main.scss */
+/* line 819, ../scss/main.scss */
 .font-bold {
   font-family: Roboto-bold;
 }
 
-/* line 819, ../scss/main.scss */
+/* line 822, ../scss/main.scss */
 .font-bold-condensed {
   font-family: Roboto-bold-condensed;
 }
 
-/* line 822, ../scss/main.scss */
+/* line 825, ../scss/main.scss */
 .font-medium {
   font-family: Roboto-medium;
 }
 
-/* line 825, ../scss/main.scss */
+/* line 828, ../scss/main.scss */
 .font-regular {
   font-family: Roboto-regular;
 }
 
-/* line 829, ../scss/main.scss */
+/* line 832, ../scss/main.scss */
 .selected-product img {
   filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
 }
 
-/* line 833, ../scss/main.scss */
+/* line 836, ../scss/main.scss */
 .selected {
   background-color: #f26522;
 }

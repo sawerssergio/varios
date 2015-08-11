@@ -48,7 +48,7 @@ html, body, .openerp, .oe_webclient, .oe_application, .oe_application>div {
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none; 
-    margin: 0; 
+    margin: 0;
 }
 input[type=number] {
     -moz-appearance:textfield;
@@ -805,6 +805,9 @@ input[type=number] {
                 font-size: 1em;
                 text-align: left;
                 margin: 2.5%;
+                @include input-placeholder {
+                    color: white;
+                }
             }
         }
     }

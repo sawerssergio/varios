@@ -1667,6 +1667,7 @@
                 <li class="symbol"><span class="off">0</span></li>
                 <li class="symbol return"><span class="off">N</span></li>
             </ul>
+            <p class="close_button font-bold-condensed">close</p>
         </div>
     </t>
 
