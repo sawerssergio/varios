@@ -574,7 +574,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             this.subcategories = db.get_category_by_id(db.get_category_childs_ids(this.category.id));
             openerp.jsonRpc( '/display/set', 'call', {
-                "screenName": 'products',
+                "config_id":this.pos.config.id,
                 "categoryId":this.category.id,
                 "order":this.pos.get('selectedOrder').export_as_JSON()
             }).then(function( data){
@@ -718,6 +718,13 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.click_product_handler = function(event){
                 var product = self.pos.db.get_template_by_id(this.dataset['productId']);
                 options.click_product_action(product);
+                openerp.jsonRpc( '/display/set/product', 'call', {
+                    "config_id":self.pos.config.id,
+                    "templateId":product.id,
+                    "order":self.pos.get('selectedOrder').export_as_JSON()
+                }).then(function( data){
+                    console.log("this work");
+                });
             };
 
             this.product_list = options.product_list || [];
@@ -932,6 +939,15 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.attributes[id] += value;
                 this.set_total_quantity(this.total_quantity+value);
             }
+            console.log(this.attributes);
+            openerp.jsonRpc( '/display/set/product', 'call', {
+                "config_id":this.pos.config.id,
+                "templateId":this.selected_template.id,
+                "values":this.attributes,
+                "order":this.pos.get('selectedOrder').export_as_JSON()
+            }).then(function( data){
+                console.log("this work");
+            });
             this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").value = this.attributes[id];
         },
         set_total_quantity: function(value){

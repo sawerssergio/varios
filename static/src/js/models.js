@@ -1300,7 +1300,10 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             console.log("addOrderline!!!");
             console.log(this.export_as_JSON());
 
-            openerp.jsonRpc( '/display/set', 'call', {"order":this.export_as_JSON()}).then(function( data){var initialData=data;});
+            openerp.jsonRpc( '/display/set', 'call', {
+                "config_id": this.pos.config.id,
+                "order":this.export_as_JSON()
+            }).then(function( data){var initialData=data;});
 
         },
         deleteOrderline: function(line){
