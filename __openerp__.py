@@ -57,6 +57,7 @@ Main Features
         'views/report_detailsofsales.xml',
         'views/report_payment.xml',
         'views/report_sessionsummary.xml',
+        'views/report_invoice.xml',
         'views/pos_kingdom.xml',
         'data/kingdom_data.xml',
     ],

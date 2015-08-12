@@ -158,7 +158,7 @@ class pos_config(models.Model):
     barcode_discount = fields.Char('Discount Barcodes',  size=64, help='The pattern that identifies a product with a barcode encoded discount')
     authorization    = fields.Char('authorization', size=64, help='authorization')
     key              = fields.Char('key',size=64, help='key')
-    limit_date       = fields.Datetime('Limit Date')
+    limit_date       = fields.Date('Limit Date')
 
     def _check_cash_control(self, cr, uid, ids, context=None):
         return all(
