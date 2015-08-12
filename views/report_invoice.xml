@@ -2,30 +2,18 @@
 <openerp>
 <data>
     <template id="report_invoice_document">
-
-        <!--<link rel="stylesheet" href="/pos_kingdom/static/src/css/report.css"/>-->
-
     <t t-call="report.external_layout">
         <div class="page">
-            <!--<div class="row">
-                <div class="col-xs-3">
-                    <span t-if="o.company_id.name"><span t-field="o.company_id.name"/></span>
-                    <vr>
-                    <span t-if="o.company_id.street2"><span t-field="o.company_id.street2"/></span>
-                    <span t-if="o.company_id.street"><span t-field="o.company_id.street"/></span>
-                </div>
-            </div>-->
-
-            <div>
+            <div t-if="o.company_id.name">
                 <strong><t t-esc="o.company_id.name"/></strong>
             </div>
-            <div>
+            <div t-if="o.company_id.street2">
                 <strong><t t-esc="o.company_id.street2"/></strong>
             </div>
-            <div>
+            <div t-if="o.company_id.street">
                 <strong><t t-esc="o.company_id.street"/></strong>
             </div>
-            <div>
+            <div t-if="o.company_id.phone">
                 <strong>
                     Telefono: <t t-esc="o.company_id.phone"/>
                 </strong>
@@ -33,24 +21,30 @@
             <div>
                 <strong>F A C T U R A</strong>
             </div>
-            <br />
-            
+            <br/>
             <div>
                 <strong>
                     ------------------------------------------
                 </strong>
             </div>
-            NIT: <t t-esc="o.company_id.vat"/>
-            <br />
-            FACTURA: <t t-esc="o.invoice_id.id"/>
-            <br />
-            AUTORIZACION: <t t-esc="o.session_id.config_id.authorization"/>
-            <br />
-            FECHA: <t t-esc="o.date_order"/>
-            <br />
-            SENOR(ES): <t t-esc="o.partner_id.name"/>
-            <br />
-            NIT/CI: <t t-esc="o.partner_id.vat"/>
+            <div t-if="o.company_id.vat">
+                NIT: <t t-esc="o.company_id.vat"/>
+            </div>
+            <div t-if="o.invoice_id.id">
+                FACTURA: <t t-esc="o.invoice_id.id"/>
+            </div>
+            <div t-if="o.session_id.config_id.authorization">
+                AUTORIZACION: <t t-esc="o.session_id.config_id.authorization"/>
+            </div>
+            <div t-if="o.invoice_id.date_invoice">
+                FECHA: <t t-esc="o.invoice_id.date_invoice"/>
+            </div>
+            <div t-if="o.partner_id.name">
+                SENOR(ES): <t t-esc="o.partner_id.name"/>
+            </div>
+            <div t-if="o.partner_id.vat">
+                NIT/CI: <t t-esc="o.partner_id.vat"/>
+            </div>
 
             <div>
                 <strong>
@@ -87,32 +81,34 @@
                     </td>
                 </tr>
             </table>
-            
-
             <div>
                 <strong>
                     ------------------------------------------
                 </strong>
             </div>
-
-            <br />
-            <div>
+            <br/>
+            <div t-if="o.invoice_id.amount_untaxed">
                 Total: <t t-esc="o.invoice_id.amount_untaxed"/>
                 <!--<br/>
                 Efectivo: <t t-esc="widget.format_currency(paymentlines[0].get_amount())"/>
                 <br/>
                 Cambio: <t t-esc="widget.format_currency(order.getChange())"/>-->
             </div>
-            <br />
-            Son: <span t-esc="num2words(o.invoice_id.amount_untaxed)"/>
+            <div t-if="o.invoice_id.amount_untaxed">
+                Son: <span t-esc="num2words(o.invoice_id.amount_untaxed)"/>
+            </div>
+            <div t-if="o.invoice_id.user_id.login">
+                Emitido por: <t t-esc="o.invoice_id.user_id.login"/>
+            </div>
             <br/>
-            Emitido por: <t t-esc="o.invoice_id.user_id.login"/><br/>
             Codigo de Control: E3-9F-DC-9D
             <br/>
-            Fecha limite emision: <t t-esc="o.session_id.config_id.limit_date"/>
-            <br/>
-            <br/>
-            Pedido: <t t-esc="o.name"/>
+            <div t-if="o.session_id.config_id.limit_date">
+                Fecha limite emision: <t t-esc="o.session_id.config_id.limit_date"/>
+            </div>
+            <div t-if="o.name">
+                Pedido: <t t-esc="o.name"/>
+            </div>
             <br/>
             <br/>
             <br/>
@@ -128,7 +124,6 @@
                 <p>GRACIAS, VUELVA PRONTO :)</p>
             </div>
             <!--
-
             <h2>
                 <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">Invoice</span>
                 <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA</span>
@@ -271,5 +266,6 @@
         </t>
     </t>
 </template>
+
 </data>
 </openerp>
