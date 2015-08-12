@@ -1645,6 +1645,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.invoice_screen = new module.InvoiceScreenWidget(this,{});
             this.invoice_screen.appendTo(this.$('.screens'));
 
+            this.destination_screen = new module.DestinationScreenWidget(this,{});
+            this.destination_screen.appendTo(this.$('.screens'));
+
             // -------- Widgets Kingdom --------
             this.product_categories_widget = new module.ProductCategoriesWidget(this, {
                 product_list_widget: this.product_screen.product_list_widget,
@@ -1739,6 +1742,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     'clientlist': this.clientlist_screen,
                     'invoice': this.invoice_screen,
                     'client': this.client_screen,
+                    'destination': this.destination_screen,
                 },
                 popup_set:{
                     'error': this.error_popup,

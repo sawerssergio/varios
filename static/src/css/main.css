@@ -991,54 +991,84 @@ input[type=number] {
   text-align: left;
   margin: 2.5%;
 }
-/* line 61, ../../../../../../../../../home/vladwelt/.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+/* line 61, ../../../../../.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
 .client-screen .client-details .client-detail-item .detail:-moz-placeholder {
   color: white;
 }
-/* line 64, ../../../../../../../../../home/vladwelt/.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+/* line 64, ../../../../../.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
 .client-screen .client-details .client-detail-item .detail::-moz-placeholder {
   color: white;
 }
-/* line 67, ../../../../../../../../../home/vladwelt/.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+/* line 67, ../../../../../.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
 .client-screen .client-details .client-detail-item .detail:-ms-input-placeholder {
   color: white;
 }
-/* line 56, ../../../../../../../../../home/vladwelt/.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+/* line 56, ../../../../../.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
 .client-screen .client-details .client-detail-item .detail::-webkit-input-placeholder {
   color: white;
 }
 
 /* line 816, ../scss/main.scss */
+.destination-screen .container-destinations {
+  height: 54vh;
+  width: 100%;
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  -webkit-justify-content: flex-start;
+  -webkit-align-content: flex-start;
+  -webkit-align-items: flex-start;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+/* line 826, ../scss/main.scss */
+.destination-screen .container-destinations .destination {
+  -webkit-flex: 0 1 20%;
+  flex: 0 1 20%;
+  flex: 0 1 20%;
+  margin: 5% 2.5%;
+  background-color: rgba(242, 101, 34, 0.5);
+  color: #FFF;
+  border-radius: 0.3em;
+  font-size: 0.8em;
+  height: 4vh;
+  line-height: 4vh;
+  background-color: rgba(242, 101, 34, 0.5);
+}
+
+/* line 840, ../scss/main.scss */
 .font-black {
   font-family: Roboto-black;
 }
 
-/* line 819, ../scss/main.scss */
+/* line 843, ../scss/main.scss */
 .font-bold {
   font-family: Roboto-bold;
 }
 
-/* line 822, ../scss/main.scss */
+/* line 846, ../scss/main.scss */
 .font-bold-condensed {
   font-family: Roboto-bold-condensed;
 }
 
-/* line 825, ../scss/main.scss */
+/* line 849, ../scss/main.scss */
 .font-medium {
   font-family: Roboto-medium;
 }
 
-/* line 828, ../scss/main.scss */
+/* line 852, ../scss/main.scss */
 .font-regular {
   font-family: Roboto-regular;
 }
 
-/* line 832, ../scss/main.scss */
+/* line 856, ../scss/main.scss */
 .selected-product img {
   filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
 }
 
-/* line 836, ../scss/main.scss */
+/* line 860, ../scss/main.scss */
 .selected {
-  background-color: #f26522;
+  background-color: #f26522 !important;
 }

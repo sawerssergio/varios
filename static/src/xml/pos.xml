@@ -321,6 +321,21 @@
         </div>
     </t>
 
+    <t t-name="DestinationScreenWidget">
+        <div class="destination-screen screen">
+            <section class="header-screen">
+                <h4 class="name-screen font-bold-condensed">LUGAR DE DESPACHO</h4>
+            </section>
+            <ul class="container-destinations">
+                <t t-if="widget.is_contents()">
+                    <t t-foreach='widget.destinations' t-as='destination'>
+                        <li class="destination" t-att-data-destination-id='destination.id'><t t-esc="destination.name"/></li>
+                    </t>
+                </t>
+            </ul>
+        </div>
+    </t>
+
     <t t-name="ScaleScreenWidget">
         <div class="scale-screen screen">
             <div class="screen-content">

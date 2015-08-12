@@ -129,6 +129,13 @@ function openerp_pos_db(instance, module){
                 self.destination_by_id[destination.id] = destination;
             }
         },
+        get_destinations: function(){
+            var destinations=[];
+            for(var destination in this.destination_by_id){
+                destinations.push(this.get_destination_by_id(destination));
+            }
+            return destinations;
+        },
         /* loads a record store from the database. returns default if nothing is found */
         load: function(store,deft){
             if(this.cache[store] !== undefined){

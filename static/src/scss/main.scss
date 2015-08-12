@@ -812,7 +812,31 @@ input[type=number] {
         }
     }
 }
-
+.destination-screen {
+    .container-destinations{
+        height: 54vh;
+        width: 100%;
+        @include flexbox((
+            display: flex,
+            flex-flow: row wrap,
+            justify-content: flex-start,
+            align-content: flex-start,
+            align-items: flex-start
+        ));
+        .destination{
+            @include flex(0 1 20%);
+            flex: 0 1 20%;
+            margin: 5% 2.5%;
+            background-color: rgba(242, 101, 34, 0.5);
+            color: #FFF;
+            border-radius: 0.3em;
+            font-size: 0.8em;
+            height: 4vh;
+            line-height: 4vh;
+            background-color: $orange_opacity_color;
+        }
+    }
+}
 .font-black {
     font-family: Roboto-black;
 }
@@ -834,5 +858,5 @@ input[type=number] {
     }
 }
 .selected {
-    background-color: $orange_color;
+    background-color: $orange_color !important;
 }

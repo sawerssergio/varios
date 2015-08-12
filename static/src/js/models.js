@@ -289,7 +289,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 self.db.add_categories(categories);
             },
         },{
-            /*model:  'pos.destination',
+            model:  'dp.config',
             fields: ['id','name'],
             domain: function(self){
                 return [['id','in', self.config.destination_ids]];
@@ -297,7 +297,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             loaded: function(self, destinations){
                 self.db.add_destinations(destinations);
             },
-        },{*/
+        },{
             model:  'product.product',
             fields: ['display_name', 'list_price','price','pos_categ_id', 'taxes_id', 'ean13', 'default_code', 
                      'to_weight', 'uom_id','weight_net', 'uos_id', 'uos_coeff', 'mes_type', 'description_sale', 'description',
@@ -1177,6 +1177,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 name:           _t("Order ") + this.uid,
                 client:         null,
                 type_of:        'inside',
+                destination_id: null,
             });
             this.selected_orderline   = undefined;
             this.selected_paymentline = undefined;
@@ -1564,6 +1565,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 uid: this.uid,
                 sequence_number: this.sequence_number,
                 type_of: this.get_type_of(),
+                destination_id: this.get_destination(),
             };
         },
         getSelectedLine: function(){
