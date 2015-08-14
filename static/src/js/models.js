@@ -289,15 +289,6 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 self.db.add_categories(categories);
             },
         },{
-            model:  'dp.config',
-            fields: ['id','name'],
-            domain: function(self){
-                return [['id','in', self.config.destination_ids]];
-            },
-            loaded: function(self, destinations){
-                self.db.add_destinations(destinations);
-            },
-        },{
             model:  'product.product',
             fields: ['display_name', 'list_price','price','pos_categ_id', 'taxes_id', 'ean13', 'default_code', 
                      'to_weight', 'uom_id','weight_net', 'uos_id', 'uos_coeff', 'mes_type', 'description_sale', 'description',
@@ -1167,6 +1158,9 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
     module.Order = Backbone.Model.extend({
         initialize: function(attributes){
             Backbone.Model.prototype.initialize.apply(this, arguments);
+            return this.initial(attributes);
+        },
+        initial: function(attributes){
             this.pos = attributes.pos; 
             this.sequence_number = this.pos.pos_session.sequence_number++;
             this.uid =     this.generateUniqueId();
@@ -1177,7 +1171,6 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 name:           _t("Order ") + this.uid,
                 client:         null,
                 type_of:        'inside',
-                destination_id: null,
             });
             this.selected_orderline   = undefined;
             this.selected_paymentline = undefined;
@@ -1437,12 +1430,6 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         get_receipt_type: function(){
             return this.receipt_type;
         },
-        set_destination: function(destination){
-            this.set('destination',destination);
-        },
-        get_destination: function(){
-            return this.get('destination');
-        },
         set_type_of: function(type_of){
             this.set('type_of',type_of);
         },
@@ -1542,6 +1529,9 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             };
         },
         export_as_JSON: function() {
+            return this.sub_export_as_JSON();
+        },
+        sub_export_as_JSON: function(){
             var orderLines, paymentLines;
             orderLines = [];
             (this.get('orderLines')).each(_.bind( function(item) {
@@ -1565,7 +1555,6 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 uid: this.uid,
                 sequence_number: this.sequence_number,
                 type_of: this.get_type_of(),
-                destination_id: this.get_destination(),
             };
         },
         getSelectedLine: function(){

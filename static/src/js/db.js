@@ -21,7 +21,6 @@ function openerp_pos_db(instance, module){
             this.attribute_by_id = [];
             this.attribute_value_by_id = {};
             this.template_by_category_id = {};
-            this.destination_by_id = {};
 
             this.product_by_id = {};
             this.product_by_ean13 = {};
@@ -117,24 +116,6 @@ function openerp_pos_db(instance, module){
                 }
             }
             make_ancestors(this.root_category_id, []);
-        },
-        add_destinations: function(destinations){
-            var self = this;
-            if(!destinations instanceof Array){
-                destinations = [destinations];
-            }
-
-            for(var i=0, len = destinations.length; i < len; i++){
-                var destination = destinations[i];
-                self.destination_by_id[destination.id] = destination;
-            }
-        },
-        get_destinations: function(){
-            var destinations=[];
-            for(var destination in this.destination_by_id){
-                destinations.push(this.get_destination_by_id(destination));
-            }
-            return destinations;
         },
         /* loads a record store from the database. returns default if nothing is found */
         load: function(store,deft){
@@ -431,9 +412,6 @@ function openerp_pos_db(instance, module){
                 }
             }
             return count;
-        },
-        get_destination_by_id(id){
-            return this.destination_by_id[id];
         },
         get_attribute_value_by_id(id) {
             return this.attribute_value_by_id[id];

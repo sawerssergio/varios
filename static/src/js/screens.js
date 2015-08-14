@@ -779,7 +779,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
     module.InvoiceScreenWidget = module.ScreenWidget.extend({
         template: 'InvoiceScreenWidget',
         back_screen: 'client',
-        next_screen: 'destination',
+        next_screen: 'products',
         init: function(parent, options){
             this._super(parent, options);
             this.is_dolar=false;
@@ -813,10 +813,13 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     label: _t('Check'),
                     icon: '/pos_kingdom/static/src/img/checking.svg',
                     click: function(){
-                        //self.validate_order({invoice: true});
-                        self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
+                        self.next();
                     },
                 });
+        },
+        next: function(){
+            this.validate_order({invoice: true});
+            this.pos.pos_widget.screen_selector.set_current_screen(this.next_screen);
         },
         renderElement: function(){
             var self = this;
@@ -1811,84 +1814,6 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 selected_line.set_amount(val);
                 selected_line.node.querySelector('input').value = selected_line.amount.toFixed(2);
             }
-        },
-    });
-
-    module.DestinationScreenWidget = module.ScreenWidget.extend({
-        template:'DestinationScreenWidget',
-
-        show_numpad:     false,
-        show_leftpane:   false,
-        next_screen: 'products',
-        back_screen: 'invoice',
-        init: function(parent, options){
-            this._super(parent, options);
-            this.destinations = [];
-        },
-        start: function(){ //FIXME this should work as renderElement... but then the categories aren't properly set. explore why
-            var self = this;
-        },
-        
-        show: function(){
-            this._super();
-            var self = this;
-            this.destinations = this.pos.db.get_destinations();
-            this.renderElement();
-            this.set_destination(this.pos.db.get_destinations()[0].id);
-            self.el.querySelector(".destination").classList.add('selected');
-            this.add_action_button({
-                    label: _t('Back'),
-                    icon: '/pos_kingdom/static/src/img/back.svg',
-                    click: function(){
-                        self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
-                    },
-                });
-            this.add_action_button({
-                    label: _t('Check'),
-                    icon: '/pos_kingdom/static/src/img/checking.svg',
-                    click: function(){
-                        self.pos.pos_widget.invoice_screen.validate_order({invoice: true});
-                        self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
-                    },
-                });
-        },
-        is_contents: function(){
-            if(this.destinations.length>0){
-                return true;
-            }
-            return false;
-        },
-        set_destination: function(destination_id){
-            this.pos.get('selectedOrder').set_destination(destination_id);
-        },
-        renderElement: function(){
-            var self = this;
-            this._super();
-
-            console.log(this.destinations);
-            var el_str  = openerp.qweb.render(this.template,{widget:this});
-
-            var el_node = document.createElement('div');
-                el_node.innerHTML = _.str.trim(el_str);
-                el_node = el_node.childNodes[0];
-
-            if(this.el && this.el.parentNode){
-                this.el.parentNode.replaceChild(el_node,this.el);
-            }
-
-            this.el = el_node;
-
-            this.$el = $(this.el);
-            self.$('.destination').on('click', function(){
-                self.set_destination(this.dataset['destinationId']);
-                if(self.el
-                    .querySelector(".container-destinations>.selected")){
-                    self.el
-                    .querySelector(".container-destinations>.selected")
-                    .classList.remove('selected');
-                }
-                this.classList.add('selected');
-            });
         },
     });
 }

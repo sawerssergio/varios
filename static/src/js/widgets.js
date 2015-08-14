@@ -805,84 +805,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
     });
 
-    module.DestinationSelectorWidget = module.PosBaseWidget.extend({
-        template: 'DestinationSelectorWidget',
-        init: function(parent, options){
-            var self = this;
-            this._super(parent, options);
-            this.destinations = this.pos.db.destination_by_id;
-            this.destination_selected = Object.keys(this.pos.db.destination_by_id)[0];
-            this.was_shown = false;
-        },
-        start: function(){
-            this._super();
-            this.hide();
-        },
-        renderElement: function(){
-            var self = this;
-            this._super();
-            var el_str  = openerp.qweb.render('DestinationSelectorWidget',{widget:this});
-
-            var el_node = document.createElement('div');
-                el_node.innerHTML = _.str.trim(el_str);
-                el_node = el_node.childNodes[0];
-
-            if(this.el && this.el.parentNode){
-                this.el.parentNode.replaceChild(el_node,this.el);
-            }
-
-            this.el = el_node;
-
-            this.$el = $(this.el);
-
-            var value_container = el_node.querySelector('.destination-list');
-            for(var destination in this.destinations){
-                var destination = this.destinations[destination];
-                var is_selected = this.is_destination_selected(destination);
-                var value_html = QWeb.render('Destination',{ 
-                        widget:  this, 
-                        destination: destination, 
-                        is_selected: is_selected,
-                    });
-                var value_node = document.createElement('div');
-                value_node.innerHTML = value_html;
-                value_node = value_node.childNodes[1];
-                value_node.addEventListener('click', function(event) {
-                    self.destination_selected = this.dataset['destinationId'];
-                    self.save_destination();
-                    self.renderElement();
-                });
-                value_container.appendChild(value_node);
-            }
-        },
-        save_destination: function(){
-            var destination = this.pos.db.get_destination_by_id(this.destination_selected);
-            this.pos.get('selectedOrder').set_destination(destination);
-        },
-        is_destination_selected: function(destination){
-            return Number(this.destination_selected) === destination.id;
-        },
-        only_one_destination: function(){
-            if(_.size(this.destinations) === 1){
-                this.save_destination();
-                return true;
-            } else {
-                //[FIXME] this should be shown diferently.
-                //It should not return any value show function.
-                return this.show();
-            }
-        },
-        show:function(){
-            this.$el.removeClass('oe_hidden');
-            this.was_shown = !this.was_shown;
-            return !this.was_shown;
-        },
-        hide:function(){
-            this.$el.addClass('oe_hidden');
-            this.save_destination();
-        },
-    });
-
     module.ProductOptionsWidget = module.PosBaseWidget.extend({
         template: 'ProductOptionsWidget',
         init: function(parent, options) {
@@ -1645,9 +1567,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.invoice_screen = new module.InvoiceScreenWidget(this,{});
             this.invoice_screen.appendTo(this.$('.screens'));
 
-            this.destination_screen = new module.DestinationScreenWidget(this,{});
-            this.destination_screen.appendTo(this.$('.screens'));
-
             // -------- Widgets Kingdom --------
             this.product_categories_widget = new module.ProductCategoriesWidget(this, {
                 product_list_widget: this.product_screen.product_list_widget,
@@ -1657,9 +1576,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 pos : self.pos,
             });
             this.product_options_widget.replace(this.$('.placeholder-order-selector'));
-
-            //this.destination_selector_widget = new module.DestinationSelectorWidget(this, {});
-            //this.destination_selector_widget.replace(this.$('.placeholder-destination-selector'));
 
             // --------  Popups ---------
 
@@ -1742,7 +1658,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     'clientlist': this.clientlist_screen,
                     'invoice': this.invoice_screen,
                     'client': this.client_screen,
-                    'destination': this.destination_screen,
                 },
                 popup_set:{
                     'error': this.error_popup,
