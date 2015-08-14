@@ -1291,11 +1291,10 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             }
 
             this.deselectLine();
-            console.log("addOrderline!!!");
-            console.log(this.export_as_JSON());
 
             openerp.jsonRpc( '/display/set', 'call', {
                 "config_id": this.pos.config.id,
+                "id":this.pos.config.name,
                 "order":this.export_as_JSON()
             }).then(function( data){var initialData=data;});
 
