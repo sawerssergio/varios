@@ -18,31 +18,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from num2words import num2words
 from openerp.osv import osv
 from openerp.tools.translate import _
 
 
 class PosInvoiceReport(osv.AbstractModel):
     _name = 'report.pos_kingdom.report_invoice'
-
-    def get_amount_literal(self,number):
-        literal = num2words(int(number),lang='es')
-        decimal = str(number-int(number))[2:]
-        decimal_str = self.get_decimal_literal(int(decimal))
-        res = literal.upper() + " " + decimal_str
-        return res
-    
-    def get_decimal_literal(self,number):
-        if number < 10:
-            return "0"+str(number)+"/100 Bs"
-        else:
-            return str(number)+"/100 Bs"
-
     def render_html(self, cr, uid, ids, data=None, context=None):
         report_obj = self.pool['report']
         posorder_obj = self.pool['pos.order']
-        report = report_obj._get_report_from_name(cr, uid, 'pos_kingdom.report_invoice')
+        report = report_obj._get_report_from_name(cr, uid, 'account.report_invoice')
         selected_orders = posorder_obj.browse(cr, uid, ids, context=context)
 
         ids_to_print = []
@@ -62,6 +47,5 @@ class PosInvoiceReport(osv.AbstractModel):
             'doc_ids': ids_to_print,
             'doc_model': report.model,
             'docs': selected_orders,
-            'num2words': self.get_amount_literal,
         }
-        return report_obj.render(cr, uid, ids, 'pos_kingdom.report_invoice', docargs, context=context)
+        return report_obj.render(cr, uid, ids, 'account.report_invoice', docargs, context=context)

@@ -19,6 +19,15 @@
         />
 
         <report
+            id="sawers_invoice_report"
+            string="Sawers Invoice"
+            model="pos.order"
+            report_type="qweb-pdf"
+            name="pos_kingdom.bolivian_invoice"
+            file="pos_kingdom.bolivian_invoice"
+        />
+
+        <report
             id="action_report_pos_receipt"
             string="Receipt"
             model="pos.order"
