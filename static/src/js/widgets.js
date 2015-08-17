@@ -861,7 +861,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.attributes[id] += value;
                 this.set_total_quantity(this.total_quantity+value);
             }
-            console.log(this.attributes);
             openerp.jsonRpc( '/display/set/product', 'call', {
                 "config_id":this.pos.config.id,
                 "templateId":this.selected_template.id,
@@ -904,7 +903,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     this.el.querySelector("[data-value-id='"+this.selected_template.id+"'] > .top-block > .block-quantity").value = this.total_quantity;
                     return;
                 }
-                this.set_value(Object.keys(this.attributes)[0],1);
+                //this.set_value(Object.keys(this.attributes)[0],1);
             }else{
                 this.selected_template = product_template;
                 this.attributes = {};

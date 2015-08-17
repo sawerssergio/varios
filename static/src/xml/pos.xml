@@ -145,7 +145,7 @@
     <t t-name="Value">
         <li class="block-selection" t-att-data-value-id="value.id">
             <div class="top-block">
-                <input class="block-quantity font-black" type="number" value="0" onfocus="blur()"/>
+                <input class="block-quantity" type="number" value="0" onfocus="blur()"/>
             </div>
             <div class="bottom-block">
                 <div class="block-increase">
@@ -367,6 +367,7 @@
                         <span class='label'>Nombre:</span>
                         <input class='detail client-name' name='name'  placeholder='Name' type="text" onfocus="blur()"></input>
                     </li>
+                    <!--
                     <li class='client-detail-item font-medium'>
                         <span class='label'>Celular:</span>
                         <input class='detail client-mobile' name='mobile'  placeholder='Telefono Celular' type="number" onfocus="blur()"></input>
@@ -379,6 +380,7 @@
                         <span class='label'>Direccion:</span>
                         <input class='detail client-street' name='street'  placeholder='Direccion' type="text" onfocus="blur()"></input>
                     </li>
+                    -->
                 </ul>
             </t>
             <t t-if="partner">
@@ -391,6 +393,7 @@
                         <span class='label'>Nombre:</span>
                         <input class='detail client-name' name='name'  placeholder='Name' type="text" onfocus="blur()" t-att-value="partner.name"></input>
                     </li>
+                    <!--
                     <li class='client-detail-item font-medium'>
                         <span class='label'>Celular:</span>
 
@@ -419,6 +422,7 @@
                             <input class='detail client-street' name='street'  placeholder='Direccion' type="text" onfocus="blur()" value="N/A"></input>
                         </t>
                     </li>
+                    -->
                 </ul>
             </t>
         </div>
