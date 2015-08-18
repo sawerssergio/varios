@@ -160,7 +160,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     return;
                 }
                 if(event.target.className === "product-delete-button") {
-                   self.pos.get('selectedOrder').deleteOrderline(this.orderline);
+                    this.classList.add('removed');
+                    var orderline = this.orderline;
+                    setTimeout(function(){
+                        self.pos.get('selectedOrder').deleteOrderline(orderline);
+                    },1000);
                 } else {
                     self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product(); 
                     self.pos.get('selectedOrder').deselectLine();
@@ -895,21 +899,27 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.show();
         },
         set_template:function(product_template){
-            if(product_template == this.selected_template){
+            var self = this;
+            if(product_template === this.selected_template){
                 //[FIXME] [KINGDOM] this process should be reversed,
                 //first call to total quantity and then value.
                 if (Object.keys(this.attributes).length === 0) {
-                    this.set_total_quantity(this.total_quantity+1);
-                    this.el.querySelector("[data-value-id='"+this.selected_template.id+"'] > .top-block > .block-quantity").value = this.total_quantity;
+                    //[FIXME] This should increase the total quantity.
+                    /*this.set_total_quantity(this.total_quantity+1);
+                        this.el.querySelector("[data-value-id='"+this.selected_template.id+"'] > .top-block > .block-quantity").value = this.total_quantity;
                     return;
+                    */
                 }
                 //this.set_value(Object.keys(this.attributes)[0],1);
             }else{
-                this.selected_template = product_template;
+                this.hide();
+                this.selected_template = product_template
                 this.attributes = {};
                 this.total_quantity = 0;
-                this.renderElement();
-                this.show();
+                setTimeout(function(){
+                    self.renderElement();
+                    self.show();
+                }, 450);
             }
         },
         get_product_image_url: function(){
@@ -1015,7 +1025,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     };
                 }
             }
-            this.hide();
         },
         checkAction: function(){
             var self = this;
@@ -1033,10 +1042,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             self.reset();
         },
         show:function(){
-            this.$el.removeClass('oe_hidden');
+            this.el.parentNode.classList.remove('pow_hidden');
         },
         hide:function(){
-            this.$el.addClass('oe_hidden');
+            this.el.parentNode.classList.add('pow_hidden');
         },
         edit_line_order:function(orderline){
             if(orderline.template.line){
@@ -1081,6 +1090,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         reset: function(){
             this.attributes = {};
+            this.total_quantity = 0;
             this.selected_template = undefined;
             this.hide();
         },

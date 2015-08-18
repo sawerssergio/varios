@@ -10,7 +10,11 @@
             </div>
             <div class="pos-centerpane">
                 <div class="center-top">
-                    <span class="placeholder-order-selector"/>
+                    <div class="options pow_hidden">
+                        <div class="background">
+                        </div>
+                        <span class="placeholder-order-selector"/>
+                    </div>
                 </div>
                 <div class="center-middle">
                     <div class="screens"> 
