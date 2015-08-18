@@ -70,7 +70,7 @@ td {
 .pos .oe_hidden{
     display: none !important;
     opacity: 0;
-    transition: opacity 1s ease-out;
+    /*transition: opacity 1s ease-out;*/
 }
 
 .pos ul, .pos li  {

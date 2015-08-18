@@ -610,6 +610,10 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                         self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
                     },
                 });
+            this.el.querySelector('input').click();
+            //if (typeof firstInput.onclick == "function") {
+                    //firstInput.onclick.apply(firstInput);
+            //}
         },
         renderElement: function(){
             var self = this;
@@ -657,7 +661,6 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 });
             }
             self.$('.client-vat').keyup(function(data){
-                console.log("client vat");
                 console.log(data.currentTarget.valueAsNumber);
                 openerp.jsonRpc( '/display/set/partner', 'call', {
                     "config_id":self.pos.config.id,
