@@ -164,7 +164,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     var orderline = this.orderline;
                     setTimeout(function(){
                         self.pos.get('selectedOrder').deleteOrderline(orderline);
-                    },1000);
+                    },600);
                 } else {
                     self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product(); 
                     self.pos.get('selectedOrder').deselectLine();
@@ -234,9 +234,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             var lines = order.get('orderLines');
                 lines.unbind();
-                lines.bind('add', function(){ 
+                lines.bind('add', function(line){
                         this.numpad_state.reset();
-                        this.renderElement(true);
+                        this.renderElement(true, line);
                     },this);
                 lines.bind('remove', function(line){
                         this.remove_orderline(line);
@@ -301,7 +301,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var target = $target[0];
             target.parentNode.replaceChild(this.el,target);
         },
-        renderElement: function(scrollbottom){
+        renderElement: function(scrollbottom, new_orderline){
             var self = this;
             this.pos_widget.numpad.state.reset();
 
@@ -318,6 +318,12 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var list_container = el_node.querySelector('.orderlines');
             for(var i = 0, len = orderlines.length; i < len; i++){
                 var orderline = this.render_orderline(orderlines[i]);
+                if(orderlines[i].id === new_orderline.id){
+                    orderline.classList.add("restored");
+                    setTimeout(function(){
+                        orderline.classList.remove("restored");
+                    },600);
+                }
                 if(orderlines[i].not_display == undefined){
                     list_container.appendChild(orderline);
                 }
@@ -333,7 +339,18 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.el.querySelector('.order-scroller').scrollTop = 100 * orderlines.length;
             }
             this.el.querySelector('.order-restart').addEventListener("click",function(){
-                self.pos.get('selectedOrder').restart_order();
+
+                var all_orderlines = self.el.querySelectorAll('.orderline');
+                for (var i=0, len = all_orderlines.length; i<len ; i++){
+                    (function(i,orderline){
+                        window.setTimeout(function() {
+                            orderline.classList.add('removed');
+                        },60*i);
+                    }((len-1)-i,all_orderlines[i]));
+                }
+                setTimeout(function(){
+                    self.pos.get('selectedOrder').restart_order();
+                },600);
             });
             var list_type_of = this.el.querySelectorAll('.type-of');
             for( var i=0; i < list_type_of.length; i++){

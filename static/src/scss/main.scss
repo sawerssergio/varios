@@ -663,6 +663,35 @@ input[type=number] {
     animation: removed-item-animation 1s linear;
     transform-origin: 390px 100%;
 }
+.restored {
+    transform: translateX(27vw);
+    animation: 
+    openspace .3s ease forwards, 
+    restored-item-animation .5s .3s cubic-bezier(.14,.25,.52,1.56) forwards;
+}
+
+@keyframes openspace {
+    to {
+        height: auto;
+    }
+}
+
+@keyframes restored-item-animation {
+    0% {
+        opacity: 0;
+        transform: translateX(25vw);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translateX(5vw);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
 .title-quantity {
     margin-top: .2em;
