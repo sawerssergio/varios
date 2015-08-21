@@ -462,7 +462,7 @@ input[type=number] {
 }
 /* line 383, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-scroller .orderline .product-delete {
-  width: 13%;
+  width: 11%;
   display: inline-block;
   vertical-align: top;
 }
@@ -926,7 +926,7 @@ input[type=number] {
   justify-content: space-between;
   align-content: stretch;
   align-items: stretch;
-  height: 40vh;
+  height: 44vh;
   width: 69%;
   margin: auto;
 }
@@ -1005,7 +1005,7 @@ input[type=number] {
   display: block;
   padding: 1% 0;
   color: #ffdf1b;
-  font-size: .6em;
+  font-size: .8em;
   line-height: .5em;
 }
 /* line 831, ../scss/main.scss */
@@ -1014,7 +1014,7 @@ input[type=number] {
   width: 100%;
   display: block;
   padding: 1% 0;
-  font-size: 1.4em;
+  font-size: 1.6em;
 }
 /* line 839, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount:first-child {
@@ -1024,14 +1024,15 @@ input[type=number] {
 /* line 843, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount:last-child {
   border-radius: 0 .5em .5em 0;
+  background: transparent repeating-linear-gradient(-55deg, #F26522, #F26522 10px, rgba(242, 101, 34, 0.5) 10px, rgba(242, 101, 34, 0.5) 20px) repeat scroll 0% 0%;
 }
 
-/* line 850, ../scss/main.scss */
+/* line 851, ../scss/main.scss */
 .client-screen {
   width: 100%;
   height: 100%;
 }
-/* line 853, ../scss/main.scss */
+/* line 854, ../scss/main.scss */
 .client-screen .client-details {
   height: 54vh;
   width: 100%;
@@ -1048,7 +1049,7 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 864, ../scss/main.scss */
+/* line 865, ../scss/main.scss */
 .client-screen .client-details .client-detail-item {
   font-size: larger;
   color: white;
@@ -1057,7 +1058,7 @@ input[type=number] {
   max-height: 16%;
   font-size: 1.4em;
 }
-/* line 870, ../scss/main.scss */
+/* line 871, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .label {
   display: inline-block;
   width: 18%;
@@ -1066,7 +1067,7 @@ input[type=number] {
   text-align: right;
   line-height: 3.5em;
 }
-/* line 878, ../scss/main.scss */
+/* line 879, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .detail {
   display: inline-block;
   width: 75%;
@@ -1096,37 +1097,37 @@ input[type=number] {
   color: white;
 }
 
-/* line 896, ../scss/main.scss */
+/* line 897, ../scss/main.scss */
 .font-black {
   font-family: Roboto-black;
 }
 
-/* line 899, ../scss/main.scss */
+/* line 900, ../scss/main.scss */
 .font-bold {
   font-family: Roboto-bold;
 }
 
-/* line 902, ../scss/main.scss */
+/* line 903, ../scss/main.scss */
 .font-bold-condensed {
   font-family: Roboto-bold-condensed;
 }
 
-/* line 905, ../scss/main.scss */
+/* line 906, ../scss/main.scss */
 .font-medium {
   font-family: Roboto-medium;
 }
 
-/* line 908, ../scss/main.scss */
+/* line 909, ../scss/main.scss */
 .font-regular {
   font-family: Roboto-regular;
 }
 
-/* line 912, ../scss/main.scss */
+/* line 913, ../scss/main.scss */
 .selected-product img {
-  filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(5px 3px 4px rgba(0, 0, 0, 0.5));
 }
 
-/* line 916, ../scss/main.scss */
+/* line 917, ../scss/main.scss */
 .selected {
   background-color: #f26522 !important;
 }

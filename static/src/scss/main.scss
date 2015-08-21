@@ -381,7 +381,7 @@ input[type=number] {
                         }
                     }
                     .product-delete {
-                        width: 13%;
+                        width: 11%;
                         display: inline-block;
                         vertical-align: top;
                         img {
@@ -766,7 +766,7 @@ input[type=number] {
             align-content: stretch,
             align-items: stretch
         ));
-        height: 40vh;
+        height: 44vh;
         width: 69%;
         margin: auto;
         .money-details {
@@ -825,7 +825,7 @@ input[type=number] {
                     display: block;
                     padding: 1% 0;
                     color: $co_letter_yellow;
-                    font-size: .6em;
+                    font-size: .8em;
                     line-height: .5em;
                 }
                 .value-amount{
@@ -833,7 +833,7 @@ input[type=number] {
                     width: 100%;
                     display: block;
                     padding: 1% 0;
-                    font-size: 1.4em;
+                    font-size: 1.6em;
                 }
             }
             .amount:first-child {
@@ -842,6 +842,7 @@ input[type=number] {
             }
             .amount:last-child {
                 border-radius: 0 .5em .5em 0;
+                background: transparent repeating-linear-gradient(-55deg, #F26522, #F26522 10px, rgba(242, 101, 34, 0.5) 10px, rgba(242, 101, 34, 0.5) 20px) repeat scroll 0% 0%;
             }
         }
     }
@@ -910,7 +911,7 @@ input[type=number] {
 }
 .selected-product {
     img {
-        filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
+        filter: drop-shadow(5px 3px 4px rgba(0, 0, 0, 0.5));
     }
 }
 .selected {
