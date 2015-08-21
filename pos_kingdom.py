@@ -303,7 +303,8 @@ class pos_session(models.Model):
         ('closing_control', 'Closing Control'),  # Signal close
         ('closed', 'Closed & Posted'),
     ]
-
+    
+    @api.v7
     def _compute_cash_all(self, cr, uid, ids, context=None):
         result = dict()
 
@@ -320,6 +321,19 @@ class pos_session(models.Model):
                     result[record.id]['cash_register_id'] = st.id
 
         return result
+
+    @api.v8
+    @api.one
+    @api.depends('statement_ids')
+    def _compute_cash_all(self):
+        self.cash_journal_id = False
+        self.cash_register_id = False
+        self.cash_control = False
+        for st in self.statement_ids:
+            if st.journal_id.cash_control == True:
+                self.cash_control = True
+                self.cash_journal_id = st.journal_id.id
+                self.cash_register_id = st.id
 
     config_id = fields.Many2one(comodel_name='pos.config', string='Point of Sale',
                               help="The physical point of sale you will use.",
