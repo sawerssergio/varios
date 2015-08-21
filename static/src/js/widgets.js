@@ -621,6 +621,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     var category_node = document.createElement('div');
                         category_node.innerHTML = category_html;
                         category_node = category_node.childNodes[0];
+                        category_node.style.order = category.id;
                 }else{
                     var category_html = QWeb.render('CategorySimpleButton',{ 
                             widget:  this, 
