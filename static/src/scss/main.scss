@@ -842,6 +842,8 @@ input[type=number] {
             }
             .amount:last-child {
                 border-radius: 0 .5em .5em 0;
+            }
+            .amount:nth-child(even) {
                 background: transparent repeating-linear-gradient(-55deg, #F26522, #F26522 10px, rgba(242, 101, 34, 0.5) 10px, rgba(242, 101, 34, 0.5) 20px) repeat scroll 0% 0%;
             }
         }

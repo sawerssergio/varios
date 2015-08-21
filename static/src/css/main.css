@@ -1024,15 +1024,18 @@ input[type=number] {
 /* line 843, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount:last-child {
   border-radius: 0 .5em .5em 0;
+}
+/* line 846, ../scss/main.scss */
+.invoice-screen .bottom-screen .amounts .amount:nth-child(even) {
   background: transparent repeating-linear-gradient(-55deg, #F26522, #F26522 10px, rgba(242, 101, 34, 0.5) 10px, rgba(242, 101, 34, 0.5) 20px) repeat scroll 0% 0%;
 }
 
-/* line 851, ../scss/main.scss */
+/* line 853, ../scss/main.scss */
 .client-screen {
   width: 100%;
   height: 100%;
 }
-/* line 854, ../scss/main.scss */
+/* line 856, ../scss/main.scss */
 .client-screen .client-details {
   height: 54vh;
   width: 100%;
@@ -1049,7 +1052,7 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 865, ../scss/main.scss */
+/* line 867, ../scss/main.scss */
 .client-screen .client-details .client-detail-item {
   font-size: larger;
   color: white;
@@ -1058,7 +1061,7 @@ input[type=number] {
   max-height: 16%;
   font-size: 1.4em;
 }
-/* line 871, ../scss/main.scss */
+/* line 873, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .label {
   display: inline-block;
   width: 18%;
@@ -1067,7 +1070,7 @@ input[type=number] {
   text-align: right;
   line-height: 3.5em;
 }
-/* line 879, ../scss/main.scss */
+/* line 881, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .detail {
   display: inline-block;
   width: 75%;
@@ -1097,37 +1100,37 @@ input[type=number] {
   color: white;
 }
 
-/* line 897, ../scss/main.scss */
+/* line 899, ../scss/main.scss */
 .font-black {
   font-family: Roboto-black;
 }
 
-/* line 900, ../scss/main.scss */
+/* line 902, ../scss/main.scss */
 .font-bold {
   font-family: Roboto-bold;
 }
 
-/* line 903, ../scss/main.scss */
+/* line 905, ../scss/main.scss */
 .font-bold-condensed {
   font-family: Roboto-bold-condensed;
 }
 
-/* line 906, ../scss/main.scss */
+/* line 908, ../scss/main.scss */
 .font-medium {
   font-family: Roboto-medium;
 }
 
-/* line 909, ../scss/main.scss */
+/* line 911, ../scss/main.scss */
 .font-regular {
   font-family: Roboto-regular;
 }
 
-/* line 913, ../scss/main.scss */
+/* line 915, ../scss/main.scss */
 .selected-product img {
   filter: drop-shadow(5px 3px 4px rgba(0, 0, 0, 0.5));
 }
 
-/* line 917, ../scss/main.scss */
+/* line 919, ../scss/main.scss */
 .selected {
   background-color: #f26522 !important;
 }
