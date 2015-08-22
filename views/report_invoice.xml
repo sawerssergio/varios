@@ -4,7 +4,7 @@
 <template id="bolivian_invoice">
     <t t-call="report.html_container">
         <t t-foreach="docs" t-as="o">
-            <t t-call="report.external_layout">
+            <!--<t t-call="report.external_layout">-->
                 <div class="page">
                     <div t-if="o.company_id.name">
                         <strong><t t-esc="o.company_id.name"/></strong>
@@ -126,7 +126,7 @@
                         <p>GRACIAS, VUELVA PRONTO :)</p>
                     </div>
                 </div>
-            </t>
+                <!--</t>-->
         </t>
     </t>
 </template>

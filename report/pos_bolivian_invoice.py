@@ -19,8 +19,6 @@ class BolivianInvoiceReport(models.AbstractModel):
 
     @api.multi
     def render_html(self,data=None):
-        print "RENDER SAWERS INVOICE"
-        print self._ids
         report_obj = self.env['report']
         report = report_obj._get_report_from_name('pos_kingdom.bolivian_invoice')
         posorder_obj = self.env['pos.order']
