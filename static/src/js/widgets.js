@@ -156,6 +156,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.editable = false;
             this.pos.bind('change:selectedOrder', this.change_selected_order, this);
             this.line_click_handler = function(event){
+                event.stopPropagation();
+
+                if(self.pos_widget.product_options_widget.is_content()) {
+                    self.pos_widget.product_options_widget.checkAction();
+                }
                 if(!self.editable){
                     return;
                 }
@@ -314,7 +319,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 el_node.innerHTML = _.str.trim(el_str);
                 el_node = el_node.childNodes[0];
 
-
             var list_container = el_node.querySelector('.orderlines');
             for(var i = 0, len = orderlines.length; i < len; i++){
                 var orderline = this.render_orderline(orderlines[i]);
@@ -334,6 +338,13 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             }
             this.el = el_node;
             this.update_summary();
+
+            //Event for all DOM of Order when select orderline.
+            this.el.addEventListener('click', function(){
+                if(self.pos.pos_widget.product_options_widget.is_content()) {
+                    self.pos.pos_widget.product_options_widget.checkAction();
+                }
+            });
 
             if(scrollbottom){
                 this.el.querySelector('.order-scroller').scrollTop = 100 * orderlines.length;
@@ -538,8 +549,12 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
                 if ( pos_widget.screen_selector.get_current_screen() !== "products" ) {
                     pos_widget.screen_selector.set_current_screen('products');
+                    pos_widget.product_options_widget.reset();
+                } else {
+                    if(pos_widget.product_options_widget.is_content()) {
+                        pos_widget.product_options_widget.checkAction();
+                    }
                 }
-                self.pos.pos_widget.product_options_widget.reset();
                 self.product_list_widget.set_deselected_product();
                 self.pos.get('selectedOrder').deselectLine();
                 //DOMStringMap
@@ -551,7 +566,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 //FIXME [KINGDOM][VD] This should be separated into another method of this widget.
                 var products = self.pos.db.get_template_by_category(self.category.id);
                 self.product_list_widget.set_product_list(products);
-                //self.renderElement();
             };
             
             this.clear_search_handler = function(event){
@@ -1050,9 +1064,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.add_template_order(self.selected_template);
                 if(self.selected_template.is_combo){
                     self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product(); 
-                    var drinks_categ_id = 2;
-                    self.pos.get('selectedOrder').set_screen_data('drinks_to_discount',self.total_quantity);
-                    self.pos.pos_widget.product_categories_widget.change_category(drinks_categ_id);
+                    //var drinks_categ_id = 2;
+                    //self.pos.get('selectedOrder').set_screen_data('drinks_to_discount',self.total_quantity);
+                    //self.pos.pos_widget.product_categories_widget.change_category(drinks_categ_id);
                 }
             }else{
                 self.edit_line_order(self.pos.get('selectedOrder').selected_orderline);
