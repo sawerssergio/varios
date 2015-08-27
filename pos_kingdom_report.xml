@@ -75,6 +75,14 @@
             report_type="qweb-pdf"
             name="pos_kingdom.report_sessionsummary"
             file="pos_kingdom.report_sessionsummary"
-         />
+        />
+        <report
+            id="action_report_cash_count"
+            string="Arqueo de Caja"
+            model="pos.session"
+            report_type="qweb-pdf"
+            name="pos_kingdom.report_cashcount"
+            file="pos_kingdom.report_cashcount"
+        />
     </data>
 </openerp>

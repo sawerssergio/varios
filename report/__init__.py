@@ -23,6 +23,7 @@ import pos_users_product
 import account_statement
 import pos_receipt
 import pos_invoice
+import pos_cashcount
 import pos_bolivian_invoice
 import pos_lines
 import pos_details
