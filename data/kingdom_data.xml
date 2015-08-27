@@ -35,19 +35,17 @@
             <field name="attribute_id" ref="attribute_piece_1"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/leg_value.png"/>
         </record>
-
-
+        
         <record id="attribute_piece_value_2" model="product.attribute.value">
-            <field name="name">Wing</field>
-            <field name="attribute_id" ref="attribute_piece_1"/>
-            <field name="image" type="base64" file="pos_kingdom/static/img/wing_value.png"/>
-        </record>
-
-
-        <record id="attribute_piece_value_3" model="product.attribute.value">
             <field name="name">Normal</field>
             <field name="attribute_id" ref="attribute_piece_1"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/normal_value.png"/>
+        </record>
+
+        <record id="attribute_piece_value_3" model="product.attribute.value">
+            <field name="name">Wing</field>
+            <field name="attribute_id" ref="attribute_piece_1"/>
+            <field name="image" type="base64" file="pos_kingdom/static/img/wing_value.png"/>
         </record>
 
         <!-- End -->
@@ -305,7 +303,7 @@
         <record id="chicken_4b" model="product.product">
             <field name="default_code">C005</field>
             <field name="product_tmpl_id" ref="chicken_4_product_template"/>
-            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_2')])]"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_3')])]"/>
         </record>
 
         <record id="chicken_4_attribute_line_4" model="product.attribute.line">
@@ -313,7 +311,7 @@
             <field name="attribute_id" ref="attribute_piece_1"/>
             <field name="value_ids" eval="[(6,0,[
                                                             ref('attribute_piece_value_1'),
-                                                            ref('attribute_piece_value_2')
+                                                            ref('attribute_piece_value_3')
                                                             ])]"/>
         </record>
 
@@ -341,7 +339,7 @@
         <record id="chicken_5b" model="product.product">
             <field name="default_code">C010</field>
             <field name="product_tmpl_id" ref="chicken_5_product_template"/>
-            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_2')])]"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_3')])]"/>
         </record>
 
         <record id="chicken_5_attribute_line_5" model="product.attribute.line">
@@ -349,7 +347,7 @@
             <field name="attribute_id" ref="attribute_piece_1"/>
             <field name="value_ids" eval="[(6,0,[
                                                             ref('attribute_piece_value_1'),
-                                                            ref('attribute_piece_value_2')
+                                                            ref('attribute_piece_value_3')
                                                             ])]"/>
         </record>
 
@@ -379,7 +377,7 @@
         <record id="chicken_6b" model="product.product">
             <field name="default_code">C015</field>
             <field name="product_tmpl_id" ref="chicken_6_product_template"/>
-            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_2')])]"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_3')])]"/>
         </record>
 
         <record id="chicken_6_attribute_line_6" model="product.attribute.line">
@@ -387,7 +385,7 @@
             <field name="attribute_id" ref="attribute_piece_1"/>
             <field name="value_ids" eval="[(6,0,[
                                                             ref('attribute_piece_value_1'),
-                                                            ref('attribute_piece_value_2')
+                                                            ref('attribute_piece_value_3')
                                                             ])]"/>
         </record>
 
