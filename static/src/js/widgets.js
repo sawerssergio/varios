@@ -321,6 +321,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             var list_container = el_node.querySelector('.orderlines');
             for(var i = 0, len = orderlines.length; i < len; i++){
+                console.log("ORDERLINES" + i);
+                console.log(orderlines[i]);
                 var orderline = this.render_orderline(orderlines[i]);
                 if(orderlines[i].id === new_orderline.id){
                     orderline.classList.add("restored");
@@ -937,12 +939,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 //first call to total quantity and then value.
                 if (Object.keys(this.attributes).length === 0) {
                     //[FIXME] This should increase the total quantity.
-                    /*this.set_total_quantity(this.total_quantity+1);
-                        this.el.querySelector("[data-value-id='"+this.selected_template.id+"'] > .top-block > .block-quantity").value = this.total_quantity;
+                    this.set_total_quantity(this.total_quantity+1);
+                    this.el.querySelector("[data-value-id='"+this.selected_template.id+"'] > .top-block > .block-quantity").value = this.total_quantity;
                     return;
-                    */
                 }
-                //this.set_value(Object.keys(this.attributes)[0],1);
+                this.set_value(Object.keys(this.attributes)[1],1);
             }else{
                 this.hide();
                 this.selected_template = product_template
@@ -953,6 +954,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     self.show();
                 }, 450);
             }
+        },
+        get_template: function(){
+            return this.selected_template;
         },
         get_product_image_url: function(){
             if(this.selected_template) {
