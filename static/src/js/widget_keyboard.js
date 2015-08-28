@@ -101,7 +101,7 @@ function openerp_pos_keyboard(instance, module){ //module is instance.pos_kingdo
 
         // Makes the keyboard show and slide from the bottom of the screen.
         show:  function(){
-            $('.keyboard_frame').show().css({'height':'26.7vh'});
+            $('.keyboard_frame').show().css({'height':'34vh'});
         },
         
         // Makes the keyboard hide by sliding to the bottom of the screen.
@@ -166,10 +166,12 @@ function openerp_pos_keyboard(instance, module){ //module is instance.pos_kingdo
                 //self.deleteAllCharacters();
                 self.hide(); 
             });
-
+            this.$el.click(function(){
+                self.hide(); 
+            });
             // Keyboard key click handling
-            $('.keyboard li').click(function(){
-                
+            $('.keyboard li').click(function(event){
+                event.stopPropagation();
                 var $this = $(this),
                     character = $this.html(); // If it's a lowercase letter, nothing happens to this variable
                 
