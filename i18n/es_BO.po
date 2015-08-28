@@ -1560,7 +1560,7 @@ msgstr "Last Updated on"
 #. module: pos_kingdom
 #: model:product.attribute.value,name:pos_kingdom.attribute_piece_value_1
 msgid "Leg"
-msgstr "Convertido de pierna"
+msgstr "Pierna"
 
 #. module: pos_kingdom
 #: field:pos.config,limit_date:0
@@ -3584,7 +3584,7 @@ msgstr "Weighting"
 #. module: pos_kingdom
 #: model:product.attribute.value,name:pos_kingdom.attribute_piece_value_2
 msgid "Wing"
-msgstr "Convertido de ala"
+msgstr "Ala"
 
 #. module: pos_kingdom
 #. openerp-web
