@@ -658,9 +658,9 @@ input[type=number] {
   height: 100%;
   background-color: #C1272D;
   float: left;
-  margin-left: 20%;
+  margin-left: 14%;
   display: inline-block;
-  width: 30%;
+  width: 36%;
 }
 /* line 554, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product .information .number label {
@@ -672,7 +672,7 @@ input[type=number] {
   height: 100%;
   background-color: #F16623;
   float: left;
-  width: 30%;
+  width: 36%;
 }
 /* line 564, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product .information .price label {
