@@ -1038,8 +1038,8 @@
                 -->
             </div>
             <div class="information">
-                <div class="number">2 Opc.</div>
-                <div class="price"> 50 Bs</div>
+                <div class="number"><t t-esc="product.id"/><label> OPC.</label></div>
+                <div class="price"><t t-esc="product.list_price"/><label> Bs.</label></div>
             </div>
             <!--
             <div class="product-name">

@@ -399,7 +399,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var total     = order ? order.getTotalTaxIncluded() : 0;
             var taxes     = order ? total - order.getTotalTaxExcluded() : 0;
 
-            this.el.querySelector('.order-summary .total > .subentry-total > .value').textContent = this.format_currency(total);
+            //this.el.querySelector('.order-summary .total > .subentry-total > .value').textContent = this.format_currency(total);
+            this.el.querySelector('.order-summary .total > .subentry-total > .value').textContent = total;
             //this.el.querySelector('.order-summary .total .subentry .value').textContent = this.format_currency(taxes);
 
         },
