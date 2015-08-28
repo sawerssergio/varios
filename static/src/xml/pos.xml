@@ -149,7 +149,7 @@
     <t t-name="Value">
         <li class="block-selection" t-att-data-value-id="value.id">
             <div class="top-block">
-                <label>Pierna</label>
+                <label><t t-esc="value.name"/></label>
                 <input class="block-quantity" type="number" value="0" onfocus="blur()"/>
             </div>
             <div class="bottom-block">
@@ -1037,6 +1037,10 @@
                 </t>
                 -->
             </div>
+            <div class="information">
+                <div class="number">2 Opc.</div>
+                <div class="price"> 50 Bs</div>
+            </div>
             <!--
             <div class="product-name">
                 <t t-esc="product.display_name"/>
@@ -1192,13 +1196,14 @@
             </div>
             <div class="order-summary clearfix">
                 <div t-attf-class="line #{orderlines.length === 0 ? 'empty' : ''}">
+                    <div class="action-next">
+                        <span class="helper"></span>
+                        <img class="order-restart" src="/pos_kingdom/static/src/img/trash.svg"/>
+                    </div>
                     <div class='entry total'>
                         <div class="subentry-total font-bold">
                             <span class="label">Bs: </span> <span class="value font-bold">0.00</span>
                         </div>
-                    </div>
-                    <div class="action-next">
-                        <img class="order-restart" src="/pos_kingdom/static/src/img/trash.svg"/>
                     </div>
                 </div>
             </div>
