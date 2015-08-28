@@ -149,11 +149,16 @@
     <t t-name="Value">
         <li class="block-selection" t-att-data-value-id="value.id">
             <div class="top-block">
+                <label>Pierna</label>
                 <input class="block-quantity" type="number" value="0" onfocus="blur()"/>
             </div>
             <div class="bottom-block">
                 <div class="block-increase">
                     <!-- Remenber,this should not have a class, if you want to add a class, go to the ProductOptionsWidget and modify click_value_handler function-->
+                    <span class="helper"></span>
+                    <img src="/pos_kingdom/static/src/img/adition-white.svg"/>
+                </div>
+                <div class="block-image">
                     <img t-att-src="image_url"/>
                 </div>
                 <div class="block-decrease">
