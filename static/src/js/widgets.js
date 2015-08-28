@@ -853,6 +853,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.selected_template = undefined;
             this.editable = false;
             this.attributes = {};
+            this.maxCount = undefined; //number of combos
             this.click_value_handler = function(event){
                 var className = event.target.className;
 
@@ -915,6 +916,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         set_editable: function(bool){
             this.editable = bool;
+        },
+        set_maxCount: function(count){
+            this.maxCount = count;
         },
         edit_options:function(template,options){
             var self = this;
@@ -1068,9 +1072,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.add_template_order(self.selected_template);
                 if(self.selected_template.is_combo){
                     self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product(); 
-                    //var drinks_categ_id = 2;
-                    //self.pos.get('selectedOrder').set_screen_data('drinks_to_discount',self.total_quantity);
-                    //self.pos.pos_widget.product_categories_widget.change_category(drinks_categ_id);
+                    var drinks_categ_id = 2;
+                    self.maxCount = self.total_quantity;
+                    self.pos.pos_widget.product_categories_widget.change_category(drinks_categ_id);
                 }
             }else{
                 self.edit_line_order(self.pos.get('selectedOrder').selected_orderline);

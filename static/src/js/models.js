@@ -1209,6 +1209,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         addProduct: function(product, options){
             options = options || {};
             var attr = JSON.parse(JSON.stringify(product));
+            var maxCount = this.pos.pos_widget.product_options_widget.maxCount;
             attr.pos = this.pos;
             attr.order = this;
             var line = new module.Orderline({}, {
@@ -1241,35 +1242,44 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 });
             }
 
-            if(this.screen_data['drinks_to_discount'] > 0 && line.template.pos_categ_id[1] === "Soda"){
-                //alert(this.screen_data['drinks_to_discount']);
-                if(line.get_quantity() === 1){
-                    this.screen_data['drinks_to_discount'] -= 1;
-                }else{
-                    if(line.get_quantity() > this.screen_data['drinks_to_discount']){
-                        var diff = line.get_quantity() - this.screen_data['drinks_to_discount'];
-                        var quantity = line.get_quantity() - diff;
-                        line.set_detail(options.value.id,quantity);
-                        line.set_quantity(quantity);
-                        line.set_quantity_display(quantity);
-                        line.set_total_quantity();
-                        this.screen_data['drinks_to_discount'] = 0;
-                    }
+            if(maxCount){
+                if(maxCount > 0 && line.template.pos_categ_id[1] === "Soda"){
+                    if(line.get_quantity() === 1){
+                        maxCount -= 1;
+                        this.pos.pos_widget.product_options_widget.set_maxCount(maxCount);
+                    }else{
+                        if(line.get_quantity() > maxCount){
+                            var diff = line.get_quantity() - maxCount;
+                            var quantity = line.get_quantity() - diff;
+                            line.set_detail(options.value.id,quantity);
+                            line.set_quantity(quantity);
+                            window.line = line;
+                            line.set_quantity_display(quantity);
+                            line.set_total_quantity();
+                            maxCount = 0;
+                            this.pos.pos_widget.product_options_widget.set_maxCount(maxCount);
+                            this.apply_drink_discount(line);
+                            var attr_values = {};
+                            for(attr in options.attributes){
+                                if(options.attributes[attr] > 0){
+                                   attr_values[attr] = diff;
+                                }
+                            }
+                            this.pos.pos_widget.product_options_widget.extra_drinks = attr_values;
+                        }
 
-                    if(line.get_quantity() === this.screen_data['drinks_to_discount']){ 
-                        this.screen_data['drinks_to_discount'] = 0;
-                    }
+                        if(line.get_quantity() === maxCount){ 
+                            maxCount = 0;
+                            this.pos.pos_widget.product_options_widget.set_maxCount(maxCount);
+                        }
 
-                    if(line.get_quantity() < this.screen_data['drinks_to_discount']){ 
-                        this.screen_data['drinks_to_discount'] -= line.get_quantity();
+                        if(line.get_quantity() < maxCount){ 
+                            maxCount -= line.get_quantity();
+                            this.pos.pos_widget.product_options_widget.set_maxCount(maxCount);
+                        }
                     }
+                    this.apply_drink_discount(line);
                 }
-                if(line.get_product().price === 7){
-                    line.set_unit_price(2);
-                }else{ 
-                    line.set_unit_price(0);
-                }
-                line.price_discount = true;
             }
 
             var same_template_orderline = this.getSameTemplateOrderline(line);
@@ -1287,6 +1297,11 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
 
                 if(line.get_quantity() > 0){
                     this.get('orderLines').add(line);
+                    var extra_drinks = this.pos.pos_widget.product_options_widget.extra_drinks;
+                    if(extra_drinks){
+                        this.pos.pos_widget.product_options_widget.extra_drinks = undefined;
+                        this.pos.pos_widget.product_options_widget.add_template_order(line.template,extra_drinks);
+                    }
                 }
             }
 
@@ -1298,6 +1313,14 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 "order":this.export_as_JSON()
             });
 
+        },
+        apply_drink_discount: function(line){
+            if(line.get_product().price === 7){
+                line.set_unit_price(2);
+            }else{ 
+                line.set_unit_price(0);
+            }
+            line.price_discount = true;
         },
         deleteOrderline: function(line){
             var suborderlines = line.sub_orderlines;
