@@ -776,9 +776,12 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.renderElement();
         },
         set_deselected_product: function(){
-            if(this.selected_product_id){ 
-                //this.el.querySelector("[data-product-id='"+this.selected_product_id+"'] > .product-img").className = 'product-img';
-                this.selected_product_id = undefined; 
+            if(this.selected_product_id){
+                var querySelector = this.el.querySelector("[data-product-id='"+this.selected_product_id+"'] > .product-img");
+                if(querySelector){
+                    querySelector.className = 'product-img';
+                    this.selected_product_id = undefined; 
+                }
             }
         },
         set_selected_product:function(id){
@@ -790,8 +793,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     products[i].querySelector('.product-img').className = "product-img selected";
                 }
             }*/
-            this.selected_product_id = id; 
-            this.el.querySelector("[data-product-id='"+id+"'] > .product-img").className += ' selected-product'; 
+            this.selected_product_id = id;
+            var querySelector = this.el.querySelector("[data-product-id='"+id+"'] > .product-img");
+            if(querySelector){
+                querySelector.className += ' selected-product';
+            }
         },
         get_product_image_url: function(product){
             return window.location.origin + '/web/binary/image?model=product.product&field=image&id='+product.id;
@@ -893,8 +899,8 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             //}
             if(is_set){
                 if(this.attributes[id]){
-                this.set_total_quantity(this.total_quantity-this.attributes[id]+value);
-                this.attributes[id] = value;
+                    this.set_total_quantity(this.total_quantity-this.attributes[id]+value);
+                    this.attributes[id] = value;
                 } else {
                     this.attributes[id] = value;
                     this.set_total_quantity(value);
@@ -947,7 +953,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 if (Object.keys(this.attributes).length === 0) {
                     //[FIXME] This should increase the total quantity.
                     this.set_total_quantity(this.total_quantity+1);
-                    this.el.querySelector("[data-value-id='"+this.selected_template.id+"'] > .top-block > .block-quantity").value = this.total_quantity;
+                    var querySelector = this.el.querySelector("[data-value-id='"+this.selected_template.id+"'] > .top-block > .block-quantity");
+                    if(querySelector){
+                        querySelector.value = this.total_quantity;
+                    }
                     return;
                 }
                 this.set_value(Object.keys(this.attributes)[1],1);
@@ -1074,7 +1083,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             if(!self.editable){
                 this.add_template_order(self.selected_template);
                 if(self.selected_template.is_combo){
-                    self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product(); 
+                    //self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product(); 
                     var drinks_categ_id = 2;
                     self.maxCount = self.total_quantity;
                     self.pos.pos_widget.product_categories_widget.change_category(drinks_categ_id);

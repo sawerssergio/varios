@@ -524,8 +524,8 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                                 self.pos.pos_widget.product_options_widget.set_template(product);
                         }
                         self.pos.pos_widget.product_options_widget.set_editable(false);
-                        self.pos.get('selectedOrder').deselectLine();
-                        //self.product_list_widget.set_deselected_product();
+                        //self.pos.get('selectedOrder').deselectLine();
+                        self.product_list_widget.set_deselected_product();
                         self.product_list_widget.set_selected_product(product.id); 
                     }
                 },
