@@ -361,17 +361,9 @@ input[type=number] {
                         @include flex(0 1 50%);
                         text-align: center;
                         height: 100%;
-                        .helper {
-                            display: inline-block;
-                            height: 100%;
-                            vertical-align: middle;
-                        }
-                        img {
-                            height: 6vh;
-                            display: inline-block;
-                            vertical-align: middle;
-
-                        }
+                        @include fontBlack;
+                        font-size: 3vh;
+                        line-height: 6vh;
                     }
                     .outside {
                         border-left: .2em solid rgba(255, 255, 255, 0.5);
@@ -457,6 +449,9 @@ input[type=number] {
                         display: inline-block;
                         text-align: center;
                         align-self: center;
+                        height: 95%;
+                        background-color: $red_color;
+                        padding-top: 5%;
                         .helper {
                             display: inline-block;
                             vertical-align: middle;
@@ -464,6 +459,7 @@ input[type=number] {
                         img {
                             width: 70%;
                             vertical-align: middle;
+                            height: 8vh;
                         }
                     }
                 }

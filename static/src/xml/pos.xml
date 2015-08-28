@@ -1174,12 +1174,10 @@
             <div class="order-header">
                 <div class="order-type-of">
                     <div class="inside type-of">
-                        <span class="helper"></span>
-                        <img src="/pos_kingdom/static/src/img/inside.svg"/>
+                        Mesa
                     </div>
                     <div class="outside type-of">
-                        <span class="helper"></span>
-                        <img src="/pos_kingdom/static/src/img/outside.svg"/>
+                        Llevar
                     </div>
                 </div>
             </div>

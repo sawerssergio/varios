@@ -831,6 +831,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 var product_node = document.createElement('div');
                 product_node.innerHTML = product_html;
                 product_node = product_node.childNodes[1];
+                product_node.style.order = product.id;
                 this.product_cache.cache_node(product.id,product_node);
                 return product_node;
             }
