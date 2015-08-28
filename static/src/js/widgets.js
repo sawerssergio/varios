@@ -157,10 +157,17 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.pos.bind('change:selectedOrder', this.change_selected_order, this);
             this.line_click_handler = function(event){
                 event.stopPropagation();
+                //self.pos_widget.onscreen_keyboard.hide();
 
-                if(self.pos_widget.product_options_widget.is_content()) {
-                    self.pos_widget.product_options_widget.checkAction();
+                if ( self.pos_widget.screen_selector.get_current_screen() !== "products" ) {
+                    self.pos_widget.screen_selector.set_current_screen('products');
+                    self.pos_widget.product_options_widget.reset();
+                } else {
+                    if(self.pos_widget.product_options_widget.is_content()) {
+                        self.pos_widget.product_options_widget.checkAction();
+                    }
                 }
+                self.pos_widget.onscreen_keyboard.hide();
                 if(!self.editable){
                     return;
                 }
@@ -571,6 +578,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 //FIXME [KINGDOM][VD] This should be separated into another method of this widget.
                 var products = self.pos.db.get_template_by_category(self.category.id);
                 self.product_list_widget.set_product_list(products);
+                self.pos_widget.onscreen_keyboard.hide();
             };
             
             this.clear_search_handler = function(event){
