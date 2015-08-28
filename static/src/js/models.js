@@ -818,11 +818,13 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         can_be_merged_tmpl: function(orderline){
             var res = false;
             if(this.template && orderline.template){
+                if(this.get_type_of() == orderline.get_type_of()){
                 if(this.template.id == orderline.template.id){
                     if(this.price_discount == undefined){
                         res = true;
                     }
                 }
+             }
             }
             return res;
         },
