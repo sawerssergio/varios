@@ -1412,6 +1412,10 @@ class pos_order_line(models.Model):
     discount = fields.Float('Discount (%)', digits_compute=dp.get_precision('Account'))
     order_id = fields.Many2one('pos.order', 'Order Ref', ondelete='cascade')
     create_date = fields.Datetime('Creation Date', readonly=True)
+    type_of = fields.Selection([('inside', 'to go'),
+                               ('outside', 'for here')],
+                              'Status', readonly=True, copy=False,
+                              default='inside')
 
     _defaults = {
         'name': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid, 'pos.order.line'),

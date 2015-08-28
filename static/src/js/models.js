@@ -687,6 +687,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             this.details = [];
             this.sub_orderlines = [];
             this.quantity_display = 1;
+            this.type_of = options.type_of;
         },
         clone: function(){
             var orderline = new module.Orderline({},{
@@ -694,6 +695,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 order: null,
                 product: this.product,
                 price: this.price,
+                type_of: this.type_of,
             });
             orderline.quantity = this.quantity;
             orderline.quantityStr = this.quantityStr;
@@ -991,7 +993,8 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 tax:                this.get_tax(),
                 product_description:      this.get_product().description,
                 product_description_sale: this.get_product().description_sale,
-            };
+                type_of:            this.get_type_of(),
+            }
         },
         // changes the base price of the product for this orderline
         set_unit_price: function(price){
@@ -1088,6 +1091,12 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 "tax": taxtotal,
                 "taxDetails": taxdetail,
             };
+        },
+        set_type_of: function(type_of){
+            this.type_of = type_of;
+        },
+        get_type_of: function(){
+            return this.type_of;
         },
     });
 
@@ -1212,12 +1221,15 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             var maxCount = this.pos.pos_widget.product_options_widget.maxCount;
             attr.pos = this.pos;
             attr.order = this;
+            console.log(this.get_type_of());
             var line = new module.Orderline({}, {
-                pos: this.pos, 
-                order: this, 
-                product: product
+                pos: this.pos,
+                order: this,
+                product: product,
+                type_of: this.get_type_of()
             });
-
+            console.log("LINE MODEL");
+            console.log(line);
             if(options.quantity !== undefined){
                 line.set_quantity(options.quantity);
                 line.set_quantity_display(options.quantity);

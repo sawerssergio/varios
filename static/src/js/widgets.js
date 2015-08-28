@@ -323,15 +323,17 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             for(var i = 0, len = orderlines.length; i < len; i++){
                 console.log("ORDERLINES" + i);
                 console.log(orderlines[i]);
-                var orderline = this.render_orderline(orderlines[i]);
-                if(orderlines[i].id === new_orderline.id){
-                    orderline.classList.add("restored");
-                    setTimeout(function(){
-                        orderline.classList.remove("restored");
-                    },600);
-                }
-                if(orderlines[i].not_display == undefined){
-                    list_container.appendChild(orderline);
+                if(orderlines[i].get_type_of() == order.get_type_of()){
+                    var orderline = this.render_orderline(orderlines[i]);
+                    if(orderlines[i].id === new_orderline.id){
+                        orderline.classList.add("restored");
+                        setTimeout(function(){
+                            orderline.classList.remove("restored");
+                        },600);
+                    }
+                    if(orderlines[i].not_display == undefined){
+                        list_container.appendChild(orderline);
+                    }
                 }
             }
 
@@ -376,9 +378,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                             .classList.remove('selected');
                         }
                         this.classList.add('selected');
+                        self.renderElement(true, {id:0});
                     }
                 });
-                if(list_type_of[i].classList[0]==="inside"){
+                if(list_type_of[i].classList[0]===order.get_type_of()){
                     list_type_of[i].classList.add('selected');
                     self.set_type_of(list_type_of[i].classList[0]);
                 }
