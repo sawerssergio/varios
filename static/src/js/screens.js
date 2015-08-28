@@ -527,6 +527,8 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                         //self.pos.get('selectedOrder').deselectLine();
                         self.product_list_widget.set_deselected_product();
                         self.product_list_widget.set_selected_product(product.id); 
+
+                        self.pos_widget.onscreen_keyboard.hide();
                     }
                 },
                 product_list: this.pos.db.get_template_by_category(1)
@@ -640,11 +642,14 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             this.el = el_node;
 
             this.$el = $(this.el);
-
+            this.$el.click(function(){
+                self.pos_widget.onscreen_keyboard.hide();
+            });
             if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
                 self.$el.find( 'input').each( function( index , input ){
                     //input.value="";
                     $(input).on( window.is_mobile ? 'touchend' : 'click' , function( evt ){
+                        evt.stopPropagation();
                         var input_event = this;
                         self.$( evt.target ).parent().parent()
                         .find('input').css('background' , 'transparent');

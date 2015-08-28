@@ -169,6 +169,9 @@ function openerp_pos_keyboard(instance, module){ //module is instance.pos_kingdo
             this.$el.click(function(){
                 self.hide(); 
             });
+            $('.keyboard').click(function(event){
+                event.stopPropagation();
+            });
             // Keyboard key click handling
             $('.keyboard li').click(function(event){
                 event.stopPropagation();
