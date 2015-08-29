@@ -328,8 +328,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             var list_container = el_node.querySelector('.orderlines');
             for(var i = 0, len = orderlines.length; i < len; i++){
-                console.log("ORDERLINES" + i);
-                console.log(orderlines[i]);
                 if(orderlines[i].get_type_of() == order.get_type_of()){
                     var orderline = this.render_orderline(orderlines[i]);
                     if(orderlines[i].id === new_orderline.id){
@@ -794,19 +792,20 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             }
         },
         set_selected_product:function(id){
-            /*var products = this.el.querySelectorAll('.product');
+            var products = this.el.querySelectorAll('.product');
             for(var i = 0;i<products.length;i++){
                 var product_id = Number(products[i].attributes[0].value);
                     products[i].querySelector('.product-img').className = "product-img";
                 if(id == product_id){
-                    products[i].querySelector('.product-img').className = "product-img selected";
+                    products[i].querySelector('.product-img').className = "product-img selected-product";
                 }
-            }*/
-            this.selected_product_id = id;
-            var querySelector = this.el.querySelector("[data-product-id='"+id+"'] > .product-img");
-            if(querySelector){
-                querySelector.className += ' selected-product';
+//            var querySelector = this.el.querySelector("[data-product-id='"+id+"'] > .product-img");
+//            if(querySelector){
+//                querySelector.className += ' selected-product';
+//            }
             }
+            this.selected_product_id = id; 
+            //this.el.querySelector("[data-product-id='"+id+"'] > .product-img").className += ' selected-product'; 
         },
         get_product_image_url: function(product){
             return window.location.origin + '/web/binary/image?model=product.product&field=image&id='+product.id;
@@ -1006,8 +1005,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         render_value: function(value){
             var self = this;
             var cached = this.value_cache.get_node(value.id);
-            if(!cached){
+            //if(!cached){
                 var image_url = this.get_attribute_value_image_url(value.id);
+                if($(".category-item.js-category-switch.selected").attr('data-category-id')==2)
+                    image_url = $(".product-img.selected-product img").attr("src");
                 var value_html = QWeb.render('Value',{ 
                         widget:  this, 
                         value: value, 
@@ -1021,7 +1022,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 });
                 this.value_cache.cache_node(value.id,value_node);
                 return value_node;
-            }
+            //}
             return cached;
         },
         renderElement: function(){
