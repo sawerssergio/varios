@@ -905,19 +905,29 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         set_value: function(id, value, is_set){
             //if(!this.attributes[id] && is_set) {
             //    this.attributes[id]=0;
-            //}
+            //} 
+            var querySelector = this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity");
             if(is_set){
                 if(this.attributes[id]){
-                    this.set_total_quantity(this.total_quantity-this.attributes[id]+value);
+                    var val = this.total_quantity-this.attributes[id]+value;
+                    console.log(val);
+                    this.set_total_quantity(val);
                     this.attributes[id] = value;
                 } else {
                     this.attributes[id] = value;
                     this.set_total_quantity(value);
                 }
             } else {
-                this.attributes[id] += value;
-                this.set_total_quantity(this.total_quantity+value);
+                if(querySelector){
+                    this.attributes[id] += value;
+                    this.set_total_quantity(this.total_quantity+value);
+                }
             }
+
+            if(querySelector){
+                querySelector.value = this.attributes[id];
+            }
+
             openerp.jsonRpc( '/display/set/product', 'call', {
                 "config_id":this.pos.config.id,
                 "templateId":this.selected_template.id,
@@ -926,7 +936,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             }).then(function( data){
                 console.log("this work");
             });
-            this.el.querySelector("[data-value-id='"+id+"'] > .top-block > .block-quantity").value = this.attributes[id];
+
         },
         set_total_quantity: function(value){
             this.total_quantity = value;
@@ -959,7 +969,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             if(product_template === this.selected_template){
                 //[FIXME] [KINGDOM] this process should be reversed,
                 //first call to total quantity and then value.
-                if (Object.keys(this.attributes).length === 0) {
+                if (product_template.attribute_line_ids.length === 0) {
                     //[FIXME] This should increase the total quantity.
                     this.set_total_quantity(this.total_quantity+1);
                     var querySelector = this.el.querySelector("[data-value-id='"+this.selected_template.id+"'] > .top-block > .block-quantity");
@@ -1097,7 +1107,9 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     //self.pos.pos_widget.product_screen.product_list_widget.set_deselected_product(); 
                     var drinks_categ_id = 2;
                     self.maxCount = self.total_quantity;
-                    self.pos.pos_widget.product_categories_widget.change_category(drinks_categ_id);
+                    if(self.maxCount > 0){
+                        self.pos.pos_widget.product_categories_widget.change_category(drinks_categ_id);
+                    }
                 }
             }else{
                 self.edit_line_order(self.pos.get('selectedOrder').selected_orderline);
