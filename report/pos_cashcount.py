@@ -11,15 +11,32 @@ class CashCount(models.AbstractModel):
         current_session = pos_session_obj.browse([self._ids[0]])
         opening_details = current_session.opening_details_ids
         details = current_session.details_ids
+        details_bob = [] 
+        details_usd = []
+        total_bob = 0 
+        total_usd = 0
+        totals = []
 
         for detail in details:
-            print detail.pieces
-    
+            decimal = str(detail.pieces-int(detail.pieces))[2:]
+            if int(detail.pieces) > 0 and int(decimal) > 0:
+                details_usd.append(detail)
+            else:
+                details_bob.append(detail)
+
+        for detail in details_bob:
+            total_bob += detail.pieces*detail.number_closing
+        for detail in details_usd:
+            total_usd += detail.pieces*detail.number_closing
+        totals.append(total_bob)
+        totals.append(total_usd)
 
         docargs = {
                 'doc_model':report.model,
                 'docs':current_session,
-                'details':details,
+                'details':details_bob,
+                'details_usd':details_usd,
+                'totals':totals,
         }
         return report_obj.render('pos_kingdom.report_cashcount',docargs)
 

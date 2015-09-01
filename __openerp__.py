@@ -59,6 +59,7 @@ Main Features
         'views/report_sessionsummary.xml',
         'views/report_invoice.xml',
         'views/pos_kingdom.xml',
+        'views/report_cashcount.xml',
         'data/kingdom_data.xml',
     ],
     'demo': [

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_cashcount">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <div class="page">
+                <h2>ARQUEO DE CAJA: <span t-field="o.name"/></h2>
+                <strong>BOLIVIANOS</strong>
+                <table class="table table-condensed mb32">
+                    <thead>
+                        <tr>
+                            <th>
+                                <strong>CORTE</strong>
+                            </th>
+                            <th>
+                                <strong>CANTIDAD</strong>
+                            </th>
+                            <th>
+                                <strong>SUBTOTAL BS</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="details" t-as="detail">
+                            <td>
+                                <strong>BS</strong> <t t-esc="detail.pieces"/>
+                            </td>
+                            <td>
+                                <t t-esc="detail.number_closing"/>
+                            </td>
+                            <td>
+                                <t t-esc="detail.pieces*detail.number_closing"/>
+                            </td>    
+                        </tr>
+                    </tbody>
+                </table>
+
+                <strong>DOLARES</strong>
+                <table class="table table-condensed mb32">
+                    <thead>
+                        <tr>
+                            <th>
+                                <strong>CORTE</strong>
+                            </th>
+                            <th>
+                                <strong>CANTIDAD</strong>
+                            </th>
+                            <th>
+                                <strong>SUBTOTAL BS</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="details_usd" t-as="detail">
+                            <td>
+                                <strong>$us</strong> <t t-esc="int(detail.pieces/6.90)"/>
+                            </td>
+                            <td>
+                                <t t-esc="detail.number_closing"/>
+                            </td>
+                            <td>
+                                <t t-esc="detail.pieces*detail.number_closing"/>
+                            </td>    
+                        </tr>
+                    </tbody>
+                </table>
+                <strong>RESUMEN</strong><br/>
+                <strong>TOTAL BOLIVIANOS:</strong><t t-esc="totals[0]"/><br/>
+                <strong>TOTAL DOLARES EQ. EN Bs:</strong><t t-esc="totals[1]"/><br/>
+                <strong>TOTAL ARQUEO EN EFECTIVO:</strong><span t-field="o.cash_register_id.balance_end"/><br/>
+                <strong>TOTAL VALES HELADOS:</strong><span>0</span><br/>
+                <strong>TOTAL VALES POLLOS:</strong><span>0</span><br/>
+                <strong>TOTAL CREDITOS:</strong><span>0</span><br/>
+                <strong>TOTAL ARQUEO DEL DIA:</strong><span t-field="o.cash_register_id.balance_end"/><br/>
+                
+            </div>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>
