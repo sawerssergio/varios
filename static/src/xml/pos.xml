@@ -1049,7 +1049,7 @@
         </li>
     </t>
 
-    <t t-name="Orderline">
+    <t t-name="Orderline2">
         <li t-attf-class="orderline #{ line.selected ? 'selected' : '' }">
             <div class="product-quantity">
                 <span class="number font-black"><t t-esc="line.get_quantity_display()"/></span>

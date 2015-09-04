@@ -262,7 +262,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         render_orderline: function(orderline){
             var self= this;
-            var el_str  = openerp.qweb.render('Orderline',{widget:this, line:orderline}); 
+            var el_str  = openerp.qweb.render('Orderline2',{widget:this, line:orderline}); 
             var el_node = document.createElement('div');
                 el_node.innerHTML = _.str.trim(el_str);
                 el_node = el_node.childNodes[0];
