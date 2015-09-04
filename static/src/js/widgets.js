@@ -962,7 +962,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 self.set_value(this.selected_template.id,options.quantity,true);
             }
             this.set_total_quantity(options.quantity);
-            this.show();
+            self.show();
         },
         set_template:function(product_template){
             var self = this;
