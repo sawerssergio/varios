@@ -6,29 +6,26 @@
         <t t-foreach="docs" t-as="o">
             <!--<t t-call="report.external_layout">-->
                 <div class="page">
-                    <div t-if="o.company_id.name">
-                        <strong><t t-esc="o.company_id.name"/></strong>
-                    </div>
-                    <div t-if="o.company_id.street2">
-                        <strong><t t-esc="o.company_id.street2"/></strong>
-                    </div>
-                    <div t-if="o.company_id.street">
-                        <strong><t t-esc="o.company_id.street"/></strong>
-                    </div>
-                    <div t-if="o.company_id.phone">
-                        <strong>
-                            Telefono: <t t-esc="o.company_id.phone"/>
-                        </strong>
-                    </div>
-                    <div>
-                        <strong>F A C T U R A</strong>
-                    </div>
-                    <br/>
-                    <div>
-                        <strong>
-                            ------------------------------------------
-                        </strong>
-                    </div>
+                    <center>
+                        <div t-if="o.company_id.name">
+                            <strong><t t-esc="o.company_id.name"/></strong>
+                        </div>
+                        <div t-if="o.company_id.street2">
+                            <strong><t t-esc="o.company_id.street2"/></strong>
+                        </div>
+                        <div t-if="o.company_id.street">
+                            <strong><t t-esc="o.company_id.street"/></strong>
+                        </div>
+                        <div t-if="o.company_id.phone">
+                            <strong>
+                                Telefono: <t t-esc="o.company_id.phone"/>
+                            </strong>
+                        </div>
+                        <div>
+                            <strong>F A C T U R A</strong>
+                        </div>
+                    </center>
+                    <hr/>
                     <div t-if="o.company_id.vat">
                         NIT: <t t-esc="o.company_id.vat"/>
                     </div>
@@ -47,48 +44,42 @@
                     <div t-if="o.partner_id.vat">
                         NIT/CI: <t t-esc="o.partner_id.vat"/>
                     </div>
-
-                    <div>
-                        <strong>
-                            ------------------------------------------
-                        </strong>
-                    </div>
-                    <table>
-                        <tr>
-                            <td>
-                                <p>CANT</p>
-                            </td>
-                            <td>
-                                <p>CONCEPTO</p>
-                            </td>
-                            <td>
-                                <p>PRECIO</p>
-                            </td>
-                            <td>
-                                <p>TOTAL</p>
-                            </td>
-                        </tr>
-                        <tr t-foreach="o.invoice_id.invoice_line" t-as="line">
-                            <td>
-                                <t t-esc="int(line.quantity)"/>
-                            </td>
-                            <td>
-                                <t t-esc="line.name"/>
-                            </td>
-                            <td>
-                                <t t-esc="line.price_unit"/>
-                            </td>
-                            <td>
-                                <t t-esc="line.price_subtotal"/>
-                            </td>
-                        </tr>
+                    <hr/>
+                    <table class="table table-condensed mb32">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <p>CANT</p>
+                                </th>
+                                <th>
+                                    <p>CONCEPTO</p>
+                                </th>
+                                <th>
+                                    <p>PRECIO</p>
+                                </th>
+                                <th>
+                                    <p>TOTAL</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.invoice_id.invoice_line" t-as="line">
+                                <td>
+                                    <t t-esc="int(line.quantity)"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.product_id.name_template"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.price_unit"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.price_subtotal"/>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
-                    <div>
-                        <strong>
-                            ------------------------------------------
-                        </strong>
-                    </div>
-                    <br/>
+                    <hr/>
                     <div t-if="o.invoice_id.amount_untaxed">
                         Total: <t t-esc="o.invoice_id.amount_untaxed"/>
                         <!--<br/>
@@ -111,22 +102,16 @@
                     <div t-if="o.name">
                         Pedido: <t t-esc="o.name"/>
                     </div>
-                    <br/>
-                    <br/>
-                    <br/>
                     <div>
-                        <img  t-att-src="'/report/barcode/QR/%s' % 'My text in qr code'" height="100" width="100"/>
+                        <center>
+                            <img  t-att-src="'/report/barcode/QR/%s' % 'My text in qr code'" height="100" width="100"/>
+                        </center>
                     </div> 
+                    <hr/>
                     <div>
-                        <strong>
-                            ------------------------------------------
-                        </strong>
-                    </div>
-                    <div>
-                        <p>GRACIAS, VUELVA PRONTO :)</p>
+                        <p>"ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY"</p>
                     </div>
                 </div>
-                <!--</t>-->
         </t>
     </t>
 </template>
