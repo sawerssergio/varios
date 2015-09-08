@@ -18,16 +18,17 @@ class CashCount(models.AbstractModel):
         totals = []
 
         for detail in details:
-            decimal = str(detail.pieces-int(detail.pieces))[2:]
-            if int(detail.pieces) > 0 and int(decimal) > 0:
+            currency_name = detail.journal_cashbox_ref.currency_name
+            if currency_name == 'USD':
                 details_usd.append(detail)
-            else:
+
+            if currency_name == 'BOB':
                 details_bob.append(detail)
 
         for detail in details_bob:
             total_bob += detail.pieces*detail.number_closing
         for detail in details_usd:
-            total_usd += detail.pieces*detail.number_closing
+            total_usd += (detail.pieces/6.85)*detail.number_closing
         totals.append(total_bob)
         totals.append(total_usd)
 

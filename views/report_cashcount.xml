@@ -17,7 +17,7 @@
                                 <strong>CANTIDAD</strong>
                             </th>
                             <th>
-                                <strong>SUBTOTAL BS</strong>
+                                <strong>SUBTOTAL</strong>
                             </th>
                         </tr>
                     </thead>
@@ -30,11 +30,14 @@
                                 <t t-esc="detail.number_closing"/>
                             </td>
                             <td>
-                                <t t-esc="detail.pieces*detail.number_closing"/>
+                                <strong>BS</strong> <t t-esc="detail.pieces*detail.number_closing"/>
                             </td>    
                         </tr>
                     </tbody>
                 </table>
+
+                <strong>TOTAL BOLIVIANOS:</strong> <strong>BS</strong> <t t-esc="totals[0]"/><br/>
+                <br/>
 
                 <strong>DOLARES</strong>
                 <table class="table table-condensed mb32">
@@ -47,27 +50,31 @@
                                 <strong>CANTIDAD</strong>
                             </th>
                             <th>
-                                <strong>SUBTOTAL BS</strong>
+                                <strong>SUBTOTAL</strong>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr t-foreach="details_usd" t-as="detail">
                             <td>
-                                <strong>$us</strong> <t t-esc="int(detail.pieces/6.90)"/>
+                                <strong>$us</strong> <t t-esc="int(detail.pieces/6.85)"/>
                             </td>
                             <td>
                                 <t t-esc="detail.number_closing"/>
                             </td>
                             <td>
-                                <t t-esc="detail.pieces*detail.number_closing"/>
+                                <strong>$us</strong> <t t-esc="(detail.pieces/6.85)*detail.number_closing"/>
                             </td>    
                         </tr>
                     </tbody>
                 </table>
+                <br/>
+                <strong>TOTAL DOLARES:</strong> <strong>$us</strong> <t t-esc="totals[1]"/><br/>
+                <br/>
+
                 <strong>RESUMEN</strong><br/>
                 <strong>TOTAL BOLIVIANOS:</strong><t t-esc="totals[0]"/><br/>
-                <strong>TOTAL DOLARES EQ. EN Bs:</strong><t t-esc="totals[1]"/><br/>
+                <strong>TOTAL DOLARES EQ. EN Bs:</strong><t t-esc="totals[1]*6.85"/><br/>
                 <strong>TOTAL ARQUEO EN EFECTIVO:</strong><span t-field="o.cash_register_id.balance_end"/><br/>
                 <strong>TOTAL VALES HELADOS:</strong><span>0</span><br/>
                 <strong>TOTAL VALES POLLOS:</strong><span>0</span><br/>

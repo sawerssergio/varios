@@ -42,6 +42,7 @@ Main Features
         'views/templates.xml',
         'pos_kingdom_report.xml',
         'pos_kingdom_view.xml',
+        'pos_kingdom_cashbox.xml',
         'pos_kingdom_sequence.xml',
         'pos_kingdom_data.xml',
         'report/pos_order_report_view.xml',
