@@ -865,11 +865,12 @@
                             </group>
                             <newline/>
                             <group string="Opening Cash Control" attrs="{'invisible' : [('cash_control', '=', False)]}">
-                                <field name="opening_details_ids" nolabel="1" colspan="2" attrs="{'readonly' : [('state', '!=', 'opening_control')]}">
-                                    <tree string="Opening Cashbox Lines" editable="bottom">
+                                <field name="opening_details_ids" widget="one2many_list" context="{'group_by':'currency_name'}"  nolabel="1" colspan="2" attrs="{'readonly' : [('state', '!=', 'opening_control')]}">
+                                    <tree string="Opening Cashbox Lines"  editable="bottom">
                                         <field name="pieces" readonly="1" />
                                         <field name="number_opening" on_change="on_change_sub_opening(pieces, number_opening)" />
                                         <field name="subtotal_opening" string="Opening Subtotal" sum="Total"/>
+                                        <field name="currency_name" string="Currency"/>
                                     </tree>
                                 </field>
                             </group>
@@ -879,6 +880,7 @@
                                         <field name="pieces" readonly="1" />
                                         <field name="number_closing" on_change="on_change_sub_closing(pieces, number_closing)"/>
                                         <field name="subtotal_closing" string="Closing Subtotal" sum="Total"/>
+                                        <field name="currency_name" string="Currency"/>
                                     </tree>
                                 </field>
                             </group>

@@ -28,7 +28,7 @@ class CashCount(models.AbstractModel):
         for detail in details_bob:
             total_bob += detail.pieces*detail.number_closing
         for detail in details_usd:
-            total_usd += (detail.pieces/6.85)*detail.number_closing
+            total_usd += detail.pieces*detail.number_closing
         totals.append(total_bob)
         totals.append(total_usd)
 
