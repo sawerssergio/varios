@@ -68,12 +68,12 @@ class account_cashbox_line(models.Model):
                     return new_id
                 else:
                     if cashbox_memory_line.currency_name == 'BOB':
-                        right_journal_cashbox = journal_cashbox_line.search([['pieces','=',values['pieces']],['currency_name','=','USD']])
+                        right_journal_cashbox = journal_cashbox_line.search([['pieces','=',values['pieces']],['currency_name','=','USD'],['journal_id','=',current_bank_statement.journal_id.id]])
                         values['journal_cashbox_ref'] = right_journal_cashbox.id
 
 
                     if cashbox_memory_line.currency_name == 'USD':
-                        right_journal_cashbox = journal_cashbox_line.search([['pieces','=',values['pieces']],['currency_name','=','BOB']])
+                        right_journal_cashbox = journal_cashbox_line.search([['pieces','=',values['pieces']],['currency_name','=','BOB'],['journal_id','=',current_bank_statement.journal_id.id]])
                         values['journal_cashbox_ref'] = right_journal_cashbox.id
                         
                     new_id = super(account_cashbox_line,self).create(values)
