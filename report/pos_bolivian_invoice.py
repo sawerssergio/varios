@@ -30,11 +30,19 @@ class BolivianInvoiceReport(models.AbstractModel):
             if order.invoice_id:
                 ids_to_print.append(order.invoice_id.id)
                 invoiced_posorders_ids.append(order.id)
-
+        paid = 0
+        due = 0
+        for statement in selected_orders.statement_ids:
+            if statement.amount < 0:
+                due = abs(statement.amount)
+            else:
+                paid = statement.amount
         docargs = {
                 'doc_ids': ids_to_print,
                 'doc_model': report.model,
                 'docs': selected_orders,
                 'num2words': self.get_amount_literal,
+                'paid':paid,
+                'due':due,
         }
         return report_obj.render('pos_kingdom.bolivian_invoice', docargs)

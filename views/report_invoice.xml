@@ -26,15 +26,20 @@
                         </div>
                     </center>
                     <hr/>
+                    <center>
                     <div t-if="o.company_id.vat">
                         NIT: <t t-esc="o.company_id.vat"/>
                     </div>
                     <div t-if="o.invoice_id.id">
-                        FACTURA: <t t-esc="o.invoice_id.id"/>
+                        FACTURA No. <t t-esc="o.invoice_id.id"/>
                     </div>
                     <div t-if="o.session_id.config_id.authorization">
-                        AUTORIZACION: <t t-esc="o.session_id.config_id.authorization"/>
+                        AUTORIZACION No. <t t-esc="o.session_id.config_id.authorization"/>
                     </div>
+                    </center>
+                    <hr/>
+                    <strong>Actividad Economica:</strong>
+                    <center>
                     <div t-if="o.invoice_id.date_invoice">
                         FECHA: <t t-esc="o.invoice_id.date_invoice"/>
                     </div>
@@ -44,6 +49,7 @@
                     <div t-if="o.partner_id.vat">
                         NIT/CI: <t t-esc="o.partner_id.vat"/>
                     </div>
+                    </center>
                     <hr/>
                     <table class="table table-condensed mb32">
                         <thead>
@@ -80,28 +86,29 @@
                         </tbody>
                     </table>
                     <hr/>
-                    <div t-if="o.invoice_id.amount_untaxed">
-                        Total: <t t-esc="o.invoice_id.amount_untaxed"/>
-                        <!--<br/>
-                        Efectivo: <t t-esc="widget.format_currency(paymentlines[0].get_amount())"/>
+                    <div class="text-right" t-if="o.invoice_id.amount_total">
+                        TOTAL Bs. <t t-esc="o.invoice_id.amount_total"/>
                         <br/>
-                        Cambio: <t t-esc="widget.format_currency(order.getChange())"/>-->
+                        PAGADO Bs. <t t-esc="paid"/>
+                        <br/>
+                        CAMBIO Bs. <t t-esc="due"/>
                     </div>
-                    <div t-if="o.invoice_id.amount_untaxed">
-                        Son: <span t-esc="num2words(o.invoice_id.amount_untaxed)"/>
+                    <div t-if="o.invoice_id.amount_total">
+                        SON: <span t-esc="num2words(o.invoice_id.amount_total)"/>
                     </div>
-                    <div t-if="o.invoice_id.user_id.login">
-                        Emitido por: <t t-esc="o.invoice_id.user_id.login"/>
-                    </div>
-                    <br/>
-                    Codigo de Control: E3-9F-DC-9D
+                    CODIGO DE CONTROL: E3-9F-DC-9D
                     <br/>
                     <div t-if="o.session_id.config_id.limit_date">
-                        Fecha limite emision: <t t-esc="o.session_id.config_id.limit_date"/>
+                        FECHA LIMITE DE EMISION: <t t-esc="o.session_id.config_id.limit_date"/>
                     </div>
-                    <div t-if="o.name">
+                    <!--<div t-if="o.name">
                         Pedido: <t t-esc="o.name"/>
+                    </div>-->
+                    <div t-if="o.invoice_id.user_id.login">
+                        VENDEDOR: <t t-esc="o.invoice_id.user_id.login"/>
                     </div>
+                    <br/>
+
                     <div>
                         <center>
                             <img  t-att-src="'/report/barcode/QR/%s' % 'My text in qr code'" height="100" width="100"/>

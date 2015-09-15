@@ -40,7 +40,7 @@
         </record>
 
         <record id="sawers_invoice_report" model="ir.actions.report.xml">
-            <field name="paperformat_id" ref="pos_kingdom.paperformat_posreceipt"/>
+            <field name="paperformat_id" ref="pos_kingdom.paperformat_bolivianinvoice"/>
         </record>
 
         <report
