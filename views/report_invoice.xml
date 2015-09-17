@@ -89,14 +89,17 @@
                     <div class="text-right" t-if="o.invoice_id.amount_total">
                         TOTAL Bs. <t t-esc="o.invoice_id.amount_total"/>
                         <br/>
-                        PAGADO Bs. <t t-esc="paid"/>
+                        EFECTIVO Bs. <t t-esc="paid"/>
                         <br/>
                         CAMBIO Bs. <t t-esc="due"/>
                     </div>
+                    <br/>
                     <div t-if="o.invoice_id.amount_total">
                         SON: <span t-esc="num2words(o.invoice_id.amount_total)"/>
+                    </div> 
+                    <div t-if="o.invoice_id.control_code">
+                        CODIGO DE CONTROL: <t t-esc="o.invoice_id.control_code"/>
                     </div>
-                    CODIGO DE CONTROL: E3-9F-DC-9D
                     <br/>
                     <div t-if="o.session_id.config_id.limit_date">
                         FECHA LIMITE DE EMISION: <t t-esc="o.session_id.config_id.limit_date"/>

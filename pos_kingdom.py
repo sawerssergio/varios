@@ -29,8 +29,10 @@ from openerp.tools.translate import _
 
 import openerp.addons.decimal_precision as dp
 import openerp.addons.product.product
+from codigoControl.CodigoControl import CodigoControl
 from num2words import num2words
 from PIL import Image
+from datetime import datetime
 
 try:
     import cStringIO as StringIO
@@ -754,9 +756,21 @@ class pos_order(models.Model):
         self.amount_tax = val1-val2
         self.amount_total = val1
 
-    @api.onchange('amount_total','date_order','lines','partner_id', 'sequence_number',)
+    #@api.onchange('amount_total','date_order','lines','partner_id', 'sequence_number',)
     def _gen_control_code(self):
-        self.control_code="TE-ST"
+      ir_sequence = self.env['ir.sequence']
+      invoice_number = ir_sequence.search([('name','=','Sales Journal')]).number_next
+      amount = int(self.amount_total)
+      date_order = self.date_order
+      date_object = datetime.strptime(date_order,'%Y-%m-%d %H:%M:%S')
+      strtime = datetime.strftime(date_object,'%Y%m%d')
+      authorization = self.session_id.config_id.authorization
+      key = self.session_id.config_id.key
+      partner_nit = self.partner_id.vat
+      control_code = CodigoControl.generar(authorization,invoice_number,partner_nit,strtime,amount,key)
+      print control_code
+      return control_code
+        
 
     @api.onchange('amount_total')
     def _amount_words(self):
@@ -1054,6 +1068,7 @@ class pos_order(models.Model):
                 'partner_id': order.partner_id.id,
                 'comment': order.note or '',
                 'currency_id': order.pricelist_id.currency_id.id, # considering partner's sale pricelist's currency
+                'control_code':order._gen_control_code(),
             }
             inv.update(inv_ref.onchange_partner_id(cr, uid, [], 'out_invoice', order.partner_id.id)['value'])
             if not inv.get('account_id', None):

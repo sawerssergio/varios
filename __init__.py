@@ -23,6 +23,7 @@ import account_bank_statement
 import controllers
 import pos_kingdom
 import pos_kingdom_cashbox
+import pos_kingdom_invoice
 import report
 import res_users
 import res_partner
