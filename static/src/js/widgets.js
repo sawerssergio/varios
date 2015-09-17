@@ -315,8 +315,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         },
         renderElement: function(scrollbottom, new_orderline){
             var self = this;
+
+            new_orderline = new_orderline || {id: 0};
             this.pos_widget.numpad.state.reset();
-            var orderline = orderline || {id:0};
+
             var order  = this.pos.get('selectedOrder');
             var orderlines = order.get('orderLines').models;
 
