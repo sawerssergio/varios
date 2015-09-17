@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 <data>
+
+<template id="bolivian_invoice_style" inherit_id="report.layout">
+    <xpath expr="//style" position="after">
+        <style type="text/css">
+            hr {
+               border: 1px solid black; 
+               } 
+        </style>
+    </xpath>
+
+</template>
+
+
 <template id="bolivian_invoice">
     <t t-call="report.html_container">
         <t t-foreach="docs" t-as="o">
@@ -10,11 +23,17 @@
                         <div t-if="o.company_id.name">
                             <strong><t t-esc="o.company_id.name"/></strong>
                         </div>
-                        <div t-if="o.company_id.street2">
-                            <strong><t t-esc="o.company_id.street2"/></strong>
+                        <div t-if="o.company_id.branch_office">
+                            <strong><t t-esc="o.company_id.branch_office"/></strong>
                         </div>
                         <div t-if="o.company_id.street">
                             <strong><t t-esc="o.company_id.street"/></strong>
+                        </div>
+                        <div t-if="o.company_id.street2">
+                            <strong><t t-esc="o.company_id.street2"/></strong>
+                        </div>
+                        <div t-if="o.company_id.city and o.company_id.country_id">
+                            <strong><t t-esc="o.company_id.city"/>-<t t-esc="o.company_id.country_id.name"/></strong>
                         </div>
                         <div t-if="o.company_id.phone">
                             <strong>
@@ -107,8 +126,8 @@
                     <!--<div t-if="o.name">
                         Pedido: <t t-esc="o.name"/>
                     </div>-->
-                    <div t-if="o.invoice_id.user_id.login">
-                        VENDEDOR: <t t-esc="o.invoice_id.user_id.login"/>
+                    <div t-if="o.invoice_id.user_id.partner_id.name">
+                        VENDEDOR: <t t-esc="o.invoice_id.user_id.partner_id.name"/>
                     </div>
                     <br/>
 
@@ -118,8 +137,8 @@
                         </center>
                     </div> 
                     <hr/>
-                    <div>
-                        <p>"ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY"</p>
+                    <div t-if="o.company_id.invoice_legend">
+                        <p><t t-esc="o.company_id.invoice_legend"/></p>
                     </div>
                 </div>
         </t>
