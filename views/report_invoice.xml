@@ -114,7 +114,7 @@
 
                     <div>
                         <center>
-                            <img  t-att-src="'/report/barcode/QR/%s' % 'My text in qr code'" height="100" width="100"/>
+                            <img  t-att-src="qr_string" height="100" width="100"/>
                         </center>
                     </div> 
                     <hr/>

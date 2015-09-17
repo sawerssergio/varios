@@ -1,8 +1,25 @@
 from openerp import api,models
 from num2words import num2words
+from datetime import datetime
 
 class BolivianInvoiceReport(models.AbstractModel):
     _name = 'report.pos_kingdom.bolivian_invoice'
+
+    def get_qr_string(self,order):  
+      invoice_number = order.invoice_id.number
+      amount = str(order.invoice_id.amount_total)
+      date_invoice = order.invoice_id.date_invoice
+      date_object = datetime.strptime(date_invoice,'%Y-%m-%d')
+      strtime = datetime.strftime(date_object,'%d/%m/%Y')
+      authorization = order.session_id.config_id.authorization
+      company_nit = order.company_id.vat
+      partner_nit = order.partner_id.vat
+      control_code = order.invoice_id.control_code
+      qr_gen = "/report/barcode/QR/"
+      qr_string = company_nit + "|" + invoice_number + "|" + authorization + "|" + strtime + "|" + amount + "|" + amount + "|" + control_code + "|" + partner_nit + "|0|0|0|0"
+      qr_url = qr_gen + qr_string
+      print qr_url
+      return qr_url
 
     def get_amount_literal(self,number):
         literal = num2words(int(number),lang='es')
@@ -26,10 +43,13 @@ class BolivianInvoiceReport(models.AbstractModel):
         print selected_orders[0].name
         ids_to_print = []
         invoiced_posorders_ids = []
+        qr_string = ""
         for order in selected_orders:
             if order.invoice_id:
                 ids_to_print.append(order.invoice_id.id)
                 invoiced_posorders_ids.append(order.id)
+                qr_string = self.get_qr_string(order)
+
         paid = 0
         due = 0
         for statement in selected_orders.statement_ids:
@@ -37,6 +57,7 @@ class BolivianInvoiceReport(models.AbstractModel):
                 due = abs(statement.amount)
             else:
                 paid = statement.amount
+ 
         docargs = {
                 'doc_ids': ids_to_print,
                 'doc_model': report.model,
@@ -44,5 +65,6 @@ class BolivianInvoiceReport(models.AbstractModel):
                 'num2words': self.get_amount_literal,
                 'paid':paid,
                 'due':due,
+                'qr_string':qr_string,
         }
         return report_obj.render('pos_kingdom.bolivian_invoice', docargs)
