@@ -6,7 +6,7 @@ class BolivianInvoiceReport(models.AbstractModel):
     _name = 'report.pos_kingdom.bolivian_invoice'
 
     def get_qr_string(self,order):  
-      invoice_number = order.invoice_id.number
+      invoice_number = int(order.invoice_id.number)
       amount = str(order.invoice_id.amount_total)
       date_invoice = order.invoice_id.date_invoice
       date_object = datetime.strptime(date_invoice,'%Y-%m-%d')
@@ -16,9 +16,8 @@ class BolivianInvoiceReport(models.AbstractModel):
       partner_nit = order.partner_id.vat
       control_code = order.invoice_id.control_code
       qr_gen = "/report/barcode/QR/"
-      qr_string = company_nit + "|" + invoice_number + "|" + authorization + "|" + strtime + "|" + amount + "|" + amount + "|" + control_code + "|" + partner_nit + "|0|0|0|0"
+      qr_string = company_nit + "|" + str(invoice_number) + "|" + authorization + "|" + strtime + "|" + amount + "|" + amount + "|" + control_code + "|" + partner_nit + "|0|0|0|0"
       qr_url = qr_gen + qr_string
-      print qr_url
       return qr_url
 
     def get_amount_literal(self,number):

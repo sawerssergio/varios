@@ -96,21 +96,21 @@
                                     <t t-esc="line.product_id.name_template"/>
                                 </td>
                                 <td>
-                                    <t t-esc="line.price_unit"/>
+                                    <t t-esc="'%.2f' % line.price_unit"/>
                                 </td>
                                 <td>
-                                    <t t-esc="line.price_unit*int(line.quantity)"/>
+                                    <t t-esc="'%.2f' % (line.price_unit*int(line.quantity))"/>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <hr/>
                     <div class="text-right" t-if="o.invoice_id.amount_total">
-                        TOTAL Bs. <t t-esc="o.invoice_id.amount_total"/>
+                        TOTAL Bs. <t t-esc="'%.2f' % o.invoice_id.amount_total"/>
                         <br/>
-                        EFECTIVO Bs. <t t-esc="paid"/>
+                        EFECTIVO Bs. <t t-esc="'%.2f' % paid"/>
                         <br/>
-                        CAMBIO Bs. <t t-esc="due"/>
+                        CAMBIO Bs. <t t-esc="'%.2f' % due"/>
                     </div>
                     <br/>
                     <div t-if="o.invoice_id.amount_total">
