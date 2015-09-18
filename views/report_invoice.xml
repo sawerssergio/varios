@@ -32,13 +32,13 @@
                         <div t-if="o.company_id.street2">
                             <strong><t t-esc="o.company_id.street2"/></strong>
                         </div>
-                        <div t-if="o.company_id.city and o.company_id.country_id">
-                            <strong><t t-esc="o.company_id.city"/>-<t t-esc="o.company_id.country_id.name"/></strong>
-                        </div>
                         <div t-if="o.company_id.phone">
                             <strong>
                                 Telefono: <t t-esc="o.company_id.phone"/>
                             </strong>
+                        </div>
+                        <div t-if="o.company_id.city and o.company_id.country_id">
+                            <strong><t t-esc="o.company_id.city"/>-<t t-esc="o.company_id.country_id.name"/></strong>
                         </div>
                         <div>
                             <strong>F A C T U R A</strong>
@@ -60,7 +60,7 @@
                     <strong>Actividad Economica:</strong>
                     <center>
                     <div t-if="o.invoice_id.date_invoice">
-                        FECHA: <t t-esc="o.invoice_id.date_invoice"/>
+                        FECHA: <t t-esc="date_invoice"/>
                     </div>
                     <div t-if="o.partner_id.name">
                         SENOR(ES): <t t-esc="o.partner_id.name"/>
@@ -99,7 +99,7 @@
                                     <t t-esc="line.price_unit"/>
                                 </td>
                                 <td>
-                                    <t t-esc="line.price_subtotal"/>
+                                    <t t-esc="line.price_unit*int(line.quantity)"/>
                                 </td>
                             </tr>
                         </tbody>

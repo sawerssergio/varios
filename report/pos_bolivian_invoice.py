@@ -44,11 +44,15 @@ class BolivianInvoiceReport(models.AbstractModel):
         ids_to_print = []
         invoiced_posorders_ids = []
         qr_string = ""
+        date_invoice = ""
         for order in selected_orders:
             if order.invoice_id:
                 ids_to_print.append(order.invoice_id.id)
                 invoiced_posorders_ids.append(order.id)
                 qr_string = self.get_qr_string(order)
+                date_inv = order.invoice_id.date_invoice
+                date_obj = datetime.strptime(date_inv,'%Y-%m-%d')
+                date_invoice = datetime.strftime(date_obj,'%d/%m/%Y')
 
         paid = 0
         due = 0
@@ -66,5 +70,6 @@ class BolivianInvoiceReport(models.AbstractModel):
                 'paid':paid,
                 'due':due,
                 'qr_string':qr_string,
+                'date_invoice':date_invoice,
         }
         return report_obj.render('pos_kingdom.bolivian_invoice', docargs)
