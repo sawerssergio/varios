@@ -34,6 +34,7 @@ from num2words import num2words
 from PIL import Image
 from datetime import datetime
 
+from codigoControl import CodigoControl
 try:
     import cStringIO as StringIO
 except ImportError:
@@ -771,7 +772,6 @@ class pos_order(models.Model):
       print control_code
       return control_code
         
-
     @api.onchange('amount_total')
     def _amount_words(self):
         return num2words(self.amount_total)
