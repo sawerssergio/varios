@@ -33,8 +33,8 @@ from codigoControl.CodigoControl import CodigoControl
 from num2words import num2words
 from PIL import Image
 from datetime import datetime
+from codigoControl.CodigoControl import CodigoControl as cc
 
-from codigoControl import CodigoControl
 try:
     import cStringIO as StringIO
 except ImportError:
@@ -762,6 +762,7 @@ class pos_order(models.Model):
     def _gen_control_code(self):
       ir_sequence = self.env['ir.sequence']
       invoice_number = ir_sequence.search([('name','=','Sales Journal')]).number_next
+      invoice_number = int(invoice_number)
       amount = int(self.amount_total)
       date_order = self.date_order
       date_object = datetime.strptime(date_order,'%Y-%m-%d %H:%M:%S')
@@ -769,7 +770,7 @@ class pos_order(models.Model):
       authorization = self.session_id.config_id.authorization
       key = self.session_id.config_id.key
       partner_nit = self.partner_id.vat
-      control_code = CodigoControl.generar(authorization,invoice_number,partner_nit,strtime,amount,key)
+      control_code = cc.generar(authorization,invoice_number,partner_nit,strtime,amount,key)
       print control_code
       return control_code
         
