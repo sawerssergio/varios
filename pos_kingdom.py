@@ -162,6 +162,7 @@ class pos_config(models.Model):
     authorization    = fields.Char('authorization', size=64, help='authorization')
     key              = fields.Char('key',size=64, help='key')
     limit_date       = fields.Date('Limit Date')
+    usd_rate         = fields.Float(help='USD RATE',string='USD Rate')
 
     def _check_cash_control(self, cr, uid, ids, context=None):
         return all(

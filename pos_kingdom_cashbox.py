@@ -53,7 +53,6 @@ class account_cashbox_line(models.Model):
 
     @api.model
     def create(self,values):
-        print values
         cashbox_memory_model = self.env['cashbox.memory']
         bank_statement_model = self.env['account.bank.statement']
         current_bank_statement = bank_statement_model.browse(values['bank_statement_id'])
