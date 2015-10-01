@@ -689,11 +689,12 @@
                             <field name="sequence_id" readonly="1" groups="base.group_no_one"/>
                             <field name="currency_id" invisible="1"/>
                         </group>
-                        <separator string="NIT" colspan="4"/>
+                        <separator string="Invoicing" colspan="4"/>
                         <group col="4">
                             <field name="authorization" />
                             <field name="key" />
                             <field name="limit_date" />
+                            <field name="usd_rate"/>
                         </group>
                         <separator string="Available Payment Methods" colspan="4"/>
                         <field name="journal_ids" colspan="4" nolabel="1" context="{'default_journal_user': 1}">
