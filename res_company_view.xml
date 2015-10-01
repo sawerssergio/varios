@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='partner_id']" position="after">
-                    <field name="branch_office" string="Nombre Sucursal"/>
+                    <field name="branch_office" string="Branch Name"/>
                 </xpath>
                 <notebook position="inside">
                     <page string="Invoicing" position="inside">
