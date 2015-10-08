@@ -23,9 +23,9 @@
                         <div t-if="o.company_id.name">
                             <strong><t t-esc="o.company_id.name"/></strong>
                         </div>
-                        <div t-if="o.company_id.branch_office">
+                        <!--<div t-if="o.company_id.branch_office">
                             <strong><t t-esc="o.company_id.branch_office"/></strong>
-                        </div>
+                        </div>-->
                         <div t-if="o.company_id.street">
                             <strong><t t-esc="o.company_id.street"/></strong>
                         </div>
@@ -89,6 +89,7 @@
                         </thead>
                         <tbody>
                             <tr t-foreach="o.invoice_id.invoice_line" t-as="line">
+                                <t t-if="line.price_unit != 0.0">
                                 <td>
                                     <t t-esc="int(line.quantity)"/>
                                 </td>
@@ -101,6 +102,7 @@
                                 <td>
                                     <t t-esc="'%.2f' % (line.price_unit*int(line.quantity))"/>
                                 </td>
+                                </t>
                             </tr>
                         </tbody>
                     </table>
