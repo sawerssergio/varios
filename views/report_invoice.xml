@@ -49,8 +49,8 @@
                     <div t-if="o.company_id.vat">
                         NIT: <t t-esc="o.company_id.vat"/>
                     </div>
-                    <div t-if="o.invoice_id.id">
-                        FACTURA No. <t t-esc="o.invoice_id.id"/>
+                    <div t-if="o.invoice_id.number">
+                        FACTURA No. <t t-esc="int(o.invoice_id.number)"/>
                     </div>
                     <div t-if="o.session_id.config_id.authorization">
                         AUTORIZACION No. <t t-esc="o.session_id.config_id.authorization"/>
