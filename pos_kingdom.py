@@ -29,11 +29,10 @@ from openerp.tools.translate import _
 
 import openerp.addons.decimal_precision as dp
 import openerp.addons.product.product
-from codigoControl.CodigoControl import CodigoControl
 from num2words import num2words
 from PIL import Image
 from datetime import datetime
-from codigoControl.CodigoControl import CodigoControl as cc
+from openerp.tools import CodigoControl as cc
 
 try:
     import cStringIO as StringIO
@@ -817,7 +816,7 @@ class pos_order(models.Model):
     nb_print        = fields.Integer('Number of Print', readonly=True, copy=False)
     pos_reference   = fields.Char('Receipt Ref', readonly=True, copy=False)
     sale_journal    = fields.Many2one(related='session_id.config_id.journal_id', string='Sale Journal', store=True, readonly=True) #, relation='account.journal', type='many2one'
-    control_code       = fields.Char('Control Code', readonly=True, copy=False)
+    control_code       = fields.Char('Control Code', copy=False)
     amount_words       = fields.Char('Monto', readonly=True, compute='_amount_words')
     type_of = fields.Selection([('inside', 'to go'),
                                ('outside', 'for here')],
