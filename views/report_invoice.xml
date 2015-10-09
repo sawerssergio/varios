@@ -57,7 +57,9 @@
                     </div>
                     </center>
                     <hr/>
-                    <strong>Actividad Economica:</strong>
+                    <div t-if="o.company_id.economic_activity">
+                        <strong>Actividad Economica:</strong> <t t-esc="o.company_id.economic_activity"/>
+                    </div>
                     <center>
                     <div t-if="o.invoice_id.date_invoice">
                         FECHA: <t t-esc="date_invoice"/>
