@@ -23,11 +23,9 @@ import account_bank_statement
 import controllers
 import pos_kingdom
 import pos_kingdom_cashbox
-import pos_kingdom_invoice
 import report
 import res_users
 import res_partner
-import res_company
 import wizard
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
