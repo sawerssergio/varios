@@ -370,11 +370,11 @@
                 <ul class="client-details">
                     <li class='client-detail-item font-medium'>
                         <span class='label'>NIT:</span>
-                        <input class='detail client-vat' name='vat'  placeholder='Vat' type="number" onfocus="blur()"></input>
+                        <input class='detail client-vat' name='vat'  placeholder='Vat' type="number"></input>
                     </li>
                     <li class='client-detail-item font-medium'>
                         <span class='label'>Nombre:</span>
-                        <input class='detail client-name' name='name'  placeholder='Name' type="text" onfocus="blur()"></input>
+                        <input class='detail client-name' name='name'  placeholder='Name' type="text"></input>
                     </li>
                     <!--
                     <li class='client-detail-item font-medium'>
@@ -396,11 +396,11 @@
                 <ul class="client-details">
                     <li class='client-detail-item font-medium'>
                         <span class='label'>NIT:</span>
-                        <input class='detail client-vat' name='vat'  placeholder='Vat' type="number" onfocus="blur()" t-att-value="partner.vat"></input>
+                        <input class='detail client-vat' name='vat'  placeholder='Vat' type="number" t-att-value="partner.vat"></input>
                     </li>
                     <li class='client-detail-item font-medium'>
                         <span class='label'>Nombre:</span>
-                        <input class='detail client-name' name='name'  placeholder='Name' type="text" onfocus="blur()" t-att-value="partner.name"></input>
+                        <input class='detail client-name' name='name'  placeholder='Name' type="text" t-att-value="partner.name"></input>
                     </li>
                     <!--
                     <li class='client-detail-item font-medium'>
