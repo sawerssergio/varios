@@ -25,7 +25,7 @@ msgstr "# of Lines"
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1383
 #, python-format
 msgid "% discount"
-msgstr "% discount"
+msgstr "% descuento"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -737,7 +737,7 @@ msgstr "Coca-Cola-Light"
 #: view:website:pos_kingdom.report_statement
 #: view:website:pos_kingdom.report_usersproduct
 msgid "Company"
-msgstr "Company"
+msgstr "Compañia"
 
 #. module: pos_kingdom
 #: model:ir.ui.menu,name:pos_kingdom.menu_point_config_product
@@ -1155,12 +1155,12 @@ msgstr "Email"
 #: code:addons/pos_kingdom/static/src/js/screens.js:1503
 #, python-format
 msgid "Empty Order"
-msgstr "Empty Order"
+msgstr "Pedido vacío"
 
 #. module: pos_kingdom
 #: help:pos.config,iface_scan_via_proxy:0
 msgid "Enable barcode scanning with a remotely connected barcode scanner"
-msgstr "Enable barcode scanning with a remotely connected barcode scanner"
+msgstr "Habilitar escaneado de código de barras con un escáner remoto conectado"
 
 #. module: pos_kingdom
 #: help:pos.config,iface_electronic_scale:0
@@ -1170,27 +1170,27 @@ msgstr "Permite la integración de una Escala electrónica"
 #. module: pos_kingdom
 #: help:pos.config,iface_payment_terminal:0
 msgid "Enables Payment Terminal integration"
-msgstr "Enables Payment Terminal integration"
+msgstr "Habilitar integración de un terminal de pago"
 
 #. module: pos_kingdom
 #: help:pos.config,iface_vkeyboard:0
 msgid "Enables an integrated Virtual Keyboard"
-msgstr "Enables an integrated Virtual Keyboard"
+msgstr "Habilitar un teclado virtual integrado"
 
 #. module: pos_kingdom
 #: help:pos.config,iface_invoicing:0
 msgid "Enables invoice generation from the Point of Sale"
-msgstr "Enables invoice generation from the Point of Sale"
+msgstr "Habilitar generación de facturas desde el Punto de Venta"
 
 #. module: pos_kingdom
 #: view:website:pos_kingdom.report_detailsofsales
 msgid "End Period"
-msgstr "End Period"
+msgstr "Periodo final"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 msgid "End of Session"
-msgstr "End of Session"
+msgstr "Fin de la sessión"
 
 #. module: pos_kingdom
 #: view:website:pos_kingdom.report_sessionsummary
@@ -1262,7 +1262,7 @@ msgstr "Error: Invalid ean code"
 #: code:addons/pos_kingdom/static/src/js/models.js:235
 #, python-format
 msgid "Error: The Point of Sale User must belong to the same company as the Point of Sale. You are probably trying to load the point of sale as an administrator in a multi-company setup, with the administrator account set to the wrong company."
-msgstr "Error: The Point of Sale User must belong to the same company as the Point of Sale. You are probably trying to load the point of sale as an administrator in a multi-company setup, with the administrator account set to the wrong company."
+msgstr "Error: El usuario del Punto de Venta debe pertenecer a la misma compañía que el Punto de Venta. Probablemente está intentando cargar el Punto de Venta como administrador en un entorno multi-compañía, con la cuenta de administrador establecida en la compañía equivocada."
 
 #. module: pos_kingdom
 #: model:pos.category,name:pos_kingdom.extra
@@ -1277,7 +1277,7 @@ msgstr "Extra Chips"
 #. module: pos_kingdom
 #: view:pos.order:pos_kingdom.view_pos_pos_form
 msgid "Extra Info"
-msgstr "Extra Info"
+msgstr "Información extra"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -1325,27 +1325,27 @@ msgstr "Frutilla"
 #. module: pos_kingdom
 #: view:pos.order:pos_kingdom.view_pos_pos_form
 msgid "General Information"
-msgstr "General Information"
+msgstr "Información general"
 
 #. module: pos_kingdom
 #: view:pos.confirm:pos_kingdom.view_pos_confirm
 msgid "Generate Entries"
-msgstr "Generate Entries"
+msgstr "Generar asientos"
 
 #. module: pos_kingdom
 #: view:pos.confirm:pos_kingdom.view_pos_confirm
 msgid "Generate Journal Entries"
-msgstr "Generate Journal Entries"
+msgstr "Generar entradas diarias"
 
 #. module: pos_kingdom
 #: view:pos.confirm:pos_kingdom.view_pos_confirm
 msgid "Generate all sale journal entries for non invoiced orders linked to a closed cash register or statement."
-msgstr "Generate all sale journal entries for non invoiced orders linked to a closed cash register or statement."
+msgstr "Generar todos los asientos del diario de ventas de los pedidos no facturados unidos a una caja registradora cerrada o extracto."
 
 #. module: pos_kingdom
 #: help:pos.category,sequence:0
 msgid "Gives the sequence order when displaying a list of product categories."
-msgstr "Gives the sequence order when displaying a list of product categories."
+msgstr "Indica el orden de secuencia cuando se muestra una lista de categorías de producto."
 
 #. module: pos_kingdom
 #: view:account.bank.statement:pos_kingdom.view_pos_confirm_cash_statement_filter
@@ -1359,26 +1359,26 @@ msgstr "Agrupar por"
 #. module: pos_kingdom
 #: field:pos.config,group_by:0
 msgid "Group Journal Items"
-msgstr "Group Journal Items"
+msgstr "Agrupar apuntes"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1278
 #, python-format
 msgid "Hardware Events"
-msgstr "Hardware Events"
+msgstr "Eventos de hardware"
 
 #. module: pos_kingdom
 #: view:pos.config:pos_kingdom.view_pos_config_form
 msgid "Hardware Proxy"
-msgstr "Hardware Proxy"
+msgstr "Proxy hardware"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1274
 #, python-format
 msgid "Hardware Status"
-msgstr "Hardware Status"
+msgstr "Estado del Hardware"
 
 #. module: pos_kingdom
 #: field:pos.category,id:0
@@ -1416,13 +1416,13 @@ msgstr "Dirección IP"
 #. module: pos_kingdom
 #: model:pos.category,name:pos_kingdom.icecream
 msgid "Ice Cream"
-msgstr "Ice Cream"
+msgstr "Helado"
 
 #. module: pos_kingdom
 #: field:pos.category,image:0
 #: field:product.attribute.value,image:0
 msgid "Image"
-msgstr "Image"
+msgstr "Imagen"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:137
@@ -1436,7 +1436,7 @@ msgstr "En Progreso"
 #: code:addons/pos_kingdom/pos_kingdom.py:676
 #, python-format
 msgid "In order to delete a sale, it must be new or cancelled."
-msgstr "In order to delete a sale, it must be new or cancelled."
+msgstr "Para eliminar una venta, ésta debe ser nueva o cancelada"
 
 #. module: pos_kingdom
 #: view:pos.config:pos_kingdom.view_pos_config_search
@@ -1448,14 +1448,14 @@ msgstr "Inactivo"
 #. module: pos_kingdom
 #: field:pos.order,note:0
 msgid "Internal Notes"
-msgstr "Internal Notes"
+msgstr "Notas internas"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1264
 #, python-format
 msgid "Invalid Ean"
-msgstr "Invalid Ean"
+msgstr "EAN no válido"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -1465,12 +1465,12 @@ msgstr "Invalid Ean"
 #: field:pos.order,invoice_id:0
 #, python-format
 msgid "Invoice"
-msgstr "Invoice"
+msgstr "Factura"
 
 #. module: pos_kingdom
 #: field:report.transaction.pos,invoice_am:0
 msgid "Invoice Amount"
-msgstr "Invoice Amount"
+msgstr "Importe factura"
 
 #. module: pos_kingdom
 #: view:pos.order:pos_kingdom.view_pos_order_filter
@@ -1479,7 +1479,7 @@ msgstr "Invoice Amount"
 #: selection:report.pos.order,state:0
 #: view:website:pos_kingdom.report_detailsofsales
 msgid "Invoiced"
-msgstr "Invoiced"
+msgstr "Facturado"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_pos_invoice
@@ -1504,12 +1504,12 @@ msgstr "Diario"
 #. module: pos_kingdom
 #: field:pos.order,account_move:0
 msgid "Journal Entry"
-msgstr "Journal Entry"
+msgstr "Asiento contable"
 
 #. module: pos_kingdom
 #: view:pos.config:pos_kingdom.view_pos_config_form
 msgid "Journals"
-msgstr "Journals"
+msgstr "Diarios"
 
 #. module: pos_kingdom
 #: model:product.template,name:pos_kingdom.chicken_2_product_template
@@ -1538,7 +1538,7 @@ msgstr "Barras Grandes de Desplazamiento"
 #: field:pos.session,write_uid:0
 #: field:pos.session.opening,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Última actualización de"
 
 #. module: pos_kingdom
 #: field:pos.category,write_date:0
@@ -1555,7 +1555,7 @@ msgstr "Last Updated by"
 #: field:pos.session,write_date:0
 #: field:pos.session.opening,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Última actualización en"
 
 #. module: pos_kingdom
 #: model:product.attribute.value,name:pos_kingdom.attribute_piece_value_1
@@ -1565,23 +1565,23 @@ msgstr "Pierna"
 #. module: pos_kingdom
 #: field:pos.config,limit_date:0
 msgid "Limit Date"
-msgstr "Fecha Limite de Emision"
+msgstr "Fecha Límite de Emisión"
 
 #. module: pos_kingdom
 #: field:pos.order.line,name:0
 msgid "Line No"
-msgstr "Line No"
+msgstr "Línea No"
 
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_pos_order_line
 msgid "Lines of Point of Sale"
-msgstr "Lines of Point of Sale"
+msgstr "Líneas del Punto de Venta"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/wizard/pos_open_statement.py:80
 #, python-format
 msgid "List of Cash Registers"
-msgstr "List of Cash Registers"
+msgstr "Lista de cajas registradoras"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -1590,18 +1590,18 @@ msgstr "List of Cash Registers"
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:104
 #, python-format
 msgid "Loading"
-msgstr "Loading"
+msgstr "Cargando"
 
 #. module: pos_kingdom
 #: field:pos.order,location_id:0
 #: field:report.pos.order,location_id:0
 msgid "Location"
-msgstr "Location"
+msgstr "Ubicación"
 
 #. module: pos_kingdom
 #: field:pos.session,login_number:0
 msgid "Login Sequence Number"
-msgstr "Login Sequence Number"
+msgstr "Nº de secuencia de ingreso"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -1613,7 +1613,7 @@ msgstr "MONTO"
 #. module: pos_kingdom
 #: view:pos.make.payment:pos_kingdom.view_pos_payment
 msgid "Make Payment"
-msgstr "Make Payment"
+msgstr "Realizar pago"
 
 #. module: pos_kingdom
 #: model:res.groups,name:pos_kingdom.group_pos_manager
@@ -1641,23 +1641,23 @@ msgstr "Mediano"
 #: field:pos.category,image_medium:0
 #: field:product.attribute.value,image_medium:0
 msgid "Medium-sized image"
-msgstr "Medium-sized image"
+msgstr "Imagen mediana"
 
 #. module: pos_kingdom
 #: help:product.attribute.value,image_medium:0
 msgid "Medium-sized image of the attribute value, It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
-msgstr "Medium-sized image of the attribute value, It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
+msgstr "Imagen mediana de la valor del atributo. Se redimensiona automáticamente a 128x128 px, con el ratio de aspecto preservado. Use este campo en las vistas de formulario o en algunas vistas kanban."
 
 #. module: pos_kingdom
 #: help:pos.category,image_medium:0
 msgid "Medium-sized image of the category. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
-msgstr "Medium-sized image of the category. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
+msgstr "Imagen mediana de la categoría. Se redimensiona automáticamente a 128x128 px, con el ratio de aspecto preservado. Use este campo en las vistas de formulario o en algunas vistas kanban."
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:828
 #, python-format
 msgid "Missing source or destination location for picking type %s. Please configure those fields and try again."
-msgstr "Missing source or destination location for picking type %s. Please configure those fields and try again."
+msgstr "Falta la ubicación origen o destino de la nota de venta %s. Configure estos campos y vuelva a intentarlo."
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
@@ -1820,12 +1820,12 @@ msgstr "Notes"
 #. module: pos_kingdom
 #: field:pos.order,nb_print:0
 msgid "Number of Print"
-msgstr "Number of Print"
+msgstr "Número de copias"
 
 #. module: pos_kingdom
 #: field:report.transaction.pos,no_trans:0
 msgid "Number of Transaction"
-msgstr "Number of Transaction"
+msgstr "Número de transacción"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -1863,7 +1863,7 @@ msgstr "Ok"
 #: code:addons/pos_kingdom/static/src/js/screens.js:1058
 #, python-format
 msgid "Only web-compatible Image formats such as .png or .jpeg are supported"
-msgstr "Only web-compatible Image formats such as .png or .jpeg are supported"
+msgstr "Sólo se soportan formatos compatibles web como .png o .jpeg"
 
 #. module: pos_kingdom
 #: view:account.bank.statement:pos_kingdom.view_pos_confirm_cash_statement_filter
@@ -1875,51 +1875,51 @@ msgstr "Abierto/a"
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_pos_open_statement
 msgid "Open Cash Register"
-msgstr "Open Cash Register"
+msgstr "Abrir registro de caja"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1280
 #, python-format
 msgid "Open Cashbox"
-msgstr "Open Cashbox"
+msgstr "Abrir caja"
 
 #. module: pos_kingdom
 #: model:ir.actions.client,name:pos_kingdom.action_client_pos_menu
 msgid "Open POS Menu"
-msgstr "Open POS Menu"
+msgstr "Abrir menú Punto de Venta"
 
 #. module: pos_kingdom
 #: view:pos.open.statement:pos_kingdom.view_pos_open_statement
 msgid "Open Registers"
-msgstr "Open Registers"
+msgstr "Abrir cajas registradoras"
 
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
 msgid "Open Session"
-msgstr "Open Session"
+msgstr "Abrir sesión"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.act_pos_open_statement
 #: model:ir.model,name:pos_kingdom.model_pos_open_statement
 #: view:pos.open.statement:pos_kingdom.view_pos_open_statement
 msgid "Open Statements"
-msgstr "Open Statements"
+msgstr "Abrir extractos"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 msgid "Opening Balance"
-msgstr "Opening Balance"
+msgstr "Saldo de apertura"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 msgid "Opening Cash Control"
-msgstr "Opening Cash Control"
+msgstr "Control de apertura de caja"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 msgid "Opening Cashbox Lines"
-msgstr "Opening Cashbox Lines"
+msgstr "Líneas de apertura de caja"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:136
@@ -1927,7 +1927,7 @@ msgstr "Opening Cashbox Lines"
 #: selection:pos.session.opening,pos_state:0
 #, python-format
 msgid "Opening Control"
-msgstr "Opening Control"
+msgstr "Control de apertura"
 
 #. module: pos_kingdom
 #: field:pos.session,start_at:0
@@ -1939,7 +1939,7 @@ msgstr "Fecha de apertura"
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 msgid "Opening Subtotal"
-msgstr "Opening Subtotal"
+msgstr "Subtotal de apertura"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -1947,53 +1947,53 @@ msgstr "Opening Subtotal"
 #: view:website:pos_kingdom.report_detailsofsales
 #, python-format
 msgid "Order"
-msgstr "Order"
+msgstr "Pedido"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/js/models.js:1177
 #, python-format
 msgid "Order "
-msgstr "Order "
+msgstr "Pedido "
 
 #. module: pos_kingdom
 #: field:pos.order,date_order:0
 #: field:report.sales.by.user.pos,date_order:0
 #: field:report.sales.by.user.pos.month,date_order:0
 msgid "Order Date"
-msgstr "Order Date"
+msgstr "Fecha pedido"
 
 #. module: pos_kingdom
 #: field:pos.config,sequence_id:0
 msgid "Order IDs Sequence"
-msgstr "Order IDs Sequence"
+msgstr "Secuencia de identificadores del pedido"
 
 #. module: pos_kingdom
 #: field:pos.order,lines:0
 msgid "Order Lines"
-msgstr "Order Lines"
+msgstr "Líneas de venta"
 
 #. module: pos_kingdom
 #: view:pos.order:pos_kingdom.view_pos_order_filter
 #: view:report.pos.order:pos_kingdom.view_report_pos_order_search
 msgid "Order Month"
-msgstr "Order Month"
+msgstr "Mes del pedido"
 
 #. module: pos_kingdom
 #: field:pos.order,name:0
 #: field:pos.order.line,order_id:0
 msgid "Order Ref"
-msgstr "Order Ref"
+msgstr "Ref. venta"
 
 #. module: pos_kingdom
 #: field:pos.session,sequence_number:0
 msgid "Order Sequence Number"
-msgstr "Order Sequence Number"
+msgstr "Nº de secuencia de pedido"
 
 #. module: pos_kingdom
 #: view:pos.order:pos_kingdom.view_pos_pos_form
 msgid "Order lines"
-msgstr "Order lines"
+msgstr "Líneas de venta"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.act_pos_session_orders
@@ -2007,7 +2007,7 @@ msgstr "Pedidos"
 #: model:ir.actions.act_window,name:pos_kingdom.action_report_pos_order_all
 #: model:ir.ui.menu,name:pos_kingdom.menu_report_pos_order_all
 msgid "Orders Analysis"
-msgstr "Orders Analysis"
+msgstr "Análisis de pedidos"
 
 #. module: pos_kingdom
 #: view:report.sales.by.user.pos:pos_kingdom.view_report_sales_by_user_pos_form
@@ -2018,37 +2018,37 @@ msgstr "Orders Analysis"
 #: view:report.transaction.pos:pos_kingdom.view_trans_pos_user_tree
 #: view:website:pos_kingdom.index
 msgid "POS"
-msgstr "POS"
+msgstr "PV"
 
 #. module: pos_kingdom
 #: view:pos.details:pos_kingdom.view_pos_details
 msgid "POS Details"
-msgstr "POS Details"
+msgstr "Detalles del PV"
 
 #. module: pos_kingdom
 #: view:website:pos_kingdom.report_saleslines
 msgid "POS Lines"
-msgstr "POS Lines"
+msgstr "Líneas PV"
 
 #. module: pos_kingdom
 #: view:pos.order.line:pos_kingdom.view_pos_order_line_form
 msgid "POS Order line"
-msgstr "POS Order line"
+msgstr "Línea de venta PV"
 
 #. module: pos_kingdom
 #: view:pos.order.line:pos_kingdom.view_pos_order_line
 msgid "POS Order lines"
-msgstr "POS Order lines"
+msgstr "Líneas de venta PV"
 
 #. module: pos_kingdom
 #: view:pos.order:pos_kingdom.view_pos_order_tree
 msgid "POS Orders"
-msgstr "POS Orders"
+msgstr "Ventas PV"
 
 #. module: pos_kingdom
 #: view:pos.order.line:pos_kingdom.view_pos_order_tree_all_sales_lines
 msgid "POS Orders lines"
-msgstr "POS Orders lines"
+msgstr "PV Líneas pedido"
 
 #. module: pos_kingdom
 #: view:report.sales.by.user.pos:pos_kingdom.view_report_sales_by_user_pos_calendar
@@ -2056,12 +2056,12 @@ msgstr "POS Orders lines"
 #: view:report.transaction.pos:pos_kingdom.view_report_transaction_pos_calendar
 #: view:report.transaction.pos:pos_kingdom.view_report_transaction_pos_graph
 msgid "POS Report"
-msgstr "POS Report"
+msgstr "Reporte PV"
 
 #. module: pos_kingdom
 #: view:report.pos.order:pos_kingdom.view_report_pos_order_search
 msgid "POS ordered created during current year"
-msgstr "POS ordered created during current year"
+msgstr "Pedidos creados con PV durante el año actual"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -2073,14 +2073,14 @@ msgstr "Pago Efectivo:"
 #. module: pos_kingdom
 #: selection:pos.order,state:0
 msgid "Paid"
-msgstr "Paid"
+msgstr "Pagado"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:785
 #, python-format
 msgid "Paid:"
-msgstr "Paid:"
+msgstr "Pagado:"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -2092,7 +2092,7 @@ msgstr "Para llevar"
 #. module: pos_kingdom
 #: field:pos.category,parent_id:0
 msgid "Parent Category"
-msgstr "Parent Category"
+msgstr "Categoría padre"
 
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_res_partner
@@ -2105,7 +2105,7 @@ msgstr "Empresa"
 #. module: pos_kingdom
 #: view:pos.make.payment:pos_kingdom.view_pos_payment
 msgid "Pay Order"
-msgstr "Pay Order"
+msgstr "Pagar pedido"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/wizard/pos_payment.py:75
@@ -2114,12 +2114,12 @@ msgstr "Pay Order"
 #: view:website:pos_kingdom.report_detailsofsales
 #, python-format
 msgid "Payment"
-msgstr "Payment"
+msgstr "Pago"
 
 #. module: pos_kingdom
 #: field:pos.make.payment,payment_date:0
 msgid "Payment Date"
-msgstr "Payment Date"
+msgstr "Fecha de pago"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_account_journal_form
@@ -2131,7 +2131,7 @@ msgstr "Metodos de pago"
 #: field:pos.make.payment,journal_id:0
 #: view:website:pos_kingdom.report_receipt
 msgid "Payment Mode"
-msgstr "Payment Mode"
+msgstr "Modo de pago"
 
 #. module: pos_kingdom
 #: field:pos.make.payment,payment_name:0
@@ -2162,8 +2162,7 @@ msgstr "Pecho"
 #, python-format
 msgid "Pending orders will be lost.\n"
 "Are you sure you want to leave this session?"
-msgstr "Pending orders will be lost.\n"
-"Are you sure you want to leave this session?"
+msgstr "Los pedidos pendientes se perderán.\nEstá seguro de dejar esta sesión?"
 
 #. module: pos_kingdom
 #: view:account.bank.statement:pos_kingdom.view_pos_confirm_cash_statement_filter
@@ -2174,36 +2173,36 @@ msgstr "Período"
 #. module: pos_kingdom
 #: help:pos.order,user_id:0
 msgid "Person who uses the the cash register. It can be a reliever, a student or an interim employee."
-msgstr "Person who uses the the cash register. It can be a reliever, a student or an interim employee."
+msgstr "Persona que usa la caja registradora. Puede ser un sustituto, un estudiante o un empleado interino."
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:684
 #, python-format
 msgid "Phone"
-msgstr "Phone"
+msgstr "Teléfono"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1361
 #, python-format
 msgid "Phone:"
-msgstr "Phone:"
+msgstr "Teléfono:"
 
 #. module: pos_kingdom
 #: field:pos.order,picking_id:0
 msgid "Picking"
-msgstr "Picking"
+msgstr "Albarán"
 
 #. module: pos_kingdom
 #: field:pos.config,picking_type_id:0
 msgid "Picking Type"
-msgstr "Tipo de Recolección"
+msgstr "Tipo de albarán"
 
 #. module: pos_kingdom
 #: model:product.attribute,name:pos_kingdom.attribute_piece_1
 msgid "Piece"
-msgstr "Piece"
+msgstr "Pieza"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -2215,46 +2214,46 @@ msgstr "Pierna"
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_pos_destination
 msgid "Place of destination"
-msgstr "Place of destination"
+msgstr "Lugar de destino"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:1177
 #, python-format
 msgid "Please define income account for this product: \"%s\" (id:%d)."
-msgstr "Please define income account for this product: \"%s\" (id:%d)."
+msgstr "Defina por favor la cuenta de ingresos para este producto:\"%s\"(id: %id)."
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:983
 #, python-format
 msgid "Please provide a partner for the sale."
-msgstr "Please provide a partner for the sale."
+msgstr "Por favor indique una empresa para la venta."
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/js/screens.js:1554
 #, python-format
 msgid "Please select a client for this order. This can be done by clicking the order tab"
-msgstr "Please select a client for this order. This can be done by clicking the order tab"
+msgstr "Seleccione un cliente para este pedido. Puede hacerse pulsando en la pestaña del pedido"
 
 #. module: pos_kingdom
 #: model:stock.picking.type,name:pos_kingdom.picking_type_posout
 msgid "PoS Orders"
-msgstr "PoS Orders"
+msgstr "Pedidos PV"
 
 #. module: pos_kingdom
 #: field:account.journal,journal_user:0
 msgid "PoS Payment Method"
-msgstr "PoS Payment Method"
+msgstr "Método de pago PV"
 
 #. module: pos_kingdom
 #: field:pos.session.opening,pos_session_id:0
 msgid "PoS Session"
-msgstr "PoS Session"
+msgstr "Sesión de PV"
 
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
 msgid "PoS Session Opening"
-msgstr "PoS Session Opening"
+msgstr "Apertura de sesión del PV"
 
 #. module: pos_kingdom
 #: view:account.journal:pos_kingdom.view_account_journal_pos_user_form
@@ -2274,33 +2273,33 @@ msgstr "Punto de Venta"
 #: view:report.pos.order:pos_kingdom.view_report_pos_order_graph
 #: view:report.pos.order:pos_kingdom.view_report_pos_order_search
 msgid "Point of Sale Analysis"
-msgstr "Point of Sale Analysis"
+msgstr "Análisis punto de venta"
 
 #. module: pos_kingdom
 #: field:product.template,income_pdt:0
 msgid "Point of Sale Cash In"
-msgstr "Point of Sale Cash In"
+msgstr "Dinero en efectivo en el PV"
 
 #. module: pos_kingdom
 #: field:product.template,expense_pdt:0
 msgid "Point of Sale Cash Out"
-msgstr "Point of Sale Cash Out"
+msgstr "Dinero retirado del PV"
 
 #. module: pos_kingdom
 #: field:product.template,pos_categ_id:0
 msgid "Point of Sale Category"
-msgstr "Point of Sale Category"
+msgstr "Categoría del Punto de Venta"
 
 #. module: pos_kingdom
 #: view:pos.config:pos_kingdom.view_pos_config_search
 msgid "Point of Sale Config"
-msgstr "Point of Sale Config"
+msgstr "Configuración del PV"
 
 #. module: pos_kingdom
 #: view:pos.config:pos_kingdom.view_pos_config_form
 #: view:pos.config:pos_kingdom.view_pos_config_tree
 msgid "Point of Sale Configuration"
-msgstr "Point of Sale Configuration"
+msgstr "Configuración del PV"
 
 #. module: pos_kingdom
 #: field:pos.order,pos_destination_id:0
@@ -2315,24 +2314,24 @@ msgstr "Nombre de Punto de Venta"
 #. module: pos_kingdom
 #: view:pos.order:pos_kingdom.view_pos_pos_form
 msgid "Point of Sale Orders"
-msgstr "Point of Sale Orders"
+msgstr "Pedidos del PV"
 
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_report_pos_order
 msgid "Point of Sale Orders Statistics"
-msgstr "Point of Sale Orders Statistics"
+msgstr "Punto de venta. Estadísticas pedidos"
 
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_pos_make_payment
 msgid "Point of Sale Payment"
-msgstr "Point of Sale Payment"
+msgstr "Punto de venta. Pago"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 #: view:pos.session:pos_kingdom.view_pos_session_search
 #: view:pos.session:pos_kingdom.view_pos_session_tree
 msgid "Point of Sale Session"
-msgstr "Point of Sale Session"
+msgstr "Sesión PV"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_pos_config_pos
@@ -2344,7 +2343,7 @@ msgstr "Puntos de Venta"
 #. module: pos_kingdom
 #: view:pos.category:pos_kingdom.product_pos_category_form_view
 msgid "Pos Categories"
-msgstr "Pos Categories"
+msgstr "Categorías PV"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.product_pos_category_action
@@ -2355,28 +2354,28 @@ msgstr "Categorías de productos"
 #. module: pos_kingdom
 #: field:account.bank.statement.line,pos_statement_id:0
 msgid "Pos statement id"
-msgstr "Pos statement id"
+msgstr "Id extracto PV"
 
 #. module: pos_kingdom
 #: view:product.attribute.value:pos_kingdom.variants_template_tree_view
 msgid "Pos values"
-msgstr "Pos values"
+msgstr "Valores PV"
 
 #. module: pos_kingdom
 #: view:pos.confirm:pos_kingdom.view_pos_confirm
 msgid "Post All Orders"
-msgstr "Post All Orders"
+msgstr "Contabilizar todos los pedidos"
 
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_pos_confirm
 msgid "Post POS Journal Entries"
-msgstr "Post POS Journal Entries"
+msgstr "Contabilizar asientos del PV"
 
 #. module: pos_kingdom
 #: view:pos.order:pos_kingdom.view_pos_order_filter
 #: selection:pos.order,state:0
 msgid "Posted"
-msgstr "Posted"
+msgstr "Contabilizado"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -2391,38 +2390,38 @@ msgstr "Precio"
 #. module: pos_kingdom
 #: field:pos.config,barcode_price:0
 msgid "Price Barcodes"
-msgstr "Price Barcodes"
+msgstr "Códigos de barras de precios"
 
 #. module: pos_kingdom
 #: field:pos.config,pricelist_id:0
 #: field:pos.order,pricelist_id:0
 msgid "Pricelist"
-msgstr "Pricelist"
+msgstr "Tarifa"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/js/screens.js:1179
 #, python-format
 msgid "Print"
-msgstr "Print"
+msgstr "Imprimir"
 
 #. module: pos_kingdom
 #: view:website:pos_kingdom.report_detailsofsales
 #: view:website:pos_kingdom.report_usersproduct
 msgid "Print Date"
-msgstr "Print Date"
+msgstr "Fecha impresión"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1281
 #, python-format
 msgid "Print Receipt"
-msgstr "Print Receipt"
+msgstr "Imprimir recibo"
 
 #. module: pos_kingdom
 #: view:pos.details:pos_kingdom.view_pos_details
 msgid "Print Report"
-msgstr "Print Report"
+msgstr "Imprimir reporte"
 
 #. module: pos_kingdom
 #: view:website:pos_kingdom.report_payment
@@ -2462,28 +2461,28 @@ msgstr "Producto"
 #. module: pos_kingdom
 #: field:pos.config,barcode_product:0
 msgid "Product Barcodes"
-msgstr "Product Barcodes"
+msgstr "Códigos de barras de productos"
 
 #. module: pos_kingdom
 #: view:report.pos.order:pos_kingdom.view_report_pos_order_search
 #: field:report.pos.order,product_categ_id:0
 msgid "Product Category"
-msgstr "Product Category"
+msgstr "Categoría de producto"
 
 #. module: pos_kingdom
 #: field:report.transaction.pos,product_nb:0
 msgid "Product Nb."
-msgstr "Product Nb."
+msgstr "Nº de producto"
 
 #. module: pos_kingdom
 #: view:pos.category:pos_kingdom.product_pos_category_tree_view
 msgid "Product Product Categories"
-msgstr "Product Product Categories"
+msgstr "Categorías del producto"
 
 #. module: pos_kingdom
 #: field:report.pos.order,product_qty:0
 msgid "Product Quantity"
-msgstr "Product Quantity"
+msgstr "Cantidad del producto"
 
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_product_template
@@ -2501,12 +2500,12 @@ msgstr "Productos"
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_pos_category
 msgid "Public Category"
-msgstr "Public Category"
+msgstr "Categoría pública"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 msgid "Put"
-msgstr "Put"
+msgstr "Poner"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_pos_box_in
@@ -2521,12 +2520,12 @@ msgstr "Poner dinero"
 #: view:website:pos_kingdom.report_usersproduct
 #, python-format
 msgid "Qty"
-msgstr "Qty"
+msgstr "Ctd."
 
 #. module: pos_kingdom
 #: view:website:pos_kingdom.report_detailsofsales
 msgid "Qty of product"
-msgstr "Qty of product"
+msgstr "Ctd. producto"
 
 #. module: pos_kingdom
 #: field:pos.order.line,qty:0
@@ -2546,19 +2545,19 @@ msgstr "Queen Menu"
 #. module: pos_kingdom
 #: view:pos.order:pos_kingdom.view_pos_pos_form
 msgid "Re-Print"
-msgstr "Re-Print"
+msgstr "Reimprimir"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1282
 #, python-format
 msgid "Read Weighting Scale"
-msgstr "Read Weighting Scale"
+msgstr "Leer balanza"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 msgid "Real Closing Balance"
-msgstr "Real Closing Balance"
+msgstr "Saldo de cierre real"
 
 #. module: pos_kingdom
 #: model:ir.actions.report.xml,name:pos_kingdom.action_report_pos_receipt
@@ -2579,7 +2578,7 @@ msgstr "Encabezado"
 #. module: pos_kingdom
 #: field:pos.order,pos_reference:0
 msgid "Receipt Ref"
-msgstr "Receipt Ref"
+msgstr "Referencia del recibo"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -2595,19 +2594,19 @@ msgstr "Referencia"
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:791
 #, python-format
 msgid "Remaining:"
-msgstr "Remaining:"
+msgstr "Restante:"
 
 #. module: pos_kingdom
 #: view:pos.order:pos_kingdom.view_pos_pos_form
 msgid "Reprint"
-msgstr "Reprint"
+msgstr "Reimprimir"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1251
 #, python-format
 msgid "Reset"
-msgstr "Reset"
+msgstr "Restablecer"
 
 #. module: pos_kingdom
 #: view:account.bank.statement:pos_kingdom.view_cash_statement_pos_tree
@@ -2626,13 +2625,13 @@ msgstr "Continuar Sesión"
 #: view:pos.order:pos_kingdom.view_pos_pos_form
 #, python-format
 msgid "Return Products"
-msgstr "Return Products"
+msgstr "Devolución de productos"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_report_pos_details
 #: model:ir.ui.menu,name:pos_kingdom.menu_pos_details
 msgid "Sale Details"
-msgstr "Sale Details"
+msgstr "Detalles de ventas"
 
 #. module: pos_kingdom
 #: field:pos.config,journal_id:0
@@ -2645,84 +2644,84 @@ msgstr "Diario de Ventas"
 #: model:ir.actions.act_window,name:pos_kingdom.action_pos_order_line_day
 #: model:ir.actions.act_window,name:pos_kingdom.action_pos_order_line_form
 msgid "Sale line"
-msgstr "Sale line"
+msgstr "Línea de venta"
 
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_pos_details
 msgid "Sales Details"
-msgstr "Sales Details"
+msgstr "Detalles de ventas"
 
 #. module: pos_kingdom
 #: field:report.transaction.pos,journal_id:0
 msgid "Sales Journal"
-msgstr "Sales Journal"
+msgstr "Diario de ventas"
 
 #. module: pos_kingdom
 #: model:ir.actions.report.xml,name:pos_kingdom.pos_lines_report
 msgid "Sales Lines"
-msgstr "Sales Lines"
+msgstr "Líneas de ventas"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_report_sales_by_user_pos_today
 #: view:report.sales.by.user.pos:pos_kingdom.view_report_sales_by_user_pos_graph
 #: view:report.sales.by.user.pos.month:pos_kingdom.view_report_sales_by_user_pos_month_graph
 msgid "Sales by User"
-msgstr "Sales by User"
+msgstr "Ventas por usuario"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_report_sales_by_user_pos_month
 msgid "Sales by User Monthly"
-msgstr "Sales by User Monthly"
+msgstr "Ventas mensuales por usuario"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_trans_pos_tree_today
 msgid "Sales by day"
-msgstr "Sales by day"
+msgstr "Ventas por día"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_trans_pos_tree_month
 msgid "Sales by month"
-msgstr "Sales by month"
+msgstr "Ventas por mes"
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_trans_pos_tree
 #: model:ir.model,name:pos_kingdom.model_report_sales_by_user_pos
 msgid "Sales by user"
-msgstr "Sales by user"
+msgstr "Ventas por usuario"
 
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_report_sales_by_user_pos_month
 msgid "Sales by user monthly"
-msgstr "Sales by user monthly"
+msgstr "Ventas mensuales por usuario"
 
 #. module: pos_kingdom
 #: view:website:pos_kingdom.report_detailsofsales
 msgid "Sales total(Revenue)"
-msgstr "Sales total(Revenue)"
+msgstr "Total ventas (ingresos)"
 
 #. module: pos_kingdom
 #: view:pos.order:pos_kingdom.view_pos_order_filter
 #: field:pos.order,user_id:0
 msgid "Salesman"
-msgstr "Salesman"
+msgstr "Vendedor"
 
 #. module: pos_kingdom
 #: field:pos.details,user_ids:0
 msgid "Salespeople"
-msgstr "Salespeople"
+msgstr "Vendedor"
 
 #. module: pos_kingdom
 #: view:report.pos.order:pos_kingdom.view_report_pos_order_search
 #: field:report.pos.order,user_id:0
 msgid "Salesperson"
-msgstr "Salesperson"
+msgstr "Comercial"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/js/widgets.js:1391
 #, python-format
 msgid "Scale"
-msgstr "Scale"
+msgstr "Escala"
 
 #. module: pos_kingdom
 #: field:pos.config,iface_scan_via_proxy:0
@@ -3300,65 +3299,65 @@ msgstr "There must be at least one product in your order before it can be valida
 #. module: pos_kingdom
 #: help:account.journal,amount_authorized_diff:0
 msgid "This field depicts the maximum difference allowed between the ending balance and the theorical cash when closing a session, for non-POS managers. If this maximum is reached, the user will have an error message at the closing of his session saying that he needs to contact his manager."
-msgstr "This field depicts the maximum difference allowed between the ending balance and the theorical cash when closing a session, for non-POS managers. If this maximum is reached, the user will have an error message at the closing of his session saying that he needs to contact his manager."
+msgstr "Este campo muestra la máxima diferencia permitida entre el saldo final y la caja teórico cuando se cierra una sesión, para usuarios no administradores del PV. Si se alcanza este máximo, el usuario obtendrá un mensaje de error al cerrar su sesión diciendo que necesita contactar con su responsable."
 
 #. module: pos_kingdom
 #: help:product.attribute.value,image:0
 msgid "This field holds the image used as image for the attribute value, limited to 1024x1024px."
-msgstr "This field holds the image used as image for the attribute value, limited to 1024x1024px."
+msgstr "Este campo contiene la imagen usada como imagen del valor de atributo, limitada a 1024x1024 px."
 
 #. module: pos_kingdom
 #: help:pos.category,image:0
 msgid "This field holds the image used as image for the cateogry, limited to 1024x1024px."
-msgstr "This field holds the image used as image for the cateogry, limited to 1024x1024px."
+msgstr "Este campo contiene la imagen usada como imagen de la categoría, limitada a 1024x1024 px."
 
 #. module: pos_kingdom
 #: help:pos.order,pos_destination_id:0
 msgid "This is the destination for the order."
-msgstr "This is the destination for the order."
+msgstr "Este es el destino para el pedido."
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/js/widgets.js:1308
 #, python-format
 msgid "This operation will permanently destroy all unsent orders from the local storage. You will lose all the data. This operation cannot be undone."
-msgstr "This operation will permanently destroy all unsent orders from the local storage. You will lose all the data. This operation cannot be undone."
+msgstr "Esta operación eliminará permanente todos los pedidos no enviados del almacenamiento local. Perderá todos esos datos. Esta operación no puede deshacerse."
 
 #. module: pos_kingdom
 #: help:pos.config,sequence_id:0
 msgid "This sequence is automatically created by SawersSystem but you can change it to customize the reference numbers of your orders."
-msgstr "This sequence is automatically created by SawersSystem but you can change it to customize the reference numbers of your orders."
+msgstr "La secuencia es creada automáticamente por Kumo, pero puede cambiarla para personalizar los números de referencia de sus pedidos."
 
 #. module: pos_kingdom
 #: help:product.template,pos_categ_id:0
 msgid "Those categories are used to group similar products for point of sale."
-msgstr "Those categories are used to group similar products for point of sale."
+msgstr "Estas categorías se usan para agrupar productos similares para el Punto de Venta."
 
 #. module: pos_kingdom
 #: field:product.template,to_weight:0
 msgid "To Weigh With Scale"
-msgstr "To Weigh With Scale"
+msgstr "Para pesar con balanza"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:939
 #, python-format
 msgid "To return product(s), you need to open a session that will be used to register the refund."
-msgstr "To return product(s), you need to open a session that will be used to register the refund."
+msgstr "Para devolver productos, necesita abrir una sesión, que será utilizada para registrar el reembolso."
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_search
 msgid "Today"
-msgstr "Today"
+msgstr "Hoy"
 
 #. module: pos_kingdom
 #: model:ir.actions.report.xml,name:pos_kingdom.pos_payment_report
 msgid "Today's Payment"
-msgstr "Today's Payment"
+msgstr "Pago de hoy"
 
 #. module: pos_kingdom
 #: view:website:pos_kingdom.report_payment
 msgid "Today's Payments"
-msgstr "Today's Payments"
+msgstr "Pagos de hoy"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
@@ -3375,12 +3374,12 @@ msgstr "Total"
 #. module: pos_kingdom
 #: field:report.pos.order,total_discount:0
 msgid "Total Discount"
-msgstr "Total Discount"
+msgstr "Descuento Total"
 
 #. module: pos_kingdom
 #: field:report.pos.order,price_total:0
 msgid "Total Price"
-msgstr "Total Price"
+msgstr "Precio Total"
 
 #. module: pos_kingdom
 #: view:report.transaction.pos:pos_kingdom.view_trans_pos_user_tree
@@ -3400,27 +3399,27 @@ msgstr "Total sin impuestos"
 #. module: pos_kingdom
 #: view:website:pos_kingdom.report_detailsofsales
 msgid "Total discount"
-msgstr "Total discount"
+msgstr "Descuento Total"
 
 #. module: pos_kingdom
 #: view:website:pos_kingdom.report_detailsofsales
 msgid "Total invoiced"
-msgstr "Total invoiced"
+msgstr "Total facturado"
 
 #. module: pos_kingdom
 #: view:website:pos_kingdom.report_detailsofsales
 msgid "Total of the day"
-msgstr "Total of the day"
+msgstr "Total del día"
 
 #. module: pos_kingdom
 #: view:website:pos_kingdom.report_detailsofsales
 msgid "Total paid"
-msgstr "Total paid"
+msgstr "Total pagado"
 
 #. module: pos_kingdom
 #: view:pos.order.line:pos_kingdom.view_pos_order_line
 msgid "Total qty"
-msgstr "Total qty"
+msgstr "Ctd. Total"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3434,25 +3433,25 @@ msgstr "Total:"
 #: code:addons/pos_kingdom/pos_kingdom.py:1243
 #, python-format
 msgid "Trade Receivables"
-msgstr "Trade Receivables"
+msgstr "Créditos por ventas"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:676
 #, python-format
 msgid "Unable to Delete!"
-msgstr "Unable to Delete!"
+msgstr "Imposible borrar"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:870
 #, python-format
 msgid "Unable to cancel the picking."
-msgstr "Unable to cancel the picking."
+msgstr "Imposible cancelar el albarán te entrada."
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:398
 #, python-format
 msgid "Unable to open the session. You have to assign a sale journal to your point of sale."
-msgstr "Unable to open the session. You have to assign a sale journal to your point of sale."
+msgstr "No se ha podido abrir la sesión. Tiene que asignar un diario de ventas a su PV."
 
 #. module: pos_kingdom
 #: field:pos.order.line,price_unit:0
@@ -3466,14 +3465,14 @@ msgstr "Precio unidad"
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:996
 #, python-format
 msgid "Unknown Barcode"
-msgstr "Unknown Barcode"
+msgstr "Código de barras desconocido"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1263
 #, python-format
 msgid "Unknown Product"
-msgstr "Unknown Product"
+msgstr "Producto desconocido"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3481,14 +3480,14 @@ msgstr "Unknown Product"
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1268
 #, python-format
 msgid "Unsent Orders"
-msgstr "Unsent Orders"
+msgstr "Pedidos no enviados"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/js/screens.js:1057
 #, python-format
 msgid "Unsupported File Format"
-msgstr "Unsupported File Format"
+msgstr "Formato de archivo no soportado"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_search
@@ -3504,13 +3503,13 @@ msgstr "Usuario"
 #. module: pos_kingdom
 #: model:ir.actions.report.xml,name:pos_kingdom.report_user_label
 msgid "User Labels"
-msgstr "User Labels"
+msgstr "Etiquetas de usuario"
 
 #. module: pos_kingdom
 #: model:ir.actions.report.xml,name:pos_kingdom.action_report_pos_users_product
 #: view:website:pos_kingdom.report_usersproduct
 msgid "User's Product"
-msgstr "User's Product"
+msgstr "Productos del Usuario"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3518,7 +3517,7 @@ msgstr "User's Product"
 #: view:website:pos_kingdom.report_receipt
 #, python-format
 msgid "User:"
-msgstr "User:"
+msgstr "Usuario:"
 
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_res_users
@@ -3531,7 +3530,7 @@ msgstr "Usuarios"
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:837
 #, python-format
 msgid "VAT:"
-msgstr "VAT:"
+msgstr "NIT:"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3545,24 +3544,24 @@ msgstr "VENTAS"
 #: code:addons/pos_kingdom/static/src/js/screens.js:1313
 #, python-format
 msgid "Validate"
-msgstr "Validate"
+msgstr "Validar"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 msgid "Validate & Open Session"
-msgstr "Validate & Open Session"
+msgstr "Validar y abrir sesión"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 msgid "Validate Closing & Post Entries"
-msgstr "Validate Closing & Post Entries"
+msgstr "Validar y contabilizar asiento(s) de cierre"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:407
 #, python-format
 msgid "Vat"
-msgstr "Vat"
+msgstr "NIT"
 
 #. module: pos_kingdom
 #: field:pos.config,iface_vkeyboard:0
@@ -3572,14 +3571,14 @@ msgstr "Teclado Virtual"
 #. module: pos_kingdom
 #: field:pos.config,barcode_weight:0
 msgid "Weight Barcodes"
-msgstr "Weight Barcodes"
+msgstr "Código de barras de peso"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1276
 #, python-format
 msgid "Weighting"
-msgstr "Weighting"
+msgstr "Pesando"
 
 #. module: pos_kingdom
 #: model:product.attribute.value,name:pos_kingdom.attribute_piece_value_2
@@ -3591,12 +3590,12 @@ msgstr "Ala"
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1382
 #, python-format
 msgid "With a"
-msgstr "With a"
+msgstr "Con un/una"
 
 #. module: pos_kingdom
 #: view:report.pos.order:pos_kingdom.view_report_pos_order_search
 msgid "Year"
-msgstr "Year"
+msgstr "Año"
 
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
@@ -3606,93 +3605,91 @@ msgstr "Puedes continuar las ventas desde la interfaz tactil haciendo click  en 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 msgid "You can define another list of available currencies on the"
-msgstr "You can define another list of available currencies on the"
+msgstr "Puede definir otra lista de monedas disponibles en"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:663
 #, python-format
 msgid "You cannot change the partner of a POS order for which an invoice has already been issued."
-msgstr "You cannot change the partner of a POS order for which an invoice has already been issued."
+msgstr "No puede cambiar el cliente de una orden TPV para la que se ha emitido una factura."
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:529
 #, python-format
 msgid "You cannot confirm all orders of this session, because they have not the 'paid' status"
-msgstr "You cannot confirm all orders of this session, because they have not the 'paid' status"
+msgstr "No puede confirmar todos los pedidos de esta sesión, ya que no tienen el estado 'Pagado'."
 
 #. module: pos_kingdom
 #: constraint:pos.session:0
 msgid "You cannot create two active sessions related to the same point of sale!"
-msgstr "You cannot create two active sessions related to the same point of sale!"
+msgstr "¡No puede crear dos sesiones activas relativas al mismo PV!"
 
 #. module: pos_kingdom
 #: constraint:pos.session:0
 msgid "You cannot create two active sessions with the same responsible!"
-msgstr "You cannot create two active sessions with the same responsible!"
+msgstr "¡No puede crear dos sesiones activas con el mismo responsable!"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:1486
 #, python-format
 msgid "You cannot delete a product saleable in point of sale while a session is still opened."
-msgstr "You cannot delete a product saleable in point of sale while a session is still opened."
+msgstr "No puede borrar un producto vendible en el punto de venta mientras la sesión esté abierta."
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/js/screens.js:1514
 #, python-format
 msgid "You cannot have a negative amount in a Bank payment. Use a cash payment method to return money to the customer."
-msgstr "You cannot have a negative amount in a Bank payment. Use a cash payment method to return money to the customer."
+msgstr "No puede tener un importe negativo en un pago bancario. Utilice un método de pago de caja para devolver dinero al cliente."
 
 #. module: pos_kingdom
 #: constraint:pos.config:0
 msgid "You cannot have two cash controls in one Point Of Sale !"
-msgstr "You cannot have two cash controls in one Point Of Sale !"
+msgstr "No puede tener dos controles de caja en un Punto de Venta !"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:544
 #, python-format
 msgid "You cannot use the session of another users. This session is owned by %s. Please first close this one to use this point of sale."
-msgstr "You cannot use the session of another users. This session is owned by %s. Please first close this one to use this point of sale."
+msgstr "No puede utilizar la sesión de otro usuario. Esta sesión pertence a %s. Cierre primero esta otra para usar el PV."
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/wizard/pos_open_statement.py:49
 #, python-format
 msgid "You have to define which payment method must be available in the point of sale by reusing existing bank and cash through \"Accounting / Configuration / Journals / Journals\". Select a journal and check the field \"PoS Payment Method\" from the \"Point of Sale\" tab. You can also create new payment methods directly from menu \"PoS Backend / Configuration / Payment Methods\"."
-msgstr "You have to define which payment method must be available in the point of sale by reusing existing bank and cash through \"Accounting / Configuration / Journals / Journals\". Select a journal and check the field \"PoS Payment Method\" from the \"Point of Sale\" tab. You can also create new payment methods directly from menu \"PoS Backend / Configuration / Payment Methods\"."
+msgstr "Puede definir qué método de pago estará disponible en el TPV reusando los bancos y cajas existentes a través de \"Contabilidad / Configuración / Diarios /Diarios\". Seleccione un diario y marque la casilla \"Método de pago de TPV\" desde la pestaña TPV. Puede crear también métodos de pago directamente desde el menú\"Backend TPV / Configuración / Métodos de pago\"."
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:916
 #, python-format
 msgid "You have to open at least one cashbox."
-msgstr "You have to open at least one cashbox."
+msgstr "Tiene que abrir al menos una caja."
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:1314
 #, python-format
 msgid "You have to select a pricelist in the sale form !\n"
 "Please set one before choosing a product."
-msgstr "You have to select a pricelist in the sale form !\n"
-"Please set one before choosing a product."
+msgstr "¡Debe seleccionar una lista de precios en el formulario de ventas!\nPor favor seleccione una antes de seleccionar un producto."
 
 #. module: pos_kingdom
 #: view:pos.session.opening:pos_kingdom.pos_session_opening_form_view
 msgid "You may have to control your cash amount in your cash register, before\n"
 "                          being able to start selling through the touchscreen interface."
-msgstr "Puede que tenga que controlar la cantidad de su dinero en efectivo en la caja registradora, antes de\n"
-"                          empezar a vender a travez del Punto de Venta."
+msgstr "Debe controlar su cantidad de efectivo en su caja registrador, antes de comenzar a vender a través del interfaz de pantalla táctil."
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:383
 #, python-format
 msgid "You should assign a Point of Sale to your session."
-msgstr "You should assign a Point of Sale to your session."
+msgstr "Debe asignar un Punto de Venta a su sesión."
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/js/widgets.js:1484
 #, python-format
 msgid "You will lose any data associated with the current order"
-msgstr "You will lose any data associated with the current order"
+msgstr "Perderá todos los datos asociados con el pedido actual"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3700,7 +3697,7 @@ msgstr "You will lose any data associated with the current order"
 #: code:addons/pos_kingdom/static/src/js/screens.js:1001
 #, python-format
 msgid "Your Internet connection is probably down."
-msgstr "Your Internet connection is probably down."
+msgstr "Su conexión de Internet está probablemente caída."
 
 #. module: pos_kingdom
 #: model:ir.actions.act_window,name:pos_kingdom.action_pos_session_opening
@@ -3712,14 +3709,14 @@ msgstr "Su sesión"
 #: code:addons/pos_kingdom/pos_kingdom.py:496
 #, python-format
 msgid "Your ending balance is too different from the theoretical cash closing (%.2f), the maximum allowed is: %.2f. You can contact your manager to force it."
-msgstr "Your ending balance is too different from the theoretical cash closing (%.2f), the maximum allowed is: %.2f. You can contact your manager to force it."
+msgstr "Su saldo final es demasiado diferente del saldo teórico de cierre (%.2f), el máximo permitido es: %.2f. Puede contactar con su responsable para cerrarlo."
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/js/widgets.js:1761
 #, python-format
 msgid "Your internet connection is probably down."
-msgstr "Your internet connection is probably down."
+msgstr "Su conexión de Internet está probablemente caída."
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3747,7 +3744,7 @@ msgstr "caps lock"
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1586
 #, python-format
 msgid "close"
-msgstr "close"
+msgstr "Cerrar"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3755,12 +3752,12 @@ msgstr "close"
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1579
 #, python-format
 msgid "delete"
-msgstr "delete"
+msgstr "borrar"
 
 #. module: pos_kingdom
 #: view:pos.config:pos_kingdom.view_pos_config_form
 msgid "destinations"
-msgstr "destinations"
+msgstr "destinos"
 
 #. module: pos_kingdom
 #: code:addons/pos_kingdom/pos_kingdom.py:397
@@ -3779,7 +3776,7 @@ msgstr "Clave"
 #: code:addons/pos_kingdom/pos_kingdom.py:143
 #, python-format
 msgid "not used"
-msgstr "not used"
+msgstr "no usado"
 
 #. module: pos_kingdom
 #: view:pos.confirm:pos_kingdom.view_pos_confirm
@@ -3789,12 +3786,12 @@ msgstr "not used"
 #: view:pos.make.payment:pos_kingdom.view_pos_payment
 #: view:pos.open.statement:pos_kingdom.view_pos_open_statement
 msgid "or"
-msgstr "or"
+msgstr "ó"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 msgid "payment method."
-msgstr "payment method."
+msgstr "método de pago."
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3803,7 +3800,7 @@ msgstr "payment method."
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1584
 #, python-format
 msgid "return"
-msgstr "return"
+msgstr "retornar"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3811,29 +3808,29 @@ msgstr "return"
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1541
 #, python-format
 msgid "shift"
-msgstr "shift"
+msgstr "cambio"
 
 #. module: pos_kingdom
 #. openerp-web
 #: code:addons/pos_kingdom/static/src/xml/pos.xml:1503
 #, python-format
 msgid "tab"
-msgstr "tab"
+msgstr "pestaña"
 
 #. module: pos_kingdom
 #: view:pos.session:pos_kingdom.view_pos_session_form
 msgid "tab of the"
-msgstr "tab of the"
+msgstr "pestaña de"
 
 #. module: pos_kingdom
 #: model:ir.model,name:pos_kingdom.model_report_transaction_pos
 msgid "transaction for the pos"
-msgstr "transaction for the pos"
+msgstr "transacción del PV"
 
 #. module: pos_kingdom
 #: field:account.bank.statement,pos_session_id:0
 #: field:pos.session.opening,pos_session_name:0
 #: field:pos.session.opening,pos_session_username:0
 msgid "unknown"
-msgstr "unknown"
+msgstr "desconocido"
 
