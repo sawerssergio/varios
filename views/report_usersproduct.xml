@@ -4,7 +4,7 @@
 <template id="report_usersproduct">
     <t t-call="report.html_container">
         <t t-foreach="docs" t-as="o">
-            <t t-call="report.internal_layout">
+            <t t-call="report.external_layout">
                 <div class="page">
                     <h2>User's Product</h2>
 

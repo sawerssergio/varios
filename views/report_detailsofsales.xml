@@ -3,7 +3,7 @@
 <data>
 <template id="report_detailsofsales">
     <t t-call="report.html_container">
-        <t t-call="report.internal_layout">
+        <t t-call="report.external_layout">
             <div class="page">
                 <h2>Details of Sales</h2>
 

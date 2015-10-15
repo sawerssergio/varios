@@ -4,7 +4,7 @@
 <template id="report_sessionsummary">
     <t t-call="report.html_container">
         <t t-foreach="docs" t-as="o">
-            <t t-call="report.internal_layout">
+            <t t-call="report.external_layout">
                 <div class="page">
                     <h2>Session Summary: <span t-field="o.name"/></h2>
 
@@ -21,10 +21,12 @@
                             <strong>Opening Date</strong>:<br/>
                             <span t-field="o.start_at"/>
                         </div>
+                        <!--
                         <div class="col-xs-3">
                             <strong>Closing Date</strong>:<br/>
                             <span t-field="o.stop_at"/>
                         </div>
+                        -->
                     </div>
 
                     <h4>Statement Summary</h4>
