@@ -29,7 +29,7 @@
             <field name="state">open</field>
         </record>
         <record model="pos.config" id="pos_config_main">
-            <field name="name">Main</field>
+            <field name="name">Central</field>
             <field name="picking_type_id" ref="picking_type_posout"/>
         </record>
 
@@ -39,9 +39,9 @@
             <field name="res_id" ref="mail.group_all_employees"/>
             <field name="type">notification</field>
             <field name="subtype_id" ref="mail.mt_comment"/>
-            <field name="subject">Point of Sale application installed!</field>
-            <field name="body"><![CDATA[<p>Record sale orders, register payments, compute change to return, create invoices, and manage refunds through a specific web touch-screen interface.</p>
-<p>If you install the PoS proxy you will be able to interface Sawers with retail hardware: barcode scanners, printers, cash registers, weighing machines, credit card payment terminals.</p>]]></field>
+            <field name="subject">La aplicacion Punto de Venta ha sido intalada!</field>
+            <field name="body"><![CDATA[<p>Almacenamiento de órdenes de venta, se registran los pagos, calcular el cambio a devolver, crear facturas y gestionar los reembolsos a través de una específica web interfaz de pantalla táctil. </p>
+                <p> Si instala el proxy de punto de venta que usted será capaz de interactuar con el hardware de Sawers:. escáneres de códigos de barras, impresoras, cajas registradoras, básculas, terminales de pago de tarjetas de crédito </p>]]></field>
         </record>
     </data>
 </openerp>
