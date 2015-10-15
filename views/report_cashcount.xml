@@ -4,6 +4,7 @@
 <template id="report_cashcount">
     <t t-call="report.html_container">
         <t t-foreach="docs" t-as="o">
+            <t t-call="report.external_layout">
             <div class="page">
                 <h2>ARQUEO DE CAJA: <span t-field="o.name"/></h2>
                 <strong>BOLIVIANOS</strong>
@@ -82,6 +83,7 @@
                 <strong>TOTAL ARQUEO DEL DIA:</strong><t t-esc="totals[0]+(totals[1]*6.85)"/><br/><!--ojo balance_end-->
                 
             </div>
+            </t>
         </t>
     </t>
 </template>
