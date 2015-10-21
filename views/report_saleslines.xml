@@ -10,10 +10,6 @@
 
                     <div class="row mt32 mb32">
                         <div class="col-xs-3">
-                            <strong>Company</strong>:<br/>
-                            <span t-field="res_company.name"/>
-                        </div>
-                        <div class="col-xs-3">
                             <strong>Print date</strong>:<br/>
                             <t t-esc="formatLang(time.strftime('%Y-%m-%d'), date=True)"/>
                         </div>
