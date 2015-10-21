@@ -6,8 +6,10 @@
         <t t-foreach="docs" t-as="o">
             <t t-call="report.external_layout">
             <div class="page">
-                <h2>ARQUEO DE CAJA: <span t-field="o.name"/></h2>
-                <strong>BOLIVIANOS</strong>
+                <h2 class="text-center">ARQUEO DE CAJA</h2>
+                <h3 class="text-center"><span t-field="o.name"/></h3>
+                <h3 class="text-center"><strong>BOLIVIANOS</strong></h3>
+
                 <table class="table table-condensed mb32">
                     <thead>
                         <tr>

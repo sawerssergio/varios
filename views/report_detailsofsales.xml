@@ -5,7 +5,7 @@
     <t t-call="report.html_container">
         <t t-call="report.external_layout">
             <div class="page">
-                <h2>Details of Sales</h2>
+                <h2 class="text-center">Details of Sales</h2>
 
                 <div class="row mt32">
                     <div class="col-xs-3">
