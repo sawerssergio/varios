@@ -797,6 +797,9 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         init: function(parent, options){
             this._super(parent, options);
             this.is_dolar=false;
+
+            var cashregister = this.pos.cashregisters[0];
+            this.pos.get('selectedOrder').addPaymentline(cashregister);
         },
         show_leftpane: false,
         auto_back: true,
@@ -804,8 +807,6 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             var self = this;
             this._super();
 
-            var cashregister = this.pos.cashregisters[0];
-            self.pos.get('selectedOrder').addPaymentline(cashregister);
             self.update_payment_summary();
             this.add_action_button({
                     label: _t('Reload'),
@@ -819,8 +820,10 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     label: _t('Back'),
                     icon: '/pos_kingdom/static/src/img/back.svg',
                     click: function(){
-                        console.log("back");
-                        self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
+                        if(self.is_paid()){
+                            console.log("back");
+                            self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
+                        }
                     },
                 });
             this.add_action_button({
