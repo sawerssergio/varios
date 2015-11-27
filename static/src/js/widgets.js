@@ -1787,10 +1787,12 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             if(visible !== this.leftpane_visible){
                 this.leftpane_visible = visible;
                 if(visible){
-                    this.$('.rightpane').removeClass('oe_hidden');
+                    this.$('.pos-leftpane').removeClass('oe_hidden');
+                    this.$('.pos-centerpane').removeClass('with_rightpane');
                     //this.$('.leftpane').css({'left':this.leftpane_width});
                 }else{
-                    this.$('.rightpane').addClass('oe_hidden');
+                    this.$('.pos-leftpane').addClass('oe_hidden');
+                    this.$('.pos-centerpane').addClass('with_rightpane');
                     //this.$('.leftpane').css({'left':'0px'});
                 }
             }

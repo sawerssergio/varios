@@ -5,6 +5,9 @@
 
     <t t-name="PosWidget">
         <div class="pos">
+            <div class="user">
+                <span class="placeholder-UserWidget"></span>
+            </div>
             <div class="pos-leftpane">
                 <span class="placeholder-ProductCategoriesWidget"></span>
             </div>
@@ -26,14 +29,6 @@
                 <div class="placeholder-OnscreenKeyboardWidget"></div>
             </div>
             <div class="pos-rightpane">
-                <div class="right-header">
-                    <div class="sale">
-                        <button type="button" class="sale-type font-black">VENTAS</button>
-                    </div>
-                    <div class="user">
-                        <span class="placeholder-UserWidget"></span>
-                    </div>
-                </div>
                 <div class="menu-orders">
                     <span class="placeholder-OrderWidget"/>
                 </div>
@@ -270,9 +265,6 @@
 
     <t t-name="ProductCategoriesWidget">
         <div class="categories">
-            <div class="time font-black">
-                15:00
-            </div>
             <ul class="categories-list">
             </ul>
         </div>
@@ -444,6 +436,18 @@
                 <button t-att-class=" 'font-regular button-screen dolar'+ (widget.is_dolar  ? ' selected' : '')">Dolares</button>
                 <button t-att-class=" 'font-regular button-screen bolivian'+ (widget.is_dolar  ? '' : ' selected')">Bolivianos</button>
             </section>
+            <section class="subheader-screen">
+                <ul class="amounts font-black">
+                    <li class="amount">
+                        <span class="title-amount">A PAGAR :</span>
+                        <span class="payment-due-total value-amount">0</span>
+                    </li>
+                    <li class="amount">
+                        <span class="title-amount">PAGADO : </span>
+                        <span class="payment-paid-total value-amount">0</span>
+                    </li>
+                </ul>
+            </section>
             <t t-if="widget.is_dolar">
                 <t t-call="DolarTickets"/>
             </t>
@@ -453,23 +457,23 @@
             <section class="bottom-screen">
                 <ul class="amounts font-black">
                     <li class="amount">
-                        <span class="title-amount">TOTAL</span>
-                        <span class="payment-due-total value-amount">0</span>
-                    </li>
-                    <li class="amount">
-                        <span class="title-amount">PAGO</span>
-                        <span class="payment-paid-total value-amount">0</span>
-                    </li>
-                    <li class="amount">
-                        <span class="title-amount">FALTA</span>
+                        <span class="title-amount">FALTANTE : </span>
                         <span class="payment-remaining value-amount">0</span>
                     </li>
+                    <!--
                     <li class="amount">
                         <span class="title-amount">CAMBIO</span>
                         <span class="payment-change value-amount">0</span>
                     </li>
+                    -->
                 </ul>
             </section>
+            <div class="modal-view">
+                <div class="modal-message">
+                    <div class="change">Cambio</div>
+                    <div class="amount">Bs. <span class="payment-change value-amount">0</span></div>
+                </div>
+            </div>
         </div>
     </t>
 
@@ -1550,9 +1554,10 @@
 
     <t t-name="ActionButtonWidgetWithIcon">
         <li t-att-class=" 'button '+ (widget.rightalign  ? 'rightalign ' : '') + (widget.disabled ? 'disabled ' : '')">
+            <div class='iconlabel'><t t-esc="widget.label" /></div>
             <div class='icon'>
+                <span class="helper"></span>
                 <img t-att-src="widget.icon" />
-                <!--<div class='iconlabel'><t t-esc="widget.label" /></div>-->
             </div>
         </li>
     </t>

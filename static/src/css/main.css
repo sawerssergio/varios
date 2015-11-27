@@ -95,15 +95,108 @@ input[type=number] {
   box-shadow: none;
   outline: none;
 }
+/* line 105, ../scss/main.scss */
+.pos .user {
+  height: 10vh;
+  width: 7vw;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 500;
+}
+/* line 113, ../scss/main.scss */
+.pos .user .user-data {
+  height: 100%;
+  position: relative;
+}
+/* line 116, ../scss/main.scss */
+.pos .user .user-data .user-image {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+/* line 121, ../scss/main.scss */
+.pos .user .user-data .user-image .helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+/* line 126, ../scss/main.scss */
+.pos .user .user-data .user-image img {
+  height: 8vh;
+  border-radius: 50%;
+  border: 2px solid white;
+  vertical-align: middle;
+}
+/* line 133, ../scss/main.scss */
+.pos .user .user-data .active {
+  display: block !important;
+  z-index: 10;
+}
+/* line 137, ../scss/main.scss */
+.pos .user .user-data .user-options {
+  display: none;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  clear: both;
+  border-radius: 1em;
+}
+/* line 146, ../scss/main.scss */
+.pos .user .user-data .user-options li {
+  list-style-type: none;
+  margin: 10px 0 0 0;
+}
+/* line 148, ../scss/main.scss */
+.pos .user .user-data .user-options li a {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: white;
+}
+/* line 154, ../scss/main.scss */
+.pos .user .user-data .user-options li:active {
+  background-color: #c1272d;
+}
+/* line 158, ../scss/main.scss */
+.pos .user .user-data .user-options:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: 100%;
+  right: 34%;
+  border-width: 0 6px 6px 6px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.8) transparent;
+}
+/* line 169, ../scss/main.scss */
+.pos .user .user-data .user-options:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: 100%;
+  right: 36%;
+  border-width: 0 8px 8px 8px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.1) transparent;
+}
 
-/* line 106, ../scss/main.scss */
+/* line 184, ../scss/main.scss */
 .pos-leftpane {
   height: 100%;
   -webkit-flex: 0 1 7vw;
   flex: 0 1 7vw;
+  order: 3;
 }
 
-/* line 111, ../scss/main.scss */
+/* line 190, ../scss/main.scss */
 .pos-centerpane {
   height: 100%;
   -webkit-flex: 0 1 66vw;
@@ -120,17 +213,18 @@ input[type=number] {
   justify-content: space-between;
   align-content: stretch;
   align-items: stretch;
+  order: 2;
   position: relative;
 }
-/* line 123, ../scss/main.scss */
+/* line 203, ../scss/main.scss */
 .pos-centerpane .center-top {
-  -webkit-flex: 0 1 18vh;
-  flex: 0 1 18vh;
+  -webkit-flex: 0 1 15vh;
+  flex: 0 1 15vh;
   width: 100%;
   position: relative;
-  min-height: 18vh;
+  min-height: 15vh;
 }
-/* line 128, ../scss/main.scss */
+/* line 208, ../scss/main.scss */
 .pos-centerpane .center-top .options {
   position: absolute;
   width: 100%;
@@ -141,7 +235,7 @@ input[type=number] {
   -moz-transition: all 600ms ease-in-out;
   z-index: 90;
 }
-/* line 137, ../scss/main.scss */
+/* line 217, ../scss/main.scss */
 .pos-centerpane .center-top .options .background {
   position: absolute;
   width: 100%;
@@ -150,7 +244,7 @@ input[type=number] {
   background-image: url("../img/company.svg");
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 18vh auto;
+  background-size: 15vh auto;
   transition: all 600s ease-in-out;
   -webkit-transition: all 600ms ease-in-out;
   /** Chrome & Safari **/
@@ -158,24 +252,24 @@ input[type=number] {
   /** Firefox **/
   z-index: 80;
 }
-/* line 153, ../scss/main.scss */
+/* line 233, ../scss/main.scss */
 .pos-centerpane .center-middle {
-  -webkit-flex: 0 1 66vh;
-  flex: 0 1 66vh;
-  max-height: 66vh;
+  -webkit-flex: 0 1 73vh;
+  flex: 0 1 73vh;
+  max-height: 73vh;
 }
-/* line 156, ../scss/main.scss */
+/* line 236, ../scss/main.scss */
 .pos-centerpane .center-middle .screens {
   width: 100%;
   height: 100%;
 }
-/* line 159, ../scss/main.scss */
+/* line 239, ../scss/main.scss */
 .pos-centerpane .center-middle .screens .screen {
   padding: 0 5%;
   width: 90%;
   height: 100%;
 }
-/* line 163, ../scss/main.scss */
+/* line 243, ../scss/main.scss */
 .pos-centerpane .center-middle .screens .screen .header-screen {
   width: 90%;
   display: inline-block;
@@ -186,7 +280,7 @@ input[type=number] {
   height: 11vh;
   position: relative;
 }
-/* line 172, ../scss/main.scss */
+/* line 252, ../scss/main.scss */
 .pos-centerpane .center-middle .screens .screen .header-screen .name-screen {
   display: inline-block;
   width: 30%;
@@ -196,7 +290,7 @@ input[type=number] {
   position: absolute;
   bottom: 10%;
 }
-/* line 181, ../scss/main.scss */
+/* line 261, ../scss/main.scss */
 .pos-centerpane .center-middle .screens .screen .header-screen .button-screen {
   display: inline-block;
   width: 23%;
@@ -208,24 +302,24 @@ input[type=number] {
   color: white;
   opacity: .5;
 }
-/* line 192, ../scss/main.scss */
+/* line 272, ../scss/main.scss */
 .pos-centerpane .center-middle .screens .screen .header-screen .selected {
   opacity: 1;
 }
-/* line 199, ../scss/main.scss */
+/* line 279, ../scss/main.scss */
 .pos-centerpane .center-bottom {
-  -webkit-flex: 0 1 16vh;
-  flex: 0 1 16vh;
-  max-height: 16vh;
+  -webkit-flex: 0 1 12vh;
+  flex: 0 1 12vh;
+  max-height: 12vh;
 }
-/* line 202, ../scss/main.scss */
+/* line 282, ../scss/main.scss */
 .pos-centerpane .center-bottom .pos-actionbar {
   border-top: .1em solid white;
   width: 90%;
-  height: 16vh;
+  height: 12vh;
   margin: 0 5%;
 }
-/* line 207, ../scss/main.scss */
+/* line 287, ../scss/main.scss */
 .pos-centerpane .center-bottom .pos-actionbar .pos-actionbar-button-list {
   list-style: none;
   height: 100%;
@@ -243,148 +337,52 @@ input[type=number] {
   align-content: center;
   align-items: center;
 }
-/* line 219, ../scss/main.scss */
+/* line 299, ../scss/main.scss */
 .pos-centerpane .center-bottom .pos-actionbar .pos-actionbar-button-list .button {
-  -webkit-flex: 0 1 5.6vw;
-  flex: 0 1 5.6vw;
+  -webkit-flex: 0 1 15vw;
+  flex: 0 1 15vw;
 }
-/* line 221, ../scss/main.scss */
+/* line 301, ../scss/main.scss */
+.pos-centerpane .center-bottom .pos-actionbar .pos-actionbar-button-list .button .iconlabel {
+  width: 50%;
+  height: 10vh;
+  font-size: 1.2em;
+  color: white;
+  font-family: Roboto-black;
+  line-height: 10vh;
+  float: left;
+}
+/* line 310, ../scss/main.scss */
 .pos-centerpane .center-bottom .pos-actionbar .pos-actionbar-button-list .button .icon {
-  width: 100%;
+  width: 50%;
+  height: 10vh;
+  text-align: center;
+  display: inline-block;
+  float: left;
 }
-/* line 223, ../scss/main.scss */
+/* line 316, ../scss/main.scss */
+.pos-centerpane .center-bottom .pos-actionbar .pos-actionbar-button-list .button .icon .helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+/* line 321, ../scss/main.scss */
 .pos-centerpane .center-bottom .pos-actionbar .pos-actionbar-button-list .button .icon img {
-  width: 100%;
+  width: 50%;
   height: 5.6vh;
+  vertical-align: middle;
 }
 
-/* line 234, ../scss/main.scss */
+/* line 333, ../scss/main.scss */
 .pos-rightpane {
   height: 100%;
   -webkit-flex: 0 1 27vw;
   flex: 0 1 27vw;
-}
-/* line 237, ../scss/main.scss */
-.pos-rightpane .right-header {
-  height: 10vh;
-  width: 100%;
-  position: relative;
-  background-color: #f26522;
-}
-/* line 242, ../scss/main.scss */
-.pos-rightpane .right-header .sale {
-  width: 64%;
-  height: 70%;
-  color: white;
-  float: left;
-  margin: 3% 0;
-  border-right: 0.2em solid rgba(255, 255, 255, 0.5);
-}
-/* line 249, ../scss/main.scss */
-.pos-rightpane .right-header .sale .sale-type {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: white;
-  display: inline;
-  width: 100%;
-  height: 100%;
-}
-/* line 256, ../scss/main.scss */
-.pos-rightpane .right-header .sale .sale-type p {
-  text-align: center;
-  line-height: 0.3em;
-}
-/* line 262, ../scss/main.scss */
-.pos-rightpane .right-header .user {
-  height: 100%;
-  width: 34%;
-  float: right;
-}
-/* line 266, ../scss/main.scss */
-.pos-rightpane .right-header .user .user-data {
-  height: 100%;
-  position: relative;
-}
-/* line 269, ../scss/main.scss */
-.pos-rightpane .right-header .user .user-data .user-image {
-  height: 100%;
-  width: 100%;
-  display: inline-block;
-  text-align: center;
-}
-/* line 274, ../scss/main.scss */
-.pos-rightpane .right-header .user .user-data .user-image .helper {
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-}
-/* line 279, ../scss/main.scss */
-.pos-rightpane .right-header .user .user-data .user-image img {
-  height: 8vh;
-  border-radius: 50%;
-  border: 2px solid white;
-  vertical-align: middle;
-}
-/* line 286, ../scss/main.scss */
-.pos-rightpane .right-header .user .user-data .active {
-  display: block !important;
-  z-index: 10;
-}
-/* line 290, ../scss/main.scss */
-.pos-rightpane .right-header .user .user-data .user-options {
-  display: none;
-  margin: 0px;
-  padding: 0px;
-  position: absolute;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  color: white;
-  clear: both;
-  border-radius: 1em;
-}
-/* line 299, ../scss/main.scss */
-.pos-rightpane .right-header .user .user-data .user-options li {
-  list-style-type: none;
-  margin: 10px 0 0 0;
-}
-/* line 301, ../scss/main.scss */
-.pos-rightpane .right-header .user .user-data .user-options li a {
-  display: block;
-  padding: 5px 10px;
-  text-decoration: none;
-  color: white;
-}
-/* line 307, ../scss/main.scss */
-.pos-rightpane .right-header .user .user-data .user-options li:active {
-  background-color: #c1272d;
-}
-/* line 311, ../scss/main.scss */
-.pos-rightpane .right-header .user .user-data .user-options:after {
-  content: "";
-  width: 0;
-  height: 0;
-  position: absolute;
-  bottom: 100%;
-  right: 34%;
-  border-width: 0 6px 6px 6px;
-  border-style: solid;
-  border-color: rgba(0, 0, 0, 0.8) transparent;
-}
-/* line 322, ../scss/main.scss */
-.pos-rightpane .right-header .user .user-data .user-options:before {
-  content: "";
-  width: 0;
-  height: 0;
-  position: absolute;
-  bottom: 100%;
-  right: 36%;
-  border-width: 0 8px 8px 8px;
-  border-style: solid;
-  border-color: rgba(0, 0, 0, 0.1) transparent;
+  order: 1;
 }
 /* line 337, ../scss/main.scss */
 .pos-rightpane .menu-orders {
-  height: 90vh;
+  height: 100%;
   right: 0;
   color: white;
 }
@@ -436,7 +434,7 @@ input[type=number] {
 /* line 375, ../scss/main.scss */
 .pos-rightpane .menu-orders .order-container .order-scroller {
   width: 100%;
-  height: 72vh;
+  height: 82vh;
   overflow-y: auto;
 }
 /* line 379, ../scss/main.scss */
@@ -553,18 +551,10 @@ input[type=number] {
   opacity: .8;
 }
 /* line 475, ../scss/main.scss */
-.categories .time {
-  height: 10%;
-  width: 100%;
-  background-color: #f26522;
-  text-align: center;
-  line-height: 10vh;
-  color: white;
-}
-/* line 483, ../scss/main.scss */
 .categories .categories-list {
   width: 100%;
   height: 90%;
+  padding-top: 10vh;
   display: -webkit-flex;
   -webkit-flex-direction: column;
   -webkit-flex-wrap: nowrap;
@@ -578,36 +568,36 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 494, ../scss/main.scss */
+/* line 487, ../scss/main.scss */
 .categories .categories-list .category-item {
   -webkit-flex: 0 1 20vh;
   flex: 0 1 20vh;
   text-align: center;
 }
-/* line 497, ../scss/main.scss */
+/* line 490, ../scss/main.scss */
 .categories .categories-list .category-item .helper {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 501, ../scss/main.scss */
+/* line 494, ../scss/main.scss */
 .categories .categories-list .category-item img {
   width: 100%;
   display: inline-block;
   vertical-align: middle;
 }
 
-/* line 509, ../scss/main.scss */
+/* line 502, ../scss/main.scss */
 .container_products {
-  height: 54vh;
+  height: 61vh;
   width: 100%;
 }
-/* line 512, ../scss/main.scss */
+/* line 505, ../scss/main.scss */
 .container_products .product-list-container {
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
-/* line 516, ../scss/main.scss */
+/* line 509, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller {
   box-sizing: border-box;
   width: 100%;
@@ -615,7 +605,7 @@ input[type=number] {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
-/* line 522, ../scss/main.scss */
+/* line 515, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list {
   width: 100%;
   height: 100%;
@@ -632,20 +622,20 @@ input[type=number] {
   align-content: flex-start;
   align-items: stretch;
 }
-/* line 533, ../scss/main.scss */
+/* line 526, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product {
   -webkit-flex: 0 1 30%;
   flex: 0 1 30%;
 }
-/* line 535, ../scss/main.scss */
+/* line 528, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product .product-img {
   width: 100%;
 }
-/* line 537, ../scss/main.scss */
+/* line 530, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product .product-img img {
   width: 100%;
 }
-/* line 541, ../scss/main.scss */
+/* line 534, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product .information {
   height: 4.5vh;
   line-height: 4.5vh;
@@ -653,7 +643,7 @@ input[type=number] {
   color: white;
   font-family: Roboto-black;
 }
-/* line 547, ../scss/main.scss */
+/* line 540, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product .information .number {
   height: 100%;
   background-color: #C1272D;
@@ -662,11 +652,11 @@ input[type=number] {
   display: inline-block;
   width: 36%;
 }
-/* line 554, ../scss/main.scss */
+/* line 547, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product .information .number label {
   font-size: .5em;
 }
-/* line 558, ../scss/main.scss */
+/* line 551, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product .information .price {
   display: inline-block;
   height: 100%;
@@ -674,7 +664,7 @@ input[type=number] {
   float: left;
   width: 36%;
 }
-/* line 564, ../scss/main.scss */
+/* line 557, ../scss/main.scss */
 .container_products .product-list-container .product-list-scroller .product-list .product .information .price label {
   font-size: .5em;
 }
@@ -695,7 +685,7 @@ input[type=number] {
     opacity: 1;
   }
 }
-/* line 583, ../scss/main.scss */
+/* line 576, ../scss/main.scss */
 .options-selector {
   width: 95%;
   height: 100%;
@@ -705,7 +695,7 @@ input[type=number] {
   padding: 0 2.5%;
   position: relative;
 }
-/* line 592, ../scss/main.scss */
+/* line 585, ../scss/main.scss */
 .options-selector .options-selector-content {
   width: 100%;
   height: 100%;
@@ -717,7 +707,7 @@ input[type=number] {
   /* W3C */
   /*border-radius: 0em 0em 1.5em 1.5em;*/
 }
-/* line 599, ../scss/main.scss */
+/* line 592, ../scss/main.scss */
 .options-selector .options-selector-content .values-list {
   width: 100%;
   height: 100%;
@@ -734,7 +724,7 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 610, ../scss/main.scss */
+/* line 603, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection {
   -webkit-flex: 0 1 26.5%;
   flex: 0 1 26.5%;
@@ -743,7 +733,7 @@ input[type=number] {
   position: relative;
   border-right: 0.2vw solid rgba(255, 255, 255, 0.5);
 }
-/* line 616, ../scss/main.scss */
+/* line 609, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .top-block {
   display: flex;
   width: 100%;
@@ -753,7 +743,7 @@ input[type=number] {
   position: relative;
   color: #ffdf1b;
 }
-/* line 624, ../scss/main.scss */
+/* line 617, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .top-block label {
   position: absolute;
   top: 1%;
@@ -762,7 +752,7 @@ input[type=number] {
   font-size: 3vh;
   font-family: Roboto-black;
 }
-/* line 632, ../scss/main.scss */
+/* line 625, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .top-block .block-quantity {
   width: 90%;
   position: absolute;
@@ -778,7 +768,7 @@ input[type=number] {
   height: 6.5vh;
   font-family: Roboto-black;
 }
-/* line 648, ../scss/main.scss */
+/* line 641, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block {
   display: block;
   width: 100%;
@@ -788,38 +778,38 @@ input[type=number] {
   margin: 1vh 0px;
   line-height: 0.5em;
 }
-/* line 656, ../scss/main.scss */
+/* line 649, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-increase {
   display: inline-block;
   float: left;
   height: 100%;
   width: 33%;
 }
-/* line 661, ../scss/main.scss */
+/* line 654, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-increase .helper {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
-/* line 666, ../scss/main.scss */
+/* line 659, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-increase img {
   width: 50%;
   vertical-align: middle;
   height: 3vh;
 }
-/* line 672, ../scss/main.scss */
+/* line 665, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-image {
   display: inline-block;
   float: center;
   height: 100%;
   width: 33%;
 }
-/* line 677, ../scss/main.scss */
+/* line 670, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-image img {
   /*width: 50%;*/
   height: 6vh;
 }
-/* line 682, ../scss/main.scss */
+/* line 675, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-decrease {
   display: inline-block;
   float: right;
@@ -827,26 +817,26 @@ input[type=number] {
   width: 33%;
   text-align: center;
 }
-/* line 688, ../scss/main.scss */
+/* line 681, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-decrease .helper {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
-/* line 693, ../scss/main.scss */
+/* line 686, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .bottom-block .block-decrease img {
   width: 50%;
   vertical-align: middle;
   height: 3vh;
 }
-/* line 701, ../scss/main.scss */
+/* line 694, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .total-selection {
   -webkit-flex: 0 1 20%;
   flex: 0 1 20%;
   order: 100;
   border-right: none !important;
 }
-/* line 706, ../scss/main.scss */
+/* line 699, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .total-selection .top-block .block-information {
   font-size: 5vh;
   width: 100%;
@@ -854,17 +844,17 @@ input[type=number] {
   align-self: center;
   font-family: Roboto-black;
 }
-/* line 714, ../scss/main.scss */
+/* line 707, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .total-selection .bottom-block {
   border: none;
 }
-/* line 716, ../scss/main.scss */
+/* line 709, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .total-selection .bottom-block .total-quantity {
   line-height: 6vh;
   font-size: 8vh;
 }
 
-/* line 726, ../scss/main.scss */
+/* line 719, ../scss/main.scss */
 .pow_hidden {
   top: -120% !important;
   background-position: center 0% !important;
@@ -874,7 +864,7 @@ input[type=number] {
   -moz-transition: all 600ms ease-in-out;
   /** Firefox **/
 }
-/* line 732, ../scss/main.scss */
+/* line 725, ../scss/main.scss */
 .pow_hidden .background {
   top: 120% !important;
 }
@@ -897,13 +887,13 @@ input[type=number] {
     transform: translateX(800px) rotateZ(-60deg) translateY(400px);
   }
 }
-/* line 759, ../scss/main.scss */
+/* line 752, ../scss/main.scss */
 .removed {
   animation: removed-item-animation 1s linear;
   transform-origin: 390px 100%;
 }
 
-/* line 763, ../scss/main.scss */
+/* line 756, ../scss/main.scss */
 .restored {
   transform: translateX(27vw);
   animation: openspace 0.3s ease forwards, restored-item-animation 0.5s 0.3s cubic-bezier(0.14, 0.25, 0.52, 1.56) forwards;
@@ -928,7 +918,7 @@ input[type=number] {
     transform: translateX(0);
   }
 }
-/* line 793, ../scss/main.scss */
+/* line 786, ../scss/main.scss */
 .title-quantity {
   margin-top: .2em;
   text-align: center;
@@ -936,7 +926,7 @@ input[type=number] {
   display: block;
 }
 
-/* line 799, ../scss/main.scss */
+/* line 792, ../scss/main.scss */
 .units-quantity {
   margin-top: .1em;
   text-align: center;
@@ -945,7 +935,7 @@ input[type=number] {
   display: block;
 }
 
-/* line 806, ../scss/main.scss */
+/* line 799, ../scss/main.scss */
 .only-quantity-total {
   position: absolute;
   margin: auto;
@@ -954,7 +944,7 @@ input[type=number] {
   font-size: 1.7em;
 }
 
-/* line 815, ../scss/main.scss */
+/* line 808, ../scss/main.scss */
 .destination-selector {
   width: 60%;
   height: 60%;
@@ -963,7 +953,7 @@ input[type=number] {
   color: white;
   font-size: 1.2em;
 }
-/* line 822, ../scss/main.scss */
+/* line 815, ../scss/main.scss */
 .destination-selector .destination-list {
   display: -webkit-flex;
   -webkit-flex-direction: row;
@@ -979,7 +969,7 @@ input[type=number] {
   align-items: stretch;
   height: 100%;
 }
-/* line 832, ../scss/main.scss */
+/* line 825, ../scss/main.scss */
 .destination-selector .destination-list .destination {
   -webkit-flex: 0 1 25%;
   flex: 0 1 25%;
@@ -989,28 +979,28 @@ input[type=number] {
   border-left: 0.1em solid rgba(255, 255, 255, 0.6);
   opacity: .6;
 }
-/* line 840, ../scss/main.scss */
+/* line 833, ../scss/main.scss */
 .destination-selector .destination-list .destination:first-child {
   border-radius: 1em 0 0 1em;
   border-left: none !important;
 }
-/* line 844, ../scss/main.scss */
+/* line 837, ../scss/main.scss */
 .destination-selector .destination-list .destination:last-child {
   border-radius: 0 1em 1em 0;
 }
-/* line 847, ../scss/main.scss */
+/* line 840, ../scss/main.scss */
 .destination-selector .destination-list .selected {
   opacity: 1;
 }
 
-/* line 852, ../scss/main.scss */
+/* line 845, ../scss/main.scss */
 .invoice-screen {
   height: 100%;
   width: 100%;
   height: 75%;
   width: 100%;
 }
-/* line 857, ../scss/main.scss */
+/* line 850, ../scss/main.scss */
 .invoice-screen .money-list {
   display: -webkit-flex;
   -webkit-flex-direction: row;
@@ -1025,23 +1015,23 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
   height: 44vh;
-  width: 69%;
+  width: 90%;
   margin: auto;
 }
-/* line 869, ../scss/main.scss */
+/* line 862, ../scss/main.scss */
 .invoice-screen .money-list .money-details {
   -webkit-flex: 0 1 26%;
   flex: 0 1 26%;
 }
-/* line 871, ../scss/main.scss */
+/* line 864, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item {
   width: 100%;
 }
-/* line 873, ../scss/main.scss */
+/* line 866, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item img {
   width: 100%;
 }
-/* line 876, ../scss/main.scss */
+/* line 869, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item .money-subitems {
   width: 100%;
   height: 100%;
@@ -1058,21 +1048,71 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 887, ../scss/main.scss */
+/* line 880, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item .money-subitems .money-detail-subitem {
   -webkit-flex: 0 1 45%;
   flex: 0 1 45%;
 }
-/* line 889, ../scss/main.scss */
+/* line 882, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item .money-subitems .money-detail-subitem img {
   width: 100%;
 }
-/* line 897, ../scss/main.scss */
+/* line 890, ../scss/main.scss */
+.invoice-screen .subheader-screen {
+  height: 6vh;
+  width: 100%;
+  margin-top: 1vh;
+}
+/* line 894, ../scss/main.scss */
+.invoice-screen .subheader-screen .amounts {
+  color: white;
+  width: 80%;
+  height: 100%;
+  margin: auto;
+}
+/* line 899, ../scss/main.scss */
+.invoice-screen .subheader-screen .amounts .amount {
+  float: left;
+  height: 80%;
+  width: 48%;
+  padding: 1.8% 0%;
+  background-color: #f26522;
+  border-left: 0.2em solid rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+/* line 907, ../scss/main.scss */
+.invoice-screen .subheader-screen .amounts .amount .title-amount {
+  width: 40%;
+  height: 100%;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 100%;
+}
+/* line 914, ../scss/main.scss */
+.invoice-screen .subheader-screen .amounts .amount .value-amount {
+  width: 55%;
+  height: 100%;
+  display: inline-block;
+  font-size: 1.6em;
+  color: #ffdf1b;
+}
+/* line 922, ../scss/main.scss */
+.invoice-screen .subheader-screen .amounts .amount:first-child {
+  border-left: none !important;
+  border-radius: .5em 0 0 .5em;
+  opacity: .5;
+}
+/* line 927, ../scss/main.scss */
+.invoice-screen .subheader-screen .amounts .amount:last-child {
+  opacity: 1;
+  border-radius: 0 .5em .5em 0;
+}
+/* line 933, ../scss/main.scss */
 .invoice-screen .bottom-screen {
-  height: 9vh;
+  height: 6vh;
   width: 100%;
 }
-/* line 900, ../scss/main.scss */
+/* line 936, ../scss/main.scss */
 .invoice-screen .bottom-screen .name-bottom {
   display: inline-block;
   width: 30%;
@@ -1080,60 +1120,111 @@ input[type=number] {
   height: 40%;
   color: white;
 }
-/* line 907, ../scss/main.scss */
+/* line 943, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts {
   color: white;
-  width: 63%;
+  width: 70%;
   height: 100%;
   margin: auto;
 }
-/* line 912, ../scss/main.scss */
+/* line 948, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount {
-  float: left;
-  height: 80%;
-  width: 24%;
-  padding: 1.8% 0%;
+  height: 100%;
+  width: 50%;
   background-color: #f26522;
   border-left: 0.2em solid rgba(255, 255, 255, 0.7);
+  margin: auto;
+  text-align: center;
 }
-/* line 919, ../scss/main.scss */
+/* line 955, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount .title-amount {
-  height: 28%;
-  width: 100%;
-  display: block;
-  padding: 1% 0;
-  color: #ffdf1b;
-  font-size: .8em;
-  line-height: .5em;
+  height: 100%;
+  width: 40%;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 1em;
 }
-/* line 928, ../scss/main.scss */
+/* line 962, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount .value-amount {
-  height: 70%;
-  width: 100%;
-  display: block;
-  padding: 1% 0;
+  height: 100%;
+  width: 55%;
+  display: inline-block;
   font-size: 1.6em;
+  line-height: 1.6em;
+  color: #ffdf1b;
 }
-/* line 936, ../scss/main.scss */
+/* line 971, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount:first-child {
   border-left: none !important;
-  border-radius: .5em 0 0 .5em;
+  border-top-left-radius: .5em;
+  border-bottom-left-radius: .5em;
 }
-/* line 940, ../scss/main.scss */
+/* line 976, ../scss/main.scss */
 .invoice-screen .bottom-screen .amounts .amount:last-child {
-  border-radius: 0 .5em .5em 0;
-}
-/* line 943, ../scss/main.scss */
-.invoice-screen .bottom-screen .amounts .amount:nth-child(even) {
-  background: transparent repeating-linear-gradient(-55deg, #F26522, #F26522 10px, rgba(242, 101, 34, 0.5) 10px, rgba(242, 101, 34, 0.5) 20px) repeat scroll 0% 0%;
+  border-top-right-radius: .5em;
+  border-bottom-right-radius: .5em;
 }
 
-/* line 950, ../scss/main.scss */
+/* line 984, ../scss/main.scss */
+.money-push {
+  -moz-transition: opacity .25s linear, visibility .1s linear .5s;
+  -webkit-transition: opacity .25s linear, visibility .1s linear .5s;
+  -o-transition: opacity .25s linear, visibility .1s linear .5s;
+  transition: opacity .25s linear, visibility .1s linear .5s;
+}
+
+/* line 992, ../scss/main.scss */
+.modal-view:before {
+  content: "";
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+/* line 1003, ../scss/main.scss */
+.modal-view .modal-message {
+  background: #f26522;
+  border: gray solid 1px;
+  border-radius: 5px;
+  position: absolute;
+  left: 12vw;
+  transform: translate(0, 100%);
+  z-index: 11;
+  width: 63vh;
+  height: 42vh;
+  color: white;
+  font-family: Roboto-black;
+  transition: transform 1s;
+}
+/* line 1016, ../scss/main.scss */
+.modal-view .modal-message .change {
+  margin-top: 1em;
+  font-size: 3em;
+}
+/* line 1020, ../scss/main.scss */
+.modal-view .modal-message .amount {
+  font-size: 5em;
+}
+
+/* line 1027, ../scss/main.scss */
+.modal-appear:before {
+  display: block !important;
+}
+/* line 1030, ../scss/main.scss */
+.modal-appear .modal-message {
+  transform: translate(0, -117%);
+}
+
+/* line 1035, ../scss/main.scss */
 .client-screen {
   width: 100%;
   height: 100%;
 }
-/* line 953, ../scss/main.scss */
+/* line 1038, ../scss/main.scss */
 .client-screen .client-details {
   height: 54vh;
   width: 100%;
@@ -1150,7 +1241,7 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 964, ../scss/main.scss */
+/* line 1049, ../scss/main.scss */
 .client-screen .client-details .client-detail-item {
   font-size: larger;
   color: white;
@@ -1159,7 +1250,7 @@ input[type=number] {
   max-height: 16%;
   font-size: 2em;
 }
-/* line 970, ../scss/main.scss */
+/* line 1055, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .label {
   display: inline-block;
   width: 18%;
@@ -1168,7 +1259,7 @@ input[type=number] {
   text-align: right;
   line-height: 2.5em;
 }
-/* line 978, ../scss/main.scss */
+/* line 1063, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .detail {
   display: inline-block;
   width: 75%;
@@ -1181,29 +1272,34 @@ input[type=number] {
   text-align: left;
   margin: 2.5%;
 }
-/* line 61, ../../../../../.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+/* line 61, ../../../../../../../.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
 .client-screen .client-details .client-detail-item .detail:-moz-placeholder {
   color: white;
 }
-/* line 64, ../../../../../.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+/* line 64, ../../../../../../../.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
 .client-screen .client-details .client-detail-item .detail::-moz-placeholder {
   color: white;
 }
-/* line 67, ../../../../../.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+/* line 67, ../../../../../../../.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
 .client-screen .client-details .client-detail-item .detail:-ms-input-placeholder {
   color: white;
 }
-/* line 56, ../../../../../.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+/* line 56, ../../../../../../../.gem/ruby/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
 .client-screen .client-details .client-detail-item .detail::-webkit-input-placeholder {
   color: white;
 }
 
-/* line 998, ../scss/main.scss */
+/* line 1083, ../scss/main.scss */
 .selected-product img {
   filter: drop-shadow(5px 3px 4px rgba(0, 0, 0, 0.5));
 }
 
-/* line 1002, ../scss/main.scss */
+/* line 1087, ../scss/main.scss */
 .selected {
   background-color: #f26522 !important;
+}
+
+/* line 1090, ../scss/main.scss */
+.with_rightpane {
+  min-width: 73vw;
 }

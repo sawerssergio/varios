@@ -501,7 +501,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         template:'ProductScreenWidget',
 
         show_numpad:     false,
-        show_leftpane:   false,
+        show_leftpane:   true,
         next_screen: 'client',
         start: function(){ //FIXME this should work as renderElement... but then the categories aren't properly set. explore why
             var self = this;
@@ -830,7 +830,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     label: _t('Check'),
                     icon: '/pos_kingdom/static/src/img/checking.svg',
                     click: function(){
-                        self.next();
+                        self.$('.modal-view').addClass('modal-appear');
                     },
                 });
         },
@@ -845,6 +845,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             this.$(".money-list .ticket").on("click",function(event) {
                 var currentOrder = self.pos.get('selectedOrder');
                 var paidTotal = currentOrder.getPaidTotal() + Number(this.dataset['ticketValue']);
+                self.$('.subheader-screen .amounts .amount:last-child').addClass('money-push');
                 self.set_value(paidTotal);
                 self.update_payment_summary();
             });
@@ -860,6 +861,10 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     self.is_dolar=false;
                     self.renderElement();
                 }
+            });
+            this.$(".modal-view").click(function(){
+                self.$('.modal-view').removeClass('modal-appear');
+                self.next();
             });
             this.update_payment_summary();
         },
