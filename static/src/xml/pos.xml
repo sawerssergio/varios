@@ -454,20 +454,6 @@
             <t t-if="!widget.is_dolar">
                 <t t-call="BolivianTickets"/>
             </t>
-            <section class="bottom-screen">
-                <ul class="amounts font-black">
-                    <li class="amount">
-                        <span class="title-amount">FALTANTE : </span>
-                        <span class="payment-remaining value-amount">0</span>
-                    </li>
-                    <!--
-                    <li class="amount">
-                        <span class="title-amount">CAMBIO</span>
-                        <span class="payment-change value-amount">0</span>
-                    </li>
-                    -->
-                </ul>
-            </section>
             <div class="modal-view">
                 <div class="modal-message">
                     <div class="change">Cambio</div>

@@ -1014,7 +1014,7 @@ input[type=number] {
   justify-content: space-between;
   align-content: stretch;
   align-items: stretch;
-  height: 44vh;
+  height: 50vh;
   width: 90%;
   margin: auto;
 }
@@ -1107,65 +1107,8 @@ input[type=number] {
   opacity: 1;
   border-radius: 0 .5em .5em 0;
 }
-/* line 933, ../scss/main.scss */
-.invoice-screen .bottom-screen {
-  height: 6vh;
-  width: 100%;
-}
-/* line 936, ../scss/main.scss */
-.invoice-screen .bottom-screen .name-bottom {
-  display: inline-block;
-  width: 30%;
-  text-align: center;
-  height: 40%;
-  color: white;
-}
-/* line 943, ../scss/main.scss */
-.invoice-screen .bottom-screen .amounts {
-  color: white;
-  width: 70%;
-  height: 100%;
-  margin: auto;
-}
-/* line 948, ../scss/main.scss */
-.invoice-screen .bottom-screen .amounts .amount {
-  height: 100%;
-  width: 50%;
-  background-color: #f26522;
-  border-left: 0.2em solid rgba(255, 255, 255, 0.7);
-  margin: auto;
-  text-align: center;
-}
-/* line 955, ../scss/main.scss */
-.invoice-screen .bottom-screen .amounts .amount .title-amount {
-  height: 100%;
-  width: 40%;
-  display: inline-block;
-  font-size: 1em;
-  line-height: 1em;
-}
-/* line 962, ../scss/main.scss */
-.invoice-screen .bottom-screen .amounts .amount .value-amount {
-  height: 100%;
-  width: 55%;
-  display: inline-block;
-  font-size: 1.6em;
-  line-height: 1.6em;
-  color: #ffdf1b;
-}
-/* line 971, ../scss/main.scss */
-.invoice-screen .bottom-screen .amounts .amount:first-child {
-  border-left: none !important;
-  border-top-left-radius: .5em;
-  border-bottom-left-radius: .5em;
-}
-/* line 976, ../scss/main.scss */
-.invoice-screen .bottom-screen .amounts .amount:last-child {
-  border-top-right-radius: .5em;
-  border-bottom-right-radius: .5em;
-}
 
-/* line 984, ../scss/main.scss */
+/* line 935, ../scss/main.scss */
 .money-push {
   -moz-transition: opacity .25s linear, visibility .1s linear .5s;
   -webkit-transition: opacity .25s linear, visibility .1s linear .5s;
@@ -1173,7 +1116,7 @@ input[type=number] {
   transition: opacity .25s linear, visibility .1s linear .5s;
 }
 
-/* line 992, ../scss/main.scss */
+/* line 943, ../scss/main.scss */
 .modal-view:before {
   content: "";
   background: rgba(0, 0, 0, 0.6);
@@ -1185,7 +1128,7 @@ input[type=number] {
   bottom: 0;
   z-index: 10;
 }
-/* line 1003, ../scss/main.scss */
+/* line 954, ../scss/main.scss */
 .modal-view .modal-message {
   background: #f26522;
   border: gray solid 1px;
@@ -1200,31 +1143,31 @@ input[type=number] {
   font-family: Roboto-black;
   transition: transform 1s;
 }
-/* line 1016, ../scss/main.scss */
+/* line 967, ../scss/main.scss */
 .modal-view .modal-message .change {
   margin-top: 1em;
   font-size: 3em;
 }
-/* line 1020, ../scss/main.scss */
+/* line 971, ../scss/main.scss */
 .modal-view .modal-message .amount {
   font-size: 5em;
 }
 
-/* line 1027, ../scss/main.scss */
+/* line 978, ../scss/main.scss */
 .modal-appear:before {
   display: block !important;
 }
-/* line 1030, ../scss/main.scss */
+/* line 981, ../scss/main.scss */
 .modal-appear .modal-message {
   transform: translate(0, -117%);
 }
 
-/* line 1035, ../scss/main.scss */
+/* line 986, ../scss/main.scss */
 .client-screen {
   width: 100%;
   height: 100%;
 }
-/* line 1038, ../scss/main.scss */
+/* line 989, ../scss/main.scss */
 .client-screen .client-details {
   height: 54vh;
   width: 100%;
@@ -1241,7 +1184,7 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 1049, ../scss/main.scss */
+/* line 1000, ../scss/main.scss */
 .client-screen .client-details .client-detail-item {
   font-size: larger;
   color: white;
@@ -1250,7 +1193,7 @@ input[type=number] {
   max-height: 16%;
   font-size: 2em;
 }
-/* line 1055, ../scss/main.scss */
+/* line 1006, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .label {
   display: inline-block;
   width: 18%;
@@ -1259,7 +1202,7 @@ input[type=number] {
   text-align: right;
   line-height: 2.5em;
 }
-/* line 1063, ../scss/main.scss */
+/* line 1014, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .detail {
   display: inline-block;
   width: 75%;
@@ -1289,17 +1232,17 @@ input[type=number] {
   color: white;
 }
 
-/* line 1083, ../scss/main.scss */
+/* line 1034, ../scss/main.scss */
 .selected-product img {
   filter: drop-shadow(5px 3px 4px rgba(0, 0, 0, 0.5));
 }
 
-/* line 1087, ../scss/main.scss */
+/* line 1038, ../scss/main.scss */
 .selected {
   background-color: #f26522 !important;
 }
 
-/* line 1090, ../scss/main.scss */
+/* line 1041, ../scss/main.scss */
 .with_rightpane {
   min-width: 73vw;
 }

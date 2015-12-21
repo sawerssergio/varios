@@ -881,8 +881,8 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             this.$('.payment-change').html(this.format_currency(change));*/
             this.$('.payment-due-total').html(dueTotal);
             this.$('.payment-paid-total').html(paidTotal);
-            this.$('.payment-remaining').html(remaining);
             this.$('.payment-change').html(change);
+            /*this.$('.payment-remaining').html(remaining);*/
             /*
             if(currentOrder.selected_orderline === undefined){
                 remaining = 1;  // What is this ? 

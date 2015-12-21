@@ -856,7 +856,7 @@ input[type=number] {
             align-content: stretch,
             align-items: stretch
         ));
-        height: 44vh;
+        height: 50vh;
         width: 90%;
         margin: auto;
         .money-details {
@@ -927,55 +927,6 @@ input[type=number] {
             .amount:last-child {
                 opacity: 1;
                 border-radius: 0 .5em .5em 0;
-            }
-        }
-    }
-    .bottom-screen{
-        height: 6vh;
-        width: 100%;
-        .name-bottom{
-            display: inline-block;
-            width: 30%;
-            text-align: center;
-            height: 40%;
-            color: white;
-        }
-        .amounts{
-            color: white;
-            width: 70%;
-            height: 100%;
-            margin: auto;
-            .amount{
-                height: 100%;
-                width: 50%;
-                background-color: $orange_color;
-                border-left: .2em solid rgba(255,255,255,.7);
-                margin: auto;
-                text-align: center;
-                .title-amount{
-                    height: 100%;
-                    width: 40%;
-                    display: inline-block;
-                    font-size: 1em;
-                    line-height: 1em;
-                }
-                .value-amount{
-                    height: 100%;
-                    width: 55%;
-                    display: inline-block;
-                    font-size: 1.6em;
-                    line-height: 1.6em;
-                    color: $co_letter_yellow;
-                }
-            }
-            .amount:first-child {
-                border-left: none !important;
-                border-top-left-radius: .5em;
-                border-bottom-left-radius: .5em;
-            }
-            .amount:last-child {
-                border-top-right-radius: .5em;
-                border-bottom-right-radius: .5em;
             }
         }
     }
