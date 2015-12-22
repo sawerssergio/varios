@@ -203,30 +203,29 @@ input[type=number] {
     .center-top {
         @include flex(0 1 15vh);
         width: 100%;
-        position: relative;
         min-height: 15vh;
-        .options{
+        .background {
             position: absolute;
             width: 100%;
-            height: 100%;
-            top: 0%;
-            transition: all 600ms ease-in-out;
-            -webkit-transition: all 600ms ease-in-out;
-            -moz-transition: all 600ms ease-in-out;
-            z-index: 90;
-            .background{
+            height: 15vh;
+            background-image: url("../img/company.svg");
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 15vh auto;
+            z-index: 10;
+        }
+        .options {
+            &:before {
+                content: ""; 
+                background: rgba(0,0,0,.6);
                 position: absolute;
-                width: 100%;
-                height: 100%;
-                top: -120%;
-                background-image: url("../img/company.svg");
-                background-position: center center;
-                background-repeat: no-repeat;
-                background-size: 15vh auto;
-                transition: all 600s ease-in-out;
-                -webkit-transition: all 600ms ease-in-out; /** Chrome & Safari **/
-                -moz-transition: all 600ms ease-in-out; /** Firefox **/
-                z-index: 80;
+                display: block;
+                visibility: 1;
+                top: 0;
+                left: 0; 
+                right: 0; 
+                bottom: 0; 
+                z-index: 10;
             }
         }
     }
@@ -574,59 +573,96 @@ input[type=number] {
     to { opacity: 1; }
 }
 .options-selector {
-    width: 95%;
-    height: 100%;
-    top: 0%;
     //transform: translate(0,120%);;
     /*-webkit-animation: fadeIn 1s;*/
     /*animation: fadeIn 1s;*/
-    padding: 0 2.5%;
-    position: relative;
+    background-color: $orange_color;
+    position: absolute;
+    width: 80%;
+    height: 70%;
+    top: 0;
+    bottom: 0;
+    right:0;
+    left:0;
+    margin: auto;
+    transition: all 600ms ease-in-out;
+    -webkit-transition: all 600ms ease-in-out;
+    -moz-transition: all 600ms ease-in-out;
+    z-index: 12;
     .options-selector-content{
         width: 100%;
         height: 100%;
-        background: -moz-linear-gradient(top, $orange_color 57%, $yellow_opacity_color 57%); /* FF3.6+ */
-        background: -webkit-linear-gradient(top, $orange_color 57%,$yellow_opacity_color 57%); /* Chrome10+,Safari5.1+ */
-        background: linear-gradient(to bottom, $orange_color 10vh,$yellow_opacity_color 10vh); /* W3C */
-        /*border-radius: 0em 0em 1.5em 1.5em;*/
+        .product-header{
+            width: 100%;
+            height: 15%;
+            line-height: 7vh;
+            text-align: center;
+            @include fontBlack;
+            .product-name {
+                color: white;
+                font-size: 1.5em;
+                margin-right: 2em;
+            }
+            .total-quantity {
+                font-size: 2em;
+                color: $yellow_letter_color;
+            }
+        }
         .values-list {
             width: 100%;
-            height: 100%;
+            height: 85%;
             @include flexbox((
                 display: flex,
                 flex-direction: row,
                 flex-wrap:nowrap,
-                justify-content: flex-start,
+                justify-content: center,
                 align-content: stretch,
                 align-items: stretch
             ));
             .block-selection {
-                @include flex(0 1 26.5%);
+                @include flex(0 1 33.3%);
                 height: 100%;
-                margin-right: 1%;
                 position: relative;
-                border-right: .2vw solid rgba(255,255,255, 0.5);
-                .top-block {
-                    display: flex;
+                text-align: center;
+                @include flexbox((
+                    display: flex,
+                    flex-direction: column,
+                    flex-wrap: nowrap,
+                    justify-content: space-around,
+                    align-content: stretch,
+                    align-items: stretch
+                ));
+                .name-block {
                     width: 100%;
-                    height: 10vh;
-                    font-size: 3.3vh;
-                    text-align: center;
-                    position: relative;
-                    color: $yellow_letter_color;
+                    height: 8vh;
                     label {
-                        position: absolute;
                         top: 1%;
                         left: 5%;
                         color: white;
                         font-size: 3vh;
                         @include fontBlack;
                     }
+                }
+                .image-block {
+                    display: inline-block;
+                    float: center;
+                    height: 10vh;
+                    width: 100%;
+                    img {
+                        /*width: 50%;*/
+                        height: 10vh;
+                    }
+                }
+                .top-block {
+                    width: 100%;
+                    height: 10vh;
+                    font-size: 3.3vh;
+                    text-align: center;
+                    color: $yellow_letter_color;
                     .block-quantity {
                         width: 90%;
-                        position: absolute;
                         bottom: 0;
-                        text-align: right;
+                        text-align: center;
                         background-color: transparent;
                         border: none;
                         height: 70%;
@@ -640,17 +676,19 @@ input[type=number] {
                 }
                 .bottom-block {
                     display: block;
-                    width: 100%;
+                    width: 70%;
                     text-align: center;
                     color: white;
                     height: 6vh;
-                    margin: 1vh 0px;
+                    margin: 0 15%;
                     line-height: 0.5em;
                     .block-increase {
                         display: inline-block;
                         float: left;
-                        height: 100%;
-                        width: 33%;
+                        height: 6vh;
+                        width: 6vh;
+                        background-color: rgba(255,255,255,.5);
+                        border-radius: 50%;
                         .helper {
                             display: inline-block;
                             height: 100%;
@@ -660,24 +698,17 @@ input[type=number] {
                             width: 50%;
                             vertical-align: middle;
                             height: 3vh;
-                        }
-                    }
-                    .block-image {
-                        display: inline-block;
-                        float: center;
-                        height: 100%;
-                        width: 33%;
-                        img {
-                            /*width: 50%;*/
-                            height: 6vh;
+                            margin-right: 4px;
                         }
                     }
                     .block-decrease {
                         display: inline-block;
                         float: right;
-                        height: 100%;
-                        width: 33%;
+                        height: 6vh;
+                        width: 6vh;
                         text-align: center;
+                        background-color: rgba(255,255,255,.5);
+                        border-radius: 50%;
                         .helper {
                             display: inline-block;
                             height: 100%;
@@ -687,6 +718,7 @@ input[type=number] {
                             width: 50%;
                             vertical-align: middle;
                             height: 3vh;
+                            margin-right: 4px;
                         }
                     }
                 }
@@ -974,12 +1006,25 @@ input[type=number] {
     }
 }
 
-.modal-appear{
-    &:before{
+.modal-appear {
+    &:before {
         display: block !important;
     }
-    .modal-message{
+    .modal-message {
         transform: translate(0,-117%);
+    }
+}
+
+.options-appear {
+    &:before {
+        display: none !important;
+        visibility: 0;
+    }
+    .options-selector {
+        transform: translate(0,-200%);
+        transition: all 600ms ease-in-out;
+        -webkit-transition: all 600ms ease-in-out;
+        -moz-transition: all 600ms ease-in-out;
     }
 }
 

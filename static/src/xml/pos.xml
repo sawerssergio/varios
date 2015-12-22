@@ -13,9 +13,9 @@
             </div>
             <div class="pos-centerpane">
                 <div class="center-top">
-                    <div class="options pow_hidden">
-                        <div class="background">
-                        </div>
+                    <div class="background">
+                    </div>
+                    <div class="options options-appear">
                         <span class="placeholder-order-selector"/>
                     </div>
                 </div>
@@ -114,7 +114,11 @@
     <t t-name="ProductOptionsWidget">
         <div class="options-selector">
             <div class="options-selector-content">
+                <div class="product-header">
+                    <span class="product-name">KINGMENU</span><span class="total-quantity">0</span>
+                </div>
                 <ul class="values-list">
+                    <!--
                     <div class="block-selection total-selection">
                         <div class="top-block font-black">
                             <span class="block-information">CANT.</span>
@@ -123,6 +127,7 @@
                             <span class="total-quantity">0</span>
                         </div>
                     </div>
+                    -->
                 </ul>
             </div>
         </div>
@@ -143,8 +148,13 @@
 
     <t t-name="Value">
         <li class="block-selection" t-att-data-value-id="value.id">
-            <div class="top-block">
+            <div class="name-block">
                 <label><t t-esc="value.name"/></label>
+            </div>
+            <div class="image-block">
+                <img t-att-src="image_url"/>
+            </div>
+            <div class="top-block">
                 <input class="block-quantity" type="number" value="0" onfocus="blur()"/>
             </div>
             <div class="bottom-block">
@@ -152,9 +162,6 @@
                     <!-- Remenber,this should not have a class, if you want to add a class, go to the ProductOptionsWidget and modify click_value_handler function-->
                     <span class="helper"></span>
                     <img src="/pos_kingdom/static/src/img/adition-white.svg"/>
-                </div>
-                <div class="block-image">
-                    <img t-att-src="image_url"/>
                 </div>
                 <div class="block-decrease">
                     <!-- Remenber,this should not have a class, if you want to add a class, go to the ProductOptionsWidget and modify click_value_handler function-->
