@@ -875,11 +875,13 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             this.attributes = {};
             this.maxCount = undefined; //number of combos
             this.click_value_handler = function(event){
-                var className = event.target.className;
+                event.stopPropagation();
 
+                var className = event.target.className;
                 if(!className) {
                     className = event.target.parentNode.className;
                 }
+
                 var value_id = this.dataset['valueId'];
                 if(!self.attributes[value_id]){
                     self.attributes[value_id] = 0;
@@ -1069,6 +1071,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                         self.set_value(self.selected_template.id,Number(event.target.value), true);
                     });
                     value_node.addEventListener('click', function(event) {
+                        event.stopPropagation();
                         var className = event.target.className;
 
                         if(!className) {
@@ -1100,6 +1103,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     };
                 }
             }
+            this.el.parentNode.addEventListener('click', function(event){
+                if(event.target.className === "options"){
+                    self.checkAction();
+                }
+            });
         },
         checkAction: function(){
             var self = this;

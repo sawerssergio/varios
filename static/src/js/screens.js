@@ -514,10 +514,8 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                         // THIS IS RESERVED FOR SET PRODUCT IN PRODUCT_OPTIONS_WIDGET
                         //self.pos.get('selectedOrder').addProduct(product);
 
-                        if(self.pos_widget.product_options_widget.is_content()) {
-                            if(self.pos_widget.product_options_widget.get_template().id != product.id){
+                        if(self.pos_widget.product_options_widget.is_content() && self.pos_widget.product_options_widget.get_template().id != product.id){
                                 self.pos_widget.product_options_widget.checkAction(product);
-                            }
                         }
                         self.pos.pos_widget.product_options_widget.set_template(product);
                         
@@ -535,7 +533,6 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             this.product_categories_widget = new module.ProductCategoriesWidget(this,{
                 product_list_widget: this.product_list_widget,
             });
-            //this.product_categories_widget.replace(this.$('.placeholder-ProductCategoriesWidget'));
         },
         
         show: function(){
