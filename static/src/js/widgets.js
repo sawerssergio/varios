@@ -914,7 +914,6 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             if(is_set){
                 if(this.attributes[id]){
                     var val = this.total_quantity-this.attributes[id]+value;
-                    console.log(val);
                     this.set_total_quantity(val);
                     this.attributes[id] = value;
                 } else {
@@ -985,12 +984,13 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 this.set_value(Object.keys(this.attributes)[1],1);
             }else{
                 this.hide();
-                this.selected_template = product_template
+                this.selected_template = product_template;
                 this.attributes = {};
                 this.total_quantity = 0;
                 setTimeout(function(){
                     self.renderElement();
                     self.show();
+                    self.el.querySelector(".product-header > .product-name").textContent = self.selected_template.display_name;
                 }, 450);
             }
         },

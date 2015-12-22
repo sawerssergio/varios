@@ -115,7 +115,7 @@
         <div class="options-selector">
             <div class="options-selector-content">
                 <div class="product-header">
-                    <span class="product-name">KINGMENU</span><span class="total-quantity">0</span>
+                    <span class="product-name"></span><span class="total-quantity">0</span>
                 </div>
                 <ul class="values-list">
                     <!--
