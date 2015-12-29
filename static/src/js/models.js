@@ -248,8 +248,12 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         },{
             model:  'product.template',
             fields: ['display_name', 'list_price','price','pos_categ_id', 'default_code', 
-                     'description','attribute_line_ids','is_combo'],
+                     'description','attribute_line_ids','is_combo','division_id'],
             loaded: function(self, templates){ self.db.add_templates(templates) },
+        },{
+            model:  'pos.order.division',
+            fields: ['name', 'color','image'],
+            loaded: function(self, divisions){ self.db.add_divisions(divisions) },
         },{
             model:  'product.attribute',
             fields: ['name', 'value_ids'],
@@ -292,7 +296,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             model:  'product.product',
             fields: ['display_name', 'list_price','price','pos_categ_id', 'taxes_id', 'ean13', 'default_code', 
                      'to_weight', 'uom_id','weight_net', 'uos_id', 'uos_coeff', 'mes_type', 'description_sale', 'description',
-                     'product_tmpl_id','attribute_line_ids','attribute_value_ids'],
+                     'product_tmpl_id','attribute_line_ids','attribute_value_ids','division_id'],
             domain: [['sale_ok','=',true],['available_in_pos','=',true]],
             context: function(self){ return { pricelist: self.pricelist.id, display_default_code: false }; },
             loaded: function(self, products){
@@ -687,7 +691,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             this.details = [];
             this.sub_orderlines = [];
             this.quantity_display = 1;
-            this.type_of = options.type_of;
+            this.type_of = this.product.division_id[0] || options.type_of;
         },
         clone: function(){
             var orderline = new module.Orderline({},{
@@ -695,7 +699,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 order: null,
                 product: this.product,
                 price: this.price,
-                type_of: this.type_of,
+                type_of: this.product.division_id[0] || this.type_of,
             });
             orderline.quantity = this.quantity;
             orderline.quantityStr = this.quantityStr;
@@ -1095,7 +1099,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             };
         },
         set_type_of: function(type_of){
-            this.type_of = type_of;
+            this.type_of = this.product.division_id[0] || type_of;
         },
         get_type_of: function(){
             return this.type_of;
@@ -1181,7 +1185,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 paymentLines:   new module.PaymentlineCollection(),
                 name:           _t("Order ") + this.uid,
                 client:         null,
-                type_of:        'inside',
+                type_of:        this.pos.db.get_divisions()[0].id,
             });
             this.selected_orderline   = undefined;
             this.selected_paymentline = undefined;
@@ -1223,15 +1227,12 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             var maxCount = this.pos.pos_widget.product_options_widget.maxCount;
             attr.pos = this.pos;
             attr.order = this;
-            console.log(this.get_type_of());
             var line = new module.Orderline({}, {
                 pos: this.pos,
                 order: this,
                 product: product,
                 type_of: this.get_type_of()
             });
-            console.log("LINE MODEL");
-            console.log(line);
             if(options.quantity !== undefined){
                 line.set_quantity(options.quantity);
                 line.set_quantity_display(options.quantity);

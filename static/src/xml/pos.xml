@@ -1170,12 +1170,20 @@
         <div class="order-container">
             <div class="order-header">
                 <div class="order-type-of">
-                    <div class="inside type-of">
+                    <t t-foreach="divisions" t-as="division">
+                        <div class="type-of" t-att-data-division-id="division.id">
+                            <span><t t-esc="division.name"/></span>
+                        </div>
+
+                    </t>
+                    <!--
+                    <div class="inside type-of" t-att-data-product-id="product.id">
                         Mesa
                     </div>
                     <div class="outside type-of">
                         Llevar
                     </div>
+                    -->
                 </div>
             </div>
             <div class="order-scroller touch-scrollable">

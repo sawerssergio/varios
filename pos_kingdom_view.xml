@@ -561,6 +561,7 @@
                         <field name="to_weight" />
                         <field name="income_pdt"/>
                         <field name="expense_pdt"/>
+                        <field name="division_id"/>
                     </group>
                 </group>
             </field>
@@ -816,6 +817,48 @@
             context="{'search_default_session_id': active_id, 'default_session_id' : active_id }" />
 
 
+        <record model="ir.ui.view" id="view_pos_order_division_form">
+            <field name="name">pos.order.division.form.view</field>
+            <field name="model">pos.order.division</field>
+            <field name="arch" type="xml">
+                <form string="Division of Order">
+                    <sheet>
+                        <field name="image" widget='image' class="oe_avatar oe_right"/>
+                        <div class="oe_left">
+                            <group>
+                                <field name="name"/>
+                                <field name="color"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_pos_order_division_tree">
+            <field name="name">pos.order.division.tree.view</field>
+            <field name="model">pos.order.division</field>
+            <field name="arch" type="xml">
+                <tree string="Division of order">
+                    <field name="name"/>
+                    <field name="color"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_pos_order_division_pos">
+            <field name="name">Division of order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.order.division</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            parent="menu_point_config_product"
+            action="action_pos_order_division_pos"
+            id="menu_pos_order_division_pos"
+            groups="group_pos_manager"/>
 
         <record model="ir.ui.view" id="view_pos_session_form">
             <field name="name">pos.session.form.view</field>

@@ -153,6 +153,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var self = this;
             this._super(parent,options);
             this.type_of = 'inside';
+            this.divisions = this.pos.db.get_divisions();
             this.editable = false;
             this.pos.bind('change:selectedOrder', this.change_selected_order, this);
             this.line_click_handler = function(event){
@@ -196,6 +197,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 self.update_summary();
             }
             this.bind_order_events();
+
         },
         enable_numpad: function(){
             this.disable_numpad();  //ensure we don't register the callbacks twice
@@ -321,8 +323,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             var order  = this.pos.get('selectedOrder');
             var orderlines = order.get('orderLines').models;
-
-            var el_str  = openerp.qweb.render('OrderWidget',{widget:this, order:order, orderlines:orderlines});
+            var el_str  = openerp.qweb.render('OrderWidget',{widget:this, order:order, orderlines:orderlines, divisions : this.divisions});
 
             var el_node = document.createElement('div');
                 el_node.innerHTML = _.str.trim(el_str);
@@ -377,20 +378,16 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             var list_type_of = this.el.querySelectorAll('.type-of');
             for( var i=0; i < list_type_of.length; i++){
                 list_type_of[i].addEventListener("click",function(target){
-                    if(self.set_type_of(this.classList[0])) {
-                        if(self.el
-                            .querySelector(".order-type-of>.selected")){
-                            self.el
-                            .querySelector(".order-type-of>.selected")
-                            .classList.remove('selected');
-                        }
-                        this.classList.add('selected');
-                        self.renderElement(true, {id:0});
+                    self.set_type_of(Number(this.dataset['divisionId']));
+                    if(self.el.querySelector(".order-type-of > .selected")){
+                        self.el.querySelector(".order-type-of > .selected").classList.remove('selected');
                     }
+                    self.renderElement(true, {id:0});
+                    self.el.querySelector("[data-division-id='"+this.dataset['divisionId']+"']").classList.add('selected');
                 });
-                if(list_type_of[i].classList[0]===order.get_type_of()){
+                if(Number(list_type_of[i].dataset['divisionId'])===Number(order.get_type_of())){
                     list_type_of[i].classList.add('selected');
-                    self.set_type_of(list_type_of[i].classList[0]);
+                    self.set_type_of(list_type_of[i].dataset['divisionId']);
                 }
             }
         },

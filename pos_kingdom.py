@@ -1366,6 +1366,13 @@ class account_bank_statement_line(models.Model):
     _inherit = 'account.bank.statement.line'
     pos_statement_id = fields.Many2one('pos.order', ondelete='cascade')
 
+class pos_order_division(models.Model):
+    _name = "pos.order.division"
+    _description = "Division of Order"
+    name = fields.Char('Name of Division',size=8, translate=True, required=True)
+    image = fields.Binary("Image",
+            help="This field holds the image used as image for the Division, limited to 1024x1024px. Recommended white color image.")
+    color = fields.Char('Color of division', size=5, help="Color in Hexadecimal")
 
 class pos_order_line(models.Model):
     _name = "pos.order.line"
@@ -1549,10 +1556,13 @@ class product_template(models.Model):
     pos_categ_id     = fields.Many2one('pos.category','Point of Sale Category',
         help="Those categories are used to group similar products for point of sale.")
     is_combo = fields.Boolean('Point of Sale Combo')
+    division_id = fields.Many2one('pos.order.division', 'Order\'s Division by default of product',
+        help="This division will be assigned by default in order lines")
 
     _defaults = {
         'to_weight' : False,
         'available_in_pos': True,
+        'division_id' : False,
     }
 
     def unlink(self, cr, uid, ids, context=None):
