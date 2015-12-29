@@ -691,7 +691,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             this.details = [];
             this.sub_orderlines = [];
             this.quantity_display = 1;
-            this.type_of = this.product.division_id[0] || options.type_of;
+            this.division_id = this.product.division_id[0] || options.division_id;
         },
         clone: function(){
             var orderline = new module.Orderline({},{
@@ -699,7 +699,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 order: null,
                 product: this.product,
                 price: this.price,
-                type_of: this.product.division_id[0] || this.type_of,
+                division_id: this.product.division_id[0] || this.division_id,
             });
             orderline.quantity = this.quantity;
             orderline.quantityStr = this.quantityStr;
@@ -822,7 +822,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         can_be_merged_tmpl: function(orderline){
             var res = false;
             if(this.template && orderline.template){
-                if(this.get_type_of() == orderline.get_type_of()){
+                if(this.get_division_id() == orderline.get_division_id()){
                 if(this.template.id == orderline.template.id){
                     if(this.price_discount == undefined){
                         res = true;
@@ -999,7 +999,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 tax:                this.get_tax(),
                 product_description:      this.get_product().description,
                 product_description_sale: this.get_product().description_sale,
-                type_of:            this.get_type_of(),
+                division_id:            this.get_division_id(),
             }
         },
         // changes the base price of the product for this orderline
@@ -1098,11 +1098,11 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 "taxDetails": taxdetail,
             };
         },
-        set_type_of: function(type_of){
-            this.type_of = this.product.division_id[0] || type_of;
+        set_division_id: function(division_id){
+            this.division_id = this.product.division_id[0] || division_id;
         },
-        get_type_of: function(){
-            return this.type_of;
+        get_division_id: function(){
+            return this.division_id;
         },
     });
 
@@ -1185,7 +1185,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 paymentLines:   new module.PaymentlineCollection(),
                 name:           _t("Order ") + this.uid,
                 client:         null,
-                type_of:        this.pos.db.get_divisions()[0].id,
+                division_id:        this.pos.db.get_divisions()[0].id,
             });
             this.selected_orderline   = undefined;
             this.selected_paymentline = undefined;
@@ -1231,7 +1231,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 pos: this.pos,
                 order: this,
                 product: product,
-                type_of: this.get_type_of()
+                division_id: this.get_division_id()
             });
             if(options.quantity !== undefined){
                 line.set_quantity(options.quantity);
@@ -1467,11 +1467,11 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         get_receipt_type: function(){
             return this.receipt_type;
         },
-        set_type_of: function(type_of){
-            this.set('type_of',type_of);
+        set_division_id: function(division_id){
+            this.set('division_id',division_id);
         },
-        get_type_of: function(){
-            return this.get('type_of');
+        get_division_id: function(){
+            return this.get('division_id');
         },
         // the client related to the current order.
         set_client: function(client){
@@ -1591,7 +1591,6 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 user_id: this.pos.cashier ? this.pos.cashier.id : this.pos.user.id,
                 uid: this.uid,
                 sequence_number: this.sequence_number,
-                type_of: this.get_type_of(),
             };
         },
         getSelectedLine: function(){

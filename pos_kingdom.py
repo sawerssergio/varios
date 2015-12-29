@@ -644,7 +644,6 @@ class pos_order(models.Model):
             'lines':        ui_order['lines'],
             'pos_reference':ui_order['name'],
             'partner_id':   ui_order['partner_id'] or False,
-            'type_of':      ui_order['type_of'] or False,
         }
 
     def _payment_fields(self, cr, uid, ui_paymentline, context=None):
@@ -818,10 +817,6 @@ class pos_order(models.Model):
     sale_journal    = fields.Many2one(related='session_id.config_id.journal_id', string='Sale Journal', store=True, readonly=True) #, relation='account.journal', type='many2one'
     control_code       = fields.Char('Control Code', copy=False)
     amount_words       = fields.Char('Monto', readonly=True, compute='_amount_words')
-    type_of = fields.Selection([('inside', 'to go'),
-                               ('outside', 'for here')],
-                              'Status', readonly=True, copy=False,
-                              default='inside')
 
     def _default_session(self, cr, uid, context=None):
         so = self.pool.get('pos.session')
@@ -1372,7 +1367,7 @@ class pos_order_division(models.Model):
     name = fields.Char('Name of Division',size=8, translate=True, required=True)
     image = fields.Binary("Image",
             help="This field holds the image used as image for the Division, limited to 1024x1024px. Recommended white color image.")
-    color = fields.Char('Color of division', size=5, help="Color in Hexadecimal")
+    color = fields.Char('Color of division', size=7, help="Color in Hexadecimal")
 
 class pos_order_line(models.Model):
     _name = "pos.order.line"
@@ -1435,10 +1430,7 @@ class pos_order_line(models.Model):
     discount = fields.Float('Discount (%)', digits_compute=dp.get_precision('Account'))
     order_id = fields.Many2one('pos.order', 'Order Ref', ondelete='cascade')
     create_date = fields.Datetime('Creation Date', readonly=True)
-    type_of = fields.Selection([('inside', 'to go'),
-                               ('outside', 'for here')],
-                              'Status', readonly=True, copy=False,
-                              default='inside')
+    division_id = fields.Many2one('pos.order.division','Division of order')
 
     _defaults = {
         'name': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid, 'pos.order.line'),

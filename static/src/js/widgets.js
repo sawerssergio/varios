@@ -152,7 +152,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
         init: function(parent, options) {
             var self = this;
             this._super(parent,options);
-            this.type_of = 'inside';
+            this.division_id = -1;
             this.divisions = this.pos.db.get_divisions();
             this.editable = false;
             this.pos.bind('change:selectedOrder', this.change_selected_order, this);
@@ -331,7 +331,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             var list_container = el_node.querySelector('.orderlines');
             for(var i = 0, len = orderlines.length; i < len; i++){
-                if(orderlines[i].get_type_of() == order.get_type_of()){
+                if(orderlines[i].get_division_id() == order.get_division_id()){
                     var orderline = this.render_orderline(orderlines[i]);
                     if(orderlines[i].id === new_orderline.id){
                         orderline.classList.add("restored");
@@ -375,19 +375,19 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                     self.pos.get('selectedOrder').restart_order();
                 },600);
             });
-            var list_type_of = this.el.querySelectorAll('.type-of');
-            for( var i=0; i < list_type_of.length; i++){
-                list_type_of[i].addEventListener("click",function(target){
-                    self.set_type_of(Number(this.dataset['divisionId']));
+            var list_division_id = this.el.querySelectorAll('.type-of');
+            for( var i=0; i < list_division_id.length; i++){
+                list_division_id[i].addEventListener("click",function(target){
+                    self.set_division_id(Number(this.dataset['divisionId']));
                     if(self.el.querySelector(".order-type-of > .selected")){
                         self.el.querySelector(".order-type-of > .selected").classList.remove('selected');
                     }
                     self.renderElement(true, {id:0});
                     self.el.querySelector("[data-division-id='"+this.dataset['divisionId']+"']").classList.add('selected');
                 });
-                if(Number(list_type_of[i].dataset['divisionId'])===Number(order.get_type_of())){
-                    list_type_of[i].classList.add('selected');
-                    self.set_type_of(list_type_of[i].dataset['divisionId']);
+                if(Number(list_division_id[i].dataset['divisionId'])===Number(order.get_division_id())){
+                    list_division_id[i].classList.add('selected');
+                    self.set_division_id(list_division_id[i].dataset['divisionId']);
                 }
             }
         },
@@ -401,10 +401,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             //this.el.querySelector('.order-summary .total .subentry .value').textContent = this.format_currency(taxes);
 
         },
-        set_type_of: function(type_of){
-            if(this.type_of !== type_of) {
-                this.pos.get('selectedOrder').set_type_of(type_of);
-                this.type_of = type_of;
+        set_division_id: function(division_id){
+            if(this.division_id !== division_id) {
+                this.pos.get('selectedOrder').set_division_id(division_id);
+                this.division_id = division_id;
                 return true;
             }
             return false;
