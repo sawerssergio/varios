@@ -7,7 +7,10 @@
         <style type="text/css">
             hr {
                border: 1px solid black; 
-               } 
+               }
+            body {
+               font-size: 14px;
+            } 
         </style>
     </xpath>
 
@@ -19,6 +22,15 @@
         <t t-foreach="docs" t-as="o">
             <!--<t t-call="report.external_layout">-->
                 <div class="page">
+                    <t t-foreach="get_divisions()" t-as="division">
+                        <t t-if="search_division(o,division.id)">
+                            <p><t t-esc="division.description"/></p>
+                            <p>TALON DE ENTREGA</p>
+                            <p>Pedido: <t t-esc="o.name"/></p>
+                            <hr/>
+                        </t>
+                    </t>
+                    <br/>
                     <center>
                         <div t-if="o.company_id.name">
                             <strong><t t-esc="o.company_id.name"/></strong>
@@ -144,14 +156,6 @@
                     <div t-if="o.company_id.invoice_legend">
                         <p><t t-esc="o.company_id.invoice_legend"/></p>
                     </div>
-                    <t t-foreach="get_divisions()" t-as="division">
-                        <t t-if="search_division(o,division.id)">
-                            <hr/>
-                            <t t-esc="division.name"/>
-                            <br/>
-                            TICKET NRO: <t t-esc="o.name"/>
-                        </t>
-                    </t>
                 </div>
         </t>
     </t>
