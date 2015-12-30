@@ -33,6 +33,16 @@ class BolivianInvoiceReport(models.AbstractModel):
         else:
             return str(number)+"/100 Bs"
 
+    def get_divisions(self):
+        order_division_obj = self.env['pos.order.division']
+        divisions = order_division_obj.search([])
+        return  divisions
+
+    def search_division(self,order,div_id):
+        for line in order.lines:
+            if line.division_id.id == div_id:
+                return True
+
     @api.multi
     def render_html(self,data=None):
         report_obj = self.env['report']
@@ -60,7 +70,7 @@ class BolivianInvoiceReport(models.AbstractModel):
                 due = abs(statement.amount)
             else:
                 paid = statement.amount
- 
+
         docargs = {
                 'doc_ids': ids_to_print,
                 'doc_model': report.model,
@@ -69,6 +79,8 @@ class BolivianInvoiceReport(models.AbstractModel):
                 'paid':paid,
                 'due':due,
                 'qr_string':qr_string,
+                'get_divisions':self.get_divisions,
+                'search_division':self.search_division,
                 'date_invoice':date_invoice,
         }
         return report_obj.render('pos_kingdom.bolivian_invoice', docargs)

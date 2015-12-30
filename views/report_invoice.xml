@@ -144,6 +144,14 @@
                     <div t-if="o.company_id.invoice_legend">
                         <p><t t-esc="o.company_id.invoice_legend"/></p>
                     </div>
+                    <t t-foreach="get_divisions()" t-as="division">
+                        <t t-if="search_division(o,division.id)">
+                            <hr/>
+                            <t t-esc="division.name"/>
+                            <br/>
+                            TICKET NRO: <t t-esc="o.name"/>
+                        </t>
+                    </t>
                 </div>
         </t>
     </t>
