@@ -563,6 +563,7 @@
                         <field name="income_pdt"/>
                         <field name="expense_pdt"/>
                         <field name="division_id"/>
+
                     </group>
                 </group>
             </field>
@@ -828,6 +829,7 @@
                         <div class="oe_left">
                             <group>
                                 <field name="name"/>
+                                <field name="description"/>
                                 <field name="color"/>
                             </group>
                         </div>
@@ -842,6 +844,7 @@
             <field name="arch" type="xml">
                 <tree string="Division of order">
                     <field name="name"/>
+                    <field name="description"/>
                     <field name="color"/>
                 </tree>
             </field>

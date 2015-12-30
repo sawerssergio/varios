@@ -252,7 +252,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             loaded: function(self, templates){ self.db.add_templates(templates) },
         },{
             model:  'pos.order.division',
-            fields: ['name', 'color','image'],
+            fields: ['name','description','color','image'],
             loaded: function(self, divisions){ self.db.add_divisions(divisions) },
         },{
             model:  'product.attribute',

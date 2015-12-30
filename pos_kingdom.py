@@ -1365,6 +1365,7 @@ class pos_order_division(models.Model):
     _name = "pos.order.division"
     _description = "Division of Order"
     name = fields.Char('Name of Division',size=8, translate=True, required=True)
+    description = fields.Char('Description of Division', size=25, translate=True)
     image = fields.Binary("Image",
             help="This field holds the image used as image for the Division, limited to 1024x1024px. Recommended white color image.")
     color = fields.Char('Color of division', size=7, help="Color in Hexadecimal")
