@@ -31,7 +31,7 @@
         </record>
 
         <record id="attribute_piece_value_1" model="product.attribute.value">
-            <field name="name">Leg</field>
+            <field name="name">Pierna</field>
             <field name="attribute_id" ref="attribute_piece_1"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/leg_value.png"/>
         </record>
@@ -43,10 +43,18 @@
         </record>
 
         <record id="attribute_piece_value_3" model="product.attribute.value">
-            <field name="name">Wing</field>
+            <field name="name">Ala</field>
             <field name="attribute_id" ref="attribute_piece_1"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/wing_value.png"/>
         </record>
+
+        <record id="attribute_piece_value_4" model="product.attribute.value">
+            <field name="name">Convertido</field>
+            <field name="attribute_id" ref="attribute_piece_1"/>
+            <field name="image" type="base64" file="pos_kingdom/static/img/leg_value.png"/>
+        </record>
+
+
 
         <!-- End -->
 
@@ -142,18 +150,11 @@
             <field name="uom_id" ref="product.product_uom_unit"/>
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/chickens_half_chicken.png"/>
-            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_3')])]"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_4')])]"/>
         </record>
 
         <record id="chicken_1b" model="product.product">
             <field name="default_code">C002</field>
-            <field name="product_tmpl_id" ref="chicken_1_product_template"/>
-            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_1')])]"/>
-        </record>
-
-
-        <record id="chicken_1c" model="product.product">
-            <field name="default_code">C003</field>
             <field name="product_tmpl_id" ref="chicken_1_product_template"/>
             <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_2')])]"/>
         </record>
@@ -162,22 +163,14 @@
             <field name="product_tmpl_id" ref="chicken_1_product_template"/>
             <field name="attribute_id" ref="attribute_piece_1"/>
             <field name="value_ids" eval="[(6,0,[
-                                                            ref('attribute_piece_value_1'),
-                                                            ref('attribute_piece_value_2'),
-                                                            ref('attribute_piece_value_3')
+                                                            ref('attribute_piece_value_4'),
+                                                            ref('attribute_piece_value_2')
                                                             ])]"/>
         </record>
 
         <record id="chicken_1_product_template" model="product.template">
             <field name="attribute_line_ids" eval="[(6,0,[ref('chicken_1_attribute_line_1')])]"/>
         </record>
-
-        <record id="attribute_piece_value_2_price_1" model="product.attribute.price">
-            <field name="product_tmpl_id" ref="chicken_1_product_template"/>
-            <field name="value_id" ref="attribute_piece_value_2"/>
-            <field name="price_extra">2</field>
-        </record>
-
 
         <!-- End Medio Pollo -->
 
@@ -193,31 +186,22 @@
             <field name="uom_id" ref="product.product_uom_unit"/>
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/chickens_king_menu.png"/>
-            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_3')])]"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_4')])]"/>
         </record>
 
 
         <record id="chicken_2b" model="product.product">
             <field name="default_code">C007</field>
             <field name="product_tmpl_id" ref="chicken_2_product_template"/>
-            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_1')])]"/>
-        </record>
-
-
-        <record id="chicken_2c" model="product.product">
-            <field name="default_code">C008</field>
-            <field name="product_tmpl_id" ref="chicken_2_product_template"/>
             <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_2')])]"/>
         </record>
-
 
         <record id="chicken_2_attribute_line_2" model="product.attribute.line">
             <field name="product_tmpl_id" ref="chicken_2_product_template"/>
             <field name="attribute_id" ref="attribute_piece_1"/>
             <field name="value_ids" eval="[(6,0,[
-                                                            ref('attribute_piece_value_1'),
-                                                            ref('attribute_piece_value_2'),
-                                                            ref('attribute_piece_value_3')
+                                                            ref('attribute_piece_value_4'),
+                                                            ref('attribute_piece_value_2')
                                                             ])]"/>
         </record>
 
@@ -225,13 +209,6 @@
             <field name="attribute_line_ids" eval="[(6,0,[ref('chicken_2_attribute_line_2')])]"/>
             <field name="is_combo">true</field>
         </record>
-
-        <record id="attribute_piece_value_2_price_2" model="product.attribute.price">
-            <field name="product_tmpl_id" ref="chicken_2_product_template"/>
-            <field name="value_id" ref="attribute_piece_value_2"/>
-            <field name="price_extra">2</field>
-        </record>
-
 
         <!--End King Menu -->
 
@@ -247,18 +224,11 @@
             <field name="uom_id" ref="product.product_uom_unit"/>
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/chickens_only_half.png"/> 
-            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_3')])]"/>
+            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_4')])]"/>
         </record>
 
         <record id="chicken_3b" model="product.product">
             <field name="default_code">C012</field>
-            <field name="product_tmpl_id" ref="chicken_3_product_template"/>
-            <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_1')])]"/>
-        </record>
-
-
-        <record id="chicken_3c" model="product.product">
-            <field name="default_code">C013</field>
             <field name="product_tmpl_id" ref="chicken_3_product_template"/>
             <field name="attribute_value_ids" eval="[(6,0,[ref('attribute_piece_value_2')])]"/>
         </record>
@@ -267,20 +237,13 @@
             <field name="product_tmpl_id" ref="chicken_3_product_template"/>
             <field name="attribute_id" ref="attribute_piece_1"/>
             <field name="value_ids" eval="[(6,0,[
-                                                            ref('attribute_piece_value_1'),
-                                                            ref('attribute_piece_value_2'),
-                                                            ref('attribute_piece_value_3')
+                                                            ref('attribute_piece_value_4'),
+                                                            ref('attribute_piece_value_2')
                                                             ])]"/>
         </record>
 
         <record id="chicken_3_product_template" model="product.template">
             <field name="attribute_line_ids" eval="[(6,0,[ref('chicken_3_attribute_line_3')])]"/>
-        </record>
-
-        <record id="attribute_piece_value_2_price_3" model="product.attribute.price">
-            <field name="product_tmpl_id" ref="chicken_3_product_template"/>
-            <field name="value_id" ref="attribute_piece_value_2"/>
-            <field name="price_extra">2</field>
         </record>
 
         <!-- End Solo Medio -->
