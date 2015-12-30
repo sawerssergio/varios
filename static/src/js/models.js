@@ -983,6 +983,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 price_unit: this.get_unit_price(),
                 discount: this.get_discount(),
                 product_id: this.get_product().id,
+                division_id: this.get_division_id(),
             };
         },
         //used to create a json of the ticket, to be sent to the printer
