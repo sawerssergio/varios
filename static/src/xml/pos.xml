@@ -115,19 +115,18 @@
         <div class="options-selector">
             <div class="options-selector-content">
                 <div class="product-header">
-                    <span class="product-name"></span><span class="total-quantity">0</span>
+                    <span class="product-name"></span>
+
+                    <t t-if="widget.selected_template">
+                        <t t-if="widget.selected_template.line">
+                            <span class="total-quantity">0</span>
+                        </t>
+                        <t t-if="!widget.selected_template.line">
+                            <span class="total-quantity oe_hidden">0</span>
+                        </t>
+                    </t>
                 </div>
                 <ul class="values-list">
-                    <!--
-                    <div class="block-selection total-selection">
-                        <div class="top-block font-black">
-                            <span class="block-information">CANT.</span>
-                        </div>
-                        <div class="bottom-block font-black">
-                            <span class="total-quantity">0</span>
-                        </div>
-                    </div>
-                    -->
                 </ul>
             </div>
         </div>
@@ -148,26 +147,16 @@
 
     <t t-name="Value">
         <li class="block-selection" t-att-data-value-id="value.id">
-            <div class="name-block">
-                <label><t t-esc="value.name"/></label>
-            </div>
-            <div class="image-block">
+            <div class="block-increase">
                 <img t-att-src="image_url"/>
+                <label><t t-esc="value.name"/></label>
             </div>
             <div class="top-block">
                 <input class="block-quantity" type="number" value="0" onfocus="blur()"/>
             </div>
-            <div class="bottom-block">
-                <div class="block-increase">
-                    <!-- Remenber,this should not have a class, if you want to add a class, go to the ProductOptionsWidget and modify click_value_handler function-->
-                    <span class="helper"></span>
-                    <img src="/pos_kingdom/static/src/img/adition-white.svg"/>
-                </div>
-                <div class="block-decrease">
-                    <!-- Remenber,this should not have a class, if you want to add a class, go to the ProductOptionsWidget and modify click_value_handler function-->
-                    <span class="helper"></span>
-                    <img src="/pos_kingdom/static/src/img/delete-white.svg"/>
-                </div>
+            <div class="block-decrease">
+                <span class="helper"></span>
+                <img src="/pos_kingdom/static/src/img/delete-white.svg"/>
             </div>
         </li>
     </t>

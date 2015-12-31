@@ -714,15 +714,16 @@ input[type=number] {
 /* line 601, ../scss/main.scss */
 .options-selector .options-selector-content .product-header .product-name {
   color: white;
-  font-size: 1.5em;
-  margin-right: 2em;
+  font-size: 2em;
+  margin: auto;
 }
 /* line 606, ../scss/main.scss */
 .options-selector .options-selector-content .product-header .total-quantity {
   font-size: 2em;
   color: #ffdf1b;
+  margin: 0 2vw;
 }
-/* line 611, ../scss/main.scss */
+/* line 612, ../scss/main.scss */
 .options-selector .options-selector-content .values-list {
   width: 100%;
   height: 85%;
@@ -739,7 +740,7 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 622, ../scss/main.scss */
+/* line 623, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection {
   -webkit-flex: 0 1 33.3%;
   flex: 0 1 33.3%;
@@ -759,32 +760,31 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 635, ../scss/main.scss */
-.options-selector .options-selector-content .values-list .block-selection .name-block {
+/* line 636, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .block-increase {
+  display: inline-block;
+  float: center;
+  height: 28vh;
   width: 100%;
-  height: 8vh;
 }
-/* line 638, ../scss/main.scss */
-.options-selector .options-selector-content .values-list .block-selection .name-block label {
+/* line 641, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .block-increase label {
+  display: block;
   top: 1%;
   left: 5%;
   color: white;
-  font-size: 3vh;
+  font-size: 4vh;
   font-family: Roboto-black;
+  margin-top: 2vh;
 }
-/* line 646, ../scss/main.scss */
-.options-selector .options-selector-content .values-list .block-selection .image-block {
-  display: inline-block;
-  float: center;
-  height: 10vh;
-  width: 100%;
-}
-/* line 651, ../scss/main.scss */
-.options-selector .options-selector-content .values-list .block-selection .image-block img {
+/* line 650, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .block-increase img {
+  display: block;
   /*width: 50%;*/
-  height: 10vh;
+  height: 22vh;
+  margin: auto;
 }
-/* line 656, ../scss/main.scss */
+/* line 657, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .top-block {
   width: 100%;
   height: 10vh;
@@ -792,7 +792,7 @@ input[type=number] {
   text-align: center;
   color: #ffdf1b;
 }
-/* line 662, ../scss/main.scss */
+/* line 663, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .block-selection .top-block .block-quantity {
   width: 90%;
   bottom: 0;
@@ -807,69 +807,35 @@ input[type=number] {
   height: 6.5vh;
   font-family: Roboto-black;
 }
-/* line 677, ../scss/main.scss */
-.options-selector .options-selector-content .values-list .block-selection .bottom-block {
+/* line 678, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .block-decrease {
   display: block;
   width: 70%;
-  text-align: center;
-  color: white;
-  height: 6vh;
+  height: 7vh;
   margin: 0 15%;
-  line-height: 0.5em;
+  background-color: #C1272D;
 }
-/* line 685, ../scss/main.scss */
-.options-selector .options-selector-content .values-list .block-selection .bottom-block .block-increase {
-  display: inline-block;
-  float: left;
-  height: 6vh;
-  width: 6vh;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-}
-/* line 692, ../scss/main.scss */
-.options-selector .options-selector-content .values-list .block-selection .bottom-block .block-increase .helper {
+/* line 684, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .block-decrease .helper {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
+}
+/* line 689, ../scss/main.scss */
+.options-selector .options-selector-content .values-list .block-selection .block-decrease img {
+  width: 50%;
+  vertical-align: middle;
+  height: 7vh;
+  margin-right: 4px;
 }
 /* line 697, ../scss/main.scss */
-.options-selector .options-selector-content .values-list .block-selection .bottom-block .block-increase img {
-  width: 50%;
-  vertical-align: middle;
-  height: 3vh;
-  margin-right: 4px;
-}
-/* line 704, ../scss/main.scss */
-.options-selector .options-selector-content .values-list .block-selection .bottom-block .block-decrease {
-  display: inline-block;
-  float: right;
-  height: 6vh;
-  width: 6vh;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-}
-/* line 712, ../scss/main.scss */
-.options-selector .options-selector-content .values-list .block-selection .bottom-block .block-decrease .helper {
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-}
-/* line 717, ../scss/main.scss */
-.options-selector .options-selector-content .values-list .block-selection .bottom-block .block-decrease img {
-  width: 50%;
-  vertical-align: middle;
-  height: 3vh;
-  margin-right: 4px;
-}
-/* line 726, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .total-selection {
   -webkit-flex: 0 1 20%;
   flex: 0 1 20%;
   order: 100;
   border-right: none !important;
 }
-/* line 731, ../scss/main.scss */
+/* line 702, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .total-selection .top-block .block-information {
   font-size: 5vh;
   width: 100%;
@@ -877,17 +843,17 @@ input[type=number] {
   align-self: center;
   font-family: Roboto-black;
 }
-/* line 739, ../scss/main.scss */
+/* line 710, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .total-selection .bottom-block {
   border: none;
 }
-/* line 741, ../scss/main.scss */
+/* line 712, ../scss/main.scss */
 .options-selector .options-selector-content .values-list .total-selection .bottom-block .total-quantity {
   line-height: 6vh;
   font-size: 8vh;
 }
 
-/* line 751, ../scss/main.scss */
+/* line 722, ../scss/main.scss */
 .pow_hidden {
   top: -120% !important;
   background-position: center 0% !important;
@@ -897,7 +863,7 @@ input[type=number] {
   -moz-transition: all 600ms ease-in-out;
   /** Firefox **/
 }
-/* line 757, ../scss/main.scss */
+/* line 728, ../scss/main.scss */
 .pow_hidden .background {
   top: 120% !important;
 }
@@ -920,13 +886,13 @@ input[type=number] {
     transform: translateX(800px) rotateZ(-60deg) translateY(400px);
   }
 }
-/* line 784, ../scss/main.scss */
+/* line 755, ../scss/main.scss */
 .removed {
   animation: removed-item-animation 1s linear;
   transform-origin: 390px 100%;
 }
 
-/* line 788, ../scss/main.scss */
+/* line 759, ../scss/main.scss */
 .restored {
   transform: translateX(27vw);
   animation: openspace 0.3s ease forwards, restored-item-animation 0.5s 0.3s cubic-bezier(0.14, 0.25, 0.52, 1.56) forwards;
@@ -951,7 +917,7 @@ input[type=number] {
     transform: translateX(0);
   }
 }
-/* line 818, ../scss/main.scss */
+/* line 789, ../scss/main.scss */
 .title-quantity {
   margin-top: .2em;
   text-align: center;
@@ -959,7 +925,7 @@ input[type=number] {
   display: block;
 }
 
-/* line 824, ../scss/main.scss */
+/* line 795, ../scss/main.scss */
 .units-quantity {
   margin-top: .1em;
   text-align: center;
@@ -968,7 +934,7 @@ input[type=number] {
   display: block;
 }
 
-/* line 831, ../scss/main.scss */
+/* line 802, ../scss/main.scss */
 .only-quantity-total {
   position: absolute;
   margin: auto;
@@ -977,7 +943,7 @@ input[type=number] {
   font-size: 1.7em;
 }
 
-/* line 840, ../scss/main.scss */
+/* line 811, ../scss/main.scss */
 .destination-selector {
   width: 60%;
   height: 60%;
@@ -986,7 +952,7 @@ input[type=number] {
   color: white;
   font-size: 1.2em;
 }
-/* line 847, ../scss/main.scss */
+/* line 818, ../scss/main.scss */
 .destination-selector .destination-list {
   display: -webkit-flex;
   -webkit-flex-direction: row;
@@ -1002,7 +968,7 @@ input[type=number] {
   align-items: stretch;
   height: 100%;
 }
-/* line 857, ../scss/main.scss */
+/* line 828, ../scss/main.scss */
 .destination-selector .destination-list .destination {
   -webkit-flex: 0 1 25%;
   flex: 0 1 25%;
@@ -1012,28 +978,28 @@ input[type=number] {
   border-left: 0.1em solid rgba(255, 255, 255, 0.6);
   opacity: .6;
 }
-/* line 865, ../scss/main.scss */
+/* line 836, ../scss/main.scss */
 .destination-selector .destination-list .destination:first-child {
   border-radius: 1em 0 0 1em;
   border-left: none !important;
 }
-/* line 869, ../scss/main.scss */
+/* line 840, ../scss/main.scss */
 .destination-selector .destination-list .destination:last-child {
   border-radius: 0 1em 1em 0;
 }
-/* line 872, ../scss/main.scss */
+/* line 843, ../scss/main.scss */
 .destination-selector .destination-list .selected {
   opacity: 1;
 }
 
-/* line 877, ../scss/main.scss */
+/* line 848, ../scss/main.scss */
 .invoice-screen {
   height: 100%;
   width: 100%;
   height: 75%;
   width: 100%;
 }
-/* line 882, ../scss/main.scss */
+/* line 853, ../scss/main.scss */
 .invoice-screen .money-list {
   display: -webkit-flex;
   -webkit-flex-direction: row;
@@ -1051,20 +1017,20 @@ input[type=number] {
   width: 90%;
   margin: auto;
 }
-/* line 894, ../scss/main.scss */
+/* line 865, ../scss/main.scss */
 .invoice-screen .money-list .money-details {
   -webkit-flex: 0 1 26%;
   flex: 0 1 26%;
 }
-/* line 896, ../scss/main.scss */
+/* line 867, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item {
   width: 100%;
 }
-/* line 898, ../scss/main.scss */
+/* line 869, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item img {
   width: 100%;
 }
-/* line 901, ../scss/main.scss */
+/* line 872, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item .money-subitems {
   width: 100%;
   height: 100%;
@@ -1081,29 +1047,29 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 912, ../scss/main.scss */
+/* line 883, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item .money-subitems .money-detail-subitem {
   -webkit-flex: 0 1 45%;
   flex: 0 1 45%;
 }
-/* line 914, ../scss/main.scss */
+/* line 885, ../scss/main.scss */
 .invoice-screen .money-list .money-details .money-detail-item .money-subitems .money-detail-subitem img {
   width: 100%;
 }
-/* line 922, ../scss/main.scss */
+/* line 893, ../scss/main.scss */
 .invoice-screen .subheader-screen {
   height: 6vh;
   width: 100%;
   margin-top: 1vh;
 }
-/* line 926, ../scss/main.scss */
+/* line 897, ../scss/main.scss */
 .invoice-screen .subheader-screen .amounts {
   color: white;
   width: 80%;
   height: 100%;
   margin: auto;
 }
-/* line 931, ../scss/main.scss */
+/* line 902, ../scss/main.scss */
 .invoice-screen .subheader-screen .amounts .amount {
   float: left;
   height: 80%;
@@ -1113,7 +1079,7 @@ input[type=number] {
   border-left: 0.2em solid rgba(255, 255, 255, 0.7);
   text-align: center;
 }
-/* line 939, ../scss/main.scss */
+/* line 910, ../scss/main.scss */
 .invoice-screen .subheader-screen .amounts .amount .title-amount {
   width: 40%;
   height: 100%;
@@ -1121,7 +1087,7 @@ input[type=number] {
   font-size: 1em;
   line-height: 100%;
 }
-/* line 946, ../scss/main.scss */
+/* line 917, ../scss/main.scss */
 .invoice-screen .subheader-screen .amounts .amount .value-amount {
   width: 55%;
   height: 100%;
@@ -1129,19 +1095,19 @@ input[type=number] {
   font-size: 1.6em;
   color: #ffdf1b;
 }
-/* line 954, ../scss/main.scss */
+/* line 925, ../scss/main.scss */
 .invoice-screen .subheader-screen .amounts .amount:first-child {
   border-left: none !important;
   border-radius: .5em 0 0 .5em;
   opacity: .5;
 }
-/* line 959, ../scss/main.scss */
+/* line 930, ../scss/main.scss */
 .invoice-screen .subheader-screen .amounts .amount:last-child {
   opacity: 1;
   border-radius: 0 .5em .5em 0;
 }
 
-/* line 967, ../scss/main.scss */
+/* line 938, ../scss/main.scss */
 .money-push {
   -moz-transition: opacity .25s linear, visibility .1s linear .5s;
   -webkit-transition: opacity .25s linear, visibility .1s linear .5s;
@@ -1149,7 +1115,7 @@ input[type=number] {
   transition: opacity .25s linear, visibility .1s linear .5s;
 }
 
-/* line 975, ../scss/main.scss */
+/* line 946, ../scss/main.scss */
 .modal-view:before {
   content: "";
   background: rgba(0, 0, 0, 0.6);
@@ -1161,7 +1127,7 @@ input[type=number] {
   bottom: 0;
   z-index: 10;
 }
-/* line 986, ../scss/main.scss */
+/* line 957, ../scss/main.scss */
 .modal-view .modal-message {
   background: #f26522;
   border: gray solid 1px;
@@ -1176,31 +1142,31 @@ input[type=number] {
   font-family: Roboto-black;
   transition: transform 1s;
 }
-/* line 999, ../scss/main.scss */
+/* line 970, ../scss/main.scss */
 .modal-view .modal-message .change {
   margin-top: 1em;
   font-size: 3em;
 }
-/* line 1003, ../scss/main.scss */
+/* line 974, ../scss/main.scss */
 .modal-view .modal-message .amount {
   font-size: 5em;
 }
 
-/* line 1010, ../scss/main.scss */
+/* line 981, ../scss/main.scss */
 .modal-appear:before {
   display: block !important;
 }
-/* line 1013, ../scss/main.scss */
+/* line 984, ../scss/main.scss */
 .modal-appear .modal-message {
   transform: translate(0, -117%);
 }
 
-/* line 1019, ../scss/main.scss */
+/* line 990, ../scss/main.scss */
 .options-appear:before {
   display: none !important;
   visibility: 0;
 }
-/* line 1023, ../scss/main.scss */
+/* line 994, ../scss/main.scss */
 .options-appear .options-selector {
   transform: translate(0, -200%);
   transition: all 600ms ease-in-out;
@@ -1208,12 +1174,12 @@ input[type=number] {
   -moz-transition: all 600ms ease-in-out;
 }
 
-/* line 1031, ../scss/main.scss */
+/* line 1002, ../scss/main.scss */
 .client-screen {
   width: 100%;
   height: 100%;
 }
-/* line 1034, ../scss/main.scss */
+/* line 1005, ../scss/main.scss */
 .client-screen .client-details {
   height: 54vh;
   width: 100%;
@@ -1230,7 +1196,7 @@ input[type=number] {
   align-content: stretch;
   align-items: stretch;
 }
-/* line 1045, ../scss/main.scss */
+/* line 1016, ../scss/main.scss */
 .client-screen .client-details .client-detail-item {
   font-size: larger;
   color: white;
@@ -1239,7 +1205,7 @@ input[type=number] {
   max-height: 16%;
   font-size: 2em;
 }
-/* line 1051, ../scss/main.scss */
+/* line 1022, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .label {
   display: inline-block;
   width: 18%;
@@ -1248,7 +1214,7 @@ input[type=number] {
   text-align: right;
   line-height: 2.5em;
 }
-/* line 1059, ../scss/main.scss */
+/* line 1030, ../scss/main.scss */
 .client-screen .client-details .client-detail-item .detail {
   display: inline-block;
   width: 75%;
@@ -1278,17 +1244,17 @@ input[type=number] {
   color: white;
 }
 
-/* line 1079, ../scss/main.scss */
+/* line 1050, ../scss/main.scss */
 .selected-product img {
   filter: drop-shadow(5px 3px 4px rgba(0, 0, 0, 0.5));
 }
 
-/* line 1083, ../scss/main.scss */
+/* line 1054, ../scss/main.scss */
 .selected {
   background-color: #f26522 !important;
 }
 
-/* line 1086, ../scss/main.scss */
+/* line 1057, ../scss/main.scss */
 .with_rightpane {
   min-width: 73vw;
 }

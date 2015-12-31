@@ -600,12 +600,13 @@ input[type=number] {
             @include fontBlack;
             .product-name {
                 color: white;
-                font-size: 1.5em;
-                margin-right: 2em;
+                font-size: 2em;
+                margin: auto;
             }
             .total-quantity {
                 font-size: 2em;
                 color: $yellow_letter_color;
+                margin: 0 2vw;
             }
         }
         .values-list {
@@ -632,25 +633,25 @@ input[type=number] {
                     align-content: stretch,
                     align-items: stretch
                 ));
-                .name-block {
+                .block-increase {
+                    display: inline-block;
+                    float: center;
+                    height: 28vh;
                     width: 100%;
-                    height: 8vh;
                     label {
+                        display: block;
                         top: 1%;
                         left: 5%;
                         color: white;
-                        font-size: 3vh;
+                        font-size: 4vh;
                         @include fontBlack;
+                        margin-top: 2vh;
                     }
-                }
-                .image-block {
-                    display: inline-block;
-                    float: center;
-                    height: 10vh;
-                    width: 100%;
                     img {
+                        display: block;
                         /*width: 50%;*/
-                        height: 10vh;
+                        height: 22vh;
+                        margin: auto;
                     }
                 }
                 .top-block {
@@ -674,52 +675,22 @@ input[type=number] {
                         @include fontBlack;
                     }
                 }
-                .bottom-block {
+                .block-decrease {
                     display: block;
                     width: 70%;
-                    text-align: center;
-                    color: white;
-                    height: 6vh;
+                    height: 7vh;
                     margin: 0 15%;
-                    line-height: 0.5em;
-                    .block-increase {
+                    background-color: $red_color;
+                    .helper {
                         display: inline-block;
-                        float: left;
-                        height: 6vh;
-                        width: 6vh;
-                        background-color: rgba(255,255,255,.5);
-                        border-radius: 50%;
-                        .helper {
-                            display: inline-block;
-                            height: 100%;
-                            vertical-align: middle;
-                        }
-                        img {
-                            width: 50%;
-                            vertical-align: middle;
-                            height: 3vh;
-                            margin-right: 4px;
-                        }
+                        height: 100%;
+                        vertical-align: middle;
                     }
-                    .block-decrease {
-                        display: inline-block;
-                        float: right;
-                        height: 6vh;
-                        width: 6vh;
-                        text-align: center;
-                        background-color: rgba(255,255,255,.5);
-                        border-radius: 50%;
-                        .helper {
-                            display: inline-block;
-                            height: 100%;
-                            vertical-align: middle;
-                        }
-                        img {
-                            width: 50%;
-                            vertical-align: middle;
-                            height: 3vh;
-                            margin-right: 4px;
-                        }
+                    img {
+                        width: 50%;
+                        vertical-align: middle;
+                        height: 7vh;
+                        margin-right: 4px;
                     }
                 }
             }
