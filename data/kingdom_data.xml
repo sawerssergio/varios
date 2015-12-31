@@ -9,19 +9,19 @@
         </record>
 
         <record id="attribute_size_value_1" model="product.attribute.value">
-            <field name="name">Small</field>
+            <field name="name">Pequeño</field>
             <field name="attribute_id" ref="attribute_size_1"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/small_value.png"/>
         </record>
 
         <record id="attribute_size_value_2" model="product.attribute.value">
-            <field name="name">Medium</field>
+            <field name="name">Mediano</field>
             <field name="attribute_id" ref="attribute_size_1"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/medium_value.png"/>
         </record>
 
         <record id="attribute_size_value_3" model="product.attribute.value">
-            <field name="name">Big</field>
+            <field name="name">Grande</field>
             <field name="attribute_id" ref="attribute_size_1"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/big_value.png"/>
         </record>
@@ -97,6 +97,26 @@
 
         <!-- End Extra -->
 
+        <!-- POS ORDEN DIVISION -->
+        <record id="pos_order_division_1" model="pos.order.division">
+            <field name="name">AQUI</field> 
+            <field name="description">POLLO PARA AQUI</field>
+            <field name="indispensable">True</field>
+        </record>
+
+        <record id="pos_order_division_2" model="pos.order.division">
+            <field name="name">LLEVAR</field> 
+            <field name="description">POLLO PARA LLEVAR</field>
+            <field name="indispensable">False</field>
+        </record>
+
+        <record id="pos_order_division_3" model="pos.order.division">
+            <field name="name">HELADO</field> 
+            <field name="description">PEDIDO HELADO KINGDOM</field>
+            <field name="indispensable">False</field>
+        </record>
+        <!-- End -->
+
         <!-- Ice Cream Categories -->
 
         <record id="ice_1" model="product.product">
@@ -105,6 +125,7 @@
             <field name="standard_price">3.0</field>
             <field name="list_price">5.0</field>
             <field name="type">consu</field>
+            <field name="division_id" ref="pos_order_division_3"/>
             <field name="uom_id" ref="product.product_uom_unit"/>
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/icecream_chocolate.png"/>
@@ -117,6 +138,7 @@
             <field name="standard_price">4.0</field>
             <field name="list_price">6.0</field>
             <field name="type">consu</field>
+            <field name="division_id" ref="pos_order_division_3"/>
             <field name="uom_id" ref="product.product_uom_unit"/>
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/icecream_mango.png"/>
@@ -128,6 +150,7 @@
             <field name="standard_price">4.0</field>
             <field name="list_price">6.0</field>
             <field name="type">consu</field>
+            <field name="division_id" ref="pos_order_division_3"/>
             <field name="uom_id" ref="product.product_uom_unit"/>
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="image" type="base64" file="pos_kingdom/static/img/icecream_chocolate.png"/>

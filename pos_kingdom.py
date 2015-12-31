@@ -1369,6 +1369,7 @@ class pos_order_division(models.Model):
     image = fields.Binary("Image",
             help="This field holds the image used as image for the Division, limited to 1024x1024px. Recommended white color image.")
     color = fields.Char('Color of division', size=7, help="Color in Hexadecimal")
+    indispensable = fields.Boolean('Division Indispensable')
 
 class pos_order_line(models.Model):
     _name = "pos.order.line"

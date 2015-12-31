@@ -1558,11 +1558,6 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: pos_kingdom
-#: model:product.attribute.value,name:pos_kingdom.attribute_piece_value_1
-msgid "Leg"
-msgstr "Pierna"
-
-#. module: pos_kingdom
 #: field:pos.config,limit_date:0
 msgid "Limit Date"
 msgstr "Fecha Límite de Emisión"
@@ -1794,11 +1789,6 @@ msgstr "No. Of Articles"
 #, python-format
 msgid "Nombre:"
 msgstr "Nombre:"
-
-#. module: pos_kingdom
-#: model:product.attribute.value,name:pos_kingdom.attribute_piece_value_3
-msgid "Normal"
-msgstr "Normal"
 
 #. module: pos_kingdom
 #. openerp-web
@@ -3579,11 +3569,6 @@ msgstr "Código de barras de peso"
 #, python-format
 msgid "Weighting"
 msgstr "Pesando"
-
-#. module: pos_kingdom
-#: model:product.attribute.value,name:pos_kingdom.attribute_piece_value_2
-msgid "Wing"
-msgstr "Ala"
 
 #. module: pos_kingdom
 #. openerp-web
