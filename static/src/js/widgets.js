@@ -619,10 +619,10 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
             }
 
             this.subcategories = db.get_category_by_id(db.get_category_childs_ids(this.category.id));
-            openerp.jsonRpc( '/display/set', 'call', {
+            openerp.jsonRpc('/display/set/category', 'call', {
                 "config_id":this.pos.config.id,
-                "categoryId":this.category.id,
-                "order":this.pos.get('selectedOrder').export_as_JSON()
+                "category":this.category.id,
+                //"order":this.pos.get('selectedOrder').export_as_JSON()
             }).then(function( data){
                 console.log("this work");
             });
@@ -767,7 +767,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                 options.click_product_action(product);
                 openerp.jsonRpc( '/display/set/product', 'call', {
                     "config_id":self.pos.config.id,
-                    "templateId":product.id,
+                    "template":product.id,
                     "order":self.pos.get('selectedOrder').export_as_JSON()
                 }).then(function( data){
                     console.log("this work");
@@ -930,7 +930,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
 
             openerp.jsonRpc( '/display/set/product', 'call', {
                 "config_id":this.pos.config.id,
-                "templateId":this.selected_template.id,
+                "template":this.selected_template.id,
                 "values":this.attributes,
                 "order":this.pos.get('selectedOrder').export_as_JSON()
             }).then(function( data){
