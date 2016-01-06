@@ -669,7 +669,6 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 });
             }
             self.$('.client-vat').keyup(function(data){
-                console.log(data.currentTarget.valueAsNumber);
                 openerp.jsonRpc( '/display/set/partner', 'call', {
                     "config_id":self.pos.config.id,
                     "nit":data.currentTarget.valueAsNumber,
@@ -684,7 +683,6 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 }).then(function( data){
                     console.log("this work");
                 });
-                console.log(data.currentTarget.value);
             });
         },
         search_client_by_vat: function(vat) {
@@ -818,7 +816,6 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     icon: '/pos_kingdom/static/src/img/back.svg',
                     click: function(){
                         if(self.is_paid()){
-                            console.log("back");
                             self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
                         }
                     },
@@ -891,10 +888,17 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             }*/
         },
         set_value: function(val) {
+            var self = this;
             var selected_line =this.pos.get('selectedOrder').selected_paymentline;
             if(selected_line){
                 selected_line.set_amount(val);
                 selected_line.node.querySelector('input').value = selected_line.amount.toFixed(2);
+                openerp.jsonRpc( '/display/set/payment', 'call', {
+                    "config_id" : self.pos.config.id,
+                    "payment" : val,
+                }).then(function(data){
+                    console.log("this work");
+                });
             }
         },
         is_paid: function(){

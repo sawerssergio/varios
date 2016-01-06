@@ -1323,10 +1323,14 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
 
             this.deselectLine();
 
-            openerp.jsonRpc( '/display/set', 'call', {
+            openerp.jsonRpc( '/display/set/orderline', 'call', {
                 "config_id": this.pos.config.id,
-                "id":this.pos.config.name,
-                "order":this.export_as_JSON()
+                "orderline":{
+                    id : line.id,
+                    name : line.product.display_name,
+                    price : line.get_display_price(),
+                    quantity : line.quantity,
+                },
             });
 
         },
