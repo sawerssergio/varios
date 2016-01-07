@@ -534,7 +534,13 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 product_list_widget: this.product_list_widget,
             });
         },
-        
+        next: function(){
+            var self = this;
+            if(self.pos.pos_widget.product_options_widget.is_content()){
+                self.pos.pos_widget.product_options_widget.checkAction();
+            }
+            self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
+        },
         show: function(){
             this._super();
             var self = this;
@@ -549,10 +555,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     label: _t('Check'),
                     icon: '/pos_kingdom/static/src/img/checking.svg',
                     click: function(){
-                        if(self.pos.pos_widget.product_options_widget.is_content()){
-                            self.pos.pos_widget.product_options_widget.checkAction();
-                        }
-                        self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
+                        self.next();
                     },
                 });
         },
@@ -598,27 +601,31 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     label: _t('Back'),
                     icon: '/pos_kingdom/static/src/img/back.svg',
                     click: function(){
-                        self.pos.pos_widget.onscreen_keyboard.hide();
-                        self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
+                        self.back();
                     },
                 });
             this.add_action_button({
                     label: _t('Check'),
                     icon: '/pos_kingdom/static/src/img/checking.svg',
                     click: function(){
-                        if(self.editing_client) {
-                            self.save_client(self.new_client);
-                        } else {
-                            self.save_client({});
-                        }
-                        self.pos.pos_widget.onscreen_keyboard.hide();
-                        self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
+                        self.next();
                     },
                 });
-            this.el.querySelector('input').click();
-            //if (typeof firstInput.onclick == "function") {
-                    //firstInput.onclick.apply(firstInput);
-            //}
+        },
+        back: function(){
+            var self = this;
+            self.pos.pos_widget.onscreen_keyboard.hide();
+            self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
+        },
+        next: function(){
+            var self = this;
+            if(self.editing_client) {
+                self.save_client(self.new_client);
+            } else {
+                self.save_client({});
+            }
+            self.pos.pos_widget.onscreen_keyboard.hide();
+            self.pos.pos_widget.screen_selector.set_current_screen(self.next_screen);
         },
         renderElement: function(){
             var self = this;
@@ -815,9 +822,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     label: _t('Back'),
                     icon: '/pos_kingdom/static/src/img/back.svg',
                     click: function(){
-                        if(self.is_paid()){
-                            self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
-                        }
+                        self.back();
                     },
                 });
             this.add_action_button({
@@ -831,6 +836,12 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         next: function(){
             this.validate_order({invoice: true});
             this.pos.pos_widget.screen_selector.set_current_screen(this.next_screen);
+        },
+        back: function(){
+            var self = this;
+            if(self.is_paid()){
+                self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
+            }
         },
         renderElement: function(){
             var self = this;
