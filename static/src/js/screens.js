@@ -799,15 +799,17 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         init: function(parent, options){
             this._super(parent, options);
             this.is_dolar=false;
-
-            var cashregister = this.pos.cashregisters[0];
-            this.pos.get('selectedOrder').addPaymentline(cashregister);
         },
         show_leftpane: false,
         auto_back: true,
         show: function(){
             var self = this;
             this._super();
+
+            //[FIXME] This should be selected by user and not push directly.
+            var cashregister = this.pos.cashregisters[0];
+            this.pos.get('selectedOrder').removePaymentline(cashregister);
+            this.pos.get('selectedOrder').addPaymentline(cashregister);
 
             self.update_payment_summary();
             this.add_action_button({
