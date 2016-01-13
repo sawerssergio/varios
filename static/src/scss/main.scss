@@ -7,6 +7,7 @@ $black_opacity_color: rgba(0,0,0,.4);
 $yellow_letter_color: rgba(255,223,27,1);
 $red_color: #C1272D;
 $red_strong_color: #F16623;
+$green_color: #00b900;
 
 @import "compass";
 
@@ -297,6 +298,11 @@ input[type=number] {
                 ));
                 .button {
                     @include flex(0 1 15vw);
+                    background-color: red;
+                    text-align: center;
+                    margin-right: 1vw;
+                    border-radius: 1vh;
+                    background-color: $orange_color;
                     .iconlabel {
                         width: 50%;
                         height: 10vh;
@@ -323,6 +329,7 @@ input[type=number] {
                             vertical-align: middle;
                         }
                     }
+                    &:last-child {background-color: $green_color;}
                 }
             }
         }
