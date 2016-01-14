@@ -1351,6 +1351,10 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
         },
         removeOrderline: function( line ){
             this.get('orderLines').remove(line);
+            openerp.jsonRpc( '/display/set/removeorderline', 'call', {
+                "config_id": this.pos.config.id,
+                "remove_orderline": line.id,
+            });
             //this.selectLine(this.getLastOrderline());
         },
         getOrderline: function(id){
