@@ -1641,6 +1641,10 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             while(!orderlines.isEmpty()){
                 orderlines.pop();
             }
+            openerp.jsonRpc( '/display/set/restartorder', 'call', {
+                "config_id": this.pos.config.id,
+                'restart_order': this.uid
+            });
         }
     });
 
