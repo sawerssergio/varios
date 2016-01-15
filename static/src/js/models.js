@@ -575,7 +575,7 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
             });
             openerp.jsonRpc( '/display/set/finishorder', 'call', {
                 "config_id": order.pos.config.id,
-                "finishorder": order_id,
+                "order": order_id,
             });
 
             return invoiced;
