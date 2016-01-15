@@ -1085,6 +1085,16 @@ function openerp_pos_widgets(instance, module){ //module is instance.pos_kingdom
                             });
                         }
                         self.el.querySelector("[data-value-id='"+this.dataset['valueId']+"'] > .top-block > .block-quantity").value = self.total_quantity;
+                        var values = {};
+                        values[self.selected_template.id] = self.total_quantity;
+                        openerp.jsonRpc( '/display/set/product', 'call', {
+                            "config_id":self.pos.config.id,
+                            "template":self.selected_template.id,
+                            "values":values,
+                            "order":self.pos.get('selectedOrder').export_as_JSON()
+                        }).then(function( data){
+                            console.log("this work");
+                        });
                     });
                     value_container.appendChild(value_node);
                 }
