@@ -592,9 +592,11 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     label: _t('Reload'),
                     icon: '/pos_kingdom/static/src/img/refresh.svg',
                     click: function(){
-                        self.new_client = undefined;
-                        self.editing_client = false;
+                        //self.new_client = undefined;
+                        //self.editing_client = false;
+                        self.reload();
                         self.renderElement();
+                        //self.renderElement();
                     },
                 });
             this.add_action_button({
@@ -611,6 +613,13 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                         self.next();
                     },
                 });
+        },
+        reload: function(){
+            var self = this;
+            self.new_client = undefined;
+            self.editing_client = false;
+            self.$('.client-vat').val("");
+            self.$('.client-name').val("");
         },
         back: function(){
             var self = this;
@@ -649,7 +658,6 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
             });
             if(this.pos.config.iface_vkeyboard && this.pos_widget.onscreen_keyboard){
                 self.$el.find( 'input').each( function( index , input ){
-                    //input.value="";
                     $(input).on( window.is_mobile ? 'touchend' : 'click' , function( evt ){
                         evt.stopPropagation();
                         var input_event = this;
@@ -658,7 +666,9 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                         self.$( evt.target ).css("background", '#F26522');
                         self.pos_widget.onscreen_keyboard.connect( self.$( evt.target ), input.getAttribute('type'), function(){
                             if(evt.target.classList.contains("client-vat")){
-                                self.search_client_by_vat(evt.target.value);
+                                if(evt.target.value != "0"){
+                                    self.search_client_by_vat(evt.target.value,"", true);
+                                }
                             }
                             var inputs = $(input_event).closest('.client-details').find(':input');
                             var next_input = inputs.eq( inputs.index(input_event)+ 1 );
@@ -692,11 +702,15 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 });
             });
         },
-        search_client_by_vat: function(vat) {
+        search_client_by_vat: function(vat, name,reload) {
             var self = this;
+            var filter = [['vat','=',vat]];
+            if(name){
+                filter.push(['name','=',name]);
+            }
             var partner = new instance.web.Model('res.partner');
             partner.query(['name', 'vat', 'phone','street','mobile'])
-                .filter([['vat', '=', vat]])
+                .filter(filter)
                 .limit(1)
                 .all().then(function (users) {
                     if(users.length > 0){
@@ -708,8 +722,10 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                             console.log("this work");
                         });
                         self.editing_client = true;
-                        self.renderElement();
-                        self.pos_widget.onscreen_keyboard.hide();
+                        if(reload) {
+                            self.renderElement();
+                            self.pos_widget.onscreen_keyboard.hide();
+                        }
                     }
             });
         },
@@ -724,20 +740,21 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 fields[el.name] = el.value;
             });
 
-            if (!fields.name) {
-                this.pos_widget.screen_selector.show_popup('error',{
-                    message: _t('A Customer Name Is Required'),
-                });
-                return;
-            }
-            
-            if (this.uploaded_picture) {
-                fields.image = this.uploaded_picture;
+            var default_vat = "0";
+            if (!fields.vat || fields.vat == default_vat){
+                fields.vat = default_vat;
+                if(!fields.name){
+                    fields.name = " Sin nombre";
+                    var reload = false;
+                    self.search_client_by_vat(fields.vat, fields.name, reload);
+                    if(self.editing_client){
+                        partner = self.new_client;
+                    }
+                }
             }
 
             fields.id           = partner.id || false;
             fields.country_id   = fields.country_id || false;
-            fields.ean13        = fields.ean13 ? this.pos.barcode_reader.sanitize_ean(fields.ean13) : false; 
 
             new instance.web.Model('res.partner').call('create_from_ui',[fields]).then(function(partner_id){
                 self.saved_client_details(partner_id);
@@ -759,21 +776,8 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 .limit(1)
                 .all().then(function (users) {
                     self.new_client = users[0];
-                    //self.save_changes();
                     self.pos.get('selectedOrder').set_client(self.new_client);
             });
-            /*this.reload_partners().then(function(){
-                var partner = self.pos.db.get_partner_by_id(partner_id);
-                if (partner) {
-                    self.new_client = partner;
-                    self.toggle_save_button();
-                    self.display_client_details('show',partner);
-                } else {
-                    // should never happen, because create_from_ui must return the id of the partner it
-                    // has created, and reload_partner() must have loaded the newly created partner. 
-                    self.display_client_details('hide');
-                }
-            });*/
         },
         save_client: function(partner){
             this.save_client_details(partner);
@@ -831,7 +835,9 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     label: _t('Check'),
                     icon: '/pos_kingdom/static/src/img/checking.svg',
                     click: function(){
-                        self.$('.modal-view').addClass('modal-appear');
+                        if(self.is_paid()){
+                            self.$('.modal-view').addClass('modal-appear');
+                        }
                     },
                 });
         },
@@ -841,9 +847,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
         },
         back: function(){
             var self = this;
-            if(self.is_paid()){
-                self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
-            }
+            self.pos.pos_widget.screen_selector.set_current_screen(self.back_screen);
         },
         renderElement: function(){
             var self = this;
@@ -1009,6 +1013,8 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     this.pos_widget.screen_selector.set_current_screen(this.next_screen);
                 }
             }
+
+            this.pos_widget.client_screen.reload();
 
             // hide onscreen (iOS) keyboard 
             setTimeout(function(){
@@ -1217,16 +1223,16 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                 this.pos_widget.screen_selector.show_popup('error',{
                     message: _t('A Customer Name Is Required'),
                 });
-                return;
+                return false;
             }
             
-            if (this.uploaded_picture) {
-                fields.image = this.uploaded_picture;
-            }
+           // if (this.uploaded_picture) {
+           //     fields.image = this.uploaded_picture;
+           // }
 
             fields.id           = partner.id || false;
             fields.country_id   = fields.country_id || false;
-            fields.ean13        = fields.ean13 ? this.pos.barcode_reader.sanitize_ean(fields.ean13) : false; 
+           // fields.ean13        = fields.ean13 ? this.pos.barcode_reader.sanitize_ean(fields.ean13) : false;
 
             new instance.web.Model('res.partner').call('create_from_ui',[fields]).then(function(partner_id){
                 self.saved_client_details(partner_id);
@@ -1237,6 +1243,7 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     'comment':_t('Your Internet connection is probably down.'),
                 });
             });
+            return true;
         },
         
         // what happens when we've just pushed modifications for a partner of id partner_id
@@ -1817,6 +1824,8 @@ function openerp_pos_screens(instance, module){ //module is instance.pos_kingdom
                     this.pos_widget.screen_selector.set_current_screen(this.next_screen);
                 }
             }
+
+            this.pos_widget.client_screen.reload();
 
             // hide onscreen (iOS) keyboard 
             setTimeout(function(){
