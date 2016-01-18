@@ -1028,8 +1028,9 @@ class pos_order(models.Model):
         }
         return abs
 
-    def action_invoice_state(self, cr, uid, ids, context=None):
-        return self.write(cr, uid, ids, {'state':'invoiced'}, context=context)
+    @api.multi
+    def action_invoice_state(self):
+        self.state = 'invoiced'
 
     def action_invoice(self, cr, uid, ids, context=None):
         inv_ref = self.pool.get('account.invoice')
@@ -1322,20 +1323,22 @@ class pos_order(models.Model):
 
         return True
 
-    def action_payment(self, cr, uid, ids, context=None):
-        return self.write(cr, uid, ids, {'state': 'payment'}, context=context)
+    @api.multi
+    def action_payment(self):
+        self.state = 'payment'
 
-    def action_paid(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {'state': 'paid'}, context=context)
-        self.create_picking(cr, uid, ids, context=context)
-        return True
+    @api.multi
+    def action_paid(self):
+        self.state = 'paid'
+        self.create_picking()
 
-    def action_cancel(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
-        return True
+    @api.multi
+    def action_cancel(self):
+        self.state = 'cancel'
 
-    def action_deliver(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {'state': 'delivered'}, context=context)
+    @api.multi
+    def action_deliver(self):
+        self.state = 'delivered'
         return True
 
     def action_done(self, cr, uid, ids, context=None):
