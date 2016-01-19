@@ -1325,8 +1325,6 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                 }
             }
 
-            this.deselectLine();
-
             openerp.jsonRpc( '/display/set/orderline', 'call', {
                 "config_id": this.pos.config.id,
                 "orderline":{
@@ -1334,8 +1332,10 @@ function openerp_pos_models(instance, module){ //module is instance.pos_kingdom
                     name : line.product.display_name,
                     price : line.get_display_price(),
                     quantity : line.quantity,
+                    details: line.details,
                 },
             });
+            this.deselectLine();
 
         },
         apply_drink_discount: function(line){
