@@ -26,7 +26,7 @@ Main Features
 * Allows the user to create an invoice automatically
 * Refund previous sales
     """,
-    'author': 'Sawers',
+    'author': '@vladwelt',
     'depends': ['sale_stock'],
     'data': [
         'data/report_paperformat.xml',
