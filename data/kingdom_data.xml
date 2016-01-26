@@ -101,19 +101,17 @@
         <record id="pos_order_division_1" model="pos.order.division">
             <field name="name">AQUI</field> 
             <field name="description">POLLO PARA AQUI</field>
-            <field name="indispensable">True</field>
+            <field name="indispensable">true</field>
         </record>
 
         <record id="pos_order_division_2" model="pos.order.division">
             <field name="name">LLEVAR</field> 
             <field name="description">POLLO PARA LLEVAR</field>
-            <field name="indispensable">False</field>
         </record>
 
         <record id="pos_order_division_3" model="pos.order.division">
             <field name="name">HELADO</field> 
             <field name="description">PEDIDO HELADO KINGDOM</field>
-            <field name="indispensable">False</field>
         </record>
         <!-- End -->
 
